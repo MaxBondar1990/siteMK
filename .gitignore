@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Docker
+**/docker-compose.override.yml
+**/.docker/
+
+# Vite
+dist/
+.vite/
+
+# VSCode settings
+.vscode/
+
+# Optional: IDE/Editor settings
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary
+temp/
+*.tmp
+*.swp
+*.bak
+
+# Output images
+cover.jpg

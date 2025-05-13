@@ -1,0 +1,268 @@
+
+// Обкладинка
+.cover {
+   position: relative;
+
+   font-family: 'Montserrat';
+   font-style: normal;
+
+   overflow: hidden;
+
+   &__img-gradient {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: -7%;
+      z-index: 1;
+      width: 70%;
+      height: 12svh;
+      background: linear-gradient(180deg, rgba(245, 245, 245, 0) 0%, rgba(245, 245, 245, 1) 100%);
+   }
+
+   &__img{ 
+      position: absolute;
+      bottom: 0;
+      right: -7%;
+      z-index: -1;
+
+      width: 114%;
+      img{
+         width: 100%;
+      }
+      @media (min-width: $tabletWidth) {
+         width: 65%;
+         right: 0;
+      }
+   }
+   &__content {
+      @media (min-width: $tabletWidth) {
+         padding-left: 7vw;
+      }
+      //@media (min-width: $desctopSmallWidth) {
+      //   padding-left: 7vw;
+      //}
+   }
+   &__title {
+      margin: 48px 0 0 0;
+      font-weight: 700;
+      font-size: 7vw;
+      line-height: 1.2em;
+      text-align: center;
+      //text-align: left;
+      text-transform: uppercase;
+      color: $colorBlue;
+      //background-color: $colorTest;
+      @media (min-width: $tabletWidth) {
+         font-size: 6vw;
+         text-align: left;
+         width: 80%;
+      }
+      
+   }
+   &__txt {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      hyphens: auto;
+      margin: 44px 36px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      text-align: justify;
+
+      mix-blend-mode: difference;
+      letter-spacing: 0.02em;
+      color: $colorDarkGray;
+      &._view {
+         -webkit-line-clamp: unset;
+      }
+      @media (min-width: $tabletWidth) {
+         width: 40%;
+         margin: 32px 0;
+      }
+   }
+   
+   &__button {
+      margin: 0 1.1em 50vw 1.1em;
+      padding: 1em 2em;
+      //position: absolute;
+      //top: 75svh;
+      //width: 200px;
+      //height: 48px;
+
+      font-size: 1em;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      border-radius: 20px;
+      border: solid 2px $colorBlue;
+      background-color: $colorLightGray;
+      color: $colorBlue;
+      @media (min-width: $tabletWidth) {
+         margin: 2% 1.1em 10% 7vw;
+      }
+   }
+   &__contact-form {
+      position: fixed;
+      top: -110%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: min-content;
+      justify-items: center;
+      align-items: start;
+      gap: 0;
+
+      width: 0;
+      height: 0;
+
+      padding: 0px;
+
+      overflow-y: hidden;
+      z-index: 1;
+
+      transition: height .3s;
+      transition-delay: height .3s;
+      &._active {
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+
+         width: 98%;
+         height: auto;
+
+         gap: 20px 4px;
+         padding: 20px 4px;
+
+         background: rgba(111, 111, 111, 0.4);
+         border: 1px solid $colorLightGray;
+         border-radius: 12px;
+         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+         backdrop-filter: blur(20px);
+         -webkit-backdrop-filter: blur(20px);
+
+         z-index: 3;
+         @media (min-width: $tabletWidth) {
+            width: 300px;
+            min-width: 418px;
+
+            height: auto;
+
+            padding: 20px 8px;
+            gap: 8px;
+         }
+         @media (min-width: $desctopSmallWidth) {
+            width: 300px;
+            height: auto;
+   
+            padding: 20px 8px;
+            gap: 8px;
+         }
+      }
+
+
+      h3 {
+        margin: 12px 0 8px 0;
+
+        font-size: 1.3em;
+        font-weight: 400;
+        text-align: center;
+        color: $colorWhite;
+      }
+
+      form {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         margin: auto;
+         width: 90%;
+         input, textarea{
+            width: 100%;
+            height: 2em;
+            // padding: 0.1em;
+            font-size: 1em;
+            margin: .4em 0 .8em 0;
+      
+            padding: 1em;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid #CACACA;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+            border-radius: 12px;
+
+            text-transform: none;
+            
+            color: $colorDarkGray;
+         }
+         textarea{
+            height: 8em;
+         }
+         input[type=submit]{
+            height: min-content;
+            width: min-content;
+      
+            padding: .9em 1.5em;
+            margin: auto;
+      
+            font-size: 16px;
+            font-weight: 400;
+            
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.6);
+            color: $colorDarkGray;
+            transition: all .3s;
+            &:hover{
+               background: rgba(255, 255, 255, 0.4);
+               color: $colorLightGray;
+            }
+         }
+         label{
+            font-size: 1em;
+            font-weight: 400;
+            color: $colorWhite;
+            i{
+               color: red;
+            }
+         }
+      }
+   }
+}
+.contact-form-close {
+      position: absolute;
+        
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+
+        transform: rotate(45deg);
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 3px;
+            height: 28px;
+
+            border-radius: 3px;
+
+            background-color: $colorLightGray;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 28px;
+            height: 3px;
+
+            border-radius: 3px;
+
+            background-color: $colorLightGray;
+        }
+   }

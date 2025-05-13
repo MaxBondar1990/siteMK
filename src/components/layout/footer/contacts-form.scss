@@ -1,0 +1,98 @@
+
+.contacts-form {
+   grid-area: f;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   justify-self: end;
+   width: 85%;
+   //height: 400px;
+   &._cover-form {
+      grid-area: none;
+      &::after {
+         content: '';
+         display: none;
+      }
+   }
+   &::after{
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 86%;
+      transform: translateY(7%);
+      background-color: $colorWhite;
+      top: 0;
+      right: 0;
+   }
+   //background-color: wheat;
+   form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
+      width: 80%;
+      //background-color: plum;
+   }
+   input, textarea{
+      width: 100%;
+      height: 2em;
+      padding: .5em;
+      font-size: 1.2em;
+      margin: .4em 0 .8em 0;
+
+      border: 1px solid $colorWhite;
+      border-radius: 16px;
+      
+      color: $colorDarkGray;
+   }
+   textarea{
+      height: 6em;
+   }
+   input[type=submit]{
+      height: min-content;
+      width: min-content;
+
+      padding: .9em 1.5em;
+      margin: auto;
+
+      font-size: 16px;
+      font-weight: 400;
+      
+      cursor: pointer;
+      background-color: $colorOrange;
+      color: $colorWhite;
+      border-radius: 16px;
+
+      transition: background-color .3s;
+      &:hover{
+         background-color: $colorLightOrange;
+      }
+   }
+
+   label{
+      font-size: 1.2em;
+      font-weight: 400;
+      color: $colorWhite;
+      i{
+         color: red;
+      }
+   }
+
+   @media (max-width: 768px) {
+      width: 80%;
+      justify-self: center;
+      &::after{
+         display: none;
+      }
+      input[type=submit]{
+         align-self: center;
+      }
+      label {
+      font-size: 1em;
+
+      }
+   }
+   @media (max-width: 520px) {
+      width: 100%;
+   }
+}

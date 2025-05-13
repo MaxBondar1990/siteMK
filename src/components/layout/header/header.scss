@@ -1,0 +1,50 @@
+@import "search";
+.header {
+   display: grid;
+   grid-template-columns: 60px 1fr 30px;
+   grid-template-rows: 46px;
+   align-items: center;
+
+   padding: 0 8px;
+   @media (min-width: $mobileClassicWidth) {
+      grid-template-columns: 100px 1fr 40px;
+      grid-template-rows: 100px;
+   }
+   @media (min-width: $desctopSmallWidth) {
+      padding: 0 max(80px, 5%);
+   }
+   &__logo {
+      display: block;
+      width: 60px;
+      height: 30px;
+      svg {
+         width: 60px;
+         height: 30px;
+      }
+      @media (min-width: $mobileClassicWidth) {
+         width: 100px;
+         height: 50px;
+         svg {
+            width: 100px;
+            height: 50px;
+         }
+      }
+   }
+   &__language{
+      display: block;
+      width: 30px;
+      height: 30px;
+      svg{
+         width: 30px;
+         height: 30px;
+      }
+      @media (min-width: $mobileClassicWidth) {
+         width: 40px;
+         height: 40px;
+         svg{
+            width: 40px;
+            height: 40px;
+         }
+      }
+   }
+}

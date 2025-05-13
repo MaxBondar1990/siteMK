@@ -1,0 +1,1 @@
+import './tile_6x3.scss'

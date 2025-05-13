@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="[[lang]]">
+	<include src="@components/layout/head/head.html" locals='{
+		"title":"[[title]]", 
+		"preloader": {
+			"enable":"[[preloader.enable]]",
+			"once":"[[preloader.once]]"
+		},
+		"keywords":"[[keywords]]", 
+		"description":"[[description]]"
+	}'>
+	</include>
+	<script type="module" src="@components/templates/adminMK/admin.js"></script>
+	<link rel="stylesheet" href="@components/templates/adminMK/admin.scss">
+	<body>
+		<div class="wrapper">
+			<block name="adminPenals"></block>
+
+		</div>
+		<block name="popup"></block>
+		<script type="module" src="@js/app.js"></script>
+	</body>
+</html>

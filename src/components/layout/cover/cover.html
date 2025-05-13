@@ -1,0 +1,45 @@
+<section data-fls-cover class="cover">
+   <!-- <span class="cover__img-gradient"></span> -->
+   <!-- Зображення обкладинки -->
+   <picture class="cover__img">
+      <!-- <img src="@img/cover/coverMine.png" alt="img"> -->
+      <!-- <img src="__spritemap#sprite-coverMine-view" alt="img"> -->
+      <img src="@img/cover/coverMine.png" alt="Image">
+   </picture>
+   <!-- Хедер сторінки -->
+   <!-- @@include('header.html',{}) -->
+   <!-- Контент блоку -->
+   <div class="cover__content">
+      <!-- Заголовок -->
+      <h1 class="cover__title">
+         корпоративні подарунки
+      </h1>
+      <!-- Текст блоку -->
+      <p class="cover__txt" lang="uk-UA">
+         Рекламна агенція "МК" спеціалізується на виготовленні корпоративної продукції, бізнес сувенірів та
+         промо одягу. Ми створюємо корпоративні подарунки, які здатні збільшити розпізнаваність вашого бренду. Наші
+         фахівці розробляють кращі рекламні бізнес сувеніри та промо одяг з унікальним дизайном, який допоможе зробити
+         вашу фірму
+         неперевершеною.
+      </p>
+   </div>
+   <!-- кнопка звʼязку -->
+   <button class="cover__button" type="button">
+      Замовити
+   </button>
+   <div class="cover__contact-form">
+      <div class="contact-form-close"></div>
+      <h3>Щоб зробити запит,<br>заповніть форму.</h3>
+      <form action="/" name="contact-form">
+         <label for="name">Name:<i>*</i></label>
+         <input type="text" name="name" required>
+         <label for="phone">Telephone:<i>*</i></label>
+         <input type="tel" name="phone" required>
+         <label for="email">E-mail:</label>
+         <input type="email" name="email">
+         <label for="text">Ваше повідомлення:</label>
+         <textarea name="text"></textarea>
+         <input type="submit" value="Надіслати" name="contactBtn">
+      </form>
+   </div>
+</section>
