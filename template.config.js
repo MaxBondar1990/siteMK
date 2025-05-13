@@ -40,7 +40,7 @@ export default {
 		download: false
 	},
 	images: {
-		svgsprite: false,
+		svgsprite: true,
 		optimize: {
 			enable: true,
 			edithtml: true,
