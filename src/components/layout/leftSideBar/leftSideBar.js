@@ -25,20 +25,23 @@ document.addEventListener('click', (event) => {
    }
 
    // Клік по пункту головного меню
-   const menuItem = target.closest('.main-menu__items');
-   if (menuItem) {
-      const buttonName = menuItem.getAttribute('data-name');
-      navItems.forEach(item => {
-         const itemName = item.getAttribute('data-name');
-         if (itemName === buttonName) {
-            item.classList.contains('_show')
-               ? item.classList.remove('_show')
-               : item.classList.add('_show');
-         } else {
-            item.classList.remove('_show');
-         }
-      });
-   }
+document.addEventListener('click', (event) => {
+  const menuItem = event.target.closest('.main-menu__items');
+  if (!menuItem) return;
+
+  const clickedName = menuItem.dataset.name;
+
+  navItems.forEach(item => {
+    const itemName = item.dataset.name;
+
+    if (itemName === clickedName) {
+      item.classList.add('_show'); // Відкриваємо лише натиснутий
+    } else {
+      item.classList.remove('_show'); // Закриваємо всі інші
+    }
+  });
+});
+
 
    // Клік поза меню — закриваємо підменю
    if (!target.closest('.main-menu')) {
