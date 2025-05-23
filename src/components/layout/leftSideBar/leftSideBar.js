@@ -3,8 +3,8 @@ import './leftSideBar.scss';
 const burger = document.querySelector('.burger-menu');
 const navigation = document.querySelector('.main-menu');
 const navItems = document.querySelectorAll('.nav-items .group-wrapper');
-const contactBtns = document.querySelectorAll('.left-side-bar__items button');
-const contactBars = document.querySelectorAll('.left-side-bar__contacts');
+// const contactBtns = document.querySelectorAll('.left-side-bar__items button');
+// const contactBars = document.querySelectorAll('.left-side-bar__contacts');
 
 document.addEventListener('click', (event) => {
 
@@ -50,18 +50,18 @@ document.addEventListener('click', (event) => {
 });
 
 // Обробка кнопок у лівій бічній панелі
-contactBtns.forEach(btn => {
-   btn.addEventListener('click', () => {
-      const btnName = btn.getAttribute('data-name');
-      contactBars.forEach(contact => {
-         const contactName = contact.getAttribute('data-name');
-         if (contactName === btnName) {
-            contact.classList.contains('_show')
-               ? contact.classList.remove('_show')
-               : contact.classList.add('_show');
-         } else {
-            contact.classList.remove('_show');
-         }
-      });
-   });
-});
+// contactBtns.forEach(btn => {
+//    btn.addEventListener('click', () => {
+//       const btnName = btn.getAttribute('data-name');
+//       contactBars.forEach(contact => {
+//          const contactName = contact.getAttribute('data-name');
+//          if (contactName === btnName) {
+//             contact.classList.contains('_contacts')
+//                ? contact.classList.remove('_contacts')
+//                : contact.classList.add('_contacts');
+//          } else {
+//             contact.classList.remove('_contacts');
+//          }
+//       });
+//    });
+// });
