@@ -83,7 +83,7 @@
       overflow: hidden;
       transition: max-height .6s;
       &._action {
-         grid-template-columns: repeat(auto-fill, 40px);
+         // grid-template-columns: repeat(auto-fill, 40px);
          max-height: 400px;
          padding-bottom: 7px;
       }
