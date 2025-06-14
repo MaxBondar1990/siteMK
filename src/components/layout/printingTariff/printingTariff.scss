@@ -1,0 +1,104 @@
+.tariff {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: auto;
+
+    padding-right: 12px;
+    padding-bottom: 12px;
+    padding-left: max(80px,5%);
+    @media (max-width: 1023px) {
+        padding: 0 12px;
+    }
+    
+    h2 {
+        margin-top: 24px;
+        color: #6F6F6F;
+        font-family: Montserrat;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 100% */
+
+        text-align: center;
+    }
+    &__block {
+        display: flex;
+        flex-direction: column;
+
+        padding-top: 12px;
+
+        justify-content: flex-start;
+        align-items: center;
+        @media (max-width: 1024px) {
+            width: 100%;
+            overflow-x: scroll;
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+              }
+        }
+        @media (max-width: 596px) {
+            width: 100%;
+            overflow-x: scroll;
+            align-items: flex-start;
+        }
+    }
+    &__table {
+        width: auto;
+        height: auto;
+        @media (max-width: 1024px) {
+            min-width: 596px;
+        }
+    }
+    caption {
+        margin-bottom: 8px;
+        color: #6F6F6F;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; /* 100% */
+
+        text-align: center;
+    }
+    &__value {
+        // display: flex;
+        // flex-wrap: nowrap;
+        // gap: 4px;
+        color: #6F6F6F;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 12px; /* 100% */
+        text-align: center;
+        th,
+        td {
+            display: inline-flex;
+            width: 70px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+
+            margin: 2px;
+
+            font-weight: 400;
+
+            border-radius: 10px;
+            
+        }
+        th {
+            background: #F5F5F5;
+        }
+        td {
+            transition: border .3s;
+            border: 1px solid rgba(245, 245, 245, 0);
+            &:hover {
+                border: 2px solid rgba(245, 245, 245, 1);
+            }
+        }
+    }
+}
