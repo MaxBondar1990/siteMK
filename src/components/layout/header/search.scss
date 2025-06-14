@@ -138,7 +138,7 @@ $animateTimePassive: .5s;
          gap: 4px;
          padding: 4px;
 
-         background: rgba(111, 111, 111, 0.4);
+         background: rgba(111, 111, 111, 0.8);
          border: 1px solid $colorLightGray;
          border-radius: 12px;
          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
@@ -176,13 +176,47 @@ $animateTimePassive: .5s;
         display: none;
        }
    }
+   &__results-close-btn {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 32px;
+      aspect-ratio: 1 / 1;
+      background: transparent;
+      transition: all .3s;
+      &::before {
+         content: ('');
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%) rotate(45deg);
+         height: 28px;
+         width: 3px;
+         border-radius: 3px;
+         background: $colorLightGray;
+      }
+      &::after {
+         content: ('');
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%) rotate(45deg);
+         height: 3px;
+         width: 28px;
+         border-radius: 3px;
+         background: $colorLightGray;
+      }
+      &:hover {
+         transform: scale(.9);
+      }
+   }
    &__welcome-text,
    &__error-text {
       margin-top: 12px;
       line-height: 1.2em;
       text-align: center;
 
-      color: $colorDarkGray;
+      color: $colorLightGray;
    }
 }
 
@@ -204,7 +238,7 @@ $animateTimePassive: .5s;
    transition: all .3s;
 
    &:hover {
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.5);
    }
 
    &._transparency {
