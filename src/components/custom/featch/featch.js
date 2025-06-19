@@ -30,6 +30,7 @@ const CONFIG = {
          }
       })
       .catch(error => console.error(`Помилка завантаження ${section}:`, error));
+
 }
 
 

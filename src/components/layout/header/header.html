@@ -1,21 +1,14 @@
 <header data-fls-header class="header">
    <!-- Логотип компанії -->
    <a class="header__logo" href="/" title="Рекламно-виробнича компанія Мега Компроміс">
-      <svg>
-
-         <!-- <use xlink:href="@assets/svgicons.svg#logo"></use> -->
-         <use xlink:href="__spritemap#sprite-logo"></use>
-      </svg>
+      <img src="@img/global/logo.webp" alt="Лого компанії" width="100" height="50">
    </a>
    <!-- Панель пошуку -->
    <div class="search">
-
       <div class="search__panel" data-fetch-html="search__result" data-container-name="search-results">
          <div class="search__elements">
             <svg class="search__icon">
                <use xlink:href="__spritemap#sprite-search"></use>
-
-               <!-- <use xlink:href="@img/icons/icons.svg#search"></use> -->
             </svg>
             <form action="/">
                <input class="search__input" type="search" name="search" placeholder="Пошук" autocomplete="off" size="1">
@@ -23,17 +16,13 @@
             <div class="search__close"></div>
          </div>
       </div>
-
-      <div class="search__results" data-container="search-results">
-
+      <div class="search__results" data-name="search-results" data-container="search-results">
+         <button class="search__results-close-btn" data-close-modal="search-results" type="button"></button>
       </div>
-
    </div>
    <!-- Вибір мови сторінки -->
    <a class="header__language" href="/ru/" title="Перекласти сторінку">
       <p></p>
-      <svg>
-         <use xlink:href="__spritemap#sprite-ork"></use>
-      </svg>
+      <img src="@img/global/ork.webp" alt="Лого компанії" width="40">
    </a>
 </header>
