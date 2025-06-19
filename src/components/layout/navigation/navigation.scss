@@ -365,7 +365,7 @@
       position: absolute;
       right: 0;
       bottom: 0;
-      height: 53px;
+      height: 48px;
       
       overflow: hidden;
 
@@ -374,6 +374,7 @@
       width: 88px;
       height: 100%;
       aspect-ratio: 2/1;
+      fill: $colorDarkGray;
    }
    
 }
