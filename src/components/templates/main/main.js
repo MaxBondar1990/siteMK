@@ -2,6 +2,7 @@ import { fetchHTML, close } from '../../custom/featch/featch.js'
 import { searchView } from '../../layout/header/header.js'
 import { addAction } from '../../layout/goods/goods.js'
 import { handleArticleOrderForm, handleArticleColor } from '../../layout/articleContent/articleContent.js'
+import { handleMainMenuClick } from '../../layout/leftSideBar/leftSideBar.js'
 
 
 // document.addEventListener('DOMContentLoaded', () => {
@@ -25,5 +26,7 @@ document.addEventListener('click', (event) => {
 
    handleArticleOrderForm(event);
    handleArticleColor(event);
+
+   handleMainMenuClick(event);
 })
 

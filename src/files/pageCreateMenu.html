@@ -1,0 +1,62 @@
+<div class="page-create-menu _view" data-name="page-create-menu">
+   <button class="page-create-menu__close" data-close-modal="page-create-menu"></button>
+
+   <form class="section-select-menu__tiles-container" action="/setup/page/creat/" title="select template"
+      method="post" enctype="multipart/form-data" data-name="template-select-form">
+      <span class="page-create-menu__url-text">Create URL for this Page</span>
+      <input class="page-create-menu__url-input" data-name="input-create-page-url" name="page_url" type="text">
+      <div class="page-create-menu__tiles-container">
+         <p class="page-create-menu__tiles-container-title">Select or create a Teamplate for this Page</p>
+         <div class="page-create-menu__tiles-wrapper">
+            <!-- Кнопка додавання нового шаблона -->
+            <div class="page-create-menu__tile-wrapper">
+               <p class="page-create-menu__tile-title">New</p>
+               <button class="page-create-menu__tile-add-btn" type="button"
+                  data-name="btn-view-teamplate-create-menu"></button>
+            </div>
+
+            <!-- Катклог наявних шаблонів -->
+            <div class="page-create-menu__teamplate-tiles">
+               <!-- Картка шаблона -->
+               <div class="page-create-menu__tile-wrapper">
+                  <label class="page-create-menu__tile">
+                     <input class="page-create-menu__radio" type="radio" value="main" name="teamplate">
+                     Mine
+                     <!-- <p class="page-create-menu__tile-title">Mine</p> -->
+                     <span class="page-create-menu__tile-img">
+                        <img class="page-create-menu__img" src="@img/404/mine.jpg" alt="teamplate preview">
+                     </span>
+                     <button class="page-create-menu__title-btn" type="button">UPD</button>
+                  </label>
+               </div>
+               <!-- Картка шаблона -->
+               <div class="page-create-menu__tile-wrapper">
+                  <label class="page-create-menu__tile">
+                     <input class="page-create-menu__radio" type="radio" value="landing" name="teamplate">
+                     Mine
+                     <!-- <p class="page-create-menu__tile-title">Mine</p> -->
+                     <span class="page-create-menu__tile-img">
+                        <img class="page-create-menu__img" src="@img/404/mine.jpg" alt="teamplate preview">
+                     </span>
+                     <button class="page-create-menu__title-btn" type="button" type="button">UPD</button>
+                  </label>
+               </div>
+               <!-- Картка шаблона -->
+               <div class="page-create-menu__tile-wrapper">
+                  <label class="page-create-menu__tile">
+                     <input class="page-create-menu__radio" type="radio" value="" name="teamplate">
+                     Mine
+                     <!-- <p class="page-create-menu__tile-title">Mine</p> -->
+                     <span class="page-create-menu__tile-img">
+                        <img class="page-create-menu__img" src="@img/404/mine.jpg" alt="teamplate preview">
+                     </span>
+                     <button class="page-create-menu__title-btn" type="button" type="button">UPD</button>
+                  </label>
+               </div>
+            </div>
+
+         </div>
+      </div>
+      <button class="page-create-menu__confirm-btn" data-close-modal="page-create-menu" type="submit">OK</button>
+   </form>
+</div>

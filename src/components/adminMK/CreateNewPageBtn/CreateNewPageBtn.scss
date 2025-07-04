@@ -1,0 +1,53 @@
+@import "pageCreateMenu";
+
+.new-page-btn{
+   position: absolute;
+   left: 50%;
+   top: 8px;
+   transform: translateX(-50%);
+   border-radius: 16px;
+   background: $colorOrange;
+   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
+
+   display: flex;
+   width: auto;
+   height: auto;
+   padding: 14px 28px;
+   justify-content: center;
+   align-items: center;
+
+   color: $colorWhite;
+   font-family: Montserrat;
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 16px;
+   transition: all .3s;
+
+   &::before{
+      content: "";
+      width: 24px;
+      height: 2px;
+      margin-right: 8px;
+      border-radius: 2px;
+      background: $colorWhite;
+   }
+   &::after{
+      content: "";
+      position: absolute;
+      left: 39px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 24px;
+      border-radius: 2px;
+      background: $colorWhite;
+   }
+   &:hover{
+      background-color: $colorLightOrange;
+
+   }
+   &._invisible{
+      display: none;
+      }
+}

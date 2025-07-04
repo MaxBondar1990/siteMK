@@ -1,0 +1,2 @@
+import './CreateNewPageBtn.scss'
+

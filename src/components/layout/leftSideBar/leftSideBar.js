@@ -1,53 +1,47 @@
 import './leftSideBar.scss';
 
-const burger = document.querySelector('.burger-menu');
-const navigation = document.querySelector('.main-menu');
-const navItems = document.querySelectorAll('.nav-items .group-wrapper');
-// const contactBtns = document.querySelectorAll('.left-side-bar__items button');
-// const contactBars = document.querySelectorAll('.left-side-bar__contacts');
+export function handleMainMenuClick(event) {
+  const target = event.target;
 
-document.addEventListener('click', (event) => {
+  const burger = document.querySelector('.burger-menu');
+  const navigation = document.querySelector('.main-menu');
+  const navItems = document.querySelectorAll('.nav-items .group-wrapper');
 
-   const target = event.target;
+  // Чітке керування станом бургер-меню
+  if (target.closest('.burger-menu')) {
+    const isActive = burger.classList.contains('_action');
 
-   // Чітке керування станом бургер-меню
-   if (target.closest('.burger-menu')) {
-      const isActive = burger.classList.contains('_action');
-
-      if (isActive) {
-         burger.classList.add('_action');
-         navigation.classList.add('_active');
-      } else {
-         burger.classList.remove('_action');
-         navigation.classList.remove('_active');
-
-      }
-   }
-
-   // Клік по пункту головного меню
-document.addEventListener('click', (event) => {
-  const menuItem = event.target.closest('.main-menu__items');
-  if (!menuItem) return;
-
-  const clickedName = menuItem.dataset.name;
-
-  navItems.forEach(item => {
-    const itemName = item.dataset.name;
-
-    if (itemName === clickedName) {
-      item.classList.add('_show'); // Відкриваємо лише натиснутий
+    if (isActive) {
+      burger.classList.remove('_action');
+      navigation.classList.remove('_active');
     } else {
-      item.classList.remove('_show'); // Закриваємо всі інші
+      burger.classList.add('_action');
+      navigation.classList.add('_active');
     }
-  });
-});
+  }
 
+  // Клік по пункту головного меню
+  const menuItem = target.closest('.main-menu__items');
+  if (menuItem) {
+    const clickedName = menuItem.dataset.name;
 
-   // Клік поза меню — закриваємо підменю
-   if (!target.closest('.main-menu')) {
-      navItems.forEach(item => item.classList.remove('_show'));
-   }
-});
+    navItems.forEach((item) => {
+      const itemName = item.dataset.name;
+
+      if (itemName === clickedName) {
+        item.classList.add('_show');
+      } else {
+        item.classList.remove('_show');
+      }
+    });
+  }
+
+  // Клік поза меню — закриваємо підменю
+  if (!target.closest('.main-menu')) {
+    navItems.forEach((item) => item.classList.remove('_show'));
+  }
+}
+
 
 // Обробка кнопок у лівій бічній панелі
 // contactBtns.forEach(btn => {
