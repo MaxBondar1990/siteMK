@@ -1,0 +1,55 @@
+.AddSection{
+   display: flex;
+   width: 100%;
+   height: auto;
+   padding: 4px 0px;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+   &._invisible{
+      display: none;
+   }
+   &__btn{
+      position: relative;
+      border-radius: 16px;
+      background: #4976B3;
+      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
+      display: flex;
+      width: auto;
+      height: auto;
+      padding: 14px 32px 14px 32px;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+   
+      color: $colorWhite;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+   
+      &::before{
+         content: "";
+         width: 24px;
+         height: 2px;
+         margin-right: 8px;
+         border-radius: 2px;
+         background: $colorWhite;
+      }
+      &::after{
+         content: "";
+         position: absolute;
+         left: 43px;
+         top: 50%;
+         transform: translateY(-50%);
+         width: 2px;
+         height: 24px;
+         border-radius: 2px;
+         background: $colorWhite;
+      }
+      &:hover{
+         box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+      }
+   }
+}

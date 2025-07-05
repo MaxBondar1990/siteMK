@@ -1,0 +1,57 @@
+<section data-fls-sectionControlPanel class="section-control-panel" data-name="section-control-panel" data-section-id="@@number">
+   <div class="section-control-panel__wrapper">
+      <div class="section-control-panel__btns-wrapper">
+         <button class="section-control-panel__btn" title="Налаштування секції">
+            <div class="section-control-panel__items items">
+               <span class="items__number" data-number="@@number">@@number</span>
+               <svg class="items__svg">
+                  <use xlink:href="__spritemap#sprite-GearNew"></use>
+               </svg>
+            </div>
+            <p class="section-control-panel__name">@@name</p>
+         </button>
+         <div class="section-control-panel__management-block management-block">
+            <div class="section-control-panel__management management">
+               <form class="management__form" action="/setup/section/up/" title="up section" method="post"
+                  enctype="multipart/form-data">
+                  <input type="hidden" name="page_id" value="php">
+                  <input type="hidden" name="section_id" value="php">
+                  <input type="hidden" name="s_o_id" value="php">
+                  <input type="hidden" name="number" value="php">
+                  <button class="management__button" type="submit" title="Перемістити секцію вгору">
+                     <svg class="management__svg">
+                        <use xlink:href="@img/icons/icons.svg#up-btn"></use>
+                     </svg>
+                  </button>
+               </form>
+               <form class="management__form" action="">
+                  <button class="management__button" type="submit" title="Перемістити секцію вниз">
+                     <svg class="management__svg">
+                        <use xlink:href="@img/icons/icons.svg#down-btn"></use>
+                     </svg>
+                  </button>
+               </form>
+            </div>
+            <div class="section-control-panel__management">
+               <button class="management__button" type="button"
+                  title="Редагування контенту секції">
+                  <svg class="management__svg" data-fetch-modal="section_editMenu">
+                     <use xlink:href="@img/icons/icons.svg#editing-btn"></use>
+                  </svg>
+               </button>
+               <form class="management__form" action="">
+                  <button class="management__button" type="submit" title="Видалити секцію">
+                     <svg class="management__svg">
+                        <use xlink:href="__spritemap#sprite-del-btn"></use>
+                     </svg>
+                  </button>
+               </form>
+
+
+            </div>
+            <!-- <button class="management-block__close-btn" type="button"></button> -->
+         </div>
+      </div>
+   </div>
+   <!-- @@include('section_editMenu.html',{}) -->
+</section>
