@@ -17,7 +17,7 @@ import { handleMainMenuClick } from '../../layout/leftSideBar/leftSideBar.js'
 
 document.addEventListener('click', (event) => {
 
-   fetchHTML(event);
+   //fetchHTML(event);
    close(event);
 
    searchView(event);

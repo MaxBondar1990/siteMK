@@ -7,7 +7,7 @@ const CONFIG = {
    getPath: (section) => isLocal ? `${section}.html` : `/adminModule/${section}/`
 };
 
-   function loadContent(section, postData = null, containerSelector = "body") {
+function loadContent(section, postData = null, containerSelector = "body") {
 
    const url = CONFIG.apiUrl + CONFIG.getPath(section);
    const options = isLocal ? {} : {
@@ -24,7 +24,11 @@ const CONFIG = {
       .then(html => {
          const container = document.querySelector(containerSelector);
          if (container) {
-            container.insertAdjacentHTML("beforeend", html);
+            if (containerSelector == "body") {
+               container.insertAdjacentHTML("beforeend", html);
+            } else {
+               container.innerHTML = html;
+            }
          } else {
             console.error(`Контейнер "${containerSelector}" не знайдено`);
          }
@@ -43,17 +47,22 @@ function createFetchParam(eventTarget) {
       const sectionId = eventTarget.getAttribute('data-section-id');
       result.append("sectionId", sectionId); // Додаємо значення в форму
    }
+   // Якщо є атрибут type = search, додаємо його до fetchParam
+   if (eventTarget.matches('[type="search"]')) {
+      const searchValue = eventTarget.value;
+      result.append("searchValue", searchValue); // Додаємо значення в форму
+   }
    return result;
 }
 
-function getContainer (eventTarget) {
-      const containerName = eventTarget.getAttribute('data-container-name');
-      return containerName;
+function getContainer(eventTarget) {
+   const containerName = eventTarget.getAttribute('data-container-name');
+   return containerName;
 }
 
 // Відкриття модалки
-   export function fetchHTML(event) {
-      const fetchEl = event.target.closest('[data-fetch-html]');
+export function fetchHTML(event) {
+   const fetchEl = event.target.closest('[data-fetch-html]');
 
    // Перевіряємо, чи натиснуто елемент з атрибутом data-fetch-html
    if (fetchEl) {
@@ -66,8 +75,8 @@ function getContainer (eventTarget) {
       const featchContainer = getContainer(fetchEl);
 
       if (featchContainer) {
-            // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
-            loadContent(modalName, fetchParam, `[data-container='${featchContainer}']`);
+         // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
+         loadContent(modalName, fetchParam, `[data-container='${featchContainer}']`);
 
       } else {
          // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
@@ -80,8 +89,19 @@ function getContainer (eventTarget) {
    }
 }
 
+export function onInputFetchHTML(fileName, containerName, data) {
+   // Перевіряємо, чи натиснуто елемент з атрибутом data-fetch-html
+   if (containerName) {
+      // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
+      loadContent(fileName, data, `[data-container='${containerName}']`);
+   } else {
+      // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
+      loadContent(fileName, data);
+   }
+}
+
 // Закриття модалки
-   export function close(event) {
+export function close(event) {
    if (event.target.matches("[data-close-modal]")) {
       const modalName = event.target.getAttribute("data-close-modal");
       const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
