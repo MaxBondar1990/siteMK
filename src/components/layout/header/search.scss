@@ -20,8 +20,9 @@ $animateTimePassive: .5s;
 
       height: 100%;
       transition: height $animateTime;
-   }
-   &__elements {
+
+      // CSS з обгортки element
+      
       width: 100%;
       display: grid;
       grid-template-columns: 
@@ -37,6 +38,7 @@ $animateTimePassive: .5s;
       border: 1px solid $colorDarkGray;
       border-radius: 52px;
 
+
       input[type="search"]::-webkit-search-cancel-button {
          -webkit-appearance: none;
          height: 2em;
@@ -46,20 +48,59 @@ $animateTimePassive: .5s;
          background-size: contain;
          opacity: 0;
          pointer-events: none;
+
        }
        
        input[type="search"]:focus::-webkit-search-cancel-button {
          opacity: 1;
          cursor: pointer;
          pointer-events: all;
+
        }
    }
+   // &__elements {
+   //    width: 100%;
+   //    display: grid;
+   //    grid-template-columns: 
+   //    min-content
+   //    1fr
+   //    min-content;
+   //    gap: 1em;
+   //    align-items: center;
+
+   //    // height: 32px;
+   //    padding-left: 1em;
+
+   //    border: 1px solid $colorDarkGray;
+   //    border-radius: 52px;
+
+   //    input[type="search"]::-webkit-search-cancel-button {
+   //       -webkit-appearance: none;
+   //       height: 2em;
+   //       width: 1.3em;
+   //       border-radius: 50em;
+   //       background: url(/img/svg-icons/searchCansel.svg) no-repeat 50% 50%;
+   //       background-size: contain;
+   //       opacity: 0;
+   //       pointer-events: none;
+   //     }
+       
+   //     input[type="search"]:focus::-webkit-search-cancel-button {
+   //       opacity: 1;
+   //       cursor: pointer;
+   //       pointer-events: all;
+   //     }
+   // }
    &__input {
       width: 100%;
       height: 1em;
       text-transform: uppercase;
       color: $colorDarkGray;
       background: transparent;
+
+      
+      outline: none;
+      border: none;
    }
    &__input::placeholder { 
       color: $colorDarkGray;
@@ -71,7 +112,7 @@ $animateTimePassive: .5s;
       width: 21px;
       fill: $colorDarkGray;
    }
-   &__close {
+   &__input-clean {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -98,14 +139,14 @@ $animateTimePassive: .5s;
       &::after{
          transform: rotate(-45deg);
       }
-      &._active {
+      &._view {
          &::before, &::after {
             width: 2px;
             height:  20px;
          }
       }
    }
-   &__results {
+   &__modal {
       position: fixed;
       top: -110%;
       left: -110%;
@@ -127,7 +168,7 @@ $animateTimePassive: .5s;
 
       transition: height .3s;
       transition-delay: height .3s;
-      &._active {
+      &._view {
          top: 50%;
          left: 50%;
          transform: translate(-50%, -50%);
@@ -176,7 +217,7 @@ $animateTimePassive: .5s;
         display: none;
        }
    }
-   &__results-close-btn {
+   &__modal-close {
       position: absolute;
       top: 8px;
       left: 8px;

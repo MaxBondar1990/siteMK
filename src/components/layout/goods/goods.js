@@ -1,6 +1,6 @@
 import './goods.scss'
 
-export function addAction(event) {
+export function viewColorItems(event) {
   const colorList = event.target.closest('[data-name="view-color-items"]');
   const colorItem = event.target.closest('.goods-card__color-item');
 

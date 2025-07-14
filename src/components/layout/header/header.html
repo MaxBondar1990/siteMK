@@ -6,7 +6,7 @@
    <!-- Панель пошуку -->
    <div class="search">
       <div class="search__panel" data-search-panel>
-         <div class="search__elements">
+         <!-- <div class="search__elements"> -->
             <svg class="search__icon">
                <use xlink:href="__spritemap#sprite-search"></use>
             </svg>
@@ -14,13 +14,13 @@
                <input class="search__input" type="search" name="search" data-search-value="" placeholder="Пошук"
                   autocomplete="off" size="1">
             </form>
-            <div class="search__close"></div>
-         </div>
+            <div class="search__input-clean" data-name="search__input-clean"></div>
+         <!-- </div> -->
       </div>
-      <div class="search__results" data-container="search-results">
-         <button class="search__results-close-btn" data-close-modal="search-results" type="button"></button>
+      <div class="search__modal" data-name="search-modal">
+         <button class="search__modal-close" data-close-modal="search-modal" type="button"></button>
          <!-- Стартове повідомлення на екрані пошуку -->
-         <div class="wrapper">
+         <div class="search__results" data-container="search-results">
             <p class="search__welcome-text">Для початку пошуку почніть вводити
                <br>назву або артикул товару
                <br>(мінімум три символи).

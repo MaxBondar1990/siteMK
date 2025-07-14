@@ -101,9 +101,22 @@ export function onInputFetchHTML(fileName, containerName, data) {
 }
 
 // Закриття модалки
-export function close(event) {
-   if (event.target.matches("[data-close-modal]")) {
+export function closeModal(event) {
+   if (event.target.closest("[data-close-modal]")) {
       const modalName = event.target.getAttribute("data-close-modal");
+      console.log(modalName)
+      const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
+      if (modalWindow) {
+         modalWindow.classList.remove('_view');
+         return;
+      }
+   }
+}
+
+// Remove модалки
+export function removeModal(event) {
+   if (event.target.closest("[data-remove-modal]")) {
+      const modalName = event.target.getAttribute("data-remove-modal");
       const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
       if (modalWindow) {
          setTimeout(() => {

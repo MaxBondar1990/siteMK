@@ -1,6 +1,6 @@
-import { fetchHTML, close } from '../../custom/featch/featch.js'
-import { searchView } from '../../layout/header/header.js'
-import { addAction } from '../../layout/goods/goods.js'
+import { fetchHTML, closeModal, removeModal } from '../../custom/featch/featch.js'
+import { searchView, searchClean } from '../../layout/header/header.js'
+import { viewColorItems } from '../../layout/goods/goods.js'
 import { handleArticleOrderForm, handleArticleColor } from '../../layout/articleContent/articleContent.js'
 import { handleMainMenuClick } from '../../layout/leftSideBar/leftSideBar.js'
 
@@ -17,12 +17,14 @@ import { handleMainMenuClick } from '../../layout/leftSideBar/leftSideBar.js'
 
 document.addEventListener('click', (event) => {
 
-   //fetchHTML(event);
-   close(event);
+   fetchHTML(event);
+   closeModal(event);
+   removeModal(event);
 
    searchView(event);
+   searchClean(event);
 
-   addAction(event);
+   viewColorItems(event);
 
    handleArticleOrderForm(event);
    handleArticleColor(event);
