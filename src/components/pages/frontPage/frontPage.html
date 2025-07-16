@@ -1,0 +1,31 @@
+<script type="module" src="@components/custom/featch/featch.js"></script>
+<script type="module" src="@components/pages/frontPage/frontPage.js"></script>
+
+<link rel="stylesheet" href="@components/pages/frontPage/frontPage.scss">
+
+<main class="page page--frontPage">
+   <!--<block name="pageContent">
+      <include src="@components/pages/catalog/catalog.html" locals='{}'></include>
+   </block>-->
+   <block name="cover">
+      <include src="@components/layout/cover/cover.html" locals='{"title":"корпоративні подарунки"}'></include>
+   </block>
+   <block name="welcomeTxt">
+      <include src="@components/layout/welcomeTxt/welcomeTxt.html" locals='{}'></include>
+   </block>
+   <block name="tile_6x3">
+      <include src="@components/layout/tile_6x3/tile_6x3.html" locals='{}'></include>
+   </block>
+   <block name="advantages">
+      <include src="@components/layout/advantages/advantages.html" locals='{}'></include>
+   </block>
+   <block name="goods">
+      <include src="@components/layout/goods/goods.html" locals='{}'></include>
+   </block>
+   <block name="technologies">
+      <include src="@components/layout/technologies/technologies.html" locals='{}'></include>
+   </block>
+   <block name="pageDescription">
+      <include src="@components/layout/pageDescription/pageDescription.html" locals='{}'></include>
+   </block>
+</main>

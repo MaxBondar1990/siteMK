@@ -1,22 +1,14 @@
-<script type="module" src="@components/custom/featch/featch.js"></script>
-
 <script type="module" src="@components/pages/catalog/catalog.js"></script>
 <link rel="stylesheet" href="@components/pages/catalog/catalog.scss">
 
 <main class="page page--catalog">
-	<block name="cover">
-		<include src="@components/layout/cover/cover.html" locals='{}'></include>
-	</block>
+   <block name="cover">
+      <include src="@components/layout/cover/cover.html" locals='{"title":"Каталог товару"}'></include>
+   </block>
    <block name="goods">
-		<include src="@components/layout/goods/goods.html" locals='{}'></include>
-	</block>
+      <include src="@components/layout/goods/goods.html" locals='{}'></include>
+   </block>
    <block name="pageDescription">
-		<include src="@components/layout/pageDescription/pageDescription.html" locals='{}'></include>
-	</block>
-   <block name="leftSideBar">
-		<include src="@components/layout/leftSideBar/leftSideBar.html" locals='{}'></include>
-	</block>
-   <block name="navigation">
-		<include src="@components/layout/navigation/navigation.html" locals='{}'></include>
-	</block>
+      <include src="@components/layout/pageDescription/pageDescription.html" locals='{}'></include>
+   </block>
 </main>

@@ -58,39 +58,6 @@ $animateTimePassive: .5s;
 
        }
    }
-   // &__elements {
-   //    width: 100%;
-   //    display: grid;
-   //    grid-template-columns: 
-   //    min-content
-   //    1fr
-   //    min-content;
-   //    gap: 1em;
-   //    align-items: center;
-
-   //    // height: 32px;
-   //    padding-left: 1em;
-
-   //    border: 1px solid $colorDarkGray;
-   //    border-radius: 52px;
-
-   //    input[type="search"]::-webkit-search-cancel-button {
-   //       -webkit-appearance: none;
-   //       height: 2em;
-   //       width: 1.3em;
-   //       border-radius: 50em;
-   //       background: url(/img/svg-icons/searchCansel.svg) no-repeat 50% 50%;
-   //       background-size: contain;
-   //       opacity: 0;
-   //       pointer-events: none;
-   //     }
-       
-   //     input[type="search"]:focus::-webkit-search-cancel-button {
-   //       opacity: 1;
-   //       cursor: pointer;
-   //       pointer-events: all;
-   //     }
-   // }
    &__input {
       width: 100%;
       height: 1em;
@@ -147,6 +114,7 @@ $animateTimePassive: .5s;
       }
    }
    &__modal {
+      //position: relative;
       position: fixed;
       top: -110%;
       left: -110%;
@@ -156,66 +124,65 @@ $animateTimePassive: .5s;
       grid-auto-rows: min-content;
       justify-items: center;
       align-items: start;
-      gap: 0;
+      justify-items: start;
+      gap: 8px;
+
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
 
       width: 0;
       height: 0;
 
-      padding: 0px;
-
-      overflow-y: auto;
-      z-index: 1;
+      overflow: hidden;
 
       transition: height .3s;
       transition-delay: height .3s;
+
+      background: rgba(111, 111, 111, 0.8);
+      border: 1px solid $colorLightGray;
+      border-radius: 12px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      z-index: 3;
       &._view {
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -50%);
+         top: 90px;
+         left: 8px;
+         transform: translate(0, 0);
 
-         width: 98%;
-         height: 80svh;
-
-         gap: 4px;
-         padding: 4px;
-
-         background: rgba(111, 111, 111, 0.8);
-         border: 1px solid $colorLightGray;
-         border-radius: 12px;
-         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
-         backdrop-filter: blur(20px);
-         -webkit-backdrop-filter: blur(20px);
-
-         z-index: 3;
+         width: auto;
+         height: 75svh;
          @media (min-width: $tabletWidth) {
-            width: auto;
-            min-width: auto;
+            //width: auto;
+            //min-width: auto;
+            //height: 75svh;
 
-            height: 75svh;
+            //top: 90px;
+            //left: 8px;
+            //transform: translate(0, 0);
 
-            top: 90px;
-            left: 8px;
-            transform: translate(0, 0);
-
-            padding: 8px;
-            gap: 8px;
+            //padding: 8px;
+            //gap: 8px;
          }
          @media (min-width: $desctopSmallWidth) {
             top: 100px;
             left: max(80px, 5%);
    
-            transform: translate(0, 0);
+            //transform: translate(0, 0);
    
-            width: auto;
-            height: 75svh;
+            //width: auto;
+            //height: 75svh;
    
-            padding: 8px;
-            gap: 8px;
+            //padding: 8px;
+            //gap: 8px;
          }
       }
       &::-webkit-scrollbar {
-        display: none;
-       }
+         display: none;
+      }
+      
    }
    &__modal-close {
       position: absolute;
@@ -223,7 +190,10 @@ $animateTimePassive: .5s;
       left: 8px;
       width: 32px;
       aspect-ratio: 1 / 1;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 4;
       transition: all .3s;
       &::before {
          content: ('');
@@ -250,6 +220,20 @@ $animateTimePassive: .5s;
       &:hover {
          transform: scale(.9);
       }
+   }
+   a {
+      display: block;
+   }
+   &__results {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      width: 100%;
+      // margin-top: 8px;
+      height: 100%;
+      max-height: 100%;
+      padding-top: 38px;
+      border-radius: 12px;
+      //overflow: hidden;
    }
    &__welcome-text,
    &__error-text {
