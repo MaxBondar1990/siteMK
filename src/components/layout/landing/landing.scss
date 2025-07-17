@@ -1,0 +1,155 @@
+// SCSS for /print-t-shirts/ page — MegaKompromis
+// ──────────────────────────────────────────────
+
+// COLORS
+$color-primary: #FF6B00;
+$color-secondary: #0052FF;
+$color-dark: #222;
+$color-light: #F7F7F9;
+$color-accent: #21B573;
+$color-white: #fff;
+
+// BUTTONS
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &-primary {
+    background: $color-primary;
+    color: $color-white;
+    // &:hover { background: darken($color-primary, 5%); }
+  }
+
+  &-outline {
+    background: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    &:hover {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &-cta {
+    background: $color-white;
+    color: $color-primary;
+    border: 2px solid $color-white;
+    &:hover {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+}
+
+// SECTION TITLES
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.7;
+}
+
+// HERO SECTION
+.hero {
+  background: linear-gradient(135deg, #FF6B00, #FF934F);
+  text-align: center;
+  padding: 4rem 1rem;
+  color: $color-white;
+  position: relative;
+
+  .btn-cta {
+    font-size: 1.125rem;
+    border-radius: 999px;
+    padding: 0.75rem 2rem;
+  }
+
+  .scroll-hint {
+    color: $color-white;
+    opacity: 0.5;
+  }
+}
+
+// BENEFITS
+.benefit-item {
+  padding: 1rem;
+  img {
+    height: 48px;
+  }
+}
+
+// PROCESS STEPS
+.process-step {
+  background: $color-white;
+  padding: 1.5rem;
+  border: 1px solid $color-light;
+  border-radius: 12px;
+  .step-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-primary;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// PRICE CARDS
+.price-card {
+  background: $color-white;
+  border-radius: 12px;
+  text-align: left;
+  ul {
+    list-style: disc inside;
+    margin-top: 1rem;
+  }
+
+  .badge-popular {
+    background: $color-accent;
+    color: $color-white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: absolute;
+    top: -12px;
+    right: 16px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+}
+
+// FORM INPUTS
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+  }
+}
+
+// FAQ SECTION
+.faq-item {
+  summary {
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-weight: 600;
+    position: relative;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+}
