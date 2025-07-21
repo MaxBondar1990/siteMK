@@ -84,7 +84,7 @@
          transform: translateY(-50%);
       }
 
-      &._view {
+      &._show {
          opacity: 1;
          bottom: 64px;
          
@@ -173,7 +173,7 @@
    }
 }
 
-.wrapper-modal {
+.group-block {
    width: auto;
 
    z-index: 4;
@@ -189,7 +189,7 @@
 
    border-radius: 12px;
 
-   // &._contacts {
-   //    z-index: 1;
-   // }
+   &._contacts {
+      z-index: 1;
+   }
 }

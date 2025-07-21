@@ -39,7 +39,7 @@ export function loadContent(fileName, postData = null, containerSelector = "body
 }
 
 // Відкриття модалки
-function fetchHTML(event) {
+export function fetchHTML(event) {
 
 
    const fetchEl = event.target.closest('[data-fetch-html]');
@@ -101,7 +101,7 @@ export function onInputFetchHTML(fileName, containerName, data) {
 }
 
 // Закриття модалки
-function closeModal(event) {
+export function closeModal(event) {
    if (event.target.closest("[data-close-modal]")) {
       const modalName = event.target.getAttribute("data-close-modal");
       console.log(modalName)
@@ -114,7 +114,7 @@ function closeModal(event) {
 }
 
 // Remove модалки
-function removeModal(event) {
+export function removeModal(event) {
    if (event.target.closest("[data-remove-modal]")) {
       const modalName = event.target.getAttribute("data-remove-modal");
       const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
@@ -127,8 +127,8 @@ function removeModal(event) {
    }
 }
 
-document.addEventListener('click', (event) => {
-   fetchHTML(event);
-   closeModal(event);
-   removeModal(event);
-})
+// document.addEventListener('click', (event) => {
+//    fetchHTML(event);
+//    closeModal(event);
+//    removeModal(event);
+// });

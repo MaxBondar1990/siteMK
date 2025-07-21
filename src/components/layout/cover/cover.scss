@@ -236,6 +236,8 @@
         width: 32px;
         height: 32px;
 
+        cursor: pointer;
+
         transform: rotate(45deg);
         &::before {
             content: "";
