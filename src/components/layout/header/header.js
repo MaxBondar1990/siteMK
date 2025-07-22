@@ -1,65 +1,59 @@
 import './header.scss'
 import { onInputFetchHTML } from '../../custom/featch/featch.js'
 
-function searchClean(event) {
+export function searchClean(event) {
    const searchInputClean = event.target.closest('[data-name="search__input-clean"]');
    if (searchInputClean) {
-      const searchInput = document.querySelector('[data-search-value]');
+      const searchInput = document.querySelector('[data-sait-search]');
       if (!searchInput) return;
       searchInput.value = '';
       searchInputClean.classList.remove('_view');
    }
 }
 
-function searchView(event) {
+export function searchView(event) {
    const searchPanel = event.target.closest('[data-search-panel]');
    const searchModal = document.querySelector('[data-name="search-modal"]');
 
    if (!searchPanel) return;
 
    const searchInput = searchPanel.querySelector('input[type="search"]');
+
    if (!searchInput) return;
 
    // const searchResult = document.querySelector(`[data-container='${searchResultName}']`);
    if (searchModal) {
-      search(searchInput);
       searchModal.classList.add('_view');
    }
 }
-function search(searchInput) {
-   searchInput.addEventListener('input', (event) => {
+export function search(event) {
+   const search = event.target.closest('[data-sait-search]')
+   if (search) {
       const formData = new FormData();
-      const inputValue = searchInput.value;
+      const value = search.value;
       const containerName = 'search-results';
       const fileName = 'search__result';
 
       formData.append('formName', 'mySearch');
-      formData.append('searchValue', inputValue);
+      formData.append('searchValue', value);
 
-      if (inputValue.length >= 1) {
-         if (event.target.closest('[data-search-value]')) {
+      if (value.length >= 1) {
+         if (event.target.closest('[data-sait-search]')) {
             const inputClean = document.querySelector('[data-name="search__input-clean"]');
             if (!inputClean) return;
             inputClean.classList.add('_view');
          }
       } else {
-         if (event.target.closest('[data-search-value]')) {
+         if (event.target.closest('[data-sait-search]')) {
             const inputClean = document.querySelector('[data-name="search__input-clean"]');
             if (!inputClean) return;
             inputClean.classList.remove('_view');
          }
       }
 
-      if (inputValue.length >= 3) {
+      if (value.length >= 3) {
          onInputFetchHTML(fileName, containerName, formData);
          //loadContent('search', input, containerName);
       }
-   });
+   }
 }
-
-//Подія хедера по кліку
-document.addEventListener('click', (event) => {
-   //Подія хедера по кліку
-   searchClean(event)
-   searchView(event)
-});
