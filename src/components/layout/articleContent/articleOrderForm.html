@@ -6,36 +6,42 @@
         <p class="info__article-id">арт.: 7019008</p>
         <div class="info__color col016">016</div>
     </div>
-    <div class="article-order-form__number-of-sizes">
-        <p>Кількість:</p>
-        <p>S</p>
-        <p>M</p>
-        <p>L</p>
-        <p>XL</p>
-        <p>2XL</p>
-        <p>3XL</p>
-        <p>4XL</p>
-        <p>7</p>
-        <p>23</p>
-        <p>17</p>
-        <p>2</p>
-        <p>1</p>
-        <p>0</p>
-        <p>0</p>
-        <p>50</p>
-    </div>
+    
     <div class="article-order-form__cost">
-        <p>Вартість продукції:</p>
-        <p>8500.00</p>
+        <p>Вартість замовлення:</p>
+        <p>000000.00</p>
     </div>
-    <form action="/" name="article-order">
-        <p>Ім'я:<i>*</i></p>
-        <input type="text" name="name" required>
-        <p>Телефон:<i>*</i></p>
-        <input type="tel" name="phone" required>
-        <p>E-mail:<i>*</i></p>
-        <input type="email" name="email" required>
-        <p>Додати макет</p>
+    <form class="article-order-form__form" action="/" name="article-order">
+        <p class="article-order-form__form-txt">Вкажіть кількість<i>*</i></p>
+        <input class="article-order-form__form-input" type="text" name="quantity" required>
+        <div class="article-order-form__quantity-of-sizes-block">
+            <button data-fls-button type="button" class="article-order-form__quantity-of-sizes-btn">Обрати розміри<span></span></button>
+            <div class="article-order-form__quantity-of-sizes _open">
+                <p class="size-name">XS</p>
+                <p class="size-name">S</p>
+                <p class="size-name">M</p>
+                <p class="size-name">L</p>
+                <p class="size-name">XL</p>
+                <p class="size-name">2XL</p>
+                <p class="size-name">3XL</p>
+                <p class="size-name">4XL</p>
+                <input class="quantity-input" type="number" name="XS" value="0">
+                <input class="quantity-input" type="number" name="S" value="0">
+                <input class="quantity-input" type="number" name="M" value="0">
+                <input class="quantity-input" type="number" name="L" value="0">
+                <input class="quantity-input" type="number" name="XL" value="0">
+                <input class="quantity-input" type="number" name="2XL" value="0">
+                <input class="quantity-input" type="number" name="3XL" value="0">
+                <input class="quantity-input" type="number" name="4XL" value="0">
+            </div>
+        </div>
+        <p class="article-order-form__form-txt">Ім'я:<i>*</i></p>
+        <input class="article-order-form__form-input" type="text" name="name" required>
+        <p class="article-order-form__form-txt">Телефон:<i>*</i></p>
+        <input class="article-order-form__form-input" type="tel" name="phone" required>
+        <p class="article-order-form__form-txt">E-mail:<i>*</i></p>
+        <input class="article-order-form__form-input" type="email" name="email" required>
+        <p class="article-order-form__form-txt">Додати макет</p>
         <input class="custom-file-input" type="file" name="upload">
         <input type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
     </form>

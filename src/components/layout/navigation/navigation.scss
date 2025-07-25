@@ -132,7 +132,7 @@
    position: fixed;
    width: 100%;
    height: calc(100svh - 56px);
-   top: -110%;
+   top: 120%;
    left: 0;
    z-index: 2;
 
@@ -194,7 +194,7 @@
       }
    }
    &._show {
-      top: 0;
+         top: -410%;
       @media (min-width: $tabletWidth) {
          top: auto;
          bottom: 138px;

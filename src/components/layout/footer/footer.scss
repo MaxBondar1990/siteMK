@@ -67,10 +67,8 @@ $colorLightOrange: #fbb03b;
       "cm cm cm"
       /max-content max-content max-content;
 
-      
       align-items: center;
       
-
       width: 85%;
       height: 400px;
       margin: 15px auto 0 auto;
@@ -161,7 +159,6 @@ $colorLightOrange: #fbb03b;
       margin: auto;
       a{
          margin: 15px;
-
       }  
       svg {
          transform: translateY(0);
@@ -169,14 +166,15 @@ $colorLightOrange: #fbb03b;
    }
    &__whiteLine {
       grid-area: w;
-      width: 96%;
+      // width: 96%;
+      width: 100%;
       height: 1px;
       background-color: $colorLightGray;
       margin: 0 auto;
    }
 
    &__links {
-      width: 100%;
+      width: 100svw;
       position: relative;
       grid-area: l;
       display: flex;
@@ -185,6 +183,8 @@ $colorLightOrange: #fbb03b;
       flex-wrap: nowrap;
 
       height: auto;
+
+      gap: 4px;
       
       overflow-x: auto;
       @media (max-width: 1280px) {
@@ -192,13 +192,13 @@ $colorLightOrange: #fbb03b;
       }
 
       @media (min-width: 1024px) {
-         margin-left: 60px;
+         padding-left: 68px;
       }
       
    }
    &__links-items{
-      margin: 14px 4px 6px 4px;
-      width: auto;
+      margin: 12px 0 6px 0;
+      width: max-content;
 
       min-width: 200px;
       color: $colorLightGray;
