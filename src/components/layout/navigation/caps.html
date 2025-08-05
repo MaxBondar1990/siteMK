@@ -1,29 +1,30 @@
 <div class="group-wrapper _caps-wrapper" data-name="caps">
-  <ul class="group-block caps">
+  <ul class="group-block caps" role="list">
 
     <!-- Блок заголовка -->
-    <li class="signboard _caps">
+    <li class="signboard _caps" role="listitem">
       <div class="signboard__img">
-        <svg aria-label="Кепки" role="img" focusable="false" class="signboard__svg">
+        <svg aria-hidden="true" role="img" focusable="false" class="signboard__svg">
           <use xlink:href="__spritemap#sprite-caps"></use>
         </svg>
       </div>
-      <header class="signboard__txt">
-        <h2 class="signboard__title">Кепки</h2>
-        <p class="signboard__paragraph">Друк на бейсболках</p>
+      <header class="signboard__txt" aria-labelledby="caps-title caps-desc">
+        <h2 class="signboard__title" id="caps-title">Кепки</h2>
+        <p class="signboard__paragraph" id="caps-desc">Друк на бейсболках</p>
       </header>
     </li>
 
     <!-- Один середній блок -->
-    <li class="type-board type-board-caps horizontal-mid">
+    <li class="type-board type-board-caps horizontal-mid" role="listitem">
       <div class="horizontal-mid__img">
-        <svg aria-label="Друк на кепках" role="img" focusable="false" class="horizontal-mid__svg">
+        <svg aria-hidden="true" role="img" focusable="false" class="horizontal-mid__svg">
           <use xlink:href="__spritemap#sprite-gruop-cap"></use>
         </svg>
       </div>
-      <a href="/print-cap/" class="type-board__link">Друк на кепках</a>
-      <a href="/print-cap/catalog-cap/" class="type-board__link">Каталог кепок</a>    
+      <a href="/print-cap/" class="type-board__link" title="Друк на кепках" aria-label="Послуга друку на кепках">Друк на кепках</a>
+      <a href="/print-cap/catalog-cap/" class="type-board__link" title="Каталог кепок" aria-label="Каталог кепок для друку">Каталог кепок</a>    
     </li>
 
   </ul>
 </div>
+

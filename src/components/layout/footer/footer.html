@@ -11,41 +11,41 @@
    <div class="contacts-form">
       <form action="/" name="footer">
          <label for="name">Name:<i>*</i></label>
-         <input type="text" name="name" required>
+         <input id="name" type="text" name="name" required>
          <label for="phone">Telephone:<i>*</i></label>
-         <input type="tel" name="phone" required>
+         <input id="phone" type="tel" name="phone" required>
          <label for="email">E-mail:</label>
-         <input type="email" name="email">
+         <input id="email" type="email" name="email">
          <label for="text">Ваше повідомлення:</label>
-         <textarea name="text"></textarea>
+         <textarea id="text" name="text"></textarea>
          <input type="submit" value="Надіслати" name="contactBtn">
          <!--<input type="submit" value="Надіслати">-->
       </form>
    </div>
-   <div class="footer__contacts-items">
+   <section class="footer__contacts-items">
       <!--<div class="footer__contacts-item">-->
       <svg class="_call">
-         <use xlink:href="@img/icons/icons.svg#call"></use>
+         <use xlink:href="__spritemap#sprite-call"></use>
       </svg>
       <p class="_call-title">Телефон</p>
       <div class="footer__data _call-description">
-         <p>+38 044 333 42 15</p>
-         <p>+38 095 931 76 31</p>
-         <p>+38 067 124 32 06</p>
+         <p><a href="tel:+380443334215" aria-label="Телефон +38 044 333 42 15">+38 044 333 42 15</a></p>
+         <p><a href="tel:+380959317631" aria-label="Телефон +38 095 931 76 31">+38 095 931 76 31</a></p>
+         <p><a href="tel:+380671243206" aria-label="Телефон +38 067 124 32 06">+38 067 124 32 06</a></p>
       </div>
       <!--</div>-->
       <!--<div class="footer__contacts-item">-->
       <svg class="_e-mail">
-         <use xlink:href="@img/icons/icons.svg#e-mail"></use>
+         <use xlink:href="__spritemap#sprite-e-mail"></use>
       </svg>
       <p class="_e-mail-title">e-mail</p>
       <div class="footer__data _e-mail-description">
-         <p>info@megakompromis.com.ua</p>
+         <p><a href="mailto:info@megakompromis.com.ua" aria-label="Email info@megakompromis.com.ua">info@megakompromis.com.ua</a></p>
       </div>
       <!--</div>-->
       <!--<div class="footer__contacts-item">-->
       <svg class="_adress">
-         <use xlink:href="@img/icons/icons.svg#adress"></use>
+         <use xlink:href="__spritemap#sprite-adress"></use>
       </svg>
       <p class="_adress-title">Адреса</p>
       <div class="footer__data _adress-description">
@@ -58,31 +58,39 @@
          <p>Україна, м. Київ, вул., Кирилівскьа, 86</p>
       </div>
       <!--</div>-->
-      <div class="footer__contacts-item footer__contacts-media">
-         <a href="#">
-            <svg>
-               <use xlink:href="@img/icons/icons.svg#viber"></use>
-            </svg>
-         </a>
-         <a href="#">
-            <svg>
-               <use xlink:href="@img/icons/icons.svg#telegram"></use>
-            </svg>
-         </a>
-         <a href="#">
-            <svg>
-               <use xlink:href="@img/icons/icons.svg#facebook"></use>
-            </svg>
-         </a>
-         <a href="#">
-            <svg>
-               <use xlink:href="@img/icons/icons.svg#insta"></use>
-            </svg>
-         </a>
-      </div>
-   </div>
+      <ul class="footer__contacts-item footer__contacts-media">
+         <li>
+            <a href="#">
+               <svg>
+                  <use xlink:href="__spritemap#sprite-viber"></use>
+               </svg>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <svg>
+                  <use xlink:href="__spritemap#sprite-telegram"></use>
+               </svg>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <svg>
+                  <use xlink:href="__spritemap#sprite-facebook"></use>
+               </svg>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <svg>
+                  <use xlink:href="__spritemap#sprite-insta"></use>
+               </svg>
+            </a>
+         </li>
+      </ul>
+   </section>
    <div class="footer__whiteLine"></div>
-   <div class="footer__links">
+   <nav class="footer__links" aria-label="Корисні посилання">
       <ul class="footer__links-items">
          <li>
             <h2>Заголовок розділу</h2>
@@ -91,27 +99,21 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
                </li>
             </ul>
          </li>
@@ -124,27 +126,21 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
                </li>
             </ul>
          </li>
@@ -157,27 +153,21 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
                </li>
             </ul>
          </li>
@@ -190,27 +180,21 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
                </li>
             </ul>
          </li>
@@ -223,27 +207,21 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
                </li>
             </ul>
          </li>
@@ -256,30 +234,24 @@
                   <h3>Заголовок першого рівня</h3>
                   <ul>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                      <li>
-                        <a href="#">
-                           <p>лінк першого рівня</p>
+                        <a href="#" aria-label="">
+                           лінк першого рівня
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
-                  <a href="#">
-                     <h3>Заголовок лінк другого рівня</h3>
-                  </a>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
+                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
                </li>
             </ul>
          </li>
       </ul>
-   </div>
+   </nav>
 </footer>

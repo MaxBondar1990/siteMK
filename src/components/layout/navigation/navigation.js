@@ -50,7 +50,7 @@ export function handleMainMenuClick(event) {
    const navItems = document.querySelectorAll('.group-wrapper');
 
    // Шукаємо пункт меню, по якому клікнули
-   const menuItem = target.closest('.main-menu__items');
+   const menuItem = target.closest('.main-menu__item');
 
    if (menuItem) {
       const clickedName = menuItem.dataset.name;

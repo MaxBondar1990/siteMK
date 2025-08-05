@@ -1,141 +1,108 @@
 <header data-fls-header class="header">
    <!-- Логотип компанії -->
-   <a class="header__logo" href="/" title="Рекламно-виробнича компанія Мега Компроміс">
-      <img src="@img/global/logo.webp" alt="Лого компанії" width="100" height="50">
+   <a class="header__logo" href="/" aria-label="Рекламно-виробнича компанія Мега Компроміс" title="Рекламно-виробнича компанія Мега Компроміс">
+      <img data-fls-image-ignore src="@img/global/logo.webp" alt="Логотип компанії Мега Компроміс" loading="lazy">
    </a>
+
    <!-- Панель пошуку -->
-   <div class="search">
+   <div class="search" role="search">
       <div class="search__panel" data-search-panel>
-         <!-- <div class="search__elements"> -->
-         <svg class="search__icon">
+         <svg class="search__icon" aria-hidden="true" focusable="false">
             <use xlink:href="__spritemap#sprite-search"></use>
          </svg>
-         <form action="/">
-            <input class="search__input" type="search" name="search" data-sait-search placeholder="Пошук"
-               autocomplete="off" size="1">
+         <form action="/" role="search" aria-label="Форма пошуку по сайту">
+            <input
+               class="search__input"
+               type="search"
+               name="search"
+               data-sait-search
+               placeholder="Пошук"
+               autocomplete="off"
+               size="1"
+               aria-label="Пошук товару"
+            >
          </form>
-         <div class="search__input-clean" data-name="search__input-clean"></div>
-         <!-- </div> -->
+         <button 
+            type="button" 
+            class="search__input-clean" 
+            data-name="search__input-clean" 
+            aria-label="Очистити поле пошуку"
+         ></button>
+
       </div>
-      <div class="search__modal" data-name="search-modal">
-         <button class="search__modal-close" data-close-modal="search-modal" type="button"></button>
-         <!-- Стартове повідомлення на екрані пошуку -->
-         <div class="search__results" data-container="search-results">
-            <a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a><a href="#">
-               <div class="search__result-card search-card">
-                  <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
-                  <div class="search-card__content">
-                     <h3 class="search-card__title">Заголовок знайденого</h3>
-                     <p class="search-card__art"> Арт.: 097775</p>
-                     <p class="search-card__description">Опис знайденого товару, можливо іще чогось.
-                        Неважливо. Може бути навіть дуже довгий текст. Або дуже дуже довгий текст. йог треба
-                        підрізати
-                     </p>
-                  </div>
-               </div>
-            </a>
-         </div>
+
+      <div
+         class="search__modal"
+         data-name="search-modal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="search-modal-title"
+         tabindex="-1"
+      >
+         <button
+            class="search__modal-close"
+            data-close-modal="search-modal"
+            type="button"
+            aria-label="Закрити результати пошуку"
+         ></button>
+
+         <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->
+         <div>Результати пошуку</div>
+
+         <ul class="search__results" data-container="search-results">
+            <li>
+               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
+                  <article class="search__result-card search-card">
+                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
+                     <div class="search-card__content">
+                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
+                        <p class="search-card__art">Арт.: 097775</p>
+                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
+                     </div>
+                  </article>
+               </a>
+            </li>
+            <li>
+               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
+                  <article class="search__result-card search-card">
+                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
+                     <div class="search-card__content">
+                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
+                        <p class="search-card__art">Арт.: 097775</p>
+                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
+                     </div>
+                  </article>
+               </a>
+            </li>
+            <li>
+               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
+                  <article class="search__result-card search-card">
+                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
+                     <div class="search-card__content">
+                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
+                        <p class="search-card__art">Арт.: 097775</p>
+                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
+                     </div>
+                  </article>
+               </a>
+            </li>
+            <!-- Інші <li> аналогічно -->
+         </ul>
       </div>
    </div>
+
    <!-- Вибір мови сторінки -->
-   <a class="header__language" href="/ru/" title="Перекласти сторінку">
-      <p></p>
-      <img src="@img/global/ork.webp" alt="Лого компанії" width="40">
+   <a
+      class="header__language"
+      href="/ru/"
+      aria-label="Перекласти сторінку на російську"
+      title="Перекласти сторінку"
+   >
+      <img
+         data-fls-image-ignore
+         src="@img/global/ork.webp"
+         alt="Прапор: російська мова"
+         width="40"
+      >
    </a>
 </header>

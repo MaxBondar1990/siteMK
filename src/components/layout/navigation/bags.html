@@ -1,8 +1,8 @@
 <div class="group-wrapper _bags-wrapper" data-name="bags">
-  <ul class="group-block bags">
+  <ul class="group-block bags" role="list">
 
     <!-- Заголовок -->
-    <li class="signboard _bags">
+    <li class="signboard _bags" role="listitem">
       <div class="signboard__img">
         <svg aria-label="Сумки та пакети" role="img" focusable="false" class="signboard__svg">
           <use xlink:href="__spritemap#sprite-bags"></use>
@@ -15,44 +15,44 @@
     </li>
 
     <!-- Горизонтальний великий блок -->
-    <li class="type-board type-board-bags horizontal-large">
+    <li class="type-board type-board-bags horizontal-large" role="listitem">
       <div class="type-board__img">
         <svg aria-label="Паперові пакети з лого" role="img" focusable="false" class="type-board__svg">
-          <use xlink:href="__spritemap#sprite-papire-bags"></use>
+          <use xlink:href="__spritemap#sprite-paper-bags"></use>
         </svg>
       </div>
       <div class="type-board__txt">
-        <a href="/print-paper-bags/" class="type-board__link">Паперові пакети з лого</a>
-        <a href="/print-paper-bags/craft-packages/" class="type-board__link">Крафтові пакети з нанесенням</a>
-        <a href="/print-paper-bags/catalog-paper-bags/" class="type-board__link">Каталог паперових пакетів</a>
+        <a href="/print-paper-bags/" class="type-board__link" title="Паперові пакети з лого">Паперові пакети з лого</a>
+        <a href="/print-paper-bags/craft-packages/" class="type-board__link" title="Крафтові пакети з нанесенням">Крафтові пакети з нанесенням</a>
+        <a href="/print-paper-bags/catalog-paper-bags/" class="type-board__link" title="Каталог паперових пакетів">Каталог паперових пакетів</a>
       </div>
     </li>
 
-    <!-- Горизонтальний середній блок -->
-    <li class="type-board type-board-bags horizontal-mid">
+    <!-- Горизонтальний середній блок (пластикові пакети) -->
+    <li class="type-board type-board-bags horizontal-mid" role="listitem">
       <div class="horizontal-mid__img">
         <svg aria-label="Друк на пластикових пакетах" role="img" focusable="false" class="horizontal-mid__svg">
           <use xlink:href="__spritemap#sprite-plastik-bags"></use>
         </svg>
       </div>
-      <a href="/print-plastic-bags/" class="type-board__link">Друк на пластикових пакетах</a>
-      <a href="/print-plastic-bags/catalog-plastic-bags/" class="type-board__link">Каталог поліетиленових пакетів</a>    
+      <a href="/print-plastic-bags/" class="type-board__link" title="Друк на пластикових пакетах">Друк на пластикових пакетах</a>
+      <a href="/print-plastic-bags/catalog-plastic-bags/" class="type-board__link" title="Каталог поліетиленових пакетів">Каталог поліетиленових пакетів</a>    
     </li>
 
-    <!-- Горизонтальний середній блок -->
-    <li class="type-board type-board-bags horizontal-mid">
-      <a href="/print-eco-bags/" class="type-board__link">Друк на еко-сумках</a>
-      <a href="/print-eco-bags/catalog-eco-bags/" class="type-board__link">Каталог сумок</a>
+    <!-- Горизонтальний середній блок (еко-сумки) -->
+    <li class="type-board type-board-bags horizontal-mid" role="listitem">
       <div class="horizontal-mid__img">
         <svg aria-label="Друк на еко-сумках" role="img" focusable="false" class="horizontal-mid__svg">
           <use xlink:href="__spritemap#sprite-eco-bags"></use>
         </svg>
       </div>
+      <a href="/print-eco-bags/" class="type-board__link" title="Друк на еко-сумках">Друк на еко-сумках</a>
+      <a href="/print-eco-bags/catalog-eco-bags/" class="type-board__link" title="Каталог сумок">Каталог сумок</a>
     </li>
 
-    <!-- Горизонтальний маленький блок -->
-    <li>
-      <a href="/print-backpacks/catalog-backpacks/" class="type-board type-board-bags horizontal-small">
+    <!-- Горизонтальний маленький блок (рюкзаки) -->
+    <li role="listitem">
+      <a href="/print-backpacks/catalog-backpacks/" class="type-board type-board-bags horizontal-small" title="Рюкзаки">
         <div class="horizontal-small__txt">
           <p class="horizontal-small__paragraph">Рюкзаки</p>
         </div>
@@ -61,3 +61,5 @@
 
   </ul>
 </div>
+
+

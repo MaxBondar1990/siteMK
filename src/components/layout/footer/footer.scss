@@ -153,6 +153,7 @@ $colorLightOrange: #fbb03b;
    }
    &__contacts-media{
       grid-area: cm;
+      display: flex;
 
       justify-content: center;
       width: auto;
