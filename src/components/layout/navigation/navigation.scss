@@ -269,6 +269,7 @@
    margin: auto 0;
 
    border-radius: 12px;
+   cursor: auto;
    &._textil {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -343,6 +344,7 @@
    border: 1px solid #CACACA;
    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
    border-radius: 8px;
+   cursor: auto;
    @media (min-width: $tabletWidth) {
       grid-column: 1/5;
       grid-row: 1/3;
@@ -381,6 +383,12 @@
       width: 35px;
       height: 35px;
       fill: $colorLightGray;
+   }
+   &__txt {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
    }
    &__title {
       font-size: 1em;
@@ -460,6 +468,12 @@
       text-decoration: none;
       color: $colorLightGray;
       z-index: 1;
+      &._small {
+         width: 100%;
+         height: 100%;
+         justify-content: center;
+         align-items: center;
+      }
       @media (min-width: $desctopSmallWidth) {
          transition: all .3s;
          &:hover {
