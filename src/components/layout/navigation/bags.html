@@ -1,5 +1,6 @@
 <div class="group-wrapper _bags-wrapper" data-name="bags">
-  <ul class="group-block bags" role="list">
+  <button data-fls-button type="button" class="group-wrapper__close-button" data-name="group-wrapper-close-button"></button>
+  <ul class="group-block _bags" role="list">
 
     <!-- Заголовок -->
     <li class="signboard _bags" role="listitem">
@@ -15,10 +16,10 @@
     </li>
 
     <!-- Горизонтальний великий блок -->
-    <li class="type-board type-board-bags horizontal-large" role="listitem">
+    <li class="type-board type-board-bags _horizontal-large" role="listitem">
       <div class="type-board__img">
         <svg aria-label="Паперові пакети з лого" role="img" focusable="false" class="type-board__svg">
-          <use xlink:href="__spritemap#sprite-paper-bags"></use>
+          <use xlink:href="__spritemap#sprite-papire-bags"></use>
         </svg>
       </div>
       <div class="type-board__txt">
@@ -29,9 +30,9 @@
     </li>
 
     <!-- Горизонтальний середній блок (пластикові пакети) -->
-    <li class="type-board type-board-bags horizontal-mid" role="listitem">
-      <div class="horizontal-mid__img">
-        <svg aria-label="Друк на пластикових пакетах" role="img" focusable="false" class="horizontal-mid__svg">
+    <li class="type-board type-board-bags _horizontal-mid" role="listitem">
+      <div class="type-board__horizontal-mid-img">
+        <svg aria-label="Друк на пластикових пакетах" role="img" focusable="false" class="type-board__svg _horizontal-mid-svg">
           <use xlink:href="__spritemap#sprite-plastik-bags"></use>
         </svg>
       </div>
@@ -40,9 +41,9 @@
     </li>
 
     <!-- Горизонтальний середній блок (еко-сумки) -->
-    <li class="type-board type-board-bags horizontal-mid" role="listitem">
-      <div class="horizontal-mid__img">
-        <svg aria-label="Друк на еко-сумках" role="img" focusable="false" class="horizontal-mid__svg">
+    <li class="type-board type-board-bags _horizontal-mid" role="listitem">
+      <div class="type-board__horizontal-mid-img">
+        <svg aria-label="Друк на еко-сумках" role="img" focusable="false" class="type-board__svg _horizontal-mid-svg">
           <use xlink:href="__spritemap#sprite-eco-bags"></use>
         </svg>
       </div>
@@ -51,8 +52,8 @@
     </li>
 
     <!-- Горизонтальний маленький блок (рюкзаки) -->
-    <li role="listitem">
-      <a href="/print-backpacks/catalog-backpacks/" class="type-board type-board-bags horizontal-small" title="Рюкзаки">
+    <li role="listitem" class="type-board type-board-bags _horizontal-small">
+      <a href="/print-backpacks/catalog-backpacks/" class="type-board__link" title="Рюкзаки">
         <div class="horizontal-small__txt">
           <p class="horizontal-small__paragraph">Рюкзаки</p>
         </div>
