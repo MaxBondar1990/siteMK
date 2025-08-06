@@ -28,9 +28,9 @@
             data-name="search__input-clean" 
             aria-label="Очистити поле пошуку"
          ></button>
-
       </div>
 
+      <!-- Модалка з результатами пошуку -->
       <div
          class="search__modal"
          data-name="search-modal"
@@ -48,45 +48,12 @@
 
          <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->
          <h2 class="title-visually-hidden">Результати пошуку</h2>
-
+         <!-- Блок для виводу результатів пошуку -->
          <ul class="search__results" data-container="search-results">
-            <li>
-               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
-                  <article class="search__result-card search-card">
-                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
-                     <div class="search-card__content">
-                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
-                        <p class="search-card__art">Арт.: 097775</p>
-                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
-                     </div>
-                  </article>
-               </a>
-            </li>
-            <li>
-               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
-                  <article class="search__result-card search-card">
-                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
-                     <div class="search-card__content">
-                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
-                        <p class="search-card__art">Арт.: 097775</p>
-                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
-                     </div>
-                  </article>
-               </a>
-            </li>
-            <li>
-               <a href="#" aria-label="Переглянути Толстовку CLASSIC HOODED SWEAT">
-                  <article class="search__result-card search-card">
-                     <img src="assets/img/goods/CLASSIC-HOODED-SWEAT_021.jpg" title="Толстовка CLASSIC HOODED SWEAT" alt="Толстовка CLASSIC HOODED SWEAT" loading="lazy">
-                     <div class="search-card__content">
-                        <h3 class="search-card__title">Толстовка CLASSIC HOODED SWEAT</h3>
-                        <p class="search-card__art">Арт.: 097775</p>
-                        <p class="search-card__description">Опис знайденого товару. Може бути довгий текст. Його треба підрізати.</p>
-                     </div>
-                  </article>
-               </a>
-            </li>
-            <!-- Інші <li> аналогічно -->
+            <!-- Вітальне повідомленя з інструукцією по початку пошуку -->
+            <p class="search__welcome-text" data-welcome-search>Для початку пошуку, почніть вводити назву товару або номер артиклю.
+               <br>Необхідно ввести мінімум 3 символи.
+            </p>
          </ul>
       </div>
    </div>
