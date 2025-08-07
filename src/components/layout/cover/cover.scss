@@ -125,7 +125,7 @@
 
       transition: height .3s;
       transition-delay: height .3s;
-      &._active {
+      &._view {
          top: 50%;
          left: 50%;
          transform: translate(-50%, -50%);

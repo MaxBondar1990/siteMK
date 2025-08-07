@@ -240,7 +240,7 @@
          transform: translateX(43%);
       }
    }
-   &._show {
+   &._view {
       display: flex;
       top: 0;
       @media (min-width: $tabletWidth) {

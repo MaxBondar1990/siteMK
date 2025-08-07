@@ -1,8 +1,9 @@
 // import { fetchHTML, close } from '../../custom/featch/featch.js'
 
 import { searchClean, searchView, search } from '../../layout/header/header.js'
-import { handleMainMenuClick } from '../../layout/navigation/navigation.js'
+import { handleMainMenuClick, closeGroupMenu } from '../../layout/navigation/navigation.js'
 import { burgerClick } from '../../layout/leftSideBar/leftSideBar.js'
+import { viewGlobalContactFormModal, closeGlobalContactFormModal } from '../../layout/cover/cover.js'
 import { viewColorItems } from '../../layout/goods/goods.js'
 
 
@@ -12,7 +13,11 @@ document.addEventListener('click', (event) => {
 
    burgerClick(event);
 
+   viewGlobalContactFormModal(event);
+   closeGlobalContactFormModal(event);
+
    handleMainMenuClick(event);
+   closeGroupMenu(event);
 
    viewColorItems(event);
 });
