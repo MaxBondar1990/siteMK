@@ -17,13 +17,13 @@
       display: block;
       width: 60px;
       height: 30px;
-      svg {
+      &__logo-img {
          width: 60px;
-         height: 30px;
+         height: auto;
       }
       @media (min-width: $mobileClassicWidth) {
          width: 100px;
-         height: 50px;
+         height: auto;
          svg {
             width: 100px;
             height: 50px;
