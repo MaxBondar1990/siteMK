@@ -5,7 +5,6 @@ import { viewNavModalGroupMenu, closeNavModalGroupMenu } from '../../layout/navi
 import { burgerClick } from '../../layout/leftSideBar/leftSideBar.js'
 import { viewGlobalContactFormModal, closeGlobalContactFormModal } from '../../layout/cover/cover.js'
 import { viewColorItems } from '../../layout/goods/goods.js'
-import { footerForm } from '../../layout/footer/footer.js'
 
 
 
@@ -22,8 +21,6 @@ document.addEventListener('click', (event) => {
    closeNavModalGroupMenu(event);
 
    viewColorItems(event);
-
-   footerForm(event);
 
 });
 
