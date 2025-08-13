@@ -117,14 +117,18 @@
       font-size: 1.5vw;
       line-height: 1.25em;
       text-transform: uppercase;
+      // РОЗТАШУВАННЯ ТЕКСТУ В ПЛИТЦІ
+      /* згори */
       &._position-top {
          left: 1em;
          top: 1em;
       }
+      /* внизу */
       &._position-bottom {
          right: 1em;
          bottom: 1em;
       }
+      /* збфльшений розмір шрифта для плитки 2х2 */
       &._big-txt {
          font-size: 2vw;
          // МОБІЛЬНІ
