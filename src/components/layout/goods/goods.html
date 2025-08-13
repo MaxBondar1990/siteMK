@@ -1,11 +1,11 @@
-<section data-fls-goods class="goods">
-   <div class="goods__title wraper">
-      <h2>Найпопулярніші товари</h2>
+<section data-fls-goods class="goods" aria-labelledby="popular-products" itemscope itemtype="https://schema.org/ItemList">
+   <div class="goods__title">
+      <h2 id="popular-products">Найпопулярніші товари</h2>
    </div>
    <div class="goods__tile">
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/bras-sel_031.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про браслет силіконовий" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/bras-sel_031.webp" alt="Силіконовий браслет з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -32,14 +32,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 6,5 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">6.50</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:1111/goods-page.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:1111/goods-page.html" title="Детальніше про товстовку" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/CLASSIC-HOODED-SWEAT_021.webp" alt="Товстовка з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -68,15 +70,16 @@
                <li class="goods-card__color-item col030" data-srcImg="img/goods/Classic-sandvich_027.jpg" data-price="11,22">030</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Товстовка</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <!--<br>-->
-         <p class="goods-card__price">Ціна: 425,00 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Товстовка</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">425,00</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img"href="http://localhost:1111/goods-page.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/Classic-sandvich_027.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img"href="http://localhost:1111/goods-page.html" title="Детальніше про браслет силіконовий в два ряди" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/Classic-sandvich_027.webp" alt="Браслет силіконовий в два ряди з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -103,14 +106,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий в два ряди</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 187,00 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий в два ряди</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">187,00</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/Original T_019.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про браслет силіконовий" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/Original T_019.webp" alt="Браслет силіконовий з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -137,14 +142,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 6,5 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">6.50</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/bras-sel_031.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про браслет силіконовий" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/bras-sel_031.webp" alt="Браслет силіконовий з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -171,14 +178,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 6,5 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">6.50</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/Classic-sandvich_027.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про браслет силіконовий в два ряди" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/Classic-sandvich_027.webp" alt="Браслет силіконовий в два ряди з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -205,14 +214,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий в два ряди</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 187,00 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий в два ряди</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">6.50</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/Original T_019.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про браслет силіконовий" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/Original T_019.webp" alt="Браслет силіконовий з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -239,14 +250,16 @@
                <li class="goods-card__color-item col009">009</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Браслет силіконовий</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <p class="goods-card__price">Ціна: 6,5 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Браслет силіконовий</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">6.50</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
 
-      <div class="goods-card">
-         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Article">
-            <img data-fls-image-ignore src="@img/goods/CLASSIC-HOODED-SWEAT_021.jpg" alt="">
+      <article class="goods-card" itemscope itemtype="https://schema.org/Product">
+         <a class="goods-card__img" href="http://localhost:5500/article.html" title="Детальніше про товстовку" itemprop="url">
+            <img data-fls-image-ignore src="@img/goods/CLASSIC-HOODED-SWEAT_021.webp" alt="Товстовка з логотипом" itemprop="image">
          </a>
          <div class="goods-card__color-box">
             <ul class="goods-card__color-items" data-name="view-color-items">
@@ -275,10 +288,11 @@
                <li class="goods-card__color-item col030" data-srcImg="img/goods/Classic-sandvich_027.jpg" data-price="11,22">030</li>
             </ul>
          </div>
-         <h3 class="goods-card__title">Товстовка</h3>
-         <h3 class="goods-card__sub-title">З логотипом ширина 12 мм</h3>
-         <!--<br>-->
-         <p class="goods-card__price">Ціна: 425,00 грн.</p>
-      </div>
+         <h3 itemprop="name" class="goods-card__title">Товстовка</h3>
+         <p itemprop="description" class="goods-card__sub-title">З логотипом ширина 12 мм</p>
+         <p class="goods-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            Ціна: <span itemprop="price">425,00</span> <span itemprop="priceCurrency" content="UAH">грн</span>
+         </p>
+      </article>
    </div>
 </section>
