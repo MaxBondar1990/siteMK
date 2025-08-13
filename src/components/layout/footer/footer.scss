@@ -1,5 +1,6 @@
 
-@import "contacts-form";
+// @import "contacts-form";
+@use "contacts-form" as *;
 
 .footer {
    display: grid;
@@ -10,7 +11,7 @@
       "w w"
       "l l";
    
-   background-color: $colorDarkGray;
+   background-color: #6f6f6f;
    overflow: hidden;
    width: 100%;
    @media (max-width: 768px) {

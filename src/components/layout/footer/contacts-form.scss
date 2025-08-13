@@ -22,8 +22,7 @@
       width: 1px;
       height: 86%;
       transform: translateY(7%);
-      // background-color: $colorWhite;
-      background: $colorWhite;
+      background: #fff;
       top: 0;
       right: 0;
    }
@@ -33,7 +32,6 @@
       justify-content: center;
       margin: auto;
       width: 80%;
-      //background-color: plum;
    }
    input, textarea{
       width: 100%;
@@ -42,10 +40,10 @@
       font-size: 1.2em;
       margin: .4em 0 .8em 0;
 
-      border: 1px solid $colorWhite;
+      border: 1px solid #fff;
       border-radius: 16px;
       
-      color: $colorWhite;
+      color: #fff;
    }
    textarea{
       height: 6em;
@@ -61,20 +59,20 @@
       font-weight: 400;
       
       cursor: pointer;
-      background-color: $colorOrange;
-      color: $colorWhite;
+      background-color: #f7931e;
+      color: #fff;
       border-radius: 16px;
 
       transition: background-color .3s;
       &:hover{
-         background-color: $colorLightOrange;
+         background-color: #fbb03b;
       }
    }
 
    label{
       font-size: 1.2em;
       font-weight: 400;
-      color: $colorWhite;
+      color: #fff;
       i{
          color: red;
       }
