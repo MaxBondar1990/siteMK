@@ -1,4 +1,6 @@
 
+// @use "@/style/settings" as *;
+
 .contacts-form {
    grid-area: f;
    position: relative;
@@ -20,11 +22,11 @@
       width: 1px;
       height: 86%;
       transform: translateY(7%);
-      background-color: $colorWhite;
+      // background-color: $colorWhite;
+      background: $colorWhite;
       top: 0;
       right: 0;
    }
-   //background-color: wheat;
    form{
       display: flex;
       flex-direction: column;
