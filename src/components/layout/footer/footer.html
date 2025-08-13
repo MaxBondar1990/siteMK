@@ -1,8 +1,10 @@
 
 <footer data-fls-footer class="footer" data-section-id="@@number">
-   <div class="footer__title wraper">
-      <h2>зв'яжіться з нами</h2>
+   <!-- Заголовок -->
+   <div class="footer__title">
+      <h2 class="footer__title-txt">зв'яжіться з нами</h2>
    </div>
+   <!-- Форма зворотнього звʼязку -->
    <div class="contacts-form">
       <form action="/" name="footer">
          <label for="name">Name:<i>*</i></label>
@@ -14,236 +16,455 @@
          <label for="text">Ваше повідомлення:</label>
          <textarea id="text" name="text"></textarea>
          <input data-featch-form type="submit" value="Надіслати" name="contactBtn">
-         <!--<input type="submit" value="Надіслати">-->
       </form>
    </div>
+   <!-- Контакктна інформація (права/нижня частина футера) -->
    <section class="footer__contacts-items">
-      <!--<div class="footer__contacts-item">-->
-      <svg class="_call">
+      <svg class="footer__contacts-items-svg _call">
          <use xlink:href="__spritemap#sprite-call"></use>
       </svg>
-      <p class="_call-title">Телефон</p>
-      <div class="footer__data _call-description">
-         <p><a href="tel:+380443334215" aria-label="Телефон +38 044 333 42 15">+38 044 333 42 15</a></p>
-         <p><a href="tel:+380959317631" aria-label="Телефон +38 095 931 76 31">+38 095 931 76 31</a></p>
-         <p><a href="tel:+380671243206" aria-label="Телефон +38 067 124 32 06">+38 067 124 32 06</a></p>
+      <h3 class="footer__contacts-items-title _call-title">Телефон</h3>
+      <div class="footer__contacts-items-description _call-description">
+         <a class="footer__contacts-items-description-txt" href="tel:+380443334215" aria-label="Телефон +38 044 333 42 15">+38 044 333 42 15</a>
+         <a class="footer__contacts-items-description-txt" href="tel:+380959317631" aria-label="Телефон +38 095 931 76 31">+38 095 931 76 31</a>
+         <a class="footer__contacts-items-description-txt" href="tel:+380671243206" aria-label="Телефон +38 067 124 32 06">+38 067 124 32 06</a>
       </div>
-      <!--</div>-->
-      <!--<div class="footer__contacts-item">-->
-      <svg class="_e-mail">
+      <svg class="footer__contacts-items-svg _e-mail">
          <use xlink:href="__spritemap#sprite-e-mail"></use>
       </svg>
-      <p class="_e-mail-title">e-mail</p>
-      <div class="footer__data _e-mail-description">
-         <p><a href="mailto:info@megakompromis.com.ua" aria-label="Email info@megakompromis.com.ua">info@megakompromis.com.ua</a></p>
+      <h3 class="footer__contacts-items-title _e-mail-title">E-mail</h3>
+      <div class="footer__contacts-items-description _e-mail-description">
+         <a class="footer__contacts-items-description-txt" href="mailto:info@megakompromis.com.ua" aria-label="Email info@megakompromis.com.ua">info@megakompromis.com.ua</a>
       </div>
-      <!--</div>-->
-      <!--<div class="footer__contacts-item">-->
-      <svg class="_adress">
+      <svg class="footer__contacts-items-svg _adress">
          <use xlink:href="__spritemap#sprite-adress"></use>
       </svg>
-      <p class="_adress-title">Адреса</p>
-      <div class="footer__data _adress-description">
-         <p>Офіс:</p>
-         <p>Україна, Київська обл.,</p>
-         <p>Киево-Святошинский р-н, м. Вишневе,</p>
-         <p>вул., Київска, 4, офіс 408</p>
-         <br>
-         <p>Виробництво:</p>
-         <p>Україна, м. Київ, вул., Кирилівскьа, 86</p>
+      <h3 class="footer__contacts-items-title _adress-title">Адреса</h3>
+      <div class="footer__contacts-items-description _adress-description">
+         <p class="footer__contacts-items-description-txt _important-txt">Офіс:</p>
+         <p class="footer__contacts-items-description-txt">Україна, Київська обл.,</p>
+         <p class="footer__contacts-items-description-txt">Киево-Святошинский р-н, м. Вишневе,</p>
+         <p class="footer__contacts-items-description-txt">вул., Київска, 4, офіс 408</p>
+         <p class="footer__contacts-items-description-txt _important-txt">Виробництво:</p>
+         <p class="footer__contacts-items-description-txt">Україна, м. Київ, вул., Кирилівскьа, 86</p>
       </div>
-      <!--</div>-->
-      <ul class="footer__contacts-item footer__contacts-media">
-         <li>
-            <a href="#">
-               <svg>
+      <ul class="footer__contacts-media">
+         <li class="footer__contacts-media-item">
+            <a class="footer__contacts-media-item-link" href="#">
+               <svg class="footer__contacts-media-item-svg">
                   <use xlink:href="__spritemap#sprite-viber"></use>
                </svg>
             </a>
          </li>
-         <li>
+         <li class="footer__contacts-media-item">
             <a href="#">
-               <svg>
+               <svg class="footer__contacts-media-item-svg">
                   <use xlink:href="__spritemap#sprite-telegram"></use>
                </svg>
             </a>
          </li>
-         <li>
+         <li class="footer__contacts-media-item">
             <a href="#">
-               <svg>
+               <svg class="footer__contacts-media-item-svg">
                   <use xlink:href="__spritemap#sprite-facebook"></use>
                </svg>
             </a>
          </li>
-         <li>
+         <li class="footer__contacts-media-item">
             <a href="#">
-               <svg>
+               <svg class="footer__contacts-media-item-svg">
                   <use xlink:href="__spritemap#sprite-insta"></use>
                </svg>
             </a>
          </li>
       </ul>
    </section>
+   <!-- Горизонтальна біла лінія (декоративний елемент) -->
    <div class="footer__whiteLine"></div>
+   <!-- Облако тегів/посилань -->
    <nav class="footer__links" aria-label="Корисні посилання">
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <h2 class="title-visually-hidden">Корисні посилання</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
       </ul>
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
       </ul>
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
       </ul>
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
       </ul>
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
       </ul>
-      <ul class="footer__links-items">
-         <li>
-            <h2>Заголовок розділу</h2>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
             <ul>
                <li>
-                  <h3>Заголовок першого рівня</h3>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
                   <ul>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                      <li>
-                        <a href="#" aria-label="">
-                           лінк першого рівня
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
                         </a>
                      </li>
                   </ul>
                </li>
                <li>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 1</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 2</a></h3>
-                  <h3><a href="#" aria-label="">Заголовок лінк другого рівня 3</a></h3>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
+            <ul>
+               <li>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
+            <ul>
+               <li>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
+            <ul>
+               <li>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
+            <ul>
+               <li>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="footer__links-list">
+         <li class="footer__links-section">
+            <h3 class="footer__links-section-title">Заголовок розділу</h3>
+            <ul>
+               <li>
+                  <h4 class="footer__links-subsection-title">Заголовок Групи товарів</h4>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link" href="#" aria-label="">
+                           Лінк першого рівня (на сторінку)
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <ul>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 1</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 2</a>
+                     </li>
+                     <li>
+                        <a class="footer__links-item-link _second-level-link" href="#" aria-label="">Заголовок лінк другого рівня 3</a>
+                     </li>
+                  </ul>
                </li>
             </ul>
          </li>
