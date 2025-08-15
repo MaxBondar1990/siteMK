@@ -126,9 +126,3 @@ export function removeModal(event) {
       }
    }
 }
-
-// document.addEventListener('click', (event) => {
-//    fetchHTML(event);
-//    closeModal(event);
-//    removeModal(event);
-// });

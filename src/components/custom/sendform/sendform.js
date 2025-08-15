@@ -1,10 +1,12 @@
 import "./sendform.scss"
 
-export function sendForm(event) {
 
+export function sendForm(event) {
       if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
+
          event.preventDefault();
          const form = event.target.form;
+
          if (form) {
             if (isRequired(form)) {
                const formData = new FormData(form);
@@ -14,6 +16,7 @@ export function sendForm(event) {
                }
 
                loadContent('submit', formData, "body", 'form');
+
             }
          }
       }

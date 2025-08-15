@@ -9,4 +9,6 @@ document.addEventListener('click', (event) => {
 
    sendForm(event);
    isRequired(form);
+
+
 });
