@@ -8,34 +8,30 @@
    overflow: hidden;
    
    &__title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+
+      margin: 16px 0;
+
+      font-size: 2em;
+      line-height: 1em;
+      letter-spacing: 0%;
 
       text-align: center;
       text-transform: uppercase;
+
+      color: $colorBlue;
       
       background-color: white;
-      margin: 16px 0;
-         h2{
-            font-size: 2.1em;
-            line-height: 1em;
-            letter-spacing: 0%;
-
-            color: $colorBlue;
-         }
       @media (max-width: 426px) {
-         //font-size: 1.6em;
-         h2{
             font-size: 1.8em;
             line-height: 1.2em;
-            //letter-spacing: 0%;
-         }
       }
    }
    &__tiles {
       width: 100%;
-      overflow-y: auto;
+      &._horizontal-scroll-for-mine {
+         overflow-y: auto;
+      }
    }
    &__tiles-wrapper {
       display: grid;
@@ -44,22 +40,40 @@
       grid-template-columns: repeat(auto-fill, 320px);
       max-width: 1440px;
 
-      justify-content: flex-start;
+      justify-content: center;
 
-      padding: 12px 0 12px 64px;
+      padding: 12px 0 12px 0;
       gap: 4px;
-      
+      &._grid-settings-for-mine {
+         justify-content: center;
+         @media (max-width: 1355px) {
+            padding: 12px 0 12px 64px;
+            justify-content: flex-start;
+            grid-template-columns: repeat(4, min-content);
+            grid-template-rows: repeat(2, min-content);
+         }
+         @media (max-width: 768px) {
+            grid-template-columns: repeat(8, min-content);
+            grid-template-rows: repeat(1, min-content);
+            max-width: max-content;
+         }
+      }
+      @media (max-width: 1355px) {
+         padding: 12px 0 12px 64px;
+      }
       @media (max-width: 1024px) {
-         grid-template-columns: repeat(4, min-content);
-         grid-template-rows: repeat(2, min-content);
+         grid-template-columns: repeat(3, min-content);
       }
       @media (max-width: 1023px) {
          padding: 12px 12px 12px 12px;
       }
-      @media (max-width: 768px) {
-         grid-template-columns: repeat(8, min-content);
-         grid-template-rows: repeat(1, min-content);
-         max-width: max-content;
+      @media (max-width: 983px) {
+         grid-template-columns: repeat(2, min-content);
+         padding: 12px 8px 12px 8px;
+      }
+      @media (max-width: 659px) {
+         grid-template-columns: repeat(1, min-content);
+         padding: 12px 8px 12px 8px;
       }
       @media (max-width: 375px) {
          padding: 4px 4px 4px 4px;
