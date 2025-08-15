@@ -1,25 +1,27 @@
 import "./sendform.scss"
+import { loadContent } from '../featch/featch.js'
+
 
 
 export function sendForm(event) {
-      if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
+   if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
 
-         event.preventDefault();
-         const form = event.target.form;
+      event.preventDefault();
+      const form = event.target.form;
 
-         if (form) {
-            if (isRequired(form)) {
-               const formData = new FormData(form);
+      if (form) {
+         if (isRequired(form)) {
+            const formData = new FormData(form);
 
-               if (form.getAttribute("name")) {
-                  formData.append('formName', form.getAttribute("name"));
-               }
-
-               loadContent('submit', formData, "body", 'form');
-
+            if (form.getAttribute("name")) {
+               formData.append('formName', form.getAttribute("name"));
             }
+
+            loadContent('submit', formData, "body", 'form');
+
          }
       }
+   }
 }
 
 export function isRequired(form) {
