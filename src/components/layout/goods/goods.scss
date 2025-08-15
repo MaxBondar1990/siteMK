@@ -7,7 +7,7 @@
    background: white;
    overflow: hidden;
    
-   &__title{
+   &__title {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,33 +33,36 @@
          }
       }
    }
-   &__tile {
+   &__tiles {
+      width: 100%;
+      overflow-y: auto;
+   }
+   &__tiles-wrapper {
       display: grid;
-      max-width: 1440px;
       margin: auto;
-      //grid-template-columns: repeat(4, 320px);
+
       grid-template-columns: repeat(auto-fill, 320px);
+      max-width: 1440px;
 
-      justify-content: center;
-      //padding: 0 calc(8px + (120 - 8) * ((100vw - 1200px) / (1440 - 1200)));
+      justify-content: flex-start;
+
+      padding: 12px 0 12px 64px;
       gap: 4px;
-      //@media (max-width: 769px) {
-      //   grid-template-columns: repeat(2, minmax(188px, 1fr));
-      //   padding: 0 0;
-      //   gap: 6px;
-      //}
-      //@media (max-width: 600px) {
-      //   grid-template-columns: minmax(155px, 1fr);
-      //   justify-items: center;
-      //   //padding: 0 4px;
-      //   gap: 4px;
-      //}
-      @media (min-width: $desctopSmallWidth) {
-         padding-left: 56px;
+      
+      @media (max-width: 1024px) {
+         grid-template-columns: repeat(4, min-content);
+         grid-template-rows: repeat(2, min-content);
       }
-
-      @media (min-width: $desctopLargeWidth) {
-         padding-left: 0;
+      @media (max-width: 1023px) {
+         padding: 12px 12px 12px 12px;
+      }
+      @media (max-width: 768px) {
+         grid-template-columns: repeat(8, min-content);
+         grid-template-rows: repeat(1, min-content);
+         max-width: max-content;
+      }
+      @media (max-width: 375px) {
+         padding: 4px 4px 4px 4px;
       }
    }
 }
