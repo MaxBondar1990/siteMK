@@ -41,7 +41,7 @@
    }
 
    // Права/нижня частина футера
-   &__contacts-items {
+   &__contacts {
       grid-area: i;
 
       display: grid;
@@ -69,7 +69,7 @@
          width: 90%;
       }
    }
-   &__contacts-items-svg {
+   &__contacts-svg {
       width: 40px;
       height: 40px;
       fill: $colorLightGray;
@@ -86,7 +86,7 @@
          grid-row: 3 / 4;
       }
    }
-   &__contacts-items-title {
+   &__contacts-title {
       font-size: 1.2em;
       white-space: nowrap;
       line-height: normal;
@@ -118,7 +118,7 @@
          }
       }
    }
-   &__contacts-items-description {
+   &__contacts-description {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -147,7 +147,7 @@
          }
       }
    }
-   &__contacts-items-description-txt {
+   &__contacts-description-txt {
       font-size: 1.2em;
       color: $colorLightGray;
       &._important-txt {
