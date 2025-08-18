@@ -4,7 +4,7 @@ import { searchClean, searchView, search } from '../../layout/header/header.js'
 import { viewNavModalGroupMenu, closeNavModalGroupMenu } from '../../layout/navigation/navigation.js'
 import { burgerClick } from '../../layout/leftSideBar/leftSideBar.js'
 import { viewGlobalContactFormModal, closeGlobalContactFormModal } from '../../layout/cover/cover.js'
-import { viewColorItems } from '../../layout/goods/goods.js'
+import { viewColorItems, applyColorAndPriceChange } from '../../layout/goods/goods.js'
 
 
 
@@ -21,6 +21,7 @@ document.addEventListener('click', (event) => {
    closeNavModalGroupMenu(event);
 
    viewColorItems(event);
+   applyColorAndPriceChange(event);
 
 });
 
