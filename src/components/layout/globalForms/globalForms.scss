@@ -15,6 +15,13 @@
 
    padding: 0px;
 
+   background: rgba(111, 111, 111, 0.6);
+   border: 1px solid $colorLightGray;
+   border-radius: 12px;
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+   backdrop-filter: blur(20px);
+   -webkit-backdrop-filter: blur(20px);
+
    overflow-y: hidden;
    z-index: 1;
 
@@ -30,13 +37,6 @@
 
       gap: 20px 4px;
       padding: 20px 4px;
-
-      background: rgba(111, 111, 111, 0.4);
-      border: 1px solid $colorLightGray;
-      border-radius: 12px;
-      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
 
       z-index: 3;
       @media (min-width: $tabletWidth) {
@@ -56,12 +56,19 @@
          gap: 8px;
       }
    }
-
-
+   &__pic {
+      width: auto;
+      height: 140px;
+   }
    &__title {
-      margin: 12px 0 8px 0;
-
-      font-size: 1.3em;
+      font-size: 1.6em;
+      font-weight: 400;
+      text-align: center;
+      color: $colorWhite;
+   }
+   &__txt {
+      margin-top: 20px;
+      font-size: 16px;
       font-weight: 400;
       text-align: center;
       color: $colorWhite;
