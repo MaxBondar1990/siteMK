@@ -1,13 +1,28 @@
-const LOCAL_API_URL = "http://localhost:1111";
+const LOCAL_API_URL_1111 = "http://localhost:1111";
+const LOCAL_API_URL_8888 = "http://localhost:8888";
 const SERVER_API_URL = "https://megakompromis.com.ua";
 
-const isLocal = window.location.hostname === "localhost";
-const CONFIG = {
-   apiUrl: isLocal ? LOCAL_API_URL : SERVER_API_URL,
-   getPath: (fileName, fetchType = 'html') => {
-      return isLocal ? `/files/${fileName}.html` : `/${fetchType}/${fileName}/`;
-   }
-};
+const hostname = window.location.hostname;
+const port = window.location.port;
+
+let CONFIG;
+
+if (hostname === "localhost" && port === "1111") {
+   CONFIG = {
+      apiUrl: LOCAL_API_URL_1111,
+      getPath: (fileName, fetchType = 'html') => `/files/${fileName}.html`
+   };
+} else if (hostname === "localhost" && port === "8888") {
+   CONFIG = {
+      apiUrl: LOCAL_API_URL_8888,
+      getPath: (fileName, fetchType = 'html') => `/${fetchType}/${fileName}/`
+   };
+} else {
+   CONFIG = {
+      apiUrl: SERVER_API_URL,
+      getPath: (fileName, fetchType = 'html') => `/${fetchType}/${fileName}/`
+   };
+}
 
 export function loadContent(fileName, postData = null, containerSelector = "body", fetchType = 'html') {
 
