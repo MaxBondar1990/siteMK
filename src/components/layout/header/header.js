@@ -34,7 +34,7 @@ export function search(event) {
       const containerName = 'search-results';
       const fileName = 'search__result';
 
-      formData.append('formName', 'mySearch');
+      formData.append('formName', 'search');
       formData.append('searchValue', value);
 
       if (value.length >= 1) {
