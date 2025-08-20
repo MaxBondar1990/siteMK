@@ -8,4 +8,5 @@ document.addEventListener('click', (event) => {
    removeModal(event);
 
    sendForm(event);
+
 });

@@ -13,7 +13,7 @@ export function viewGlobalContactFormModal(event) {
 export function closeGlobalContactFormModal(event) {
    const button = event.target.closest('[data-name="close-contact-form"]');
    if (button) {
-      const form = document.querySelector('[data-name="contact-form-modal"]');
+      const form = event.target.closest('[data-name="contact-form-modal"]');
       if (form) {
          form.classList.remove('_view');
       }

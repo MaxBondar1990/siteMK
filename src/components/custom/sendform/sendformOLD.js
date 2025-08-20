@@ -61,16 +61,5 @@ export function isRequired(form) {
          }
       });
    }
-
-   // --- Закриття форми після успішної перевірки ---
-   if (result === true) {
-      const modal = document.querySelector('.contact-form-modal[data-name="contact-form-modal"]');
-      if (modal) {
-         modal.classList.remove('_view');
-      }
-      form.reset();
-   }
-
    return result;
 }
-

@@ -23,6 +23,7 @@ document.addEventListener('click', (event) => {
    viewColorItems(event);
    applyColorAndPriceChange(event);
 
+
 });
 
 document.addEventListener('input', (event) => {
