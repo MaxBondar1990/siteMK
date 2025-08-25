@@ -1,0 +1,84 @@
+// Кнопка, що розгортає прихований текст
+/* зʼявляється в мобільних версіях, в десктопних ховається */
+.show-text-btn {
+   position: absolute;
+   display: flex;
+   
+   justify-content: center;
+   align-items: center;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 60px;
+
+   font-size: 20px;
+   line-height: 1em;
+   font-weight: 400;
+   color: $colorDarkGray;
+
+   background: $colorLightGray;
+   background: linear-gradient(0deg,rgba(245, 245, 245, 1) 50%, rgba(245, 245, 245, .2) 100%);
+   &._down-arrow {
+    animation: bounceArrow 1s infinite ease-in-out;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 36px;
+        height: 3px;
+        background: $colorDarkGray;
+        border-radius: 3px;
+        transform: translateX(-90%) rotate(30deg);
+        animation: bounceArrowDown 1s infinite ease-in-out;
+    }
+        &::after {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 36px;
+        height: 3px;
+        background: $colorDarkGray;
+        border-radius: 3px;
+        transform: translateX(-10%) rotate(-30deg);
+        animation: bounceArrowDown 1s infinite ease-in-out;
+    }
+   }
+   &._up-arrow {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 36px;
+        height: 3px;
+        background: $colorDarkGray;
+        border-radius: 3px;
+        transform: translateX(-90%) rotate(-30deg);
+        animation: bounceArrowDown 1s infinite ease-in-out;
+    }
+        &::after {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 36px;
+        height: 3px;
+        background: $colorDarkGray;
+        border-radius: 3px;
+        transform: translateX(-10%) rotate(30deg);
+        animation: bounceArrowDown 1s infinite ease-in-out;
+    }
+   }
+   
+   @media (min-width: $desctopSmallWidth) {
+      display: none;
+   }
+}
+
+/* Анімація "рух вниз-вгору" */
+@keyframes bounceArrowDown {
+  0%, 100% { top: 50%; }
+  50% { top: 60%; }
+}
