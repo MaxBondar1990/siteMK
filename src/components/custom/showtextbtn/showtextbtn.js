@@ -1,15 +1,6 @@
 import "./showtextbtn.scss"
 
-// export function openFuleContentWelcomTxt (event) {
-//    console.log('123123123')
-//    const btn = event.target.closest('[data-btn="action"]');
-//    if (btn) {
-//       const section = event.target.closest('[data-btn="action"]');
-//       section.classList.add('_down-arrow');
-//    }
-// }
-
-export function openFuleContentWelcomTxt (event) {
+export function openFuleContentSection (event) {
    const btn = event.target.closest('[data-btn="action"]');
    if (btn) {
       const section = btn.closest('[data-name="action"]');
@@ -17,7 +8,7 @@ export function openFuleContentWelcomTxt (event) {
    }
 }
 
-export function classReplacement(event) {
+export function closeFuleContentSection (event) {
    const btn = event.target.closest('[data-btn="action"]');
    if (btn) {
       if (btn.classList.contains('_down-arrow')) {
@@ -26,6 +17,9 @@ export function classReplacement(event) {
       } else {
          btn.classList.remove('_up-arrow');
          btn.classList.add('_down-arrow');
+
+            // Прокрутка до кнопки після згортання
+         btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
    }
 }

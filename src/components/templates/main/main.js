@@ -6,6 +6,9 @@ import { burgerClick } from '../../layout/leftSideBar/leftSideBar.js'
 import { viewGlobalContactFormModal, closeGlobalContactFormModal } from '../../layout/cover/cover.js'
 import { viewColorItems, applyColorAndPriceChange } from '../../layout/goods/goods.js'
 
+import { viewArticleOrderForm, closeArticleOrderForm, setProductColorAndImage, updatePriceByQuantity } from '../../layout/articleContent/articleContent.js'
+
+
 
 
 document.addEventListener('click', (event) => {
@@ -23,6 +26,11 @@ document.addEventListener('click', (event) => {
    viewColorItems(event);
    applyColorAndPriceChange(event);
 
+
+   viewArticleOrderForm(event);
+   closeArticleOrderForm(event);
+   setProductColorAndImage(event);
+   updatePriceByQuantity();
 
 });
 

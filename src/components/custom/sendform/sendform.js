@@ -3,26 +3,56 @@ import { loadContent } from '../featch/featch.js'
 
 
 
+// export function sendForm(event) {
+//    if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
+
+//       event.preventDefault();
+//       const form = event.target.form;
+
+//       if (form) {
+//          if (isRequired(form)) {
+//             const formData = new FormData(form);
+
+//             if (form.getAttribute("name")) {
+//                formData.append('formName', form.getAttribute("name"));
+//             }
+
+//             loadContent('submit', formData, "body", 'form');
+
+//          }
+//       }
+//    }
+// }
+
 export function sendForm(event) {
-   if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
+  // Перевіряємо, що це submit всередині data-featch-form
+  if (event.target.type === 'submit' && event.target.closest('[data-featch-form]')) {
+    event.preventDefault();
+    const form = event.target.form;
 
-      event.preventDefault();
-      const form = event.target.form;
+    if (form) {
+      const result = isRequired(form); // перевірка обов'язкових полів
 
-      if (form) {
-         if (isRequired(form)) {
-            const formData = new FormData(form);
+      if (result === true) {
+        // --- Закриття форми після успішної перевірки ---
+        const modal = event.target.closest('[data-name="contact-form-modal"], [data-name="article-order-form"]');
+        if (modal) {
+          modal.classList.remove('_view');
+        }
 
-            if (form.getAttribute("name")) {
-               formData.append('formName', form.getAttribute("name"));
-            }
+        // --- Відправка даних ---
+        const formData = new FormData(form);
 
-            loadContent('submit', formData, "body", 'form');
+        if (form.getAttribute("name")) {
+          formData.append('formName', form.getAttribute("name"));
+        }
 
-         }
+        loadContent('submit', formData, "body", 'form');
       }
-   }
+    }
+  }
 }
+
 
 export function isRequired(form) {
    const requiredInputs = form.querySelectorAll('[required]');
@@ -60,15 +90,6 @@ export function isRequired(form) {
             return result = false;
          }
       });
-   }
-
-   // --- Закриття форми після успішної перевірки ---
-   if (result === true) {
-      const modal = document.querySelector('.contact-form-modal[data-name="contact-form-modal"]');
-      if (modal) {
-         modal.classList.remove('_view');
-      }
-      form.reset();
    }
 
    return result;
