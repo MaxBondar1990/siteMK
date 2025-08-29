@@ -2,82 +2,42 @@ import "./sendform.scss"
 import { loadContent } from '../featch/featch.js'
 
 
-
-// export function sendForm(event) {
-//    if (event.target.type == 'submit' && event.target.closest('[data-featch-form]')) {
-
-//       event.preventDefault();
-//       const form = event.target.form;
-
-//       if (form) {
-//          if (isRequired(form)) {
-//             const formData = new FormData(form);
-
-//             if (form.getAttribute("name")) {
-//                formData.append('formName', form.getAttribute("name"));
-//             }
-
-//             loadContent('submit', formData, "body", 'form');
-
-//          }
-//       }
-//    }
-// }
-
 export function sendForm(event) {
-  // Перевіряємо, що це submit всередині data-featch-form
-  if (event.target.type === 'submit' && event.target.closest('[data-featch-form]')) {
-    event.preventDefault();
-    const form = event.target.form;
-
-    if (form) {
-      const result = isRequired(form); // перевірка обов'язкових полів
-
-      if (result === true) {
-        // --- Закриття форми після успішної перевірки ---
-        const modal = event.target.closest('[data-name="contact-form-modal"], [data-name="article-order-form"]');
-        if (modal) {
-          modal.classList.remove('_view');
-        }
-
-        // --- Відправка даних ---
-        const formData = new FormData(form);
-
-        if (form.getAttribute("name")) {
-          formData.append('formName', form.getAttribute("name"));
-        }
-
-        loadContent('submit', formData, "body", 'form');
+   if (event.target.type == "submit" && event.target.closest("[data-featch-form]")) {
+      event.preventDefault();
+      const form = event.target.form;
+      const modal = event.target.closest('[data-name="contact-form-modal"]');
+      if (form) {
+         if (isRequired(form)) {
+            const formData = new FormData(form);
+            if (form.getAttribute("name")) {
+               formData.append("formName", form.getAttribute("name"));
+            }
+            if (modal) {
+               modal.classList.remove("_view");
+            }
+            loadContent("submit", formData, "body", "form");
+         }
       }
-    }
-  }
+   }
 }
-
-
-export function isRequired(form) {
-   const requiredInputs = form.querySelectorAll('[required]');
+function isRequired(form) {
+   const requiredInputs = form.querySelectorAll("[required]");
    let result = null;
-
    if (requiredInputs.length > 0) {
-      requiredInputs.forEach(requiredInput => {
-         requiredInput.addEventListener('focus', (event) => {
-            const focusInput = event.target
-            //Знімаємо виділення не правильно введених данних
-            focusInput.classList.remove('wrongValue');
+      requiredInputs.forEach((requiredInput) => {
+         requiredInput.addEventListener("focus", (event) => {
+            const focusInput = event.target;
+            focusInput.classList.remove("wrongValue");
             focusInput.style.backgroundColor = null;
          });
-
-         requiredInput.addEventListener('blur', (event) => {
-            const blurInput = event.target
+         requiredInput.addEventListener("blur", (event) => {
+            const blurInput = event.target;
             if (!blurInput.value) {
-
-               //Відмічаємо інпути з помилками
-               blurInput.classList.add('wrongValue');
-               blurInput.style.backgroundColor = '#F7931E';
-               //return result = false;
+               blurInput.classList.add("wrongValue");
+               blurInput.style.backgroundColor = "#F7931E";
             }
          });
-
          if (requiredInput.value && result == false) {
             return result = false;
          }
@@ -85,12 +45,10 @@ export function isRequired(form) {
             return result = true;
          }
          if (!requiredInput.value) {
-            requiredInput.classList.add('wrongValue');
-            requiredInput.style.backgroundColor = '#F7931E';
+            requiredInput.classList.add("wrongValue");
+            requiredInput.style.backgroundColor = "#F7931E";
             return result = false;
          }
       });
    }
-
-   return result;
 }

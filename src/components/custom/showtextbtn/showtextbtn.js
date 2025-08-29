@@ -1,25 +1,24 @@
 import "./showtextbtn.scss"
 
-export function openFuleContentSection (event) {
+export function actionFuleContentSection(event) {
    const btn = event.target.closest('[data-btn="action"]');
-   if (btn) {
-      const section = btn.closest('[data-name="action"]');
-      section.classList.toggle('_action');
-   }
-}
+   if (!btn) return;
 
-export function closeFuleContentSection (event) {
-   const btn = event.target.closest('[data-btn="action"]');
-   if (btn) {
-      if (btn.classList.contains('_down-arrow')) {
-         btn.classList.remove('_down-arrow');
-         btn.classList.add('_up-arrow');
-      } else {
-         btn.classList.remove('_up-arrow');
-         btn.classList.add('_down-arrow');
+   const section = btn.closest('[data-name="action"]');
+   if (!section) return;
 
-            // Прокрутка до кнопки після згортання
-         btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+   if (btn.classList.contains('_down-arrow')) {
+      btn.classList.remove('_down-arrow');
+      btn.classList.add('_up-arrow');
+
+      section.classList.add('_action');
+   } else {
+      btn.classList.remove('_up-arrow');
+      btn.classList.add('_down-arrow');
+
+      section.classList.remove('_action');
+
+      // Прокрутка до кнопки після згортання
+      section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
    }
 }
