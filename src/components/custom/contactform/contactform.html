@@ -1,5 +1,5 @@
 <!-- Глобальна форма замовлення -->
-<div class="contact-form-modal" data-name="contact-form-modal">
+<div data-fls-contactform class="contact-form-modal" data-name="contact-form-modal">
    <div class="contact-form-close" data-name="close-contact-form"></div>
    <h3 class="contact-form-modal__title">Щоб зробити запит,<br>заповніть форму.</h3>
    <form action="/" name="contact-form" class="contact-form-modal__form">
@@ -11,35 +11,6 @@
       <input type="email" name="email">
       <label for="text">Ваше повідомлення:</label>
       <textarea name="text"></textarea>
-      <input data-featch-form type="submit" value="Надіслати" name="contactBtn">
+      <input data-send-form type="submit" value="Надіслати" name="contactBtn">
    </form>
-</div>
-
-<!-- Article форма замовлення -->
-<div class="article-order-form" data-name="article-order-form">
-    <div class="article-order-form__close" data-name="close-article-order-form"></div>
-    <div class="article-order-form__info info">
-        <h2 class="info__title">Футболка унісекс</h2>
-        <h3 class="info__subtitle">Gildan SoftStyle 153</h3>
-        <p class="info__article-id">арт.: 7019008</p>
-        <div class="info__color col016">016</div>
-    </div>
-    
-    <div class="article-order-form__cost">
-        <p>Вартість замовлення:</p>
-        <p data-name="total-price">000000.00</p>
-    </div>
-    <form class="article-order-form__form" action="/" name="article-order">
-        <p class="article-order-form__form-txt">Вкажіть кількість<i>*</i></p>
-        <input class="article-order-form__form-input" type="number" name="quantity" value="1" required>
-        <p class="article-order-form__form-txt">Ім'я:<i>*</i></p>
-        <input class="article-order-form__form-input" type="text" name="name" required>
-        <p class="article-order-form__form-txt">Телефон:<i>*</i></p>
-        <input class="article-order-form__form-input" type="tel" name="phone" required>
-        <p class="article-order-form__form-txt">E-mail:<i>*</i></p>
-        <input class="article-order-form__form-input" type="email" name="email" required>
-        <p class="article-order-form__form-txt">Додати макет</p>
-        <input class="custom-file-input" type="file" name="upload">
-        <input data-featch-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
-    </form>
 </div>

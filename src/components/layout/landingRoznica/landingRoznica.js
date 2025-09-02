@@ -1,5 +1,6 @@
 import "./landingRoznica.scss"
 
+
 // Показати модалку з налаштуваннями, чекбоксами вибору.
 export function viewSettings() {
    const settingsBtn = document.querySelector('.settings-btn');
@@ -39,12 +40,12 @@ export function getOrderForm() {
 
    function view(event) {
       if (event.target.closest('.comunication__buy')) {
-         orderForm.classList.add('_visible');
+         orderForm.classList.add('_view');
       }
    }
    function close(event) {
       if (event.target.closest('.close')) {
-         orderForm.classList.remove('_visible');
+         orderForm.classList.remove('_view');
       }
    }
 

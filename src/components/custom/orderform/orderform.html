@@ -1,0 +1,28 @@
+<!-- Article форма замовлення -->
+<div data-fls-orderform class="article-order-form" data-name="article-order-form">
+    <div class="article-order-form__close" data-name="close-article-order-form"></div>
+    <div class="article-order-form__info info">
+        <h2 class="info__title">Футболка унісекс</h2>
+        <h3 class="info__subtitle">Gildan SoftStyle 153</h3>
+        <p class="info__article-id">арт.: 7019008</p>
+        <div class="info__color col016">016</div>
+    </div>
+    
+    <div class="article-order-form__cost">
+        <p>Вартість замовлення:</p>
+        <p data-name="total-price">000000.00</p>
+    </div>
+    <form class="article-order-form__form" action="/" name="article-order">
+        <p class="article-order-form__form-txt">Вкажіть кількість<i>*</i></p>
+        <input class="article-order-form__form-input" type="number" name="quantity" value="1" required>
+        <p class="article-order-form__form-txt">Ім'я:<i>*</i></p>
+        <input class="article-order-form__form-input" type="text" name="name" required>
+        <p class="article-order-form__form-txt">Телефон:<i>*</i></p>
+        <input class="article-order-form__form-input" type="tel" name="phone" required>
+        <p class="article-order-form__form-txt">E-mail:<i>*</i></p>
+        <input class="article-order-form__form-input" type="email" name="email" required>
+        <p class="article-order-form__form-txt">Додати макет</p>
+        <input class="custom-file-input" type="file" name="upload">
+        <input data-featch-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
+    </form>
+</div>

@@ -1,9 +1,9 @@
 import "./sendform.scss"
-import { loadContent } from '../featch/featch.js'
+import { loadContent } from '../fetch/fetch.js'
 
 
 export function sendForm(event) {
-   if (event.target.type == "submit" && event.target.closest("[data-featch-form]")) {
+   if (event.target.type == "submit" && event.target.closest("[data-send-form]")) {
       event.preventDefault();
       const form = event.target.form;
       const modal = event.target.closest('[data-name="contact-form-modal"]');
@@ -22,10 +22,13 @@ export function sendForm(event) {
    }
 }
 function isRequired(form) {
+
    const requiredInputs = form.querySelectorAll("[required]");
+
    let result = null;
    if (requiredInputs.length > 0) {
       requiredInputs.forEach((requiredInput) => {
+
          requiredInput.addEventListener("focus", (event) => {
             const focusInput = event.target;
             focusInput.classList.remove("wrongValue");
@@ -47,8 +50,10 @@ function isRequired(form) {
          if (!requiredInput.value) {
             requiredInput.classList.add("wrongValue");
             requiredInput.style.backgroundColor = "#F7931E";
+
             return result = false;
          }
       });
    }
+   return result;
 }

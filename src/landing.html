@@ -1,5 +1,5 @@
 <template src="@components/templates/main/main.html" locals='{
-		"title":"Front Page",
+		"title":"landing",
 		"lang":"ua",
 		"preloader": {
 			"enable":"false",
@@ -19,12 +19,12 @@
       <include src="@components/layout/navigation/navigation.html" locals='{}'></include>
    </block>
    <block name="pageContent">
-      <include src="@components/pages/frontPage/frontPage.html" locals='{}'></include>
+      <include src="@components/pages/landing/landing.html" locals='{}'></include>
    </block>
    <block name="footer">
       <include src="@components/layout/footer/footer.html" locals='{}'></include>
    </block>
-   <block name="globalForms">
-      <include src="@components/custom/globalForms/globalForms.html" locals='{}'></include>
-   </block>
+   <!-- <block name="globalForms">
+      <include src="@components/layout/globalForms/globalForms.html" locals='{}'></include>
+   </block> -->
 </template>

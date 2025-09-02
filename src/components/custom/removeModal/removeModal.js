@@ -1,0 +1,2 @@
+import "./removeModal.scss"
+

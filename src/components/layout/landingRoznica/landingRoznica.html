@@ -3,11 +3,17 @@
    <div class="header landing-roznica__header">
       <div class="header__logo">
          <a href="/" title="На головну">
-            <img class="header__logo-img" data-fls-image-ignore src="@img/global/logo_white.webp" alt="Логотип компанії Мега Компроміс" loading="lazy">
+            <img class="header__logo-img" data-fls-image-ignore src="@img/global/logo_white.webp" alt="Логотип компанії Мега Компроміс" loading="lazy" itemprop="logo">
          </a>
       </div>
       <div class="header__price">
-         <p>490<i>.00</i><span>грн.</span></p>
+         <p>
+            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+               <span itemprop="price">490.00</span><i>.00</i><span>грн.</span>
+               <meta itemprop="priceCurrency" content="UAH">
+               <link itemprop="url" href="/">
+           </span>
+         </p>
       </div>
    </div>
    <main class="landing-roznica__main">
@@ -19,8 +25,8 @@
 
       <div class="designe landing-roznica__designe">
          <div class="designe__maket">
-            <img class="designe__t-shirt" data-fls-image-ignore src="@img/landingRoznica/t-shirts/mensFrontWht.webp" alt="Чоловіча футболка біла" loading="lazy">
-            <img class="designe__print" data-fls-image-ignore src="@img/landingRoznica/prints/preview_im-ukrainian_blck.webp" alt="Принт Я Українець чорний">
+            <img class="designe__t-shirt" data-fls-image-ignore src="@img/landingRoznica/t-shirts/mensFrontWht.webp" alt="Чоловіча футболка біла" loading="lazy" itemprop="image">
+            <img class="designe__print" data-fls-image-ignore src="@img/landingRoznica/prints/preview_im-ukrainian_blck.webp" alt="Принт Я Українець чорний" itemprop="image">
          </div>
       </div>
 
@@ -40,71 +46,93 @@
       <!-- каталог принтів -->
 <div class="catalog-prints landing-roznica__catalog-prints">
    <div class="tile catalog-prints__tile">
-      <button class="tile__item" type="button" aria-label="Вибрати принт Хрест ЗСУ білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_ikhrest-vsu_wht.webp" alt="Принт Хрест ЗСУ білий" data-maket="/preview_ikhrest-vsu_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Хрест ЗСУ білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_ikhrest-vsu_wht.webp" alt="Принт Хрест ЗСУ білий" data-maket="/preview_ikhrest-vsu_wht" itemprop="image">
+         <meta itemprop="name" content="Хрест ЗСУ білий">
       </button>
-      <button class="tile__item _selected" type="button" aria-label="Вибрати принт Я Українець чорний" aria-pressed="true">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_im-ukrainian_blck.webp" alt="Принт Я Українець чорний" data-maket="/preview_im-ukrainian_blck">
+      <button class="tile__item _selected" type="button" aria-label="Вибрати принт Я Українець чорний" aria-pressed="true" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_im-ukrainian_blck.webp" alt="Принт Я Українець чорний" data-maket="/preview_im-ukrainian_blck" itemprop="image">
+         <meta itemprop="name" content="Я Українець чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Я Українець білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_im-ukrainian_wht.webp" alt="Принт Я Українець білий" data-maket="/preview_im-ukrainian_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Я Українець білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_im-ukrainian_wht.webp" alt="Принт Я Українець білий" data-maket="/preview_im-ukrainian_wht" itemprop="image">
+         <meta itemprop="name" content="Я Українець білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Хрест ЗСУ чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_khrest-vsu_blck.webp" alt="Принт Хрест ЗСУ чорний" data-maket="/preview_khrest-vsu_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Хрест ЗСУ чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_khrest-vsu_blck.webp" alt="Принт Хрест ЗСУ чорний" data-maket="/preview_khrest-vsu_blck" itemprop="image">
+         <meta itemprop="name" content="Хрест ЗСУ чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Never Give Up чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_never-give-up_blck.webp" alt="Принт Never Give Up чорний" data-maket="/preview_never-give-up_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Never Give Up чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_never-give-up_blck.webp" alt="Принт Never Give Up чорний" data-maket="/preview_never-give-up_blck" itemprop="image">
+         <meta itemprop="name" content="Never Give Up чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Never Give Up білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_never-give-up_wht.webp" alt="Принт Never Give Up білий" data-maket="/preview_never-give-up_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Never Give Up білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_never-give-up_wht.webp" alt="Принт Never Give Up білий" data-maket="/preview_never-give-up_wht" itemprop="image">
+         <meta itemprop="name" content="Never Give Up білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Peace for Ukraine кольоровий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_peace-for-ukraine_clr.webp" alt="Принт Peace for Ukraine кольоровий" data-maket="/preview_peace-for-ukraine_clr">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Peace for Ukraine кольоровий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_peace-for-ukraine_clr.webp" alt="Принт Peace for Ukraine кольоровий" data-maket="/preview_peace-for-ukraine_clr" itemprop="image">
+         <meta itemprop="name" content="Peace for Ukraine кольоровий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 1 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub1_blck.webp" alt="Принт Тризуб 1 чорний" data-maket="/preview_trizub1_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 1 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub1_blck.webp" alt="Принт Тризуб 1 чорний" data-maket="/preview_trizub1_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб 1 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 1 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub1_wht.webp" alt="Принт Тризуб 1 білий" data-maket="/preview_trizub1_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 1 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub1_wht.webp" alt="Принт Тризуб 1 білий" data-maket="/preview_trizub1_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб 1 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 2 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub2_blck.webp" alt="Принт Тризуб 2 чорний" data-maket="/preview_trizub2_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 2 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub2_blck.webp" alt="Принт Тризуб 2 чорний" data-maket="/preview_trizub2_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб 2 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 2 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub2_wht.webp" alt="Принт Тризуб 2 білий" data-maket="/preview_trizub2_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 2 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub2_wht.webp" alt="Принт Тризуб 2 білий" data-maket="/preview_trizub2_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб 2 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 4 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub4_blck.webp" alt="Принт Тризуб 4 чорний" data-maket="/preview_trizub4_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 4 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub4_blck.webp" alt="Принт Тризуб 4 чорний" data-maket="/preview_trizub4_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб 4 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 4 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub4_wht.webp" alt="Принт Тризуб 4 білий" data-maket="preview_trizub4_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб 4 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub4_wht.webp" alt="Принт Тризуб 4 білий" data-maket="preview_trizub4_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб 4 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya_blck.webp" alt="Принт Тризуб VOLYA чорний" data-maket="preview_trizub-volya_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya_blck.webp" alt="Принт Тризуб VOLYA чорний" data-maket="preview_trizub-volya_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya_wht.webp" alt="Принт Тризуб VOLYA білий" data-maket="preview_trizub-volya_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya_wht.webp" alt="Принт Тризуб VOLYA білий" data-maket="preview_trizub-volya_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 2 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya2_blck.webp" alt="Принт Тризуб VOLYA 2 чорний" data-maket="preview_trizub-volya2_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 2 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya2_blck.webp" alt="Принт Тризуб VOLYA 2 чорний" data-maket="preview_trizub-volya2_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 2 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 2 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya2_wht.webp" alt="Принт Тризуб VOLYA 2 білий" data-maket="preview_trizub-volya2_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 2 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya2_wht.webp" alt="Принт Тризуб VOLYA 2 білий" data-maket="preview_trizub-volya2_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 2 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 3 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya3_blck.webp" alt="Принт Тризуб VOLYA 3 чорний" data-maket="preview_trizub-volya3_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 3 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya3_blck.webp" alt="Принт Тризуб VOLYA 3 чорний" data-maket="preview_trizub-volya3_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 3 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 3 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya3_wht.webp" alt="Принт Тризуб VOLYA 3 білий" data-maket="preview_trizub-volya3_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 3 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya3_wht.webp" alt="Принт Тризуб VOLYA 3 білий" data-maket="preview_trizub-volya3_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 3 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 4 чорний">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya4_blck.webp" alt="Принт Тризуб VOLYA 4 чорний" data-maket="preview_trizub-volya4_blck">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 4 чорний" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya4_blck.webp" alt="Принт Тризуб VOLYA 4 чорний" data-maket="preview_trizub-volya4_blck" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 4 чорний">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 4 білий">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya4_wht.webp" alt="Принт Тризуб VOLYA 4 білий" data-maket="preview_trizub-volya4_wht">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Тризуб VOLYA 4 білий" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_trizub-volya4_wht.webp" alt="Принт Тризуб VOLYA 4 білий" data-maket="preview_trizub-volya4_wht" itemprop="image">
+         <meta itemprop="name" content="Тризуб VOLYA 4 білий">
       </button>
-      <button class="tile__item" type="button" aria-label="Вибрати принт Серце України">
-         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_ukraine_heart1.webp" alt="Принт Серце України" data-maket="preview_ukraine_heart1">
+      <button class="tile__item" type="button" aria-label="Вибрати принт Серце України" itemscope itemtype="https://schema.org/PropertyValue">
+         <img data-fls-image-ignore src="@img/landingRoznica/prints-btn/print_ukraine_heart1.webp" alt="Принт Серце України" data-maket="preview_ukraine_heart1" itemprop="image">
+         <meta itemprop="name" content="Серце України">
       </button>
    </div>
    <div class="bottom-bar catalog-prints__bottom-bar">
@@ -143,7 +171,7 @@
                <label for="kids">Дитяча</label>
             </div>
          </div>
-         <div class="comunication__messengers">
+         <div class="comunication__messengers" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
             <a href="https://t.me/MegaKompromis_bot" title="Напишіть нам у Telegram">
                <svg>
                   <use xlink:href="__spritemap#sprite-telegram-roznica"></use>
@@ -159,30 +187,31 @@
                   <use xlink:href="__spritemap#sprite-phones-roznica"></use>
                </svg>
             </button>
-            <div class="phone-namber">
-               +380959317631
+            <div class="phone-namber" itemprop="seller" itemscope itemtype="https://schema.org/Organization">
+               <span itemprop="name">Мега Компроміс</span>
+               <span itemprop="telephone">+380959317631</span>
             </div>
          </div>
          <button class="comunication__buy" type="button">ЗАМОВИТИ</button>
       </div>
-      <div class="order landing-roznica__order">
-         <h2>Футболка чоловіча, чорна з принтом “VOLYA”</h2>
+      <div class="order landing-roznica__order" data-name="contact-form-modal">
+         <h2 itemprop="description">Футболка чоловіча, чорна з принтом “VOLYA”</h2>
          <!-- блоки розмірів без змін -->
          <div class="order__form">
             <p>Для оформлення замовлення, заповніть форму</p>
-            <form action="">
+            <form action="/" name="contact-form">
                <label for="name">Імʼя:</label>
-               <input type="text" name="name" id="name">
+               <input type="text" name="name" id="name" required>
 
                <label for="phone">Телефон:</label>
-               <input type="tel" name="phone" id="phone">
+               <input type="tel" name="phone" id="phone" required>
 
                <label for="comments">Коментар:</label>
                <textarea name="comments" id="comments"></textarea>
 
                <div class="order__buttons">
                   <button class="close" type="button" aria-label="Закрити форму"></button>
-                  <button class="submit" type="submit">ОФОРМИТИ</button>
+                  <button data-send-form class="submit" type="submit" value="Надіслати" name="contactBtn">ОФОРМИТИ</button>
                </div>
             </form>
          </div>
