@@ -1,5 +1,5 @@
 import './header.scss'
-import { onInputFetchHTML } from '../../custom/fetch/fetch.js'
+import { onInputFetchHTML } from '../../globalBlokcs/fetch/fetch.js'
 
 export function searchClean(event) {
    const searchInputClean = event.target.closest('[data-name="search__input-clean"]');

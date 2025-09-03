@@ -1,9 +1,9 @@
-import { fetchHTML } from '../components/custom/fetch/fetch.js'
-import { viewModal, closeModal, removeModal } from '../components/custom/modalManager/modalManager.js'
+import { fetchHTML } from '../components/globalBlokcs/fetch/fetch.js'
+import { viewModal, closeModal, removeModal } from '../components/globalBlokcs/modalManager/modalManager.js'
 
-import { sendForm } from '../components/custom/sendform/sendform.js'
+import { sendForm } from '../components/globalBlokcs/sendform/sendform.js'
 
-import { actionFuleContentSection } from '../components/custom/showtextbtn/showtextbtn.js'
+import { actionFuleContentSection } from '../components/globalBlokcs/showtextbtn/showtextbtn.js'
 
 
 

@@ -1,5 +1,5 @@
 import "./sendform.scss"
-import { loadContent } from '../fetch/fetch.js'
+import { loadContent } from '../../globalBlokcs/fetch/fetch.js'
 
 
 export function sendForm(event) {

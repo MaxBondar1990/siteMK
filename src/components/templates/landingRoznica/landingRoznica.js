@@ -5,11 +5,8 @@ import {
    getOrderForm,
    getPrints,
    setPrint,
-   setChengingSettings, 
-   viewPhoneNomber, 
-   clickOnClassADDClassName, 
-   modal, 
-   isWebp 
+   setChengingSettings,
+   viewPhoneNomber,
 } from '../../layout/landingRoznica/landingRoznica.js'
 
 
@@ -23,7 +20,4 @@ document.addEventListener('click', (event) => {
    setChengingSettings(event);
    viewPhoneNomber(event);
 
-   clickOnClassADDClassName();
-   modal();
-   isWebp();
 });

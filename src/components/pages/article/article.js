@@ -1,4 +1,9 @@
-import { viewArticleOrderForm, closeArticleOrderForm, setProductColorAndImage, updatePriceByQuantity } from '../../layout/articleContent/articleContent.js'
+import { viewArticleOrderForm,
+   closeArticleOrderForm,
+   setProductColorAndImage,
+   updatePriceByQuantity
+} from '../../layout/articleContent/articleContent.js'
+import { switchTariffTab } from '../../layout/printingTariff/printingTariff.js'
 
 document.addEventListener('click', (event) => {
    viewArticleOrderForm(event);
@@ -6,4 +11,5 @@ document.addEventListener('click', (event) => {
    setProductColorAndImage(event);
    updatePriceByQuantity();
 
+   switchTariffTab(event);
 });
