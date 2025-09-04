@@ -4,7 +4,7 @@ export function viewModal(event) {
    if (button) {
       const form = document.querySelector('[data-name="contact-form-modal"]');
       if (form) {
-   console.log(form)
+         console.log(form)
 
          form.classList.add('_view');
       }
@@ -21,17 +21,17 @@ export function viewModal(event) {
 //    }
 // }
 
-// Закриття модалки
-export function closeModal(event) {
-   if (event.target.closest("[data-close-modal]")) {
-      const modalName = event.target.getAttribute("data-close-modal");
-      const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
-      if (modalWindow) {
-         modalWindow.classList.remove('_view');
-         return;
-      }
-   }
-}
+//// Закриття модалки
+//export function closeModal(event) {
+//   if (event.target.closest("[data-close-modal]")) {
+//      const modalName = event.target.getAttribute("data-close-modal");
+//      const modalWindow = event.target.closest(`[data-name="${modalName}"]`);
+//      if (modalWindow) {
+//         modalWindow.classList.remove('_view');
+//         return;
+//      }
+//   }
+//}
 
 // Remove модалки
 export function removeModal(event) {

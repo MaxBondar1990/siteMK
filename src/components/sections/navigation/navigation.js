@@ -3,20 +3,30 @@ import './navigation.scss'
 export function viewNavigation() {
 
    const navigation = document.querySelector('[data-name="nav-bar-menu"]');
+   if (!navigation) {
+      console.log('navigation is undefined')
+      return false;
+   }
    if (navigation) {
       navigation.classList.add('_active');
+      return true;
    }
 }
 
 export function closeNavigation() {
-
    const navigation = document.querySelector('[data-name="nav-bar-menu"]');
+   if (!navigation) {
+      console.log('navigation is undefined')
+      return false;
+   }
    if (navigation) {
       navigation.classList.remove('_active');
+      return true;
+
    }
 }
 
-export function viewNavModalGroupMenu(event) {
+function viewNavModalGroupMenu(event) {
    const target = event.target;
 
    // Всі блоки підменю
@@ -43,7 +53,7 @@ export function viewNavModalGroupMenu(event) {
    }
 }
 
-export function closeNavModalGroupMenu(event) {
+function closeNavModalGroupMenu(event) {
    const closeButton = event.target.closest('[data-name="navigate-group-wrapper-close-button"]');
    if (!closeButton) return;
 
@@ -52,3 +62,8 @@ export function closeNavModalGroupMenu(event) {
       wrapper.classList.remove('_view');
    }
 }
+
+document.addEventListener('click', (event) => {
+   viewNavModalGroupMenu(event)
+   closeNavModalGroupMenu(event)
+});

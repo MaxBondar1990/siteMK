@@ -10,7 +10,7 @@ let CONFIG;
 if (hostname === "localhost" && port === "1111") {
    CONFIG = {
       apiUrl: LOCAL_API_URL_1111,
-      getPath: (fileName, fetchType = 'html') => `/components/custom/${fileName}/${fileName}.html`
+      getPath: (fileName, fetchType = 'html') => `/files/${fileName}.html`
    };
 } else if (hostname === "localhost" && port === "8888") {
    CONFIG = {

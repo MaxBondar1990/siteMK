@@ -1,7 +1,8 @@
 import './header.scss'
 import { onInputFetchHTML } from '../../globalBlokcs/fetch/fetch.js'
+import { closeModal } from '../../custom/modal/modal.js'
 
-export function searchClean(event) {
+function searchClean(event) {
    const searchInputClean = event.target.closest('[data-name="search__input-clean"]');
    if (searchInputClean) {
       const searchInput = document.querySelector('[data-sait-search]');
@@ -10,8 +11,7 @@ export function searchClean(event) {
       searchInputClean.classList.remove('_view');
    }
 }
-
-export function searchView(event) {
+function searchView(event) {
    const searchPanel = event.target.closest('[data-search-panel]');
    const searchModal = document.querySelector('[data-name="search-modal"]');
 
@@ -26,7 +26,7 @@ export function searchView(event) {
       searchModal.classList.add('_view');
    }
 }
-export function search(event) {
+function search(event) {
    const search = event.target.closest('[data-sait-search]')
    if (search) {
       const formData = new FormData();
@@ -57,3 +57,13 @@ export function search(event) {
       }
    }
 }
+
+document.addEventListener('click', (event) => {
+   searchClean(event)
+   searchView(event)
+   closeModal(event)
+});
+
+document.addEventListener('input', (event) => {
+   search(event)
+});

@@ -1,18 +1,20 @@
 import './leftSideBar.scss';
 
-import { viewNavigation, closeNavigation } from '../../layout/navigation/navigation.js';
+import { viewNavigation, closeNavigation } from '../navigation/navigation.js';
 
-export function burgerClick(event) {
+function burgerClick(event) {
    const burger = event.target.closest('[data-name="view-nav-menu"]');
    if (burger) {
       const isActive = burger.classList.contains('_action');
-      if (!isActive) {
-         burger.classList.add('_action');
-         viewNavigation();
-      } else {
+      if (isActive) {
          burger.classList.remove('_action');
-         closeNavigation(); // ВИКЛИК з іншого файлу
+         closeNavigation();
+         return;
       }
+      if (!viewNavigation()) {
+         return;
+      };
+      burger.classList.add('_action');
    }
 };
 
@@ -33,4 +35,8 @@ contactBtns.forEach(btn => {
          }
       });
    });
+});
+
+document.addEventListener('click', (event) => {
+   burgerClick(event)
 });
