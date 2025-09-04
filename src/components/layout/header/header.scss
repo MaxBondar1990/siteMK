@@ -5,6 +5,8 @@
    grid-template-rows: 46px;
    align-items: center;
 
+   background: #F5F5F5;
+
    padding: 0 8px;
    @media (min-width: $mobileClassicWidth) {
       grid-template-columns: 100px 1fr 40px;

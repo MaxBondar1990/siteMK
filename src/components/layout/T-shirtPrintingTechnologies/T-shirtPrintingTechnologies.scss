@@ -67,9 +67,17 @@
       justify-content: center;
 
       border-radius: 16px;
-      padding: 12px 16px;
+      padding: 1em 1.5em;
+
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
 
       background: $colorOrange;
+      transition: all .3s;
+      &:hover {
+         scale: .97;
+      }
    }
 }
 .print-method {
