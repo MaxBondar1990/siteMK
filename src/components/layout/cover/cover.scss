@@ -7,7 +7,8 @@
    font-style: normal;
 
    overflow: hidden;
-   &__pic { 
+
+   &__pic {
       position: absolute;
       bottom: 0;
       right: 0;
@@ -69,6 +70,9 @@
       text-transform: uppercase;
 
       color: $colorBlue;
+      &._color-title {
+      color: $colorDarkGray;
+      }
 
       // ПЛАНШЕТИ
       @media (max-width: 1023px) {
@@ -80,7 +84,7 @@
       @media (max-width: 768px) {
       /* вертикальний планшет або великий мобільний телефон */
          font-size: 8svw;
-      }    
+      }
    }
    &__txt {
       grid-column: 1 / 2;
@@ -99,6 +103,9 @@
       mix-blend-mode: difference;
       letter-spacing: 0.02em;
       color: $colorDarkGray;
+      &._color-txt {
+      color: $colorBlue;
+      }
       &._view {
          -webkit-line-clamp: unset;
       }
@@ -114,7 +121,6 @@
 
       }  
    }
-   
    &__button {
       display: flex;
       width: min-content;
@@ -134,6 +140,13 @@
       border: solid 2px $colorBlue;
       background-color: $colorLightGray;
       color: $colorBlue;
+
+      &._button-wht {
+
+         border: solid 2px $colorWhite;
+         background-color: $colorWhite;
+         color: $colorOrange;
+      }
       @media (min-width: $tabletWidth) {
          align-self: center;
          margin: 0 0 0 24px;

@@ -1,0 +1,132 @@
+.tshirt-printing-tech {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   padding: 24px 12px 24px 72px;
+   gap: 20px;
+
+   &__title {
+      color: $colorBlue;
+
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36px;
+      text-transform: uppercase;
+   }
+   &__text {
+      width: 100%;
+
+      color: #6F6F6F;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__card {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      gap: 24px;
+   }
+   &__footer {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      gap: 20px;
+
+   }
+   &__texts {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+
+      gap: 20px;
+   }
+   &__text-question {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__button {
+      color: $colorWhite;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+      padding: 12px 16px;
+
+      background: $colorOrange;
+   }
+}
+.print-method {
+   display: flex;
+   align-items: flex-start;
+   gap: 20px;
+   &__img {
+      width: 300px;
+      height: 200px;
+   }
+   &__wrapper {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+
+      gap: 16px;
+   }
+   &__title {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+      &__desc {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__benefits-title {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__benefits {
+      padding-left: 24px;
+
+   }
+   &__benefit {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 0;
+
+      font-size: 1.2em;
+   }
+}
