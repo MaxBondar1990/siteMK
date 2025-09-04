@@ -1,6 +1,5 @@
 import "./sendform.scss"
-import { loadContent } from '../../globalBlokcs/fetch/fetch.js'
-
+import { loadContent } from '../fetch/fetch.js'
 
 export function sendForm(event) {
    if (event.target.type == "submit" && event.target.closest("[data-send-form]")) {
