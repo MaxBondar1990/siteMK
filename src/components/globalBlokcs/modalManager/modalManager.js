@@ -1,15 +1,15 @@
 
-export function viewModal(event) {
-   const button = event.target.closest('[data-name="view-contact-form"]');
-   if (button) {
-      const form = document.querySelector('[data-name="contact-form-modal"]');
-      if (form) {
-         console.log(form)
+// export function viewModal(event) {
+//    const button = event.target.closest('[data-name="view-contact-form"]');
+//    if (button) {
+//       const form = document.querySelector('[data-name="contact-form-modal"]');
+//       if (form) {
+//          console.log(form)
 
-         form.classList.add('_view');
-      }
-   }
-}
+//          form.classList.add('_view');
+//       }
+//    }
+// }
 
 // export function closeModal(event) {
 //    const button = event.target.closest('[data-name="close-contact-form"]');

@@ -1,5 +1,5 @@
 //import { fetchHTML } from '../components/globalBlokcs/fetch/fetch.js'
-//import { viewModal, closeModal, removeModal } from '../components/globalBlokcs/modalManager/modalManager.js'
+// import { viewModal, closeModal, removeModal } from '../components/globalBlokcs/modalManager/modalManager.js'
 
 //import { sendForm } from '../components/globalBlokcs/sendform/sendform.js'
 

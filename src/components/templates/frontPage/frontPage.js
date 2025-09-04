@@ -1,4 +1,4 @@
-//import { searchClean, searchView, search } from '../../layout/header/header.js'
+// import { searchClean, searchView, search } from '../../layout/header/header.js'
 //import { viewNavModalGroupMenu, closeNavModalGroupMenu } from '../../layout/navigation/navigation.js'
 //import { burgerClick } from '../../layout/leftSideBar/leftSideBar.js'
 
