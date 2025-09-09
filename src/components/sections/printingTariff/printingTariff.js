@@ -1,8 +1,8 @@
 import './printingTariff.scss'
 
-export function switchTariffTab (event) {
+function switchTariffTab (event) {
   const btn = event.target.closest('[data-btn="tariff-tab"]');
-  if (!btn) return; // якщо клік не по кнопці
+  if (!btn) return;
 
   const tabs = document.querySelectorAll('[data-btn="tariff-tab"]');
   const tables = document.querySelectorAll('[data-name="tariff-table"]');
@@ -15,3 +15,8 @@ export function switchTariffTab (event) {
   btn.classList.add("_active");
   tables[index].classList.add("_active");
 }
+
+document.addEventListener('click', (event) => {
+   switchTariffTab(event);
+
+});

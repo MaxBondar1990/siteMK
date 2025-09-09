@@ -1,14 +1,16 @@
 <script type="module" src="@components/pages/article/article.js"></script>
 <link rel="stylesheet" href="@components/pages/article/article.scss">
 
-<main class="page page--home">
+
+
+<main class="page page--article">
    <block name="articleContent">
-      <include src="@components/layout/articleContent/articleContent.html" locals='{}'></include>
+      <include src="@components/sections/articleContent/articleContent.html" locals='{}'></include>
    </block>
-   <!-- <block name="articleOrderForm">
-      <include src="@components/layout/articleContent/articleOrderForm.html" locals='{}'></include>
-   </block> -->
    <block name="printingTariff">
-      <include src="@components/layout/printingTariff/printingTariff.html" locals='{}'></include>
+      <include src="@components/sections/printingTariff/printingTariff.html" locals='{}'></include>
+   </block>
+   <block name="articleOrderForm">
+      <include src="@components/custom/orderform/orderform.html" locals='{}'></include>
    </block>
 </main>

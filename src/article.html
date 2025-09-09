@@ -1,4 +1,4 @@
-<!--<template src="@components/templates/frontPage/frontPage.html" locals='{
+<template src="@components/templates/article/article.html" locals='{
 		"title":"article", 
 		"lang":"ua",
 		"preloader": {
@@ -10,19 +10,19 @@
 	}'>
 
    <block name="header">
-      <include src="@components/layout/header/header.html" locals='{}'></include>
+      <include src="@components/sections/header/header.html" locals='{}'></include>
    </block>
    <block name="leftSideBar">
-      <include src="@components/layout/leftSideBar/leftSideBar.html" locals='{}'></include>
+      <include src="@components/sections/leftSideBar/leftSideBar.html" locals='{}'></include>
    </block>
    <block name="navigation">
-      <include src="@components/layout/navigation/navigation.html" locals='{}'></include>
+      <include src="@components/sections/navigation/navigation.html" locals='{}'></include>
    </block>
-   <block name="pageContent">
+   <block name="article">
       <include src="@components/pages/article/article.html" locals='{}'></include>
    </block>
    <block name="footer">
-      <include src="@components/layout/footer/footer.html" locals='{}'></include>
+      <include src="@components/sections/footer/footer.html" locals='{}'></include>
    </block>
 
-</template>-->
+</template>

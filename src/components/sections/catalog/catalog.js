@@ -44,7 +44,6 @@ export function viewColorItems(event) {
   }
 }
 
-
 // colorPriceUpdater.js
 export function applyColorAndPriceChange(event) {
    const colorItem = event.target.closest(".goods-card__color-item");

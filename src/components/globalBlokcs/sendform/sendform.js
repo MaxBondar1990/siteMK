@@ -5,7 +5,7 @@ export function sendForm(event) {
    if (event.target.type == "submit" && event.target.closest("[data-send-form]")) {
       event.preventDefault();
       const form = event.target.form;
-      const modal = event.target.closest('[data-name="contact-form-modal"]');
+      const modal = event.target.closest('[data-name-form]');
       if (form) {
          if (isRequired(form)) {
             const formData = new FormData(form);

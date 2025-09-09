@@ -5,7 +5,12 @@
 
 //import { actionFuleContentSection } from '../components/globalBlokcs/showtextbtn/showtextbtn.js'
 
+import { removeModal } from '../components/custom/removeModal/removeModal.js'
 
+
+document.addEventListener('click', (event) => {
+   removeModal(event);
+});
 
 //document.addEventListener('click', (event) => {
 //   fetchHTML(event);

@@ -1,6 +1,6 @@
 import './articleContent.scss'
 
-export function viewArticleOrderForm(event) {
+function viewArticleOrderForm(event) {
   const btn = event.target.closest('[data-btn="view-order-btn"]');
   if (btn) {
    const modal = document.querySelector('[data-name="article-order-form"]');
@@ -10,18 +10,7 @@ export function viewArticleOrderForm(event) {
   }
 }
 
-export function closeArticleOrderForm(event) {
-  const btn = event.target.closest('[data-name="close-article-order-form"]');
-  if (btn) {
-   const modal = event.target.closest('[data-name="article-order-form"]');
-   if (modal) {
-      modal.classList.remove('_view');
-   }
-  }
-}
-
-
-export function setProductColorAndImage(event) {
+function setProductColorAndImage(event) {
   const target = event.target;
 
   // 1. Знаходимо клікнутий елемент з кольором
@@ -52,7 +41,7 @@ export function setProductColorAndImage(event) {
   }
 }
 
-export function updatePriceByQuantity() {
+function updatePriceByQuantity() {
   const quantityInput = document.querySelector('input[name="quantity"]');
   const priceElement = document.querySelector('[data-name="product-price"]');
   const totalElement = document.querySelector('[data-name="total-price"]');
@@ -80,3 +69,14 @@ function updateTotal() {
   // Запускаємо одразу для початкового значення
   updateTotal();
 }
+
+document.addEventListener('click', (event) => {
+   viewArticleOrderForm(event);
+   // closeArticleOrderForm(event);
+   setProductColorAndImage(event);
+   updatePriceByQuantity();
+
+   // sendForm(event);
+   
+   // switchTariffTab(event);
+});
