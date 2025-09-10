@@ -1,66 +1,64 @@
 import './articleContent.scss'
 
 import { view } from '../../custom/modal/modal.js'
+import { setColor, calcTotalCost } from '../../custom/orderform/orderform.js'
 
-function viewArticleOrderForm(event) {
-  const btn = event.target.closest('[data-btn="view-order-form"]');
-  if (btn) {
-   view('order-form');
-  }
+// Centralized selectors
+const SELECTORS = {
+   colorItem: '[data-name="color-items"]',
+   productCost: '[data-name="product-cost"]',
+   mainImg: '[data-name="mine-img"] img',
+   orderBtn: '[data-btn="view-order-form"]',
+};
+
+// Cached refs (lazy-resolved when first used)
+let costEl, imgEl;
+
+function getCostEl() {
+   if (!costEl) costEl = document.querySelector(SELECTORS.productCost);
+   return costEl;
+}
+function getImgEl() {
+   if (!imgEl) imgEl = document.querySelector(SELECTORS.mainImg);
+   return imgEl;
 }
 
-function setProductColorAndImage(event) {
-  const target = event.target;
+function onDocumentClick(event) {
+   // 1) Handle color selection
+   const colorNode = event.target.closest(SELECTORS.colorItem);
+   if (colorNode) {
+      applyColorSelection(colorNode);
+      return; // avoid extra work if it's a color click
+   }
 
-  // 1. Знаходимо клікнутий елемент з кольором
-  const colorItem = target.closest('[data-name="colors-item"]');
-  if (!colorItem) return;
-
-  // 2. Витягуємо клас типу colXXX (наприклад col011)
-  const colorClass = [...colorItem.classList].find(cls => cls.startsWith('col'));
-  if (!colorClass) return;
-
-  const colorCode = colorClass.replace('col', '');
-
-  // 3. Оновлюємо зображення
-  const img = document.querySelector('[data-name="mine-img"] img');
-  if (img) {
-    // Оновлення src (автоматично оновлюється і на мобільних)
-    img.src = `assets/img/articleContent/article_${colorCode}.jpg`;
-    img.alt = `Колір ${colorCode}`;
-  }
-
-  // 4. Оновлюємо блок із текстом кольору
-  const infoColor = document.querySelector('.info__color');
-  if (infoColor) {
-    // Видаляємо попередній клас colXXX, якщо є
-    infoColor.className = 'info__color'; // скидаємо всі colXXX
-    infoColor.classList.add(colorClass);
-    infoColor.textContent = colorCode;
-  }
-   updatePriceByQuantity();
+   // 2) Handle open-order modal button
+   const btn = event.target.closest(SELECTORS.orderBtn);
+   if (btn) {
+      view('order-form');
+   }
 }
 
-function updatePriceByQuantity() {
-  const quantityInput = document.querySelector('input[name="quantity"]');
-  const priceElement = document.querySelector('[data-name="product-price"]');
-  const totalElement = document.querySelector('[data-name="total-price"]');
+function applyColorSelection(node) {
+   // dataset values
+   const imgSrc = node.dataset.imgSrc;
+   const cost = node.dataset.cost;
+   const colorText = node.textContent.trim();
 
-  if (!quantityInput || !priceElement || !totalElement) {
-    console.warn('Не знайдено потрібних елементів для калькулятора');
-    return;
-  }
+   // Update main image (if present)
+   const img = getImgEl();
+   if (img && imgSrc) img.src = imgSrc;
 
-  // Беремо базову ціну з DOM
-  const basePrice = parseFloat(priceElement.textContent.trim());
+   // Update product cost text (if present)
+   const costElement = getCostEl();
+   if (costElement && cost) costElement.textContent = cost;
 
+   // Sync color into order form UI and classes
+   setColor(colorText);
 
+   // Recalculate total (uses current price * qty inside order form)
+   calcTotalCost();
 }
 
-document.addEventListener('click', (event) => {
-
-   viewArticleOrderForm(event);
-   setProductColorAndImage(event);
-   // updatePriceByQuantity();
-
-});
+// Single delegated listener instead of two separate calls per click
+// (less work on each event, clearer branching)
+document.addEventListener('click', onDocumentClick);
