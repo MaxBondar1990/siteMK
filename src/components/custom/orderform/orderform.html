@@ -1,5 +1,30 @@
 <!-- Article форма замовлення -->
-<div data-fls-orderform data-fls-modal class="article-order-form" data-name-form data-name="article-order-form">
+   <div class="article-order-form__info info">
+        <h2 class="info__title" data-article-form-title="Футболка унісекс">Футболка унісекс</h2>
+        <h3 class="info__subtitle" data-article-form-subtitle="Gildan SoftStyle 153">Gildan SoftStyle 153</h3>
+        <p class="info__article-id" data-article-form-id="7019008">арт.: 7019008</p>
+        <div class="info__color col016" data-article-form-color="016">016</div>
+    </div>
+    
+    <div class="article-order-form__cost">
+        <p>Вартість замовлення:</p>
+        <p data-name="total-price">000000.00</p>
+    </div>
+    <form class="article-order-form__form" action="/" name="article-order">
+        <p class="article-order-form__form-txt">Вкажіть кількість<i>*</i></p>
+        <input class="article-order-form__form-input" type="number" name="quantity" value="1" required>
+        <p class="article-order-form__form-txt">Ім'я:<i>*</i></p>
+        <input class="article-order-form__form-input" type="text" name="name" required>
+        <p class="article-order-form__form-txt">Телефон:<i>*</i></p>
+        <input class="article-order-form__form-input" type="tel" name="phone" required>
+        <p class="article-order-form__form-txt">E-mail:<i>*</i></p>
+        <input class="article-order-form__form-input" type="email" name="email">
+        <p class="article-order-form__form-txt">Додати макет</p>
+        <input class="custom-file-input" type="file" name="upload">
+        <input data-send-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
+    </form>
+
+<!-- <div data-fls-orderform data-fls-modal class="article-order-form" data-name-form data-name="article-order-form">
     <div class="article-order-form__close" data-close-modal="article-order-form"></div>
     <div class="article-order-form__info info">
         <h2 class="info__title">Футболка унісекс</h2>
@@ -25,4 +50,4 @@
         <input class="custom-file-input" type="file" name="upload">
         <input data-send-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
     </form>
-</div>
+</div> -->

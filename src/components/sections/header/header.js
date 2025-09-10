@@ -1,6 +1,6 @@
 import './header.scss'
 import { onInputFetchHTML } from '../../globalBlokcs/fetch/fetch.js'
-import { closeModal } from '../../custom/modal/modal.js'
+import { close } from '../../custom/modal/modal.js'
 
 function searchClean(event) {
    const searchInputClean = event.target.closest('[data-name="search__input-clean"]');
@@ -61,7 +61,7 @@ function search(event) {
 document.addEventListener('click', (event) => {
    searchClean(event)
    searchView(event)
-   closeModal(event)
+   close(event)
 });
 
 document.addEventListener('input', (event) => {

@@ -1,12 +1,11 @@
 import './articleContent.scss'
 
+import { view } from '../../custom/modal/modal.js'
+
 function viewArticleOrderForm(event) {
-  const btn = event.target.closest('[data-btn="view-order-btn"]');
+  const btn = event.target.closest('[data-btn="view-order-form"]');
   if (btn) {
-   const modal = document.querySelector('[data-name="article-order-form"]');
-   if (modal) {
-      modal.classList.add('_view');
-   }
+   view('order-form');
   }
 }
 
@@ -39,6 +38,7 @@ function setProductColorAndImage(event) {
     infoColor.classList.add(colorClass);
     infoColor.textContent = colorCode;
   }
+   updatePriceByQuantity();
 }
 
 function updatePriceByQuantity() {
@@ -54,29 +54,13 @@ function updatePriceByQuantity() {
   // Беремо базову ціну з DOM
   const basePrice = parseFloat(priceElement.textContent.trim());
 
-  // Функція для оновлення суми
-function updateTotal() {
-  const quantity = parseInt(quantityInput.value, 10) || 1;
-  const total = basePrice * quantity;
 
-  // Форматування як у магазині: пробіли для тисяч, 2 знаки після коми
-  totalElement.textContent = total.toLocaleString('uk-UA', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' грн.';
-}
-
-  // Оновлюємо при зміні значення
-  quantityInput.addEventListener('input', updateTotal);
-
-  // Запускаємо одразу для початкового значення
-  updateTotal();
 }
 
 document.addEventListener('click', (event) => {
-   viewArticleOrderForm(event);
-   // closeArticleOrderForm(event);
-   setProductColorAndImage(event);
-   updatePriceByQuantity();
 
-   // sendForm(event);
-   
-   // switchTariffTab(event);
+   viewArticleOrderForm(event);
+   setProductColorAndImage(event);
+   // updatePriceByQuantity();
+
 });
