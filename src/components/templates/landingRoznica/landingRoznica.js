@@ -1,4 +1,4 @@
-import { sendForm } from '../../custom/sendform/sendform.js'
+// import { sendForm } from '../../custom/sendform/sendform.js'
 
 import { 
    viewSettings,
@@ -7,11 +7,11 @@ import {
    setPrint,
    setChengingSettings,
    viewPhoneNomber,
-} from '../../layout/landingRoznica/landingRoznica.js'
+} from '../../sections/landingRoznica/landingRoznica.js'
 
 
 document.addEventListener('click', (event) => {
-   sendForm(event);
+   // sendForm(event);
 
    viewSettings(event);
    getOrderForm(event);
