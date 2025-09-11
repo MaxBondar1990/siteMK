@@ -10,7 +10,7 @@ let CONFIG;
 if (hostname === "localhost" && port === "1111") {
    CONFIG = {
       apiUrl: LOCAL_API_URL_1111,
-      getPath: (fileName, fetchType = 'html') => `/files/${fileName}.html`
+      getPath: (fileName, fetchType = 'html') => `/components/fetch/${fetchType}/${fileName}/${fileName}.html`
    };
 } else if (hostname === "localhost" && port === "8888") {
    CONFIG = {
@@ -24,7 +24,7 @@ if (hostname === "localhost" && port === "1111") {
    };
 }
 
-export function loadContent(fileName, postData = null, containerSelector = "body", fetchType = 'html') {
+export function loadContent(fileName, postData = null, containerSelector = "body", fetchType = 'fetch') {
 
    const url = CONFIG.apiUrl + CONFIG.getPath(fileName, fetchType);
    console.log(url)
@@ -114,4 +114,41 @@ export function onInputFetchHTML(fileName, containerName, data) {
       // Викликаємо метод для завантаження вмісту модального вікна з передачею параметрів
       loadContent(fileName, data);
    }
+}
+
+export function isRequiredInput(form) {
+
+   const requiredInputs = form.querySelectorAll("[required]");
+
+   let result = null;
+   if (requiredInputs.length > 0) {
+      requiredInputs.forEach((requiredInput) => {
+
+         requiredInput.addEventListener("focus", (event) => {
+            const focusInput = event.target;
+            focusInput.classList.remove("wrongValue");
+            focusInput.style.backgroundColor = null;
+         });
+         requiredInput.addEventListener("blur", (event) => {
+            const blurInput = event.target;
+            if (!blurInput.value) {
+               blurInput.classList.add("wrongValue");
+               blurInput.style.backgroundColor = "#F7931E";
+            }
+         });
+         if (requiredInput.value && result == false) {
+            return result = false;
+         }
+         if (requiredInput.value) {
+            return result = true;
+         }
+         if (!requiredInput.value) {
+            requiredInput.classList.add("wrongValue");
+            requiredInput.style.backgroundColor = "#F7931E";
+
+            return result = false;
+         }
+      });
+   }
+   return result;
 }

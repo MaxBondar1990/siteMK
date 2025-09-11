@@ -1,28 +1,32 @@
 <!-- Article форма замовлення -->
-<div class="order-form article-order-form__info info">
-   <h2 class="info__title">Футболка унісекс</h2>
-   <h3 class="info__subtitle">Gildan SoftStyle 153</h3>
-   <p class="info__article-id">арт.: 7019008</p>
-   <div class="info__color col016" data-order-form-color>016</div>
+<div class="order-form">
+   <div class="order-form__info">
+      <h2 class="order-form__title">Футболка унісекс</h2>
+      <h3 class="order-form__subtitle">Gildan SoftStyle 153</h3>
+      <p class="order-form__article-id">арт.: 7019008</p>
+      <div class="order-form__color col016" data-order-form-color>016</div>
+   </div>
+
+   <div class="order-form__cost">
+      <p>Вартість замовлення:</p>
+      <p data-name="total-cost">2170.00 грн.</p>
+   </div>
+   <form class="order-form__form" action="/" name="article-order">
+      <p class="order-form__form-txt">Вкажіть кількість<i>*</i></p>
+      <input class="order-form__form-input" type="number" name="quantity" value="1" required>
+      <p class="order-form__form-txt">Ім'я:<i>*</i></p>
+      <input class="order-form__form-input" type="text" name="name" required>
+      <p class="order-form__form-txt">Телефон:<i>*</i></p>
+      <input class="order-form__form-input" type="tel" name="phone" required>
+      <p class="order-form__form-txt">E-mail:</p>
+      <input class="order-form__form-input" type="email" name="email">
+      <p class="order-form__form-txt">Додати макет</p>
+      <input type="file" name="upload">
+      <input data-send-order-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
+   </form>
 </div>
 
-<div class="article-order-form__cost">
-   <p>Вартість замовлення:</p>
-   <p data-name="total-cost">2170.00 грн.</p>
-</div>
-<form class="article-order-form__form" action="/" name="article-order">
-   <p class="article-order-form__form-txt">Вкажіть кількість<i>*</i></p>
-   <input class="article-order-form__form-input" type="number" name="quantity" value="1" required>
-   <p class="article-order-form__form-txt">Ім'я:<i>*</i></p>
-   <input class="article-order-form__form-input" type="text" name="name" required>
-   <p class="article-order-form__form-txt">Телефон:<i>*</i></p>
-   <input class="article-order-form__form-input" type="tel" name="phone" required>
-   <p class="article-order-form__form-txt">E-mail:</p>
-   <input class="article-order-form__form-input" type="email" name="email">
-   <p class="article-order-form__form-txt">Додати макет</p>
-   <input class="custom-file-input" type="file" name="upload">
-   <input data-send-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
-</form>
+
 
 <!-- <div data-fls-orderform data-fls-modal class="article-order-form" data-name-form data-name="article-order-form">
     <div class="article-order-form__close" data-close-modal="article-order-form"></div>
