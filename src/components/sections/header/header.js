@@ -13,7 +13,7 @@ function searchClean(event) {
 }
 function searchView(event) {
    const searchPanel = event.target.closest('[data-search-panel]');
-   const searchModal = document.querySelector('[data-name="search-modal"]');
+   const searchModal = document.querySelector('[data-modal-name="search-modal"]');
 
    if (!searchPanel) return;
 
