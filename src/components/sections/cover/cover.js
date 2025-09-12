@@ -15,13 +15,13 @@ function mountCover(rootEl) {
       }
    }, { signal });
 
-   // Приклад прямого слухача для input (якщо є)
-   const qtyInput = rootEl.querySelector('input[name="quantity"]');
-   if (qtyInput) {
-      qtyInput.addEventListener('input', () => {
-         // calcTotalCost();
-      }, { signal, passive: true });
-   }
+   //// Приклад прямого слухача для input (якщо є)
+   //const qtyInput = rootEl.querySelector('input[name="quantity"]');
+   //if (qtyInput) {
+   //   qtyInput.addEventListener('input', () => {
+   //      // calcTotalCost();
+   //   }, { signal, passive: true });
+   //}
 
    return () => ac.abort();
 }

@@ -117,7 +117,7 @@ export function onInputFetchHTML(fileName, containerName, data) {
 }
 
 export function isRequiredInput(form) {
-
+   //console.log('ddv');
    const requiredInputs = form.querySelectorAll("[required]");
 
    let result = null;

@@ -1,31 +1,18 @@
-<div class="contact-form">
-  <h3 class="contact-form__title">Щоб зробити запит,<br>заповніть форму.</h3>
-  <form class="contact-form__form" name="contact-form">
-    <label class="contact-form__label" for="name">Name:<i>*</i></label>
-    <input class="contact-form__input" type="text" name="name" required>
+<div data-fls-contactform class="contact-form" data-component="contactform" data-part="root">
+   <h3 class="contact-form__title">Щоб зробити запит,<br>заповніть форму.</h3>
+   <form class="contact-form__form" name="contact-form">
+      <label class="contact-form__label" for="name">Name:<i>*</i></label>
+      <input class="contact-form__input" type="text" name="name" required>
 
-    <label class="contact-form__label" for="phone">Telephone:<i>*</i></label>
-    <input class="contact-form__input" type="tel" name="phone" required>
+      <label class="contact-form__label" for="phone">Telephone:<i>*</i></label>
+      <input class="contact-form__input" type="tel" name="phone" required>
 
-    <label class="contact-form__label" for="email">E-mail:</label>
-    <input class="contact-form__input" type="email" name="email">
+      <label class="contact-form__label" for="email">E-mail:</label>
+      <input class="contact-form__input" type="email" name="email">
 
-    <label class="contact-form__label" for="text">Ваше повідомлення:</label>
-    <textarea class="contact-form__textarea" name="text"></textarea>
+      <label class="contact-form__label" for="text">Ваше повідомлення:</label>
+      <textarea class="contact-form__textarea" name="text"></textarea>
 
-    <input data-send-contact-form class="contact-form__submit" type="submit" value="Надіслати">
-  </form>
+      <input data-action="send-contact-form" class="contact-form__submit" type="submit" value="Надіслати">
+   </form>
 </div>
-
-<!-- <h3 data-fls-contactform class="contact-form__title">Щоб зробити запит,<br>заповніть форму.</h3>
-<form action="/" name="contact-form" class="contact-form-modal__form">
-   <label for="name">Name:<i>*</i></label>
-   <input type="text" name="name" required>
-   <label for="phone">Telephone:<i>*</i></label>
-   <input type="tel" name="phone" required>
-   <label for="email">E-mail:</label>
-   <input type="email" name="email">
-   <label for="text">Ваше повідомлення:</label>
-   <textarea name="text"></textarea>
-   <input data-send-form type="submit" value="Надіслати" name="contactBtn">
-</form> -->

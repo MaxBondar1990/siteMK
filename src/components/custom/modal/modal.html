@@ -1,7 +1,8 @@
-<!-- Успішна відправка форми -->
-<div data-fls-modal class="modal [[addClass]]" data-modal-name="[[modalName]]">
-   <div class="modal__close [[addClass]]" data-modal-[[closeOrRemove]]="[[modalName]]"></div>
-   <div class="modal__content [[addClass]]">
+<!-- Модальне вікно -->
+<div data-fls-modal class="modal [[addClass]]" data-component="modal" data-part="root" data-target="[[modalName]]"
+   data-state="closed">
+   <div class="modal__close [[addClass]]" data-action="[[closeOrRemove]]-modal" data-part="close"></div>
+   <div class="modal__content [[addClass]]" data-part="content">
       <include src="@components/[[dirName]]/[[fileName]]/[[fileName]].html" locals='{}'></include>
    </div>
 </div>
