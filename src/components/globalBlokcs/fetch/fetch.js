@@ -10,7 +10,7 @@ let CONFIG;
 if (hostname === "localhost" && port === "1111") {
    CONFIG = {
       apiUrl: LOCAL_API_URL_1111,
-      getPath: (fileName, fetchType = 'html') => `/components/fetch/${fetchType}/${fileName}/${fileName}.html`
+      getPath: (fileName, fetchType = 'html') => fetchType === 'json' ? `/components/fetch/${fileName}/${fileName}.json` : `/components/fetch/${fileName}/${fileName}.html`
    };
 } else if (hostname === "localhost" && port === "8888") {
    CONFIG = {
@@ -24,34 +24,64 @@ if (hostname === "localhost" && port === "1111") {
    };
 }
 
-export function loadContent(fileName, postData = null, containerSelector = "body", fetchType = 'fetch') {
-
+/**
+ * loadContent: JSON-first fetch helper
+ * - Does NOT insert into the DOM.
+ * - Returns a structured object: { status, html?, message?, ... }.
+ * - Default fetchType is 'json'. For local mocks (1111) we resolve to /components/fetch/json/<file>/<file>.json.
+ * - Callers are responsible for rendering/inserting html and reacting to status.
+ */
+export function loadContent(fileName, postData = null, _containerSelector = undefined, fetchType = 'json') {
    const url = CONFIG.apiUrl + CONFIG.getPath(fileName, fetchType);
-   console.log(url)
-   const options = {
-      method: "POST",
-      body: postData
+   const options = { method: 'POST', body: postData };
+
+   // Timeout/abort setup
+   const ac = new AbortController();
+   const { signal } = ac;
+   options.signal = signal;
+   const TIMEOUT_MS = 10000;
+   const timer = setTimeout(() => ac.abort(), TIMEOUT_MS);
+
+   // Helper: parse JSON if possible
+   const tryParseJSON = async (response) => {
+      const ct = response.headers.get('content-type') || '';
+      if (ct.includes('application/json')) {
+         try { return await response.json(); } catch (_) { }
+      }
+      return null;
    };
 
-   fetch(url, options)
-      .then(response => {
-         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-         return response.text();
-      })
-      .then(html => {
-         const container = document.querySelector(containerSelector);
-         if (container) {
-            if (containerSelector == "body") {
-               container.insertAdjacentHTML("beforeend", html);
-            } else {
-               container.innerHTML = html;
-            }
-         } else {
-            console.error(`Контейнер "${containerSelector}" не знайдено`);
+   return fetch(url, options)
+      .then(async (response) => {
+         clearTimeout(timer);
+         if (!response.ok) {
+            // Try to extract JSON error shape, otherwise text
+            const maybeJSON = await tryParseJSON(response);
+            if (maybeJSON) return { status: maybeJSON.status || 'error', ...maybeJSON };
+            const text = await response.text().catch(() => '');
+            return { status: 'error', message: text || `HTTP ${response.status}` };
          }
-      })
-      .catch(error => console.error(`Помилка завантаження ${fileName}:`, error));
 
+         // Prefer JSON protocol: { status, html, message, ... }
+         const maybeJSON = await tryParseJSON(response);
+         if (maybeJSON) {
+            // Always return as-is, caller decides what to do (render/close/etc.)
+            return { status: maybeJSON.status || 'success', ...maybeJSON };
+         }
+
+         // Legacy/HTML path: return raw HTML string without inserting into DOM
+         const html = await response.text();
+         return { status: 'success', html };
+      })
+      .catch((error) => {
+         clearTimeout(timer);
+         document.body.dispatchEvent(new CustomEvent('fetch:error', { bubbles: true, detail: { fileName, error } }));
+         if (error && (error.name === 'AbortError' || String(error).includes('AbortError'))) {
+            return { status: 'timeout', message: 'Request timed out' };
+         }
+         console.error(`Помилка завантаження ${fileName}:`, error);
+         return { status: 'error', message: String(error) };
+      });
 }
 
 // Відкриття модалки

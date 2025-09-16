@@ -1,4 +1,4 @@
-<header data-fls-header class="header">
+<header data-fls-header class="header" data-component="header" data-part="root">
    <!-- Логотип компанії -->
    <a class="header__logo" href="/" aria-label="Рекламно-виробнича компанія Мега Компроміс"
       title="Рекламно-виробнича компанія Мега Компроміс">
@@ -8,32 +8,30 @@
 
    <!-- Панель пошуку -->
    <div class="search" role="search">
-      <div class="search__panel" data-search-panel>
+      <div class="search__panel" data-part="panel" data-action="open-modal" data-target="search-modal" role="button"
+         tabindex="0" aria-controls="search-modal" aria-haspopup="dialog" aria-expanded="false">
          <svg class="search__icon" aria-hidden="true" focusable="false">
             <use xlink:href="__spritemap#sprite-search"></use>
          </svg>
-         <form class="search__panel-form" action="/" role="search" aria-label="Форма пошуку по сайту">
-            <input class="search__input" type="search" name="search" data-sait-search placeholder="Пошук"
+         <form class="search__panel-form" action="/search" role="search" aria-label="Форма пошуку по сайту">
+            <input class="search__input" type="search" name="search" data-part="input" placeholder="Пошук"
                autocomplete="off" size="1" aria-label="Пошук товару">
          </form>
-         <button type="button" class="search__input-clean" data-name="search__input-clean"
-            aria-label="Очистити поле пошуку"></button>
+         <button type="button" class="search__input-clean" data-part="clean" aria-label="Очистити поле пошуку"></button>
       </div>
 
       <!-- Модалка з результатами пошуку -->
-      <div class="search__modal" data-modal-name="search-modal" role="dialog" aria-modal="true"
-         aria-labelledby="search-modal-title" tabindex="-1">
-         <button class="search__modal-close" data-modal-close="search-modal" type="button"
+      <div id="search-modal" class="search__modal" data-component="modal" data-part="root" data-target="search-modal"
+         data-state="closed" role="dialog" aria-modal="true" aria-labelledby="search-modal-title" tabindex="-1">
+         <button class="search__modal-close" data-action="close-modal" data-part="close" type="button"
             aria-label="Закрити результати пошуку"></button>
          <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->
-         <h2 class="title-visually-hidden">Результати пошуку</h2>
+         <h2 id="search-modal-title" class="title-visually-hidden">Результати пошуку</h2>
          <!-- Блок для виводу результатів пошуку -->
-         <ul class="search__results" data-container="search-results">
+         <ul class="search__results" data-part="results">
             <!-- Вітальне повідомленя з інструукцією по початку пошуку -->
-            <p class="search__welcome-text" data-welcome-search>Для початку пошуку, почніть вводити назву товару або
-               номер артиклю.
-               <br>Необхідно ввести мінімум 3 символи.
-            </p>
+            <li class="search__welcome-text" data-welcome-search>Для початку пошуку, почніть вводити назву товару або
+               номер артиклю.<br>Необхідно ввести мінімум 3 символи.</li>
          </ul>
       </div>
    </div>

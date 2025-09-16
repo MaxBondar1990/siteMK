@@ -17,8 +17,24 @@ function setModalState(modal, state) {
    document.documentElement.classList.toggle('modal-open', Boolean(anyOpen));
 }
 
-export function view(modalName) {
-   const modal = document.querySelector(`[data-component="modal"][data-part="root"][data-target="${modalName}"]`);
+export function close(target) {
+   let modal = null;
+   if (typeof target === 'string') {
+      modal = document.querySelector(`[data-component="modal"][data-part="root"][data-target="${target}"]`);
+   } else if (target && target.matches && target.matches('[data-component="modal"][data-part="root"]')) {
+      modal = target;
+   }
+   if (!modal) return;
+   setModalState(modal, 'closed');
+}
+
+export function view(target) {
+   let modal = null;
+   if (typeof target === 'string') {
+      modal = document.querySelector(`[data-component="modal"][data-part="root"][data-target="${target}"]`);
+   } else if (target && target.matches && target.matches('[data-component="modal"][data-part="root"]')) {
+      modal = target;
+   }
    if (!modal) return;
    setModalState(modal, 'open');
 }
@@ -41,7 +57,7 @@ export function handleModalClick(event) {
          // re-evaluate scroll lock after removal
          {
             const anyOpen = document.querySelector('[data-component="modal"][data-part="root"][data-state="open"]');
-            document.documentElement.classList.toggle('is-modal-open', Boolean(anyOpen));
+            document.documentElement.classList.toggle('modal-open', Boolean(anyOpen));
          }
          break;
       default:
@@ -57,6 +73,11 @@ function mountModalRoot(rootEl) {
    // Delegate clicks only within this modal root
    rootEl.addEventListener('click', (event) => {
       handleModalClick(event);
+   }, { signal });
+
+   // Close this modal when a nested contact form reports success
+   rootEl.addEventListener('contactform:success', () => {
+      close(rootEl);
    }, { signal });
 
    return () => ac.abort();

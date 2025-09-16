@@ -1,10 +1,10 @@
-import './submit.scss'
+import './submitContactForm.scss'
 
 export function close(event) {
    const btn = event.target.closest('[data-remove-submit]');
-   if(btn) {
+   if (btn) {
       const submitMenu = event.target.closest('[data-name-submit="contact-form-submit"]');
-      if(submitMenu) {
+      if (submitMenu) {
          submitMenu.remove();
       }
    }

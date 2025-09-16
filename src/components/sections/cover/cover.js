@@ -9,10 +9,10 @@ function mountCover(rootEl) {
 
    // Делегування КЛІКІВ в межах компонента
    rootEl.addEventListener('click', (e) => {
-      const contactBtn = e.target.closest('[data-name="view-contact-form"]');
-      if (contactBtn && rootEl.contains(contactBtn)) {
-         view('contact-form');
-      }
+      const btn = e.target.closest('[data-action="open-modal"]');
+      if (!btn || !rootEl.contains(btn)) return;
+      const target = btn.dataset.target || 'contact-form';
+      view(target);
    }, { signal });
 
    //// Приклад прямого слухача для input (якщо є)
@@ -27,7 +27,7 @@ function mountCover(rootEl) {
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootCover = document.querySelector('.cover');
+const rootCover = document.querySelector('[data-component="cover"][data-part="root"]');
 if (rootCover) {
    const cleanup = mountCover(rootCover);
    if (import.meta.hot && cleanup) {
