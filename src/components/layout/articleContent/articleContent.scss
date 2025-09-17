@@ -1314,3 +1314,131 @@
       border-radius: 8px;
    }
 }
+
+
+
+.shape {
+   display: grid;
+   grid-template-columns: 1fr 1fr min-content;
+   grid-template-rows: min-content 1fr 1fr;
+   justify-content: flex-start;
+   align-items: flex-start;
+   align-self: center;
+   justify-self: center;
+   padding: 20px;
+   width: fit-content;
+   height: min-content;
+   transition: all .5s;
+   &__content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      grid-column: 1 / 4;
+      grid-row: 1 / 4;
+      width: 980px;
+      aspect-ratio: 5 / 3;
+      background: linear-gradient(135deg, #ffd200, #f7971e);
+
+      /* Прямокутник з заокругленими кутами */
+      clip-path: path("M 20 0 H 630 Q 650 0 650 20 V 80 Q 650 120 680 120 H 960 Q 980 120 980 140 V568 Q 980 588 960 588 H20 Q 0 588 0 568 V20 Q 0 0 20 0 Z");
+      filter: drop-shadow(2px 2px 4px rgba(1, 1, 1, .6));
+      // overflow: hidden;
+      transition: all .5s;
+   }
+   &__content-img {
+      height: 100%;
+   }
+   &__content-txt-block {
+      position: absolute;
+      left: 40px;
+      top: 40px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 24px;
+
+      max-width: 50%;
+   }
+   &__content-txt-block-title {
+      font-size: 4em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $colorDarkGray;
+      transition: all .3s .3s;
+   }
+   &__content-txt-block-txt {
+      margin-top: 16px;
+
+      font-size: 1em;
+      line-height: 1.4em;
+      font-weight: 700;
+      color: $colorWhite;
+      opacity: 1;
+      transition: opacity .3s;
+   }
+   &__element {
+      grid-column: 1 / 4;
+      grid-row: 1 / 4;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-start;
+
+      padding: 16px;
+      gap: 16px;
+
+      aspect-ratio: 5 / 3;
+      // background: linear-gradient(35deg,  #ffd200, #f7971e, #ff8126, #ea4444);
+      background: var(--bgGradient);
+
+      /* Прямокутник з заокругленими кутами */
+      clip-path: path("M 670 0 H 960 Q 980 0 980 20 V 80 Q 980 100 960 100 H 690 Q 670 100 670 80 V 20 Q 670 0 690 0 Z");
+      overflow-y: hidden;
+
+      transition: all .5s;
+   }
+   &__element-title {
+      width: 294px;
+
+      padding-left: 16px;
+      margin-top: 17px;
+      font-size: 2.2em;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+
+      color: $colorWhite;
+   }
+   &__element-txt {
+      width: 294px;
+      padding-left: 16px;
+      margin-top: 16px;
+
+      font-size: 1em;
+      line-height: 1.4em;
+      color: $colorWhite;
+      opacity: 0;
+      transition: opacity .4s .3s;
+   }
+   &:hover {
+      .shape__content {
+         clip-path: path("M 20 0 H 630 Q 650 0 650 20 V 460 Q 650 500 680 500 H 960 Q 980 500 980 520 V568 Q 980 588 960 588 H20 Q 0 588 0 568 V20 Q 0 0 20 0 Z");
+         
+      }
+      .shape__element {
+         clip-path: path("M 670 0 H 960 Q 980 0 980 20 V 460 Q 980 480 960 480 H 690 Q 670 480 670 460 V 20 Q 670 0 690 0 Z");
+      }
+      .shape__element-txt {
+         opacity: 1;
+      }
+      .shape__content-txt-block-title {
+         font-size: 4.6em;
+      }
+      .shape__content-txt-block-txt {
+         opacity: 0;
+      }
+   }
+}
