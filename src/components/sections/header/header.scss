@@ -15,6 +15,9 @@
    @media (min-width: $desctopSmallWidth) {
       padding: 0 max(80px, 5%);
    }
+   &._white{
+   background: $colorWhite;
+   }
    &__logo {
       display: block;
       width: 60px;

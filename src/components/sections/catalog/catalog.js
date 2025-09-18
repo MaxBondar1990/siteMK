@@ -1,84 +1,107 @@
+
 import './catalog.scss'
 
-export function viewColorItems(event) {
-  const colorList = event.target.closest('[data-name="view-color-items"]');
-  const colorItem = event.target.closest('.goods-card__color-item');
+// Prefer new API; keep legacy as fallback
+const SEL = {
+   root: '[data-component="catalog"][data-part="root"]',
+   colorList: '[data-part="color-list"], [data-name="view-color-items"]',
+   colorItem: '.goods-card__color-item',
+   card: '.goods-card',
+   img: '.goods-card__img img',
+   price: ".goods-card__price [itemprop='price']",
+};
 
-  // Клік по ul (відкриття/закриття списку)
-  if (colorList && !colorItem) {
-    // Закриваємо всі інші списки
-    document.querySelectorAll('[data-name="view-color-items"]').forEach(list => {
-      if (list !== colorList) {
-        list.classList.remove('_action');
+// Toggle open/close of color list, and open when picking a color
+export function viewColorItems(event, rootEl) {
+   const colorList = event.target.closest(SEL.colorList);
+   const colorItem = event.target.closest(SEL.colorItem);
+
+   // Click on UL (open/close list)
+   if (colorList && !colorItem) {
+      // Close other lists within this component root only
+      rootEl.querySelectorAll(SEL.colorList).forEach(list => {
+         if (list !== colorList) list.classList.remove('_action');
+      });
+      colorList.classList.toggle('_action');
+      return;
+   }
+
+   // Click on LI (change image + ensure list is open)
+   if (colorItem) {
+      const ownList = colorItem.closest(SEL.colorList);
+      if (ownList) {
+         rootEl.querySelectorAll(SEL.colorList).forEach(list => {
+            if (list !== ownList) list.classList.remove('_action');
+         });
+         ownList.classList.add('_action');
       }
-    });
 
-    // Перемикаємо _action для поточного
-    colorList.classList.toggle('_action');
-    return;
-  }
+      const card = colorItem.closest(SEL.card);
+      const img = card?.querySelector(SEL.img);
+      const newSrc = colorItem.getAttribute('data-srcImg') || colorItem.getAttribute('data-srcimg');
+      if (img && newSrc) img.src = newSrc;
 
-  // Клік по li (зміна картинки + відкриття, якщо ще не відкрито)
-  if (colorItem) {
-    const colorList = colorItem.closest('[data-name="view-color-items"]');
-
-    // Закриваємо всі інші списки, крім поточного
-    document.querySelectorAll('[data-name="view-color-items"]').forEach(list => {
-      if (list !== colorList) {
-        list.classList.remove('_action');
-      }
-    });
-
-    // Додаємо _action для поточного
-    colorList.classList.add('_action');
-
-    const card = colorItem.closest('.goods-card');
-    const img = card?.querySelector('.goods-card__img img');
-    const newSrc = colorItem.getAttribute('data-srcImg');
-
-    if (img && newSrc) {
-      img.src = newSrc;
-    }
-
-    event.stopPropagation(); // Не даємо спрацювати ul-кліку
-  }
+      // Keep price & active state in applyColorAndPriceChange
+      event.stopPropagation();
+   }
 }
 
-// colorPriceUpdater.js
-export function applyColorAndPriceChange(event) {
-   const colorItem = event.target.closest(".goods-card__color-item");
-   if (!colorItem) return;
+// colorPriceUpdater.js — apply price and active state on color pick
+export function applyColorAndPriceChange(event, rootEl) {
+   const colorItem = event.target.closest(SEL.colorItem);
+   if (!colorItem || !rootEl.contains(colorItem)) return;
 
-   const card = colorItem.closest(".goods-card");
+   const card = colorItem.closest(SEL.card);
    if (!card) return;
 
-   const priceElement = card.querySelector(".goods-card__price [itemprop='price']");
-   const productImg = card.querySelector(".goods-card__img img");
+   const priceElement = card.querySelector(SEL.price);
+   const productImg = card.querySelector(SEL.img);
 
-   // Форматуємо ціну в гривнях
+   // Price update (UA formatting)
    if (priceElement && colorItem.dataset.price) {
-      const rawPrice = colorItem.dataset.price.replace(",", "."); // на випадок коми
+      const rawPrice = (colorItem.dataset.price + '').replace(',', '.');
       const numberPrice = parseFloat(rawPrice);
-      if (!isNaN(numberPrice)) {
-         // Форматування: 425,00
-         const formattedPrice = numberPrice.toLocaleString("uk-UA", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-         });
-         priceElement.textContent = formattedPrice;
+      if (!Number.isNaN(numberPrice)) {
+         const formatted = numberPrice.toLocaleString('uk-UA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+         priceElement.textContent = formatted;
       } else {
          priceElement.textContent = colorItem.dataset.price; // fallback
       }
    }
 
-   // Оновлюємо зображення
-   if (productImg && colorItem.dataset.srcimg) {
+   // Image update fallback (if not handled above)
+   if (productImg && colorItem.dataset.srcimg && !productImg.src.endsWith(colorItem.dataset.srcimg)) {
       productImg.src = colorItem.dataset.srcimg;
    }
 
-   // Активний клас для вибраного кольору
-   const colorItems = card.querySelectorAll(".goods-card__color-item");
-   colorItems.forEach(el => el.classList.remove("active"));
-   colorItem.classList.add("active");
+   // Active class for chosen color
+   const colorItems = card.querySelectorAll(SEL.colorItem);
+   colorItems.forEach(el => el.classList.remove('active'));
+   colorItem.classList.add('active');
+}
+
+// Mount catalog component locally (event delegation)
+export function mountCatalog(rootEl) {
+   if (!rootEl) return () => { };
+   const ac = new AbortController();
+   const { signal } = ac;
+
+   rootEl.addEventListener('click', (e) => {
+      // visual/open behavior
+      viewColorItems(e, rootEl);
+      // data & active state
+      applyColorAndPriceChange(e, rootEl);
+   }, { signal });
+
+   return () => ac.abort();
+}
+
+// Auto-mount (new API root)
+const catalogRoot = document.querySelector(SEL.root);
+if (catalogRoot) {
+   const cleanup = mountCatalog(catalogRoot);
+   if (import.meta.hot && cleanup) {
+      import.meta.hot.dispose(cleanup);
+   }
 }
 

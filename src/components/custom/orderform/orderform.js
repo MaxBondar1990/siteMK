@@ -1,15 +1,17 @@
 import "./orderform.scss";
+import '../../fetch/submitContactForm/submitContactForm.js';
 
 import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js'
-import { close } from '../../fetch/form/submit/submit.js';
+import { close } from '../../custom/modal/modal.js';
 
 // Centralized selectors
 const SELECTORS = {
-   modal: '[data-modal-name="order-form"]',
+   modal: '.order-form', // match your provided HTML root
    qty: 'input[name="quantity"]',
    total: '[data-name="total-cost"]',
    color: '[data-order-form-color]',
-   price: '[data-name="product-cost"]', // price label on the product page
+   price: '[data-name="product-cost"]', // optional explicit unit price
+   unitPriceAttr: 'data-unit-price',      // optional fallback on the root
 };
 
 // Cached refs
@@ -29,6 +31,13 @@ export function initOrderForm(rootNode = document.querySelector(SELECTORS.modal)
    quantityInput = root.querySelector(SELECTORS.qty);
    totalElement = root.querySelector(SELECTORS.total);
    colorElement = root.querySelector(SELECTORS.color);
+
+   // Cache a unit price if provided via attribute (data-unit-price)
+   if (root.hasAttribute(SELECTORS.unitPriceAttr)) {
+      const raw = root.getAttribute(SELECTORS.unitPriceAttr);
+      const val = parseNumber(raw);
+      if (val > 0) root.dataset.unitPrice = String(val);
+   }
 
    if (quantityInput) {
       quantityInput.addEventListener("input", calcTotalCost);
@@ -60,20 +69,30 @@ export function setColor(color) {
 
 // Public: recalc total price
 export function calcTotalCost() {
-   // Price may live outside modal (e.g., on product page), so we read from document
-   const priceElement = document.querySelector(SELECTORS.price);
-   if (!priceElement) return;
-
    // Ensure total element exists
    if (!totalElement) {
       totalElement = (root || document).querySelector(SELECTORS.total);
       if (!totalElement) return;
    }
 
-   const basePrice = parseNumber(priceElement.textContent);
-   const qty = quantityInput ? parseInt(quantityInput.value, 10) || 1 : 1;
+   // 1) Prefer explicit unit price element
+   const priceElement = document.querySelector(SELECTORS.price);
+   let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
 
-   const total = basePrice * qty;
+   // 2) Fallback to cached data-unit-price on the root
+   if (!unitPrice && root && root.dataset.unitPrice) {
+      unitPrice = parseNumber(root.dataset.unitPrice);
+   }
+
+   // 3) Fallback to deriving from current total when qty is 1
+   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
+   if (!unitPrice && qty === 1) {
+      unitPrice = parseNumber(totalElement.textContent);
+   }
+
+   if (!unitPrice) return; // nothing to calculate
+
+   const total = unitPrice * qty;
    setTotalCost(total);
 }
 
@@ -110,32 +129,51 @@ function mountCover(rootEl) {
    const { signal } = ac;
 
    // Делегування КЛІКІВ в межах компонента
-   rootEl.addEventListener('click', (e) => {
+   rootEl.addEventListener('click', async (e) => {
       const btn = e.target.closest('[data-send-order-form]');
-      if (btn && rootEl.contains(btn) && btn.type == "submit") {
-         e.preventDefault();
-            const form = e.target.form;
-            if (form) {
-               if (isRequiredInput(form)) {
-                  const formData = new FormData(form);
-                  // todo add title, color, etc
-                  if (form.getAttribute("name")) {
-                     formData.append("formName", form.getAttribute("name"));
-                  }
-                  loadContent("submit", formData, "body", "form");
-               }
+      if (!btn || !rootEl.contains(btn) || (btn.type && btn.type !== 'submit')) return;
+
+      e.preventDefault();
+      const form = btn.form || e.target.form;
+      if (!form) return;
+
+      if (!isRequiredInput(form)) return;
+
+      const formData = new FormData(form);
+      // todo add title, color, etc
+      const formName = form.getAttribute('name');
+      if (formName) formData.append('formName', formName);
+
+      try {
+         const res = await loadContent('submitOrderForm', formData, undefined, 'json');
+         if (res && res.status === 'success') {
+            if (res.html) {
+               document.body.insertAdjacentHTML('beforeend', res.html);
             }
+            // Close the surrounding modal (if order form is inside a modal)
+            const modalRoot = rootEl.closest('[data-component="modal"][data-part="root"]');
+            if (modalRoot && typeof close === 'function') {
+               try { close(modalRoot); } catch (_) { const target = modalRoot.getAttribute('data-target'); if (target) try { close(target); } catch (_) { } }
+            }
+            // Emit event for external listeners (analytics, etc.)
+            rootEl.dispatchEvent(new CustomEvent('orderform:success', { bubbles: true, detail: res }));
+         } else {
+            // On error/timeout we do not close the form/modal; you can optionally show a fallback message here
+            rootEl.dispatchEvent(new CustomEvent('orderform:error', { bubbles: true, detail: res }));
+         }
+      } catch (err) {
+         // Network or unexpected error — leave form open
+         rootEl.dispatchEvent(new CustomEvent('orderform:error', { bubbles: true, detail: { message: String(err) } }));
       }
-
-
    }, { signal });
 
    return () => ac.abort();
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootOrderForm = document.querySelector('.order-form');
+const rootOrderForm = document.querySelector(SELECTORS.modal);
 if (rootOrderForm) {
+   initOrderForm(rootOrderForm);
    const cleanup = mountCover(rootOrderForm);
    if (import.meta.hot && cleanup) {
       import.meta.hot.dispose(cleanup);
