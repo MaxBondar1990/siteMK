@@ -44,24 +44,7 @@
 
       padding: 12px 0 12px 0;
       gap: 4px;
-      &._grid-settings-for-mine {
-         justify-content: center;
-         @media (min-width: 1024px) {
-            padding: 12px 0 12px 64px;
-            justify-content: flex-start;
-            grid-template-columns: repeat(4, min-content);
-            grid-template-rows: repeat(2, min-content);
-         }
-         @media (max-width: 1023px) {
-            padding: 12px 12px 12px 12px;
-         }
-         @media (max-width: 768px) {
-            justify-content: flex-start;
-            grid-template-columns: repeat(8, min-content);
-            grid-template-rows: repeat(1, min-content);
-            max-width: max-content;
-         }
-      }
+      
       @media (max-width: 1355px) {
          padding: 12px 0 12px 64px;
       }
@@ -81,6 +64,25 @@
       }
       @media (max-width: 375px) {
          padding: 4px 4px 4px 4px;
+      }
+      &._grid-settings-for-mine {
+         justify-content: center;
+         @media (min-width: 1355px) {
+            padding: 12px 0 12px 64px;
+            justify-content: flex-start;
+            grid-template-columns: repeat(4, min-content);
+            grid-template-rows: repeat(2, min-content);
+         }
+         @media (max-width: 1023px) {
+            justify-content: flex-start;
+            padding: 12px 12px 12px 12px;
+         }
+         @media (max-width: 768px) {
+            justify-content: flex-start;
+            grid-template-columns: repeat(8, min-content);
+            grid-template-rows: repeat(1, min-content);
+            max-width: max-content;
+         }
       }
    }
 }
