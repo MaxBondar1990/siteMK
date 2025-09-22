@@ -51,7 +51,7 @@ async function handleSearchInput(e, rootEl) {
       formData.append('formName', 'search');
       formData.append('searchValue', value);
       const fileName = 'search__result';
-      const res = await loadContent(fileName, formData, undefined, 'json');
+      const res = await loadContent(fileName, formData, undefined, 'html');
       if (results) {
          if (res && res.status === 'success' && res.html) {
             results.innerHTML = res.html;

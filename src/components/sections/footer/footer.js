@@ -3,7 +3,7 @@ import '../../fetch/submitContactForm/submitContactForm.js';
 
 import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js'
 
-function mountCover(rootEl) {
+function mountFooter(rootEl) {
    if (!rootEl) return;
 
    const ac = new AbortController();
@@ -41,7 +41,7 @@ function mountCover(rootEl) {
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
 const rootFooter = document.querySelector('.footer');
 if (rootFooter) {
-   const cleanup = mountCover(rootFooter);
+   const cleanup = mountFooter(rootFooter);
    if (import.meta.hot && cleanup) {
       import.meta.hot.dispose(cleanup);
    }
