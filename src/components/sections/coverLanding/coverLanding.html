@@ -10,13 +10,16 @@
     <p class="cover__txt _color-txt" lang="uk-UA" id="cover-description">
       Футболки, чашки, ручки, пакети, кепки та десятки інших позицій. Допоможемо з дизайном, виготовимо в термін від 2 днів, доставимо по всій Україні.
     </p>
-    <button
-    class="cover__button _button-wht"
-    data-name="view-contact-form"
-    type="button"
-    aria-label="Замовити послугу"
+    <button class="cover__button _button-wht" data-action="open-modal" data-target="contact-form" data-part="button" type="button" aria-label="Замовити послугу"
     >
       Замовити
     </button>
   </div>
+     <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
 </section>

@@ -1,0 +1,78 @@
+.printSize {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   gap: 40px;
+
+   padding: 24px 12px 24px 72px;
+   &__description {
+      width: 100%;
+      text-align: center;
+
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__title {
+      width: 100%;
+
+      font-size: 2em;
+      line-height: 1em;
+      letter-spacing: 0%;
+
+      text-align: center;
+      text-transform: uppercase;
+
+      color: $colorBlue;
+
+      background-color: white;
+   }
+   &__wrapper {
+      display: flex;
+
+      gap: 60px;
+   }
+   &__card {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      gap: 20px;
+   }
+   &__img {
+      width: 100%;
+   }
+   &__format {
+      // text-align: center;
+      font-family: Montserrat;
+      font-size: 38px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 40px;
+      text-transform: uppercase;
+
+      color: $colorBlue;
+   }
+   &__size {
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+   }
+   &__print-location {
+
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 24px;
+
+      color: $colorDarkGray;
+   }
+}

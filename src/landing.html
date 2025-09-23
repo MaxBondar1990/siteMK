@@ -1,4 +1,4 @@
-<!--<template src="@components/templates/landing/landing.html" locals='{
+<template src="@components/templates/landing/landing.html" locals='{
 		"title":"landing",
 		"lang":"ua",
 		"preloader": {
@@ -10,22 +10,23 @@
 	}'>
 
    <block name="header">
-      <include src="@components/layout/header/header.html" locals='{}'></include>
+      <include src="@components/sections/header/header.html" locals='{}'></include>
    </block>
-   <block name="cover">
-      <include src="@components/layout/cover/cover.html" locals='{"title":"друк на футболках"}'></include>
+   <block name="coverLanding">
+      <include src="@components/sections/coverLanding/coverLanding.html" locals='{"title":"корпоративні подарунки"}'>
+      </include>
    </block>
    <block name="leftSideBar">
-      <include src="@components/layout/leftSideBar/leftSideBar.html" locals='{}'></include>
+      <include src="@components/sections/leftSideBar/leftSideBar.html" locals='{}'></include>
    </block>
    <block name="navigation">
-      <include src="@components/layout/navigation/navigation.html" locals='{}'></include>
+      <include src="@components/sections/navigation/navigation.html" locals='{}'></include>
    </block>
    <block name="landing">
       <include src="@components/pages/landing/landing.html" locals='{}'></include>
    </block>
    <block name="footer">
-      <include src="@components/layout/footer/footer.html" locals='{}'></include>
+      <include src="@components/sections/footer/footer.html" locals='{}'></include>
    </block>
 
-</template>-->
+</template>

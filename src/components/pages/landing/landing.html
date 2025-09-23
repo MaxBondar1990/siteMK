@@ -1,16 +1,36 @@
 <!--<script type="module" src="@components/custom/featch/featch.js"></script>-->
 <script type="module" src="@components/pages/landing/landing.js"></script>
+<script type="module" src="@components/sections/catalog/catalog.js"></script>
+
 
 <link rel="stylesheet" href="@components/pages/landing/landing.scss">
 
 <main class="page page--landing">
-   <block name="coverLanding">
-      <include src="@components/layout/coverLanding/coverLanding.html" locals='{"title":"корпоративні подарунки"}'>
-      </include>
+   <block name="pricing_T-shirts">
+      <include src="@components/sections/pricing_T-shirts/pricing_T-shirts.html" locals='{}'></include>
+   </block>
+   <block name="printSize_T-shirts">
+      <include src="@components/sections/printSize_T-shirts/printSize_T-shirts.html" locals='{}'></include>
+   </block>
+   <block name="advantages_T-shirts">
+      <include src="@components/sections/advantages_T-shirts/advantages_T-shirts.html" locals='{}'></include>
+   </block>
+   <block name="catalog">
+      <include src="@components/sections/catalog/catalog.html" locals='{}'></include>
    </block>
    <block name="T-shirtPrintingTechnologies">
-      <include src="@components/layout/T-shirtPrintingTechnologies/T-shirtPrintingTechnologies.html" locals='{}'>
+      <include src="@components/sections/T-shirtPrintingTechnologies/T-shirtPrintingTechnologies.html" locals='{}'>
       </include>
+   </block>
+   <block name="models_t-shirts">
+      <include src="@components/sections/models_t-shirts/models_t-shirts.html" locals='{}'>
+      </include>
+   </block>
+   <block name="brands">
+      <include src="@components/sections/brands/brands.html" locals='{}'></include>
+   </block>
+   <block name="SEO-txt">
+      <include src="@components/sections/SEO-txt/SEO-txt.html" locals='{}'></include>
    </block>
 
 </main>
