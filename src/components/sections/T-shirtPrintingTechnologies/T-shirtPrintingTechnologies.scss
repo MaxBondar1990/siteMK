@@ -21,7 +21,7 @@
    &__text {
       width: 100%;
 
-      color: #6F6F6F;
+      color: $colorDarkGray;
 
       text-align: left;
       font-family: Montserrat;
@@ -35,12 +35,14 @@
       flex-direction: column;
 
       gap: 24px;
+
    }
    &__footer {
       display: flex;
       align-items: center;
       flex-direction: column;
 
+      width: 100%;
       gap: 20px;
 
    }
@@ -48,7 +50,9 @@
       display: flex;
       align-items: start;
       flex-direction: column;
-
+      
+      width: 100%;
+      
       gap: 20px;
    }
    &__text-question {
@@ -103,7 +107,7 @@
       font-weight: 700;
       line-height: 20px;
    }
-      &__desc {
+   &__desc {
       color: $colorDarkGray;
 
       font-family: Montserrat;

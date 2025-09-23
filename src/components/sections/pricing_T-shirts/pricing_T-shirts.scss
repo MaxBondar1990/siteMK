@@ -1,0 +1,69 @@
+.pricing {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   gap: 40px;
+
+   padding: 24px 12px 24px 72px;
+
+   &__list {
+   display: flex;
+
+   gap: 40px;
+   }
+   &__item {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   width: 400px;
+   height: 196px;
+
+   border: solid 0 $colorDarkGray;
+   border-radius: 20px;
+   box-shadow: 0 6px 12px rgba($colorDarkGray, 0.3);
+
+   gap: 40px;
+
+   }
+   &__title {
+      color: $colorDarkGray;
+
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__value {
+      color: $colorOrange;
+
+      font-family: Montserrat;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__btn {
+      color: $colorWhite;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+      padding: 1em 1.5em;
+
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      background: $colorOrange;
+      transition: all .3s;
+      &:hover {
+         scale: .97;
+      }
+   }
+}

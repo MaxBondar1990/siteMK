@@ -1,0 +1,177 @@
+.SEO-txt {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+
+   gap: 20px;
+
+   padding: 24px 12px 24px 72px;
+   &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      width: 100%;
+
+   }
+   &__txt {
+      width: 100%;
+      text-align: left;
+
+      color: $colorDarkGray;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      a {
+
+      color: $colorBlue;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      }
+   }
+   &__title {
+      width: 100%;
+
+      color: $colorDarkGray;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__list {
+      width: 100%;
+      margin-left: 14px;
+
+      color: $colorDarkGray;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      li {
+      list-style-type: disc;
+      }
+   }
+   &__btn {
+      width: fit-content;
+
+      color: $colorWhite;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+      padding: 1em 1.5em;
+
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      background: $colorOrange;
+      transition: all .3s;
+      &:hover {
+         scale: .97;
+      }
+   }
+}
+.block {
+   display: flex;
+   display: flex;
+   flex-direction: column;
+
+   border-radius: 20px;
+   padding: 40px;
+
+   gap: 10px;
+
+   width: 100%;
+
+   background: $colorDarkGray;
+
+   &__title {
+      width: 100%;
+
+      color: $colorWhite;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* дві колонки */
+      grid-template-rows: auto auto;  /* дві строки */
+
+      gap: 10px;
+
+            /* перший елемент займає дві строки */
+      .block__item:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      }
+
+      /* другий — друга колонка, перший ряд */
+      .block__item:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1;
+      }
+
+      /* третій — друга колонка, другий ряд */
+      .block__item:nth-child(3) {
+      grid-column: 2;
+      grid-row: 2;
+      }
+   }
+   &__item {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+   }
+   &__step-title {
+      text-align: left;
+
+      color: $colorOrange;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__description {
+      width: 100%;
+      text-align: left;
+
+      color: $colorWhite;
+
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__list-item {
+      width: 100%;
+      margin-left: 14px;
+
+      color: $colorWhite;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+
+      list-style-type: disc;
+   }
+}
