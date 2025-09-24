@@ -23,6 +23,20 @@ const numberFmt = new Intl.NumberFormat("uk-UA", {
    maximumFractionDigits: 2,
 });
 
+function syncUnitPriceFromVisible() {
+   if (!totalElement) return;
+   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
+   const priceElement = document.querySelector(SELECTORS.price);
+   let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
+   if (!unitPrice) {
+      const totalVisible = parseNumber(totalElement.textContent);
+      if (totalVisible && qty > 0) unitPrice = totalVisible / qty;
+   }
+   if (unitPrice) {
+      totalElement.setAttribute('data-unit-price', numberFmt.format(unitPrice).replace(/\s/g, '').replace(',', '.'));
+   }
+}
+
 // Public: initialize module (safe if modal not present yet)
 export function initOrderForm(rootNode = document.querySelector(SELECTORS.modal)) {
    root = rootNode;
@@ -45,6 +59,17 @@ export function initOrderForm(rootNode = document.querySelector(SELECTORS.modal)
 
    // Initial calculation (in case there is a default qty)
    calcTotalCost();
+
+   // Observe VISIBLE changes of total or unit price to keep data-unit-price in sync
+   try {
+      const mo = new MutationObserver(() => syncUnitPriceFromVisible());
+      if (totalElement) mo.observe(totalElement, { characterData: true, childList: true, subtree: true });
+      const priceEl = document.querySelector(SELECTORS.price);
+      if (priceEl) mo.observe(priceEl, { characterData: true, childList: true, subtree: true });
+   } catch (_) { }
+
+   // Also recalc on generic changes inside the form (e.g., variant selects)
+   root.addEventListener('change', () => calcTotalCost());
 }
 
 // Public: update chosen color text + class
@@ -56,6 +81,7 @@ export function setColor(color) {
    }
 
    colorElement.textContent = color;
+   colorElement.setAttribute('data-article-color', String(color));
 
    // Remove previous classes starting with "col"
    for (const cls of [...colorElement.classList]) {
@@ -75,25 +101,38 @@ export function calcTotalCost() {
       if (!totalElement) return;
    }
 
-   // 1) Prefer explicit unit price element
+   // Current quantity from visible input
+   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
+
+   // 1) Prefer VISIBLE unit price element, if exists
    const priceElement = document.querySelector(SELECTORS.price);
    let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
 
-   // 2) Fallback to cached data-unit-price on the root
+   // 2) If not found, derive from VISIBLE total text (amount / qty)
+   if (!unitPrice) {
+      const totalVisible = parseNumber(totalElement.textContent);
+      if (totalVisible && qty > 0) {
+         unitPrice = totalVisible / qty;
+      }
+   }
+
+   // 3) Legacy fallback: cached data-unit-price (root)
    if (!unitPrice && root && root.dataset.unitPrice) {
       unitPrice = parseNumber(root.dataset.unitPrice);
    }
 
-   // 3) Fallback to deriving from current total when qty is 1
-   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
-   if (!unitPrice && qty === 1) {
-      unitPrice = parseNumber(totalElement.textContent);
+   // 4) Legacy fallback: data-unit-price on the total element
+   if (!unitPrice && totalElement?.dataset?.unitPrice) {
+      unitPrice = parseNumber(totalElement.dataset.unitPrice);
    }
 
    if (!unitPrice) return; // nothing to calculate
 
    const total = unitPrice * qty;
    setTotalCost(total);
+
+   // Keep data-unit-price in sync with the visible/derived unit price
+   syncUnitPriceFromVisible();
 }
 
 // Format and write total (UAH)
@@ -143,6 +182,24 @@ function mountCover(rootEl) {
       // todo add title, color, etc
       const formName = form.getAttribute('name');
       if (formName) formData.append('formName', formName);
+
+      // Collect visible meta from DOM and append to FormData (prefer VISIBLE text)
+      const titleEl = rootEl.querySelector('[data-article-title]');
+      const subtitleEl = rootEl.querySelector('[data-article-subtitle]');
+      const idEl = rootEl.querySelector('[data-article-id]');
+      const colorEl = rootEl.querySelector('[data-article-color]');
+      const totalEl = rootEl.querySelector('[data-name="total-cost"]');
+
+      const articleTitle = (titleEl?.textContent || titleEl?.dataset.articleTitle || '').trim();
+      const articleSubtitle = (subtitleEl?.textContent || subtitleEl?.dataset.articleSubtitle || '').trim();
+      const articleId = (idEl?.textContent || idEl?.dataset.articleId || '').trim();
+      const articleColor = (colorEl?.textContent || colorEl?.dataset.articleColor || '').trim();
+
+      if (articleTitle) formData.set('article_title', articleTitle);
+      if (articleSubtitle) formData.set('article_subtitle', articleSubtitle);
+      if (articleId) formData.set('article_id', articleId);
+      if (articleColor) formData.set('color', articleColor);
+      if (totalEl) formData.set('total', totalEl.textContent.trim());
 
       try {
          const res = await loadContent('submitOrderForm', formData, undefined, 'json');
