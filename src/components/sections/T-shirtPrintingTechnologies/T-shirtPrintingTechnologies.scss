@@ -83,6 +83,17 @@
          scale: .97;
       }
    }
+   @media (max-width: 1023px) {
+      padding: 12px;
+   }
+   @media (max-width: 460px) {
+      &__card {
+         gap: 40px;
+      }
+   }
+   @media (max-width: 375px) {
+      padding: 12px 8px;
+   }
 }
 .print-method {
    display: flex;
@@ -140,5 +151,16 @@
       margin: 0;
 
       font-size: 1.2em;
+   }
+   @media (max-width: 460px) {
+      flex-direction: column;
+      align-items: center;
+      &__wrapper {
+         align-items: center;
+         // text-align: center;
+      }
+      &__desc {
+         text-align: center;
+      }
    }
 }

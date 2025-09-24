@@ -6,14 +6,19 @@
 
       gap: 40px;
 
-      padding: 24px 12px 24px 72px;
    &__wrapper {
       display: flex;
       flex-direction: row;
 
-      gap: 120px;
+      width: 100%;
+      padding: 24px 12px 24px 72px;
+
+      justify-content: space-between;
+
+      gap: 12px;
    }
    &__block {
+      width: 320px;
       max-height: 564px;
 
       display: grid;
@@ -44,9 +49,11 @@
 
       text-align: center;
       font-family: Montserrat;
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 700;
-      line-height: 20px;
+      line-height: 1.2em;
+
+      height: 2.4em;
    }
    &__desc {
       color: 000000;
@@ -76,6 +83,28 @@
       transition: all .3s;
       &:hover {
          scale: .97;
+      }
+   }
+   @media (max-width: 1208px) {
+      // &__wrapper {
+      //    gap: 60px;
+      // }
+   }
+   @media (max-width: 1023px) {
+      // padding: 0 12px;
+      &__wrapper {
+         justify-content: flex-start;
+         padding: 12px;
+         overflow-y: auto;
+         scrollbar-width: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
+      }
+   }
+   @media (max-width: 375px) {
+      &__wrapper {
+         padding: 12px 8px;
       }
    }
 }
