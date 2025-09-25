@@ -39,17 +39,16 @@
 
       justify-content: center;
 
-      padding: 12px 0 12px 0;
+      padding: 12px 0 12px 64px;
+
       gap: 4px;
-      &._grid-settings-for-mine {
-         justify-content: center;
-      }
+      // &._grid-settings-for-mine {
+      //    justify-content: center;
+      // }
    }
    @media (max-width: 1355px) {
       &__tiles-wrapper {
-         padding: 12px 0 12px 64px;
          &._grid-settings-for-mine {
-            padding: 12px 0 12px 64px;
             justify-content: flex-start;
             grid-template-columns: repeat(4, min-content);
             grid-template-rows: repeat(2, min-content);
@@ -66,7 +65,6 @@
          padding: 12px 12px 12px 12px;
          &._grid-settings-for-mine {
             justify-content: flex-start;
-            padding: 12px 12px 12px 12px;
          }
       }
    }
@@ -89,7 +87,6 @@
    @media (max-width: 659px) {
       &__tiles-wrapper {
          grid-template-columns: repeat(1, min-content);
-         padding: 12px 8px 12px 8px;
       }
    }
    @media (max-width: 375px) {
