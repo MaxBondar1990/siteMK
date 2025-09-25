@@ -17,10 +17,6 @@
       height: auto;
       padding: 8px 8px 28px 8px;
    }
-   @media (max-width: 1023px) {
-      height: 50svh;
-      overflow-y: hidden;
-   }
    &__title {
       width: 100%;
 
@@ -50,17 +46,6 @@
 
       column-count: 3; /* скільки колонок показувати */
       column-gap: 20px; /* відстань між колонками */
-      
-      @media (max-width: 1200px) {
-         column-count: 2; /* скільки колонок показувати */
-         column-gap: 16px; /* відстань між колонками */
-      }
-      @media (max-width: 1023px) {
-         padding: 12px 20px 12px 20px;
-      }
-      @media (max-width: 768px) {
-         column-count: 1; /* скільки колонок показувати */
-      }
    }
 
    &__txt,
@@ -107,9 +92,26 @@
       }
    }
    &__limk {
-
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
+   }
+   @media (max-width: 1200px) {
+         column-count: 2; /* скільки колонок показувати */
+         column-gap: 16px; /* відстань між колонками */
+      }
+   @media (max-width: 1023px) {
+      &._action {
+         height: 50svh;
+         overflow-y: hidden;
+      }
+      &__txt-container {
+         padding: 12px 20px 12px 20px;
+      }
+   }
+   @media (max-width: 768px) {
+      &__txt-container {
+         column-count: 1; /* скільки колонок показувати */
+      }
    }
 }

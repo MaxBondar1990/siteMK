@@ -1,53 +1,10 @@
 
 .order-form {
-   // position: fixed;
-   // top: -110%;
-   // left: 50%;
-   // transform: translateX(-50%);
-   // gap: 0;
-
-   // width: 0;
-   // height: 0;
-
-   // padding: 0px;
-
-   // overflow-y: hidden;
-   // z-index: 1;
-
-   // transition: height .3s;
-   // transition-delay: height .3s;
-
-   // display: flex;
-   // flex-direction: column;
-   // justify-items: start;
-   // align-items: center;
-
-   // border-radius: 12px;
-   // border: 1px solid #F5F5F5;
-   // background: rgba(111, 111, 111, 0.40);
-   // box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.30), 1px 1px 2px 0px rgba(0, 0, 0, 0.35) inset;
-   // backdrop-filter: blur(10px);
-
-   // z-index: 4;
-
-   // &._view {
-   //    display: flex;
-   //    flex-direction: column;
-   //    justify-items: start;
-   //    align-items: center;
-
-   //    top: 50%;
-   //    left: 50%;
-   //    transform: translate(-50%, -50%);
-
-   //    width: 304px; // !
-   //    height: auto;
-
-   //    gap: 12px;
-   //    padding: 48px 8px 16px 8px;
-
-   //    z-index: 4;
-   // }
+   display: flex;
+   flex-direction: column;
+   justify-items: start;
+   align-items: center;
+   gap: 1rem;
    &__info {
       display: grid;
       grid-template-columns: repeat(2, fit-content);
@@ -122,16 +79,16 @@
       width: 100%;
       justify-content: space-between;
       padding: 0 4px;
-      p {
-         display: block;
-         color: #F5F5F5;
-         font-family: Montserrat;
-         font-size: 14px;
-         font-style: normal;
-         font-weight: 700;
-         line-height: 14px; /* 100% */
-      }
-    }
+   }
+   &__cost-txt {
+      display: block;
+      color: #F5F5F5;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 14px; /* 100% */
+   }
    &__form {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
