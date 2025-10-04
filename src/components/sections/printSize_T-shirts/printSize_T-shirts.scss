@@ -33,7 +33,11 @@
       background-color: white;
    }
    &__wrapper {
+      width: 100%;
+      
       display: flex;
+      justify-content: center;
+      align-items: center;
 
       gap: 60px;
    }
@@ -44,8 +48,17 @@
 
       gap: 20px;
    }
+   &__img-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 284px;
+      height: 318px;
+   }
    &__img {
-      width: 100%;
+      width: min-content;
+      height: auto;
    }
    &__format {
       // text-align: center;
@@ -77,8 +90,186 @@
    }
    @media (max-width: 1023px) {
       padding: 12px;
+      &__wrapper {
+         flex-direction: row;
+         justify-content: flex-start;
+
+         gap: 2px;
+
+         padding: 12px;
+         overflow-y: auto;
+         scrollbar-width: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
+      }
    }
    @media (max-width: 375px) {
       padding: 12px 8px;
    }
 }
+// .printSize {
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    flex-direction: column;
+//    gap: 40px;
+//    padding: 24px 12px 24px 72px;
+
+//    &__description {
+//       width: 100%;
+//       text-align: center;
+//       color: $colorDarkGray;
+//       font-family: Montserrat;
+//       font-size: 14px;
+//       font-weight: 400;
+//       line-height: 20px;
+//    }
+
+//    &__title {
+//       width: 100%;
+//       font-size: 2em;
+//       line-height: 1em;
+//       text-align: center;
+//       text-transform: uppercase;
+//       color: $colorBlue;
+//       background-color: white;
+//    }
+
+//    &__wrapper {
+//       display: flex;
+//       gap: 60px;
+//    }
+
+//    &__card {
+//       display: flex;
+//       align-items: center;
+//       flex-direction: column;
+//       gap: 20px;
+//    }
+
+//    &__img {
+//       width: 100%;
+//    }
+
+//    &__format {
+//       font-family: Montserrat;
+//       font-size: 38px;
+//       font-weight: 700;
+//       line-height: 40px;
+//       text-transform: uppercase;
+//       color: $colorBlue;
+//    }
+
+//    &__size {
+//       color: $colorDarkGray;
+//       font-family: Montserrat;
+//       font-size: 16px;
+//       font-weight: 400;
+//       line-height: 24px;
+//    }
+
+//    &__print-location {
+//       font-family: Montserrat;
+//       font-size: 24px;
+//       font-weight: 700;
+//       line-height: 24px;
+//       color: $colorDarkGray;
+//    }
+
+//    /* ------- 📱 Планшети (до 1023px) ------- */
+//    @media (max-width: 1023px) {
+//       padding: 16px;
+
+//       &__title {
+//          font-size: 1.6em;
+//       }
+
+//       &__wrapper {
+//          gap: 32px;
+//          justify-content: flex-start;
+//          padding: 12px;
+//          overflow-x: auto;
+//          scrollbar-width: none;
+//          &::-webkit-scrollbar {
+//             display: none;
+//          }
+//       }
+
+//       &__format {
+//          font-size: 28px;
+//          line-height: 32px;
+//       }
+
+//       &__print-location {
+//          font-size: 20px;
+//       }
+//    }
+
+//    /* ------- 📱 Смартфони (до 768px) ------- */
+//    @media (max-width: 768px) {
+//       gap: 24px;
+
+//       &__title {
+//          font-size: 1.4em;
+//       }
+
+//       &__wrapper {
+//          flex-direction: column;
+//          align-items: center;
+//          gap: 24px;
+//       }
+
+//       &__format {
+//          font-size: 24px;
+//          line-height: 28px;
+//       }
+
+//       &__size {
+//          font-size: 14px;
+//       }
+
+//       &__print-location {
+//          font-size: 18px;
+//       }
+//    }
+
+//    /* ------- 📱 Маленькі екрани (до 480px) ------- */
+//    @media (max-width: 480px) {
+//       padding: 12px 8px;
+//       gap: 16px;
+
+//       &__title {
+//          font-size: 1.2em;
+//       }
+
+//       &__format {
+//          font-size: 20px;
+//          line-height: 24px;
+//       }
+
+//       &__size {
+//          font-size: 12px;
+//          line-height: 18px;
+//       }
+
+//       &__print-location {
+//          font-size: 16px;
+//          line-height: 20px;
+//       }
+//    }
+
+//    /* ------- 📱 Дуже маленькі (до 375px) ------- */
+//    @media (max-width: 375px) {
+//       padding: 8px;
+//       &__title {
+//          font-size: 1em;
+//       }
+//    }
+// }
+
+
+
+
+
+

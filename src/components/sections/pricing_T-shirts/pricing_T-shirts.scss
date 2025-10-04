@@ -86,6 +86,10 @@
    }
    @media (max-width: 1023px) {
       padding: 12px;
+      gap: 12px;
+            &__list {
+         gap: 12px;
+      }
    }
    @media (max-width: 375px) {
       padding: 12px 8px;
