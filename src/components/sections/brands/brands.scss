@@ -1,136 +1,4 @@
-// .brands {
-//    display: flex;
-//    flex-direction: column;
 
-//    width: 100svw;
-
-//    gap: 40px;
-//    padding: 24px 12px 24px 72px;
-
-//    &__title {
-//       color: $colorBlue;
-//       text-align: center;
-//       font-family: Montserrat;
-//       font-size: 32px;
-//       font-style: normal;
-//       font-weight: 400;
-//       line-height: 36px;
-//       text-transform: uppercase;
-//    }
-
-//    &__txt {
-//       width: 100%;
-//       color: $colorDarkGray;
-//       text-align: left;
-//       font-family: Montserrat;
-//       font-size: 14px;
-//       font-weight: 400;
-//       line-height: 20px;
-//    }
-//    &__list {
-//       display: flex;
-//       flex-direction: column;
-//       width: 100%;
-//       gap: 20px;
-//    }
-//    &__img {
-//       width: min-content;
-//       height: var(--height);
-//       flex-shrink: 0;
-//       order: 0; /* За замовчуванням ліворуч */
-//    }
-//    &__item-txt {
-//       width: 100%;
-//       color: $colorDarkGray;
-//       text-align: left;
-//       font-family: Montserrat;
-//       font-size: 14px;
-//       font-weight: 400;
-//       line-height: 20px;
-//       order: 1;
-//    }
-//    &__item {
-//       display: flex;
-//       flex-direction: row;
-//       width: 100%;
-//       height: auto;
-//       gap: 20px;
-//       /* Для десктопа: чергування картинки праворуч */
-//       &:nth-child(2) .brands__img,
-//       &:nth-child(4) .brands__img,
-//       &:nth-child(6) .brands__img {
-//          order: 1;
-//       }
-
-//       &:nth-child(2) .brands__item-txt,
-//       &:nth-child(4) .brands__item-txt,
-//       &:nth-child(6) .brands__item-txt {
-//          order: 0;
-//       }
-//    }
-
-//    /* --- Адаптивка до 1023px --- */
-//    @media (max-width: 1023px) {
-//       padding: 12px;
-//       gap: 12px;
-//    }
-//    @media (max-width: 720px) {
-//       &__wrapper {
-//          display: flex;
-//          flex-wrap: nowrap;
-//          width: 100%;
-//          height: auto;
-
-//          overflow-x: auto;
-//          scroll-snap-type: x mandatory;
-//          scroll-behavior: smooth;
-//          scrollbar-width: none;
-//          &::-webkit-scrollbar {
-//             display: none;
-//          }
-//       }
-//       &__list {
-//          // display: grid;
-//          // grid-template-columns: repeat(7, 1fr);
-//          // grid-template-rows: repeat(1, min-content);
-//          display: flex;
-//          flex-wrap: nowrap;
-//          flex-direction: row;
-//          justify-content: flex-start;
-//          align-items: flex-start;
-
-//          width: auto;
-//          height: min-content;
-
-//          gap: 8px;
-//       }
-//       &__item {
-//          display: flex;
-//          flex-direction: column;
-//          align-items: center;
-//          gap: 12px;
-//          flex: 0 0 60svw;
-//          // width: 60svw;
-//       }
-//       &__img {
-//          order: 0 !important; /* картинка завжди зверху */
-//          height: 60px;
-//          margin-bottom: 12px;
-//       }
-//       &__txt {
-//          order: 1 !important; /* текст під картинкою */
-//       }
-//    }
-//    @media (max-width: 430px) {
-//       &__item {
-//          width: 85svw;
-//       }
-
-//    }
-//    @media (max-width: 375px) {
-//       padding: 12px 8px;
-//    }
-// }
 
 .brands {
    display: grid;
@@ -155,22 +23,21 @@
       font-weight: 400;
       line-height: 24px;
    }
-   &__wrapper {
-      width: 100%;
-      height: auto;
-
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-         display: none;
-      }
-   }
-   &__list {
+   &__list-wrapper {
       display: flex;
       flex-wrap: nowrap;
-      flex-direction: column;
+
+      width: 100%;
+      height: auto;
+   }
+   &__list {
+      // display: flex;
+      // flex-wrap: nowrap;
+      // flex-direction: column;
+
+      display: block;
+
+      width: 100%;
 
       gap: 20px;
    }
@@ -197,6 +64,8 @@
       align-items: flex-start;
       justify-content: flex-start;
 
+      width: 100%;
+
       gap: 20px;
       &:nth-child(even) .brands__img {
          order: 1;
@@ -210,10 +79,11 @@
    }
    @media (max-width: 720px) {
       padding: 12px;
-      &__wrapper {
+      gap: 12px;
+      &__list-wrapper {
          width: 100%;
          overflow-x: auto;
-         overflow-y: hidden;
+         // overflow-y: hidden;
          scroll-snap-type: x mandatory;
          scroll-behavior: smooth;
          scrollbar-width: none;
@@ -222,15 +92,25 @@
          }
       }
       &__list {
+         display: flex;
+         flex-wrap: nowrap;
          flex-direction: row;
          width: max-content;
          scroll-snap-align: start;
+         padding: 4px;
       }
       &__item {
          flex-direction: column;
          justify-content: flex-start;
          align-items: center;
          flex: 0 0 55svw;
+         // flex: 1 1 calc(50% - 16px);
+
+         padding: 16px;
+
+         // border: 1px solid $colorDarkGray;
+         box-shadow: 1px 1px 4px rgba(111, 111, 111, .3);
+         border-radius: 16px;
          &:nth-child(even) .brands__img {
             order: 0;
          }
@@ -242,7 +122,7 @@
          height: 60px;
       }
    }
-   @media (max-width: 720px) {
+   @media (max-width: 425px) {
       padding: 12px 8px;
       gap: 20px;
       &__list {
