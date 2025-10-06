@@ -1,42 +1,99 @@
-<aside class="left-side-bar" aria-label="Швидкі контакти" data-fls-leftSideBar>
-   <ul class="left-side-bar__list">
-      <!-- <li class="left-side-bar__items">
-         <a href="#" class="left-side-bar__link" data-name="logIn" title="Особистий кабінет" aria-label="Особистий кабінет">
+<aside data-fls-leftSideBar class="left-side-bar" aria-label="Швидкі контакти" data-component="leftSideBar"
+   data-part="root">
+   <ul class="left-side-bar__list" data-part="list">
+      <!-- Логін -->
+      <li class="left-side-bar__items" data-part="item">
+         <button class="left-side-bar__link" data-part="link" data-action="toggle-modal" data-target="login"
+            title="Особистий кабінет" aria-label="Особистий кабінет">
             <svg class="left-side-bar__svg" aria-hidden="true" focusable="false">
                <use xlink:href="__spritemap#sprite-login"></use>
             </svg>
-         </a>
-      </li> -->
-      <!--<li class="left-side-bar__items">
-         <a class="left-side-bar__link" href="#">
-            <svg class="left-side-bar__svg">
-               <use xlink:href="@img/icons/icons.svg#messenger"></use>
-            </svg>
-         </a>
-      </li>-->
-      <li class="left-side-bar__items">
-         <a href="#" class="left-side-bar__link" data-name="viber" title="Viber" aria-label="Viber">
+         </button>
+         <div class="wrapper-modal left-side-bar__modal _login" data-part="modal" data-name="login" tabindex="-1"
+            role="dialog" aria-labelledby="modal-login-title">
+            <h3 id="modal-login-title" class="title-visually-hidden">Логін меню</h3>
+            <div class="type-board left-side-bar__contacts-item">
+               <div class="auth" data-part="auth">
+                  <!-- Форма логіну -->
+                  <form class="auth__form auth__form--login" data-part="auth-form-login" autocomplete="off" novalidate>
+                     <h4 class="auth__title">Вхід</h4>
+                     <label class="auth__label">
+                        <span class="auth__label-text">E-mail</span>
+                        <input type="email" name="email" class="auth__input" placeholder="Ваш e-mail" required>
+                     </label>
+                     <label class="auth__label">
+                        <span class="auth__label-text">Пароль</span>
+                        <input type="password" name="password" class="auth__input" placeholder="Ваш пароль" required>
+                     </label>
+                     <button type="submit" class="auth__btn" data-action="auth-login">Увійти</button>
+                     <p class="auth__switch">
+                        Немає акаунту?
+                        <button type="button" class="auth__link" data-action="toggle-register">Зареєструватись</button>
+                     </p>
+                  </form>
+
+                  <!-- Форма реєстрації -->
+                  <form class="auth__form auth__form--register" data-part="auth-form-register" autocomplete="off"
+                     novalidate hidden>
+                     <h4 class="auth__title">Реєстрація</h4>
+                     <label class="auth__label">
+                        <span class="auth__label-text">Ім’я</span>
+                        <input type="text" name="name" class="auth__input" placeholder="Ваше ім’я" required>
+                     </label>
+                     <label class="auth__label">
+                        <span class="auth__label-text">E-mail</span>
+                        <input type="email" name="email" class="auth__input" placeholder="Ваш e-mail" required>
+                     </label>
+                     <label class="auth__label">
+                        <span class="auth__label-text">Пароль</span>
+                        <input type="password" name="password" class="auth__input" placeholder="Пароль" required>
+                     </label>
+                     <label class="auth__label">
+                        <span class="auth__label-text">Повторіть пароль</span>
+                        <input type="password" name="confirm-password" class="auth__input"
+                           placeholder="Повторіть пароль" required>
+                     </label>
+                     <button type="submit" class="auth__btn" data-action="auth-register">Зареєструватись</button>
+                     <p class="auth__switch">
+                        Уже маєте акаунт?
+                        <button type="button" class="auth__link" data-action="toggle-login">Увійти</button>
+                     </p>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </li>
+
+      <!-- Viber -->
+      <li class="left-side-bar__items" data-part="item">
+         <a href="#" class="left-side-bar__link" data-part="link" data-action="open-link" data-target="viber"
+            title="Viber" aria-label="Viber">
             <svg class="left-side-bar__svg" aria-hidden="true" focusable="false">
                <use xlink:href="__spritemap#sprite-viber"></use>
             </svg>
          </a>
       </li>
 
-      <li class="left-side-bar__items">
-         <a href="#" class="left-side-bar__link" data-name="telegram" title="telegram" aria-label="Telegram">
+      <!-- Telegram -->
+      <li class="left-side-bar__items" data-part="item">
+         <a href="#" class="left-side-bar__link" data-part="link" data-action="open-link" data-target="telegram"
+            title="Telegram" aria-label="Telegram">
             <svg class="left-side-bar__svg" aria-hidden="true" focusable="false">
                <use xlink:href="__spritemap#sprite-telegram"></use>
             </svg>
          </a>
       </li>
 
-      <li class="left-side-bar__items">
-         <button class="left-side-bar__link" type="button" data-name="phone" title="Номери контактних телефонів" aria-label="Номери контактних телефонів">
+      <!-- Телефон -->
+      <li class="left-side-bar__items" data-part="item">
+         <button class="left-side-bar__link" type="button" data-part="link" data-action="toggle-modal"
+            data-target="phone" title="Номери контактних телефонів" aria-label="Номери контактних телефонів">
             <svg class="left-side-bar__svg" aria-hidden="true" focusable="false">
                <use xlink:href="__spritemap#sprite-phones"></use>
             </svg>
          </button>
-         <div class="wrapper-modal left-side-bar__modal _contacts" tabindex="-1" data-name="phone" role="dialog" aria-labelledby="modal-phone-title">
+         <div class="wrapper-modal left-side-bar__modal _contacts" data-part="modal" data-name="phone" tabindex="-1"
+            role="dialog" aria-labelledby="modal-phone-title">
             <h3 id="modal-phone-title" class="title-visually-hidden">Номери телефонів</h3>
             <div class="type-board left-side-bar__contacts-item">
                <address class="type-board__paragraph">+38&nbsp;095&nbsp;931&nbsp;76&nbsp;31</address>
@@ -44,13 +101,16 @@
          </div>
       </li>
 
-      <li class="left-side-bar__items">
-         <button class="left-side-bar__link" type="button" data-name="mail" title="Контактний E-mail" aria-label="Контактний E-mail">
+      <!-- E-mail -->
+      <li class="left-side-bar__items" data-part="item">
+         <button class="left-side-bar__link" type="button" data-part="link" data-action="toggle-modal"
+            data-target="mail" title="Контактний E-mail" aria-label="Контактний E-mail">
             <svg class="left-side-bar__svg" aria-hidden="true" focusable="false">
                <use xlink:href="__spritemap#sprite-eMail"></use>
             </svg>
          </button>
-         <div class="wrapper-modal left-side-bar__modal _contacts" tabindex="-1" data-name="mail" role="dialog" aria-labelledby="modal-email-title">
+         <div class="wrapper-modal left-side-bar__modal _contacts" data-part="modal" data-name="mail" tabindex="-1"
+            role="dialog" aria-labelledby="modal-email-title">
             <h3 id="modal-email-title" class="title-visually-hidden">Електронна пошта</h3>
             <div class="type-board left-side-bar__contacts-item" title="пошта">
                <address class="type-board__paragraph">info@megakompromis.com.ua</address>
@@ -58,8 +118,10 @@
          </div>
       </li>
 
-      <li class="left-side-bar__items">
-         <button class="burger-menu" data-name="view-nav-menu" type="button" aria-label="Головне меню">
+      <!-- Бургер меню -->
+      <li class="left-side-bar__items" data-part="item">
+         <button class="burger-menu" data-part="burger" data-action="toggle-nav" data-target="main-nav" type="button"
+            aria-label="Головне меню">
             <div class="burger-menu__line"></div>
          </button>
       </li>
