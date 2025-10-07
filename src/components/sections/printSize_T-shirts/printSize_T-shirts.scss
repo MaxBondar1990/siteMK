@@ -32,7 +32,8 @@
 
       background-color: white;
    }
-   &__wrapper {
+   &__size-wrapper,
+   &__place-wrapper {
       width: 100%;
       
       display: flex;
