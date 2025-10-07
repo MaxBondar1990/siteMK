@@ -145,7 +145,9 @@
         }
     }
     @media (max-width: 1023px) {
-        padding: 0 12px;
+        padding-right: 12px;
+        padding-bottom: 12px;
+        padding-left: 12px;
         width: auto;
         min-width: 100%;
     }
