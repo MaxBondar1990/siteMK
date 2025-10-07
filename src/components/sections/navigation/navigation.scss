@@ -12,7 +12,7 @@
 
    @include blur($colorBlur);
 
-   z-index: 2;
+   z-index: 100;
 
    transition: all .3s;
    &._active{
@@ -132,7 +132,7 @@
    height: calc(100svh - 56px);
    top: 120%;
    left: 0;
-   z-index: 2;
+   z-index: 200;
 
    padding: 12px;
 
@@ -183,6 +183,21 @@
          }
       }
    }
+   &._view {
+      display: flex;
+      top: 0;
+      background: rgba(245, 245, 245, .5);
+      backdrop-filter: blur(20px);
+      
+      // @media (min-width: $tabletWidth) {
+      //    top: auto;
+      //    bottom: 138px;
+      // }
+      // @media (min-width: $desctopSmallWidth) {
+      //    top: auto;
+      //    bottom: 72px;
+      // }
+   }
    @media (min-width: $tabletWidth) {
       bottom: -110%;
       left: 50%;
@@ -195,11 +210,17 @@
          top: -20px;
          right: -20px;
       }
+      &._view {
+         top: auto;
+         bottom: 138px;
+         background: transparent;
+         backdrop-filter: blur(0);
+      }
       &._textile-wrapper {
          transform: translateX(-78%);
       }
       &._dishes-wrapper {
-         transform: translateX(-119%);
+         transform: translateX(-100%);
       }
       &._electronics-wrapper {
          transform: translateX(-94.5%);
@@ -221,6 +242,10 @@
          top: -20px;
          right: -20px;
       }
+      &._view {
+         top: auto;
+         bottom: 72px;
+      }
       &._textile-wrapper {
          transform: translateX(-82.5%);
       }
@@ -238,18 +263,6 @@
       }
       &._pens-wrapper {
          transform: translateX(43%);
-      }
-   }
-   &._view {
-      display: flex;
-      top: 0;
-      @media (min-width: $tabletWidth) {
-         top: auto;
-         bottom: 138px;
-      }
-      @media (min-width: $desctopSmallWidth) {
-         top: auto;
-         bottom: 72px;
       }
    }
 }

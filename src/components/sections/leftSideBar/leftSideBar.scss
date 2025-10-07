@@ -10,7 +10,7 @@
    height: 56px;
    
    @include blur($colorBlur);
-   z-index: 4;
+   z-index: 300;
    @media (min-width: $desctopSmallWidth) {
       width: 60px;
       height: 100vh;
