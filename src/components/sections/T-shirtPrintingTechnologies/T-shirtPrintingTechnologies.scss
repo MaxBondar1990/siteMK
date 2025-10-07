@@ -88,6 +88,7 @@
    }
    @media (max-width: 460px) {
       &__card {
+         // flex-direction: row;
          gap: 40px;
       }
    }
@@ -157,7 +158,6 @@
       align-items: center;
       &__wrapper {
          align-items: center;
-         // text-align: center;
       }
       &__desc {
          text-align: center;

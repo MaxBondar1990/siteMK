@@ -1,7 +1,7 @@
 .order {
    display: flex;
    flex-direction: column;
-   text-align: center;
+   align-items: center;
 
    width: 100%;
    gap: 40px;
@@ -14,58 +14,64 @@
       font-size: 32px;
       font-style: normal;
       font-weight: 400;
-      line-height: 36px;
+      line-height: 1.5em;
       text-transform: uppercase;
    }
-
    &__steps {
       display: flex;
       justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-   }
 
+      width: 100%;
+
+      gap: 18px;
+   }
    &__step {
       display: flex;
       align-items: center;
       gap: 14px;
-      max-width: 230px;
+      // width: 288px;
+      width: 324px;
+      height: 100px;
       text-align: left;
    }
-
    &__icon {
-      width: 50px;
-      height: 50px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background: #2e4a93;
-      color: #fff;
+      background: $colorBlue;
+      color: $colorWhite;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      border: 4px solid #fff;
-      box-shadow: 0 0 0 2px #2e4a93;
+      border: 10px solid $colorWhite;
+      box-shadow: 0 0 0 2px $colorBlue;
    }
+   &__content {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      align-content: space-between;
 
-  &__content {
-   display: grid;
-   grid-template-rows: 1fr auto;
-   align-items: start;
-   row-gap: 4px;
-  }
-  &__content-title {
+      width: 100%;
+      height: 100%;
+
+      row-gap: 6px;
+
+   }
+   &__content-title {
       grid-row: 1 / 2;
       width: 100%;
       color: $colorOrange;
       text-align: left;
       font-family: Montserrat;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
-      line-height: 16px;
-  }
+      line-height: 1.5em;
+   }
   &__txt {
       grid-row: 2 / 3;
       width: 100%;
@@ -76,7 +82,6 @@
       font-weight: 400;
       line-height: 16px;
   }
-
   &__arrow {
     position: relative;
     width: 36px;
@@ -90,7 +95,7 @@
       position: absolute;
       width: 2px;
       height: 59%;
-      background: #999;
+      background: $colorDarkGray;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -105,40 +110,84 @@
       transform: translateX(-50%) rotate(45deg);
     }
   }
-
   &__btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    color: $colorWhite;
+      color: $colorWhite;
 
-    border-radius: 20px;
-    padding: 1em 1.5em;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: $colorOrange;
-    transition: all 0.3s;
+      border-radius: 20px;
+      padding: 1em 1.5em;
+
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      background: $colorOrange;
+      transition: all .3s;
+      &:hover {
+         scale: .97;
+      }
   }
 
   /* ===== Адаптив ===== */
-  @media (max-width: 768px) {
+
+   @media (max-width: 1024px) {
+      padding: 12px;
+      gap: 16px;
     &__steps {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+      flex-direction: row;
+      justify-content: flex-start;
 
-    &__step {
-      max-width: 100%;
-    }
+      gap: 16px;
 
-    &__arrow {
-      display: none;
+      padding: 12px;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+         display: none;
+      }
     }
+   &__step {
+      flex: 0 0 45%;
+      max-width: 80%;
+   }
 
-    &__content h3 {
-      font-size: 16px;
-    }
-  }
+   }
+   @media (max-width: 768px) {
+         padding: 12px;
+         gap: 12px;
+      &__steps {
+         flex-direction: row;
+         justify-content: flex-start;
+
+         gap: 16px;
+
+         padding: 12px;
+         // overflow: hidden;
+         overflow-y: hidden;
+         scrollbar-width: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
+      }
+
+      &__step {
+      flex: 0 0 40%;
+      max-width: 80%;
+      }
+
+      &__content {
+         width: 100%;
+      }
+   }
+   @media (max-width: 430px) {
+      padding: 12px 8px;
+      gap: 8px;
+      &__step {
+         flex: 0 0 80%;
+         max-width: 90%;
+      }
+   }
 }
