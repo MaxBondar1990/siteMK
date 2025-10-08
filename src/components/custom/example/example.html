@@ -1,0 +1,50 @@
+<!-- Компонент: Example тег компоненту може бути section, div, article і будь-який інший-->
+<section class="example" data-component="example" data-part="root" aria-label="Приклад порожнього компонента">
+   <!-- Зображення або фон -->
+   <picture class="example__pic" data-part="picture">
+      <img class="example__img" src="@img/example/example-bg.webp" alt="Фонове зображення прикладу" data-part="image" />
+   </picture>
+
+   <!-- Основний контент -->
+   <div class="example__content" data-part="content">
+      <!-- Заголовок -->
+      <h2 class="example__title" data-part="title">
+         [[title]]
+      </h2>
+
+      <!-- Підзаголовок або короткий опис -->
+      <p class="example__txt" data-part="description" lang="uk-UA">
+         [[description]]
+      </p>
+
+      <!-- Кнопки дій -->
+      <div class="example__actions" data-part="actions">
+         <!-- Кнопка для відкриття модалки -->
+         <button class="example__button" type="button" data-action="open-modal" data-target="example-modal"
+            aria-label="Відкрити модальне вікно">
+            Відкрити модалку
+         </button>
+
+         <!-- Кнопка для зміни стану -->
+         <button class="example__button" type="button" data-action="toggle-state" data-target="example-state"
+            aria-label="Змінити стан">
+            Змінити стан
+         </button>
+
+         <!-- Кнопка для навігації -->
+         <a class="example__link" href="#" data-action="navigate" data-target="section-about"
+            aria-label="Перейти до розділу Про нас">
+            Дізнатись більше
+         </a>
+      </div>
+   </div>
+
+   <!-- Приклад включення модального вікна -->
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "example-modal",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "examplemodal"
+   }'></include>
+</section>
