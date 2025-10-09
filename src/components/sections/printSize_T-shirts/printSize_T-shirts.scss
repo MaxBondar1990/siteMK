@@ -91,7 +91,8 @@
    }
    @media (max-width: 1024px) {
       padding: 12px;
-      &__wrapper {
+      &__size-wrapper,
+      &__place-wrapper {
          flex-direction: row;
          justify-content: flex-start;
 
@@ -104,9 +105,26 @@
             display: none;
          }
       }
+      &__size-wrapper {
+         justify-content: space-around;
+         flex-wrap: wrap;
+         gap: 14px;
+      }
+      &__card {
+         width: 45%;
+      }
+
+   }
+   @media (max-width: 430px) {
+      &__img-wrapper {
+         width: calc(284px * 0.6);
+         height: calc(318px * 0.6);
+      }
+
    }
    @media (max-width: 375px) {
       padding: 12px 8px;
+
    }
 }
 // .printSize {
