@@ -1,5 +1,5 @@
-// @import "recommended_products_Card";
-@use "recommended_products_card" as *;
+@import "./recommended-products-Card";
+// @use "./recommended-products-card" as *;
 
 .recommended-products {
    display: flex;
@@ -10,7 +10,7 @@
    height: auto;
    padding: 0 0 64px 0;
    gap: 20px;
-   background: red;
+
    &__title {
       width: 100%;
       margin: 16px 0;

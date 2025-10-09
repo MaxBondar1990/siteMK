@@ -1,9 +1,9 @@
 
-import './recommended_products.scss'
+import './recommended-products-card.scss'
 
 // Prefer new API; keep legacy as fallback
 const SEL = {
-   root: '[data-component="recommended_products"][data-part="root"]',
+   root: '[data-component="catalog"][data-part="root"]',
    colorList: '[data-part="color-list"], [data-name="view-color-items"]',
    colorItem: '.goods-card__color-item',
    card: '.goods-card',
