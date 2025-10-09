@@ -145,7 +145,7 @@ $animateTimePassive: .5s;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
 
-      z-index: 3;
+      z-index: 2000;
       &._view {
          top: 90px;
          left: 8px;
