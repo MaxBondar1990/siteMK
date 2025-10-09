@@ -4,33 +4,61 @@
 .recommended-products {
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: flex-start;
    align-items: center;
    width: 100%;
-   height: auto;
-   padding: 0 0 64px 0;
+   height: calc(365px + 2.4rem);
+   padding: 0 16px 0 64px;
    gap: 20px;
+   // background: red;
 
-   &__title {
-      width: 100%;
-      margin: 16px 0;
-      font-size: 2em;
-      line-height: 1em;
-      text-align: center;
-      text-transform: uppercase;
-      color: #4170b4;
-   }
    &__goods-tiles {
+      position: relative;
+      display: flex;
+      &::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 40px;
+         height: 100%;
+         background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0) 100%);
+
+         z-index: 2;
+      }
+   }
+   &__tiles-wrapper {
+      position: relative;
       display: flex;
       flex-wrap: nowrap;
+      justify-content: flex-start;
       width: 100%;
-      padding: 20px;
+      max-width: 1164px;
+      min-width: 304px;
+
+      gap: 12px;
+      padding: 8px 40px 8px 40px;
       
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
       &::-webkit-scrollbar {
          display: none;
+      }
+   }
+   @media (max-width: 1023px) {
+      padding: 0 16px 0 16px;
+   }
+   @media (max-width: 450px) {
+      padding: 0 8px 0 8px;
+      &__goods-tiles {
+         gap: 8px;
+      }
+   }
+   @media (max-width: 375px) {
+      padding: 0 4px 0 4px;
+      &__goods-tiles {
+         gap: 4px;
       }
    }
 }

@@ -1,4 +1,3 @@
-
 import './recommended-products-card.scss'
 
 // Prefer new API; keep legacy as fallback
