@@ -7,14 +7,26 @@
    justify-content: flex-start;
    align-items: center;
    width: 100%;
-   height: calc(365px + 2.4rem);
-   padding: 0 16px 0 64px;
+   height: 404px;
+   padding: 0 16px 0 24px;
    gap: 20px;
-   // background: red;
-
+   &__title {
+      width: 100%;
+      margin-top: 16px;
+      font-size: 1.5rem;
+      line-height: 1em;
+      text-align: center;
+      text-transform: uppercase;
+      color: #4170b4;
+      background-color: white;
+   }
    &__goods-tiles {
       position: relative;
       display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 1188px;
+      min-width: 304px;
       &::before {
          content: '';
          position: absolute;
@@ -26,18 +38,26 @@
 
          z-index: 2;
       }
+      &::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         right: 0;
+         width: 40px;
+         height: 100%;
+         background: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 1) 100%);
+
+         z-index: 2;
+      }
    }
    &__tiles-wrapper {
-      position: relative;
       display: flex;
       flex-wrap: nowrap;
       justify-content: flex-start;
       width: 100%;
-      max-width: 1164px;
-      min-width: 304px;
 
       gap: 12px;
-      padding: 8px 40px 8px 40px;
+      padding: 8px 36px 8px 36px;
       
       overflow-x: auto;
       scrollbar-width: none;
@@ -50,15 +70,33 @@
       padding: 0 16px 0 16px;
    }
    @media (max-width: 450px) {
-      padding: 0 8px 0 8px;
+      padding: 0;
       &__goods-tiles {
+         &::before {
+            width: 36px;
+         }
+         &::after {
+            width: 36px;
+         }
+      }
+      &__tiles-wrapper {
          gap: 8px;
+         padding: 8px 28px 8px 28px;
       }
    }
    @media (max-width: 375px) {
-      padding: 0 4px 0 4px;
+      padding: 0;
       &__goods-tiles {
+         &::before {
+            width: 28px;
+         }
+         &::after {
+            width: 28px;
+         }
+      }
+      &__tiles-wrapper {
          gap: 4px;
+         padding: 8px 20px 8px 20px;
       }
    }
 }
