@@ -3,62 +3,63 @@
    flex-direction: column;
    align-items: stretch;
    justify-content: center;
-   gap: 16px;
+   // gap: 20px;
    width: 260px;
-   padding: 16px 20px;
-   border-radius: 12px;
-   background: rgba(255, 255, 255, 0.25);
-   backdrop-filter: blur(12px);
-   -webkit-backdrop-filter: blur(12px);
-   box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.25);
-   color: #222;
-   font-family: "Inter", sans-serif;
-   font-size: 14px;
-
-   .auth__title {
-      text-align: center;
-      font-weight: 600;
-      font-size: 18px;
-      margin-bottom: 4px;
-      color: #222;
+   font-size: 1rem;
+   &__form--register,
+   &__form {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 12px;
+      padding-bottom: 20px;
    }
-
-   .auth__label {
+   &__title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 4px;
+      color: $colorWhite;
+   }
+   &__label {
       display: flex;
       flex-direction: column;
       gap: 4px;
       margin-bottom: 8px;
    }
-
-   .auth__label-text {
+   &__label-text {
+      margin-left: 8px;
       font-size: 13px;
-      color: #444;
+      color: $colorWhite;
    }
-
-   .auth__input {
+   &__input {
       padding: 8px 10px;
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid rgba(0, 0, 0, 0.2);
       background: rgba(255, 255, 255, 0.7);
       font-size: 14px;
       transition: border-color 0.2s, background-color 0.2s;
-
+      color: $colorDarkGray;
       &:focus {
-         border-color: $colorBlue;
-         background: white;
+         border-color: $colorDarkGray;
+         background: $colorWhite;
          outline: none;
       }
    }
-
-   .auth__btn {
-      display: block;
-      width: 100%;
-      padding: 10px;
+   &__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      justify-self: center;
+      // width: min-content;
+      padding: 1em 1.5em;
       border: none;
-      border-radius: 8px;
+      border-radius: 16px;
       background-color: $colorBlue;
-      color: white;
-      font-weight: 600;
+      color: $colorWhite;
+      font-size: 1rem;
+      font-weight: 400;
       cursor: pointer;
       transition: background-color 0.2s ease;
 
@@ -66,28 +67,25 @@
          background-color: darken($colorBlue, 8%);
       }
    }
-
-   .auth__switch {
+   &__switch {
       text-align: center;
-      font-size: 13px;
-      color: #333;
+      font-size: 14px;
+      color: $colorWhite;
+   }
+   &__link {
+      border: none;
+      background: none;
+      color: $colorBlue;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s;
 
-      .auth__link {
-         border: none;
-         background: none;
-         color: $colorBlue;
-         font-weight: 500;
-         cursor: pointer;
-         text-decoration: underline;
-         transition: color 0.2s;
-
-         &:hover {
-            color: darken($colorBlue, 10%);
-         }
+      &:hover {
+         color: darken($colorBlue, 10%);
       }
    }
-
-   .auth__form[hidden] {
+   &__form[hidden] {
       display: none !important;
    }
 }
