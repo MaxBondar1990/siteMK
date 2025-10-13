@@ -2,7 +2,7 @@
    display: flex;
    flex-wrap: nowrap;
    width: 100%;
-   padding: 0 0 0 0;
+   padding: 0 0 0 60px;
    &__list {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -13,19 +13,8 @@
       width: 100%;
       height: min-content;
 
-      margin: 8px 8px 8px 68px;
+      padding: 8px;
       gap: 8px;
-
-      // ПЛАНШЕТИ
-      @media (max-width: 1024px) {
-      /* горизонтальний планшет */
-         margin: 4px 4px 4px 68px;
-         gap: 4px;
-      }
-      @media (max-width: 768px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         margin: 4px;
-      }
       &._main {
          grid-template-columns: repeat(6, 1fr);
          grid-template-rows: repeat(3, 1fr);
@@ -48,12 +37,6 @@
       overflow: hidden;
 
       transition: all .3s;
-
-      @media (max-width: $mobileClassicWidth) {
-         border-radius: 2.5vw;
-         &:nth-child(10) { order: 11; }
-         &:nth-child(11) { order: 10; }
-      }
       &:hover {
          box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.4);
          filter: brightness(1.05) saturate(1.4);
@@ -141,6 +124,25 @@
       @media (max-width: 576px) {
       /* звичайні смартфони */
          font-size: 3vw;
+      }
+   }
+   @media (max-width: 1023px) {
+      /* горизонтальний планшет */
+      padding: 0;
+   }
+   @media (max-width: 576px) {
+      &__list {
+         padding: 4px;
+         gap: 4px;
+         &._main {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+         }
+      }
+      &__item {
+         border-radius: 2.5vw;
+         &:nth-child(10) { order: 11; }
+         &:nth-child(11) { order: 10; }
       }
    }
 }
