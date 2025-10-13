@@ -155,44 +155,25 @@ function mountPrintingTariff(rootEl) {
       const qtyNum = parseInt(context.qty?.toString().replace(/\D/g, ''), 10);
       const unitPrice = parseNumber(context.price);
       const colorsLabel = context.colorsLabel || '';
-
-      if (!Number.isFinite(qtyNum) || !Number.isFinite(unitPrice)) {
-         // Fallback: just show raw values
-         note.textContent = `Кількість футболок ${context.qty || '?'}\nКількість кольорів друку ${context.colorsLabel || '?'}\nВартість одиниці ${context.price || '?'}\n`;
-         return;
-      }
+      if (!Number.isFinite(qtyNum) || !Number.isFinite(unitPrice)) return;
 
       const total = qtyNum * unitPrice;
-      const qtyFmt = formatNumberUA(qtyNum);
-      const unitFmt = unitPrice.toFixed(2);
-      const totalFmt = formatNumberUA(total.toFixed(0));
 
-      const lines = [
-         // `Кількість нанесень ${qtyFmt}`,
-         // `Кількість кольорів друку ${colorsLabel}`,
-         // `Вартість нанесення за 1 шт. = ${unitFmt}`,
-         // `${qtyFmt} шт. х ${unitFmt} грн. = ${formatNumberUA(total.toFixed(2))} грн.`,
-         // `Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.`
+      const set = (sel, value) => {
+         const el = note.querySelector(sel);
+         if (el) el.textContent = value;
+      };
 
-         `<p class="tariff__note-text">Розрахунок вартості нанесення без урахування вартості продукції:</p>`,
-         `<p>Кількість нанесень - ${qtyFmt}</p>`,
-         `<p>Кількість кольорів друку - ${colorsLabel}</p>`,
-         `<p>Вартість нанесення за 1 шт. = ${unitFmt} грн.</p>`,
-         `<p>${qtyFmt} шт. х ${unitFmt} грн. = ${formatNumberUA(total.toFixed(2))} грн.</p>`,
-         `<p>Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.</p>`,
-         `<br>`,
-
-         // `<p >Розрахунок вартості нанесення з урахування вартості продукції:</p>`,
-         // `<p>Вартість продукції ${qtyFmt} грн.</p>`,
-         // `<p>${qtyFmt} шт. х (${unitFmt} грн. + ${unitFmt} грн.) = ${formatNumberUA(total.toFixed(2))} грн.</p>`,
-         // `<p>Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.</p>`,
-      ];
-
-      // Highlight numeric fragments (quantities, prices, sums)
-      const highlighted = lines.map(line =>
-         line.replace(/(\d+[\d\s.,]*)/g, '<strong>$1</strong>')
-      );
-      note.innerHTML = highlighted.join('');
+      set('[data-note="qty"]', formatNumberUA(qtyNum));
+      set('[data-note="colors-label"]', colorsLabel);
+      set('[data-note="unit-qty"]', '1');
+      set('[data-note="unit-price"]', unitPrice.toFixed(2));
+      set('[data-note="calc-qty"]', formatNumberUA(qtyNum));
+      set('[data-note="calc-price"]', unitPrice.toFixed(2));
+      set('[data-note="calc-sum"]', formatNumberUA(total.toFixed(2)));
+      set('[data-note="total-sum"]', formatNumberUA(total.toFixed(0)));
+      set('[data-note="total-qty"]', formatNumberUA(qtyNum));
+      set('[data-note="total-colors"]', colorsLabel);
    }
 
    function handleTariffPriceClick(event) {
