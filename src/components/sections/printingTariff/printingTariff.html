@@ -1,544 +1,308 @@
 <!-- Блок тарифів на друк -->
 <section data-fls-printingTariff class="tariff" data-component="printing-tariff" data-part="root">
-   <h2 class="tariff__title">Вартість друку на футболках</h2>
-
+   <h2 class="tariff__title">Вартість нанесення на футболках</h2>
    <div class="tariff__block">
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn _active"
-         data-btn="tariff-tab">Розмір А5</button>
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab">Розмір
-         А4</button>
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab">Розмір
-         А3</button>
-      <table class="tariff__table _active" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
+      <button data-fls-button="" type="button" class="tariff__printing-size-select-btn _active" data-btn="tariff-tab"
+         data-tab="tshirt-silkscreen-a5-0">
+         Шовкодрук A5 </button>
+      <button data-fls-button="" type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab"
+         data-tab="tshirt-silkscreen-a4-1">
+         Шовкодрук A4 </button>
+      <button data-fls-button="" type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab"
+         data-tab="tshirt-silkscreen-a3-2">
+         Шовкодрук A3 </button>
+      <table class="tariff__table _active" data-name="tariff-table" data-tab="tshirt-silkscreen-a5-0">
          <thead>
             <tr class="tariff__table-value">
                <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
-               <th scope="col">2000</th>
-               <th scope="col">3000</th>
-               <th scope="col">4000</th>
-               <th scope="col">5000</th>
+               <th scope="col" data-qty="20">20</th>
+               <th scope="col" data-qty="50">50</th>
+               <th scope="col" data-qty="100">100</th>
+               <th scope="col" data-qty="200">200</th>
+               <th scope="col" data-qty="300">300</th>
+               <th scope="col" data-qty="500">500</th>
+               <th scope="col" data-qty="1000">1000</th>
             </tr>
          </thead>
          <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1 колір</th>
-               <td>10.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="1">
+               <th scope="row" data-colors="1">1 колір</th>
+               <td data-tariff="price" data-price="58.36">58.36</td>
+               <td data-tariff="price" data-price="38.39">38.39</td>
+               <td data-tariff="price" data-price="27.64">27.64</td>
+               <td data-tariff="price" data-price="23.04">23.04</td>
+               <td data-tariff="price" data-price="19.20">19.20</td>
+               <td data-tariff="price" data-price="15.36">15.36</td>
+               <td data-tariff="price" data-price="13.82">13.82</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2 кольори</th>
-               <td>20.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="2">
+               <th scope="row" data-colors="2">2 кольори</th>
+               <td data-tariff="price" data-price="87.54">87.54</td>
+               <td data-tariff="price" data-price="57.59">57.59</td>
+               <td data-tariff="price" data-price="38.39">38.39</td>
+               <td data-tariff="price" data-price="32.25">32.25</td>
+               <td data-tariff="price" data-price="28.41">28.41</td>
+               <td data-tariff="price" data-price="24.57">24.57</td>
+               <td data-tariff="price" data-price="19.96">19.96</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3 кольори</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="3">
+               <th scope="row" data-colors="3">3 кольори</th>
+               <td data-tariff="price" data-price="116.71">116.71</td>
+               <td data-tariff="price" data-price="76.79">76.79</td>
+               <td data-tariff="price" data-price="49.14">49.14</td>
+               <td data-tariff="price" data-price="41.46">41.46</td>
+               <td data-tariff="price" data-price="37.63">37.63</td>
+               <td data-tariff="price" data-price="33.79">33.79</td>
+               <td data-tariff="price" data-price="26.11">26.11</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4 кольори</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="4">
+               <th scope="row" data-colors="4">4 кольори</th>
+               <td data-tariff="price" data-price="153.57">153.57</td>
+               <td data-tariff="price" data-price="95.98">95.98</td>
+               <td data-tariff="price" data-price="61.43">61.43</td>
+               <td data-tariff="price" data-price="50.68">50.68</td>
+               <td data-tariff="price" data-price="46.84">46.84</td>
+               <td data-tariff="price" data-price="43.00">43.00</td>
+               <td data-tariff="price" data-price="32.25">32.25</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5 кольорів</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="5">
+               <th scope="row" data-colors="5">5 кольорів</th>
+               <td data-tariff="price" data-price="184.29">184.29</td>
+               <td data-tariff="price" data-price="125.93">125.93</td>
+               <td data-tariff="price" data-price="72.18">72.18</td>
+               <td data-tariff="price" data-price="59.89">59.89</td>
+               <td data-tariff="price" data-price="56.82">56.82</td>
+               <td data-tariff="price" data-price="53.75">53.75</td>
+               <td data-tariff="price" data-price="38.39">38.39</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6 кольорів</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="6">
+               <th scope="row" data-colors="6">6 кольорів</th>
+               <td data-tariff="price" data-price="213.46">213.46</td>
+               <td data-tariff="price" data-price="145.89">145.89</td>
+               <td data-tariff="price" data-price="84.46">84.46</td>
+               <td data-tariff="price" data-price="69.11">69.11</td>
+               <td data-tariff="price" data-price="64.50">64.50</td>
+               <td data-tariff="price" data-price="59.89">59.89</td>
+               <td data-tariff="price" data-price="44.54">44.54</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK (без білого)">
+               <th scope="row" data-colors="CMYK (без білого)">CMYK (без білого)</th>
+               <td data-tariff="price" data-price="229.60">229.60</td>
+               <td data-tariff="price" data-price="147.67">147.67</td>
+               <td data-tariff="price" data-price="83.17">83.17</td>
+               <td data-tariff="price" data-price="57.76">57.76</td>
+               <td data-tariff="price" data-price="46.30">46.30</td>
+               <td data-tariff="price" data-price="32.34">32.34</td>
+               <td data-tariff="price" data-price="25.42">25.42</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK + білий">
+               <th scope="row" data-colors="CMYK + білий">CMYK + білий</th>
+               <td data-tariff="price" data-price="243.78">243.78</td>
+               <td data-tariff="price" data-price="154.65">154.65</td>
+               <td data-tariff="price" data-price="92.42">92.42</td>
+               <td data-tariff="price" data-price="64.70">64.70</td>
+               <td data-tariff="price" data-price="55.45">55.45</td>
+               <td data-tariff="price" data-price="41.59">41.59</td>
+               <td data-tariff="price" data-price="32.34">32.34</td>
             </tr>
          </tbody>
       </table>
-      <table class="tariff__table" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
+      <table class="tariff__table" data-name="tariff-table" data-tab="tshirt-silkscreen-a4-1">
          <thead>
             <tr class="tariff__table-value">
                <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
+               <th scope="col" data-qty="20">20</th>
+               <th scope="col" data-qty="50">50</th>
+               <th scope="col" data-qty="100">100</th>
+               <th scope="col" data-qty="200">200</th>
+               <th scope="col" data-qty="300">300</th>
+               <th scope="col" data-qty="500">500</th>
+               <th scope="col" data-qty="1000">1000</th>
             </tr>
          </thead>
          <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1+0</th>
-               <td>55.00</td>
-               <td>77.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="1">
+               <th scope="row" data-colors="1">1 колір</th>
+               <td data-tariff="price" data-price="62.96">62.96</td>
+               <td data-tariff="price" data-price="46.07">46.07</td>
+               <td data-tariff="price" data-price="33.79">33.79</td>
+               <td data-tariff="price" data-price="30.71">30.71</td>
+               <td data-tariff="price" data-price="28.41">28.41</td>
+               <td data-tariff="price" data-price="26.11">26.11</td>
+               <td data-tariff="price" data-price="18.43">18.43</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="2">
+               <th scope="row" data-colors="2">2 кольори</th>
+               <td data-tariff="price" data-price="93.68">93.68</td>
+               <td data-tariff="price" data-price="69.11">69.11</td>
+               <td data-tariff="price" data-price="49.14">49.14</td>
+               <td data-tariff="price" data-price="43.00">43.00</td>
+               <td data-tariff="price" data-price="39.93">39.93</td>
+               <td data-tariff="price" data-price="36.86">36.86</td>
+               <td data-tariff="price" data-price="26.11">26.11</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="3">
+               <th scope="row" data-colors="3">3 кольори</th>
+               <td data-tariff="price" data-price="124.39">124.39</td>
+               <td data-tariff="price" data-price="92.14">92.14</td>
+               <td data-tariff="price" data-price="64.50">64.50</td>
+               <td data-tariff="price" data-price="55.29">55.29</td>
+               <td data-tariff="price" data-price="51.45">51.45</td>
+               <td data-tariff="price" data-price="47.61">47.61</td>
+               <td data-tariff="price" data-price="33.79">33.79</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="4">
+               <th scope="row" data-colors="4">4 кольори</th>
+               <td data-tariff="price" data-price="155.11">155.11</td>
+               <td data-tariff="price" data-price="115.18">115.18</td>
+               <td data-tariff="price" data-price="79.86">79.86</td>
+               <td data-tariff="price" data-price="67.57">67.57</td>
+               <td data-tariff="price" data-price="62.96">62.96</td>
+               <td data-tariff="price" data-price="58.36">58.36</td>
+               <td data-tariff="price" data-price="41.46">41.46</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="5">
+               <th scope="row" data-colors="5">5 кольорів</th>
+               <td data-tariff="price" data-price="185.82">185.82</td>
+               <td data-tariff="price" data-price="138.21">138.21</td>
+               <td data-tariff="price" data-price="95.21">95.21</td>
+               <td data-tariff="price" data-price="79.86">79.86</td>
+               <td data-tariff="price" data-price="74.48">74.48</td>
+               <td data-tariff="price" data-price="69.11">69.11</td>
+               <td data-tariff="price" data-price="49.14">49.14</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="6">
+               <th scope="row" data-colors="6">6 кольорів</th>
+               <td data-tariff="price" data-price="216.54">216.54</td>
+               <td data-tariff="price" data-price="161.25">161.25</td>
+               <td data-tariff="price" data-price="110.57">110.57</td>
+               <td data-tariff="price" data-price="92.14">92.14</td>
+               <td data-tariff="price" data-price="86.00">86.00</td>
+               <td data-tariff="price" data-price="79.86">79.86</td>
+               <td data-tariff="price" data-price="56.82">56.82</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK (без білого)">
+               <th scope="row" data-colors="CMYK (без білого)">CMYK (без білого)</th>
+               <td data-tariff="price" data-price="233.66">233.66</td>
+               <td data-tariff="price" data-price="149.72">149.72</td>
+               <td data-tariff="price" data-price="87.80">87.80</td>
+               <td data-tariff="price" data-price="60.08">60.08</td>
+               <td data-tariff="price" data-price="53.15">53.15</td>
+               <td data-tariff="price" data-price="36.98">36.98</td>
+               <td data-tariff="price" data-price="27.74">27.74</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK + білий">
+               <th scope="row" data-colors="CMYK + білий">CMYK + білий</th>
+               <td data-tariff="price" data-price="245.81">245.81</td>
+               <td data-tariff="price" data-price="161.85">161.85</td>
+               <td data-tariff="price" data-price="97.04">97.04</td>
+               <td data-tariff="price" data-price="69.32">69.32</td>
+               <td data-tariff="price" data-price="60.08">60.08</td>
+               <td data-tariff="price" data-price="43.91">43.91</td>
+               <td data-tariff="price" data-price="34.66">34.66</td>
             </tr>
          </tbody>
       </table>
-      <table class="tariff__table" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
+      <table class="tariff__table" data-name="tariff-table" data-tab="tshirt-silkscreen-a3-2">
          <thead>
             <tr class="tariff__table-value">
                <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
+               <th scope="col" data-qty="20">20</th>
+               <th scope="col" data-qty="50">50</th>
+               <th scope="col" data-qty="100">100</th>
+               <th scope="col" data-qty="200">200</th>
+               <th scope="col" data-qty="300">300</th>
+               <th scope="col" data-qty="500">500</th>
+               <th scope="col" data-qty="1000">1000</th>
             </tr>
          </thead>
          <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1+0</th>
-               <td>01.00</td>
-               <td>02.00</td>
-               <td>03.00</td>
-               <td>04.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="1">
+               <th scope="row" data-colors="1">1 колір</th>
+               <td data-tariff="price" data-price="82.93">82.93</td>
+               <td data-tariff="price" data-price="59.89">59.89</td>
+               <td data-tariff="price" data-price="44.54">44.54</td>
+               <td data-tariff="price" data-price="38.39">38.39</td>
+               <td data-tariff="price" data-price="37.63">37.63</td>
+               <td data-tariff="price" data-price="36.86">36.86</td>
+               <td data-tariff="price" data-price="24.57">24.57</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="2">
+               <th scope="row" data-colors="2">2 кольори</th>
+               <td data-tariff="price" data-price="124.39">124.39</td>
+               <td data-tariff="price" data-price="90.61">90.61</td>
+               <td data-tariff="price" data-price="61.43">61.43</td>
+               <td data-tariff="price" data-price="53.75">53.75</td>
+               <td data-tariff="price" data-price="52.21">52.21</td>
+               <td data-tariff="price" data-price="50.68">50.68</td>
+               <td data-tariff="price" data-price="33.79">33.79</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="3">
+               <th scope="row" data-colors="3">3 кольори</th>
+               <td data-tariff="price" data-price="165.86">165.86</td>
+               <td data-tariff="price" data-price="119.79">119.79</td>
+               <td data-tariff="price" data-price="76.79">76.79</td>
+               <td data-tariff="price" data-price="69.11">69.11</td>
+               <td data-tariff="price" data-price="66.80">66.80</td>
+               <td data-tariff="price" data-price="64.50">64.50</td>
+               <td data-tariff="price" data-price="43.00">43.00</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="4">
+               <th scope="row" data-colors="4">4 кольори</th>
+               <td data-tariff="price" data-price="207.32">207.32</td>
+               <td data-tariff="price" data-price="149.73">149.73</td>
+               <td data-tariff="price" data-price="92.14">92.14</td>
+               <td data-tariff="price" data-price="84.46">84.46</td>
+               <td data-tariff="price" data-price="81.39">81.39</td>
+               <td data-tariff="price" data-price="78.32">78.32</td>
+               <td data-tariff="price" data-price="52.21">52.21</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="5">
+               <th scope="row" data-colors="5">5 кольорів</th>
+               <td data-tariff="price" data-price="248.79">248.79</td>
+               <td data-tariff="price" data-price="179.68">179.68</td>
+               <td data-tariff="price" data-price="107.50">107.50</td>
+               <td data-tariff="price" data-price="99.82">99.82</td>
+               <td data-tariff="price" data-price="95.98">95.98</td>
+               <td data-tariff="price" data-price="92.14">92.14</td>
+               <td data-tariff="price" data-price="61.43">61.43</td>
             </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
+            <tr class="tariff__table-value" data-colors="6">
+               <th scope="row" data-colors="6">6 кольорів</th>
+               <td data-tariff="price" data-price="290.25">290.25</td>
+               <td data-tariff="price" data-price="209.63">209.63</td>
+               <td data-tariff="price" data-price="122.86">122.86</td>
+               <td data-tariff="price" data-price="115.18">115.18</td>
+               <td data-tariff="price" data-price="110.57">110.57</td>
+               <td data-tariff="price" data-price="105.96">105.96</td>
+               <td data-tariff="price" data-price="70.64">70.64</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK (без білого)">
+               <th scope="row" data-colors="CMYK (без білого)">CMYK (без білого)</th>
+               <td data-tariff="price" data-price="237.71">237.71</td>
+               <td data-tariff="price" data-price="151.73">151.73</td>
+               <td data-tariff="price" data-price="92.42">92.42</td>
+               <td data-tariff="price" data-price="64.70">64.70</td>
+               <td data-tariff="price" data-price="55.45">55.45</td>
+               <td data-tariff="price" data-price="39.27">39.27</td>
+               <td data-tariff="price" data-price="30.02">30.02</td>
+            </tr>
+            <tr class="tariff__table-value" data-colors="CMYK + білий">
+               <th scope="row" data-colors="CMYK + білий">CMYK + білий</th>
+               <td data-tariff="price" data-price="247.82">247.82</td>
+               <td data-tariff="price" data-price="174.00">174.00</td>
+               <td data-tariff="price" data-price="101.66">101.66</td>
+               <td data-tariff="price" data-price="73.93">73.93</td>
+               <td data-tariff="price" data-price="64.70">64.70</td>
+               <td data-tariff="price" data-price="46.23">46.23</td>
+               <td data-tariff="price" data-price="36.98">36.98</td>
             </tr>
          </tbody>
       </table>
-      <div class="tariff__note">
+      <div class="tariff__note" data-name="tariff-note">
          <small>
-            Цены указаны в UAH без учета НДС. Тираж от 5000 шт. рассчитывается индивидуально. Курс: 1 MK = 43.00 UAH Версія тарифу: 2025-10-06
-          </small>
+            Ціни вказані в UAH без урахування ПДВ. Тираж від 1000 шт. розраховується індивідуально. · Курс: 1 MK = 43.00
+            UAH · Версія тарифу: 2025-10-12 </small>
       </div>
-   </div>
-   <div class="tariff__block">
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn _active"
-         data-btn="tariff-tab">Тампопечать</button>
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab">Розмір
-         А4</button>
-      <button data-fls-button type="button" class="tariff__printing-size-select-btn" data-btn="tariff-tab">Розмір
-         А3</button>
-      <table class="tariff__table _active" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
-         <thead>
-            <tr class="tariff__table-value">
-               <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
-               <th scope="col">2000</th>
-               <th scope="col">3000</th>
-               <th scope="col">4000</th>
-               <th scope="col">5000</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1 колір</th>
-               <td>10.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2 кольори</th>
-               <td>20.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3 кольори</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4 кольори</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5 кольорів</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6 кольорів</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-         </tbody>
-      </table>
-      <table class="tariff__table" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
-         <thead>
-            <tr class="tariff__table-value">
-               <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1+0</th>
-               <td>55.00</td>
-               <td>77.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-         </tbody>
-      </table>
-      <table class="tariff__table" data-name="tariff-table">
-         <!-- <caption class="tariff__table-caption">Розмір А5</caption> -->
-         <thead>
-            <tr class="tariff__table-value">
-               <th scope="col">Тираж</th>
-               <th scope="col">20</th>
-               <th scope="col">50</th>
-               <th scope="col">100</th>
-               <th scope="col">200</th>
-               <th scope="col">300</th>
-               <th scope="col">500</th>
-               <th scope="col">1000</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr class="tariff__table-value">
-               <th scope="row">1+0</th>
-               <td>01.00</td>
-               <td>02.00</td>
-               <td>03.00</td>
-               <td>04.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">2+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">3+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">4+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">5+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-            <tr class="tariff__table-value">
-               <th scope="row">6+0</th>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-               <td>00.00</td>
-            </tr>
-         </tbody>
-      </table>
    </div>
 </section>
