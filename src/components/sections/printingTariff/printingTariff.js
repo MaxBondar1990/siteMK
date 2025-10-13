@@ -168,18 +168,31 @@ function mountPrintingTariff(rootEl) {
       const totalFmt = formatNumberUA(total.toFixed(0));
 
       const lines = [
-         `Кількість футболок ${qtyFmt}`,
-         `Кількість кольорів друку ${colorsLabel}`,
-         `Вартість одиниці ${unitFmt}`,
-         `${qtyFmt}шт. х ${unitFmt}грн. = ${formatNumberUA(total.toFixed(2))}грн.`,
-         `Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.`
+         // `Кількість нанесень ${qtyFmt}`,
+         // `Кількість кольорів друку ${colorsLabel}`,
+         // `Вартість нанесення за 1 шт. = ${unitFmt}`,
+         // `${qtyFmt} шт. х ${unitFmt} грн. = ${formatNumberUA(total.toFixed(2))} грн.`,
+         // `Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.`
+
+         `<p class="tariff__note-text">Розрахунок вартості нанесення без урахування вартості продукції:</p>`,
+         `<p>Кількість нанесень - ${qtyFmt}</p>`,
+         `<p>Кількість кольорів друку - ${colorsLabel}</p>`,
+         `<p>Вартість нанесення за 1 шт. = ${unitFmt} грн.</p>`,
+         `<p>${qtyFmt} шт. х ${unitFmt} грн. = ${formatNumberUA(total.toFixed(2))} грн.</p>`,
+         `<p>Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.</p>`,
+         `<br>`,
+
+         // `<p >Розрахунок вартості нанесення з урахування вартості продукції:</p>`,
+         // `<p>Вартість продукції ${qtyFmt} грн.</p>`,
+         // `<p>${qtyFmt} шт. х (${unitFmt} грн. + ${unitFmt} грн.) = ${formatNumberUA(total.toFixed(2))} грн.</p>`,
+         // `<p>Всього: ${totalFmt} грн. за ${qtyFmt} комплектів в ${colorsLabel}.</p>`,
       ];
 
       // Highlight numeric fragments (quantities, prices, sums)
       const highlighted = lines.map(line =>
          line.replace(/(\d+[\d\s.,]*)/g, '<strong>$1</strong>')
       );
-      note.innerHTML = highlighted.join('<br>');
+      note.innerHTML = highlighted.join('');
    }
 
    function handleTariffPriceClick(event) {
