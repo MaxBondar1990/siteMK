@@ -1,0 +1,292 @@
+// .brands {
+//    display: flex;
+//    flex-direction: column;
+
+//    gap: 40px;
+
+//    padding: 24px 12px 24px 72px;
+//    &__title {
+//       color: $colorBlue;
+
+//       text-align: center;
+//       font-family: Montserrat;
+//       font-size: 32px;
+//       font-style: normal;
+//       font-weight: 400;
+//       line-height: 36px;
+//       text-transform: uppercase;
+//    }
+//    &__txt {
+//       width: 100%;
+
+//       color: $colorDarkGray;
+
+//       text-align: left;
+//       font-family: Montserrat;
+//       font-size: 14px;
+//       font-weight: 400;
+//       line-height: 20px;
+//    }
+//    &__wrapper {
+//       display: flex;
+//       flex-direction: column;
+
+//       gap: 20px;
+//    }
+//    &__item {
+//       display: flex;
+//       flex-direction: row;
+
+//       gap: 20px;
+//    }
+
+// }
+
+// .brands {
+//    display: flex;
+//    flex-direction: column;
+//    gap: 40px;
+//    padding: 24px 12px 24px 72px;
+
+//    &__title {
+//       color: $colorBlue;
+//       text-align: center;
+//       font-family: Montserrat;
+//       font-size: 32px;
+//       font-style: normal;
+//       font-weight: 400;
+//       line-height: 36px;
+//       text-transform: uppercase;
+//    }
+
+//    &__txt {
+//       width: 100%;
+//       color: $colorDarkGray;
+//       text-align: left;
+//       font-family: Montserrat;
+//       font-size: 14px;
+//       font-weight: 400;
+//       line-height: 20px;
+//    }
+
+//    &__wrapper {
+//       display: flex;
+//       flex-direction: column;
+//       width: 100%; 
+//       gap: 20px;
+//    }
+
+//    &__item {
+//       display: flex;
+//       flex-direction: row;
+
+//       width: 100%;
+//       height: auto;
+
+//       gap: 20px;
+
+//       /* За замовчуванням картинка ліворуч */
+//       .brands__img {
+//          order: 0;
+//       }
+
+//       .brands__txt {
+//          order: 1;
+//       }
+
+//       /* Для 2, 4, 5 і 7 картинка праворуч */
+//       &:nth-child(2) .brands__img,
+//       &:nth-child(4) .brands__img,
+//       &:nth-child(6) .brands__img {
+//          order: 1;
+//       }
+
+//       &:nth-child(2) .brands__txt,
+//       &:nth-child(4) .brands__txt,
+//       &:nth-child(6) .brands__txt {
+//          order: 0;
+//       }
+//    }
+//    &__img {
+//       width: min-content;
+//       height: 80px;
+//       flex-shrink: 0;
+//       &._height-size {
+//          height: 50px;
+//       }
+//    }
+
+//    /* --- Адаптив --- */
+//    @media (max-width: 1023px) {
+//       padding: 12px;
+//       gap: 12px;
+//       &__wrapper {
+//          flex-direction: row;
+//          // justify-content: flex-start;
+
+//          gap: 8px;
+
+//          padding: 12px;
+//          overflow-y: auto;
+//          scrollbar-width: none;
+//          &::-webkit-scrollbar {
+//             display: none;
+//          }
+//       }
+//       &__item {
+//          flex-direction: column;
+//          text-align: center;
+//          flex: 0 0 100%; /* ось це робить кожен item на всю ширину */
+//          display: flex;
+//          align-items: center;
+//          scroll-snap-align: start;
+
+//          .brands__img,
+//          .brands__txt {
+//             order: unset; /* скидаємо порядок */
+//          }
+
+//          .brands__img {
+//             max-width: 200px;
+//             margin: 0 auto;
+//          }
+//       }
+//    }
+//    @media (max-width: 375px) {
+//       padding: 12px 8px;
+//    }
+// }
+
+.brands {
+   display: flex;
+   flex-direction: column;
+
+   width: 100svw;
+
+   gap: 40px;
+   padding: 24px 12px 24px 72px;
+
+   &__title {
+      color: $colorBlue;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 36px;
+      text-transform: uppercase;
+   }
+
+   &__txt {
+      width: 100%;
+      color: $colorDarkGray;
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+   }
+   &__list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+   }
+   &__img {
+      width: min-content;
+      height: var(--height);
+      flex-shrink: 0;
+      order: 0; /* За замовчуванням ліворуч */
+   }
+   &__item-txt {
+      width: 100%;
+      color: $colorDarkGray;
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      order: 1;
+   }
+   &__item {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: auto;
+      gap: 20px;
+      /* Для десктопа: чергування картинки праворуч */
+      &:nth-child(2) .brands__img,
+      &:nth-child(4) .brands__img,
+      &:nth-child(6) .brands__img {
+         order: 1;
+      }
+
+      &:nth-child(2) .brands__item-txt,
+      &:nth-child(4) .brands__item-txt,
+      &:nth-child(6) .brands__item-txt {
+         order: 0;
+      }
+   }
+
+   /* --- Адаптивка до 1023px --- */
+   @media (max-width: 1023px) {
+      padding: 12px;
+      gap: 12px;
+   }
+   @media (max-width: 720px) {
+      &__wrapper {
+         display: flex;
+         flex-wrap: nowrap;
+         width: 100%;
+         height: auto;
+
+         overflow-x: auto;
+         scroll-snap-type: x mandatory;
+         scroll-behavior: smooth;
+         scrollbar-width: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
+      }
+      &__list {
+         // display: grid;
+         // grid-template-columns: repeat(7, 1fr);
+         // grid-template-rows: repeat(1, min-content);
+         display: flex;
+         flex-wrap: nowrap;
+         flex-direction: row;
+         justify-content: flex-start;
+         align-items: flex-start;
+
+         width: auto;
+         height: min-content;
+
+         gap: 8px;
+      }
+      &__item {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 12px;
+         flex: 0 0 60svw;
+         // width: 60svw;
+      }
+      &__img {
+         order: 0 !important; /* картинка завжди зверху */
+         height: 60px;
+         margin-bottom: 12px;
+      }
+      &__txt {
+         order: 1 !important; /* текст під картинкою */
+      }
+   }
+   @media (max-width: 430px) {
+      &__item {
+         width: 85svw;
+      }
+
+   }
+   @media (max-width: 375px) {
+      padding: 12px 8px;
+   }
+}
