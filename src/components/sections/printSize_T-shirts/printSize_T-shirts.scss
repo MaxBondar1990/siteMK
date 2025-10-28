@@ -40,7 +40,7 @@
       justify-content: center;
       align-items: center;
 
-      gap: 60px;
+      gap: 16px;
    }
    &__card {
       display: flex;
@@ -59,7 +59,9 @@
    }
    &__img {
       width: min-content;
-      height: auto;
+      // height: auto;
+      max-height: auto;
+
    }
    &__format {
       // text-align: center;
@@ -120,7 +122,11 @@
          width: calc(284px * 0.6);
          height: calc(318px * 0.6);
       }
+   &__img {
 
+      max-height: 218px;
+
+   }
    }
    @media (max-width: 375px) {
       padding: 12px 8px;

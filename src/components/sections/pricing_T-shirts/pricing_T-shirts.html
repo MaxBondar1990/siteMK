@@ -1,4 +1,4 @@
-<section data-fls-pricing_T-shirts class="pricing" aria-labelledby="pricing-title" itemscope itemtype="https://schema.org/ItemList">
+<section data-fls-pricing_T-shirts class="pricing" data-component="pricing_T-shirts" data-part="root" aria-labelledby="pricing-title" itemscope itemtype="https://schema.org/ItemList">
   <h2 class="title-visually-hidden" id="pricing-title" itemprop="name">Вартість футболок з друком</h2>
 
   <div class="pricing__list">
@@ -30,29 +30,13 @@
     </article>
   </div>
 
-  <button type="button" class="pricing__btn">Замовити прорахунок</button>
+  <button class="pricing__btn" data-action="open-modal" data-target="contact-form" data-part="button" type="button"
+         aria-label="Замовити прорахунок">Замовити прорахунок</button>
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
 </section>
-
-
-<!-- <section data-fls-pricing_T-shirts class="pricing" aria-labelledby="pricing-title">
-  <h2 class="title-visually-hidden" id="pricing-title">Вартість футболок з друком</h2>
-
-  <div class="pricing__list">
-    <article class="pricing__item">
-      <h3 class="pricing__title">Вартість 1 білої<br>футболки з друком</h3>
-      <p class="pricing__value">Від 000 грн.</p>
-    </article>
-
-    <article class="pricing__item">
-      <h3 class="pricing__title">Вартість 1 кольорової<br>футболки з друком</h3>
-      <p class="pricing__value">Від 000 грн.</p>
-    </article>
-
-    <article class="pricing__item">
-      <h3 class="pricing__title">Замовлення від 10<br>футболок з друком</h3>
-      <p class="pricing__value">Від 000 грн./футболка</p>
-    </article>
-  </div>
-
-  <button type="button" class="pricing__btn">Замовити прорахунок</button>
-</section> -->
