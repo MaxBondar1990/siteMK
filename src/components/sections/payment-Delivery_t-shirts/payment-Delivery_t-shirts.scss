@@ -24,9 +24,7 @@
       text-transform: uppercase;
 
       color: $colorBlue;
-
    }
-
    &__txt {
       width: 100%;
 
@@ -36,9 +34,7 @@
       line-height: 20px;
 
       color: $colorDarkGray;
-
    }
-
    &__subtitle {
       width: 100%;
       text-align: left;
@@ -53,11 +49,9 @@
 
       color: $colorDarkGray;
    }
-
    &__list {
       padding-left: 28px;
    }
-
    &__item {
       font-family: Montserrat;
       font-size: 14px;
@@ -66,10 +60,17 @@
 
       color: $colorDarkGray;
 
-
       list-style-type: disc;
       padding-left: 12px;
       margin: 0;
-
+   }
+   @media (max-width: 1023px) {
+      padding: 24px;
+   }
+   @media (max-width: 430px) {
+      padding: 24px 16px;
+   }
+   @media (max-width: 320px) {
+      padding: 16px 8px;
    }
 }

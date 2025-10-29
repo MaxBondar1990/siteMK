@@ -35,7 +35,6 @@
       flex-direction: column;
 
       gap: 24px;
-
    }
    &__footer {
       display: flex;
@@ -44,7 +43,6 @@
 
       width: 100%;
       gap: 20px;
-
    }
    &__texts {
       display: flex;
@@ -152,7 +150,7 @@
       margin: 0;
 
    }
-   @media (max-width: 460px) {
+   @media (max-width: 620px) {
       flex-direction: column;
       align-items: center;
       &__wrapper {

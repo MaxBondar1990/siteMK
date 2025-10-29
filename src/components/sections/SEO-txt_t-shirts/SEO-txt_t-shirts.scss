@@ -1,37 +1,34 @@
 .SEO-txt {
    position: relative;
    display: flex;
-   justify-content: center;
-   align-items: center;
    flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
 
-   // width: 100%;
-   height: 50svh;
+   width: 100%;
+   height: auto;
 
-   padding: 8px 8px 8px 8px;
-
-   overflow-y: hidden;
-
-   transition: all .3s;
-   background-color: $colorLightGray;
+   padding: 16px 16px 16px 72px;
    gap: 20px;
 
-   &._action {
-      height: auto;
-      padding: 8px 8px 52px 8px;
-   }
-   @media (min-width: $mobileMediumWidth) {
-      padding: 12px 12px 12px 12px;
-   }
-   @media (min-width: $tabletWidth) {
-      padding: 20px 20px 12px 20px;
-   }
-   @media (min-width: $desctopSmallWidth) {
-      padding: 24px 12px 4px 72px;
-      height: auto;
-      margin-bottom: 0;
-   }
+   background:  $colorLightGray;
 
+   transition: all .3s;
+   
+   @media (max-width: 1023px) {
+      height: 50svh;
+      padding: 16px;
+
+      overflow: hidden;
+      &._action {
+         height: auto;
+         overflow-y: hidden;
+         padding-bottom: 52px;
+      }
+   }
+   @media (max-width: 768px) {
+      padding: 12px;
+   }
    &__wrapper {
       display: flex;
       flex-direction: column;
@@ -51,12 +48,11 @@
       font-weight: 400;
       line-height: 20px;
       a {
-
-      color: $colorBlue;
-      font-family: Montserrat;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 20px;
+         color: $colorBlue;
+         font-family: Montserrat;
+         font-size: 14px;
+         font-weight: 700;
+         line-height: 20px;
       }
    }
    &__title {
@@ -68,7 +64,7 @@
       font-family: Montserrat;
       font-size: 24px;
       font-weight: 700;
-      line-height: 20px;
+      line-height: 1.2em;
    }
    &__list {
       width: 100%;
@@ -107,47 +103,15 @@
          scale: .97;
       }
    }
-        /* ===== Адаптив ===== */
-
-
-   // @media (max-width: 1023px) {
-   //    padding: 12px;
-   //    gap: 16px;
-
-   // }
-   // @media (max-width: 768px) {
-   //    padding: 12px;
-   //       gap: 12px;
-   //    &__wrapper {
-   //       flex-direction: row;
-   //       justify-content: flex-start;
-
-   //       gap: 16px;
-
-   //       padding: 12px;
-   //       overflow-y: hidden;
-   //       scrollbar-width: none;
-   //       &::-webkit-scrollbar {
-   //          display: none;
-   //       }
-   //    }
-   // }
-   // @media (max-width: 430px) {
-   //    padding: 12px 8px;
-   // }
-   // @media (max-width: 390px) {
-   //    padding: 12px;
-   // }
 }
 .block {
-   display: flex;
    display: flex;
    flex-direction: column;
 
    border-radius: 20px;
    padding: 40px;
 
-   gap: 10px;
+   gap: 12px;
 
    width: 100%;
 
@@ -162,31 +126,31 @@
       font-family: Montserrat;
       font-size: 24px;
       font-weight: 700;
-      line-height: 20px;
+      line-height: 1.2em;
    }
    &__wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr; /* дві колонки */
       grid-template-rows: auto auto;  /* дві строки */
 
-      gap: 10px;
+      gap: 12px;
 
-            /* перший елемент займає дві строки */
+      /* перший елемент займає дві строки */
       .block__item:nth-child(1) {
-      grid-column: 1;
-      grid-row: 1 / span 2;
+         grid-column: 1;
+         grid-row: 1 / span 2;
       }
 
       /* другий — друга колонка, перший ряд */
       .block__item:nth-child(2) {
-      grid-column: 2;
-      grid-row: 1;
+         grid-column: 2;
+         grid-row: 1;
       }
 
       /* третій — друга колонка, другий ряд */
       .block__item:nth-child(3) {
-      grid-column: 2;
-      grid-row: 2;
+         grid-column: 2;
+         grid-row: 2;
       }
    }
    &__item {
@@ -229,6 +193,38 @@
       line-height: 20px;
 
       list-style-type: disc;
+   }
+   @media (max-width: 768px) {
+      padding: 20px;
+      &__wrapper {
+         gap: 8px;
+      }
+   }
+   @media (max-width: 430px) {
+      padding: 16px;
+      &__title {
+         text-align: center;
+      }
+      &__wrapper {
+         grid-template-columns: 1fr;
+         grid-template-rows: auto auto auto;
+         gap: 8px;
+      }
+      /* перший елемент займає дві строки */
+      .block__item:nth-child(1) {
+         grid-column: 1;
+         grid-row: 1 / span 2;
+      }
+      /* другий — друга колонка, перший ряд */
+      .block__item:nth-child(2) {
+         grid-column: 1;
+         grid-row: 3;
+      }
+      /* третій — друга колонка, другий ряд */
+      .block__item:nth-child(3) {
+         grid-column: 1;
+         grid-row: 4;
+      }
    }
    
 }
