@@ -1,0 +1,42 @@
+<section data-fls-pricing_T-shirts class="pricing" data-component="pricing_T-shirts" data-part="root" aria-labelledby="pricing-title" itemscope itemtype="https://schema.org/ItemList">
+  <h2 class="title-visually-hidden" id="pricing-title" itemprop="name">Стоимость футболок с печатью</h2>
+
+  <div class="pricing__list">
+    <article class="pricing__item" itemscope itemtype="https://schema.org/Product" itemprop="itemListElement">
+      <h3 class="pricing__title" itemprop="name">Стоимость 1 белой<br>футболки с печатью</h3>
+      <p class="pricing__value" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <span itemprop="price">000</span> <span itemprop="priceCurrency" content="UAH">грн.</span>
+        <link itemprop="availability" href="https://schema.org/InStock">
+        <meta itemprop="url" content="https://example.com/tshirt-white">
+      </p>
+    </article>
+
+    <article class="pricing__item" itemscope itemtype="https://schema.org/Product" itemprop="itemListElement">
+      <h3 class="pricing__title" itemprop="name">Стоимость 1 цветной<br>футболки с печатью</h3>
+      <p class="pricing__value" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <span itemprop="price">000</span> <span itemprop="priceCurrency" content="UAH">грн.</span>
+        <link itemprop="availability" href="https://schema.org/InStock">
+        <meta itemprop="url" content="https://example.com/tshirt-color">
+      </p>
+    </article>
+
+    <article class="pricing__item" itemscope itemtype="https://schema.org/Product" itemprop="itemListElement">
+      <h3 class="pricing__title" itemprop="name">Заказ от 10<br>футболок с печатью</h3>
+      <p class="pricing__value" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <span itemprop="price">000</span> <span itemprop="priceCurrency" content="UAH">грн.</span>/футболка
+        <link itemprop="availability" href="https://schema.org/InStock">
+        <meta itemprop="url" content="https://example.com/tshirt-bulk">
+      </p>
+    </article>
+  </div>
+
+  <button class="pricing__btn" data-action="open-modal" data-target="contact-form" data-part="button" type="button"
+         aria-label="Заказать просчет">Заказать просчет</button>
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
+</section>
