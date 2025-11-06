@@ -115,15 +115,24 @@
       line-height: 20px;
    }
    &__image-wrapper {
-    display: grid;
-    justify-items: center;
-    gap: 12px;
-    width: max-content;
-    margin: 0 auto;
+
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      width: max-content;
+      margin: 0 auto;
+
+      overflow: hidden;
    }
    &__img {
       width: 220px;
       height: 220px;
+
+      display: none;
+      &._active {
+         display: block;
+
+      }
    }
    &__dots {
       display: flex;
