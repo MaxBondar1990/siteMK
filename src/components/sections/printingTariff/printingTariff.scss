@@ -181,7 +181,17 @@
 
   // === Selection & Highlight styles ===
     &__table-value {
-        &._selected {
+        // highlight when the ROW is selected (applies to its cells)
+        &._selected th,
+        &._selected td {
+            font-weight: 700;
+            color: $colorOrange;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 4px rgba(247, 147, 30, .8);
+        }
+
+        // highlight when a specific CELL is selected
+        ._selected {
             font-weight: 700;
             color: $colorOrange;
             transition: all 0.25s ease;
