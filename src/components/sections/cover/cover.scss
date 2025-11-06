@@ -68,13 +68,15 @@
       grid-column: 1 / 2;
       grid-row: 1 / 2;
 
-      width: 80%;
+      width: var(--titleWidth);
+
 
       margin: 0;
 
       font-weight: 700;
       font-size: 68px;
       line-height: 1.2em;
+
       text-align: left;
       text-transform: uppercase;
 

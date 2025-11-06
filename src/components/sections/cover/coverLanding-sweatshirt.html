@@ -1,0 +1,24 @@
+<section data-fls-cover class="cover _t-shirts" style="--bg: linear-gradient(180deg, #6F6F6F 0%, #B2B2B2 50%, #F5F5F5 100%)" data-component="cover" data-part="root" aria-label="Обкладинка сайту рекламної агенції МК">
+  <picture class="cover__pic">
+    <img class="cover__img" src="@img/coverLanding-sweatshirt/image-11.webp" title="Обкладинка рекламної агенції МК" alt="Обкладинка рекламної агенції МК" />
+  </picture>
+
+  <div class="cover__content">
+    <h1 class="cover__title" style="--color: #FD9800; --titleWidth: 100%" id="cover-title">
+      [[title]]
+    </h1>
+    <p class="cover__txt" style="--txtColor: #6F6F6F" lang="uk-UA" id="cover-description">
+      Замовте нанесення лого чи індивідуального дизайну на худі, реглани та світшоти від 1 штуки. Швидке виготовлення від 2 робочих днів, доступні ціни для тиражів від 10 шт.
+    </p>
+    <button class="cover__button" style="--btnColor: #6F6F6F; --btnBg: #ffffff; --btnBorderColor: none" data-action="open-modal" data-target="contact-form" data-part="button" type="button" aria-label="Замовити послугу">
+      Замовити
+    </button>
+  </div>
+     <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
+</section>
