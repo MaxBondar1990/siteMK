@@ -1,33 +1,43 @@
 <!-- Article форма замовлення -->
-<div class="order-form">
+<div class="order-form" data-component="order-form" data-part="root">
    <div class="order-form__info">
-      <h2 class="order-form__title" data-article-title="Футболка унісекс">Футболка унісекс</h2>
-      <h3 class="order-form__subtitle" data-article-subtitle="Gildan SoftStyle 153">Gildan SoftStyle 153</h3>
-      <p class="order-form__article-id"><span>арт.:</span> <span data-article-id="7019008">7019008</span></p>
-      <div class="order-form__color col016" data-order-form-color data-article-color="016">016</div>
+      <h2 class="order-form__title" data-name="title">Футболка унісекс</h2>
+      <h3 class="order-form__subtitle" data-name="subtitle">Gildan SoftStyle 153</h3>
+      <p class="order-form__article-id"><span>арт.:</span> <span data-article-id>7019008</span></p>
+      <div class="order-form__color col016" data-order-form-color>016</div>
    </div>
 
    <div class="order-form__cost">
       <p class="order-form__cost-txt">Вартість замовлення:</p>
-      <p class="order-form__cost-txt" data-name="total-cost" data-unit-price="2170.00" data-currency="UAH" data-total-currency="грн.">2170.00 грн.
+      <p class="order-form__cost-txt" data-name="total-cost" data-unit-price="2170.00" data-currency="UAH"
+         data-total-currency="грн." aria-live="polite">2170.00 грн.
       </p>
    </div>
-   <form class="order-form__form" action="/" name="article-order">
+   <form class="order-form__form" data-part="form" action="/" method="post" enctype="multipart/form-data"
+      name="article-order" autocomplete="on" novalidate>
       <p class="order-form__form-txt">Вкажіть кількість<i>*</i></p>
-      <input class="order-form__form-input" type="number" name="quantity" value="1" required>
+      <input class="order-form__form-input" type="number" name="quantity" value="1" required placeholder="К-сть" min="1"
+         step="1" inputmode="numeric">
 
-      <p class="order-form__form-txt" data-i18n="orderForm.nameLabel">Ім'я:<i>*</i></p>
-      <input class="order-form__form-input" type="text" name="name" required>
+      <p class="order-form__form-txt">Ім'я:<i>*</i></p>
+      <input class="order-form__form-input" type="text" name="name" required placeholder="Ваше ім'я"
+         autocomplete="name">
 
-      <p class="order-form__form-txt" data-i18n="orderForm.phoneLabel">Телефон:<i>*</i></p>
-      <input class="order-form__form-input" type="tel" name="phone" required>
+      <p class="order-form__form-txt">Телефон:<i>*</i></p>
+      <input class="order-form__form-input" type="tel" name="phone" required placeholder="Ваш телефон"
+         autocomplete="tel" inputmode="tel">
 
-      <p class="order-form__form-txt" data-i18n="orderForm.emailLabelOptional">E-mail:</p>
-      <input class="order-form__form-input" type="email" name="email">
+      <p class="order-form__form-txt">E-mail:</p>
+      <input class="order-form__form-input" type="email" name="email" placeholder="Ваш e-mail" autocomplete="email">
 
-      <p class="order-form__form-txt" data-i18n="orderForm.addDesign">Додати макет</p>
-      <input type="file" name="file_print">
+      <p class="order-form__form-txt">Додати макет</p>
+      <input type="file" name="file_print" accept="image/*,application/pdf,.ai,.svg,.eps">
 
-      <input data-send-order-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку">
+      <!-- Hidden metadata (to be populated by JS before submit) -->
+      <input type="hidden" name="article_id" data-source="[data-article-id]">
+      <input type="hidden" name="color_code" data-source="[data-order-form-color]">
+
+      <input data-send-order-form type="submit" value="Надіслати" name="articleOrderBtn" title="Надіслати заявку"
+         data-part="submit" data-action="submit-order">
    </form>
 </div>

@@ -4,17 +4,21 @@ import '../../fetch/submitContactForm/submitContactForm.js';
 import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js'
 import { close } from '../../custom/modal/modal.js';
 
-// Centralized selectors
+// Centralized selectors (component-first)
 const SELECTORS = {
-   modal: '.order-form', // match your provided HTML root
+   root: '[data-component="order-form"][data-part="root"]',
+   form: '[data-part="form"]',
    qty: 'input[name="quantity"]',
    total: '[data-name="total-cost"]',
    color: '[data-order-form-color]',
    price: '[data-name="product-cost"]', // optional explicit unit price
-   unitPriceAttr: 'data-unit-price',      // optional fallback on the root
 };
 
-// Cached refs
+function getArticleRoot(node) {
+   return node?.closest('section.article, [itemscope][itemtype="https://schema.org/Product"]') || null;
+}
+
+// Cached refs (per mount)
 let root, quantityInput, totalElement, colorElement;
 
 // Reuse a single number formatter
@@ -23,22 +27,67 @@ const numberFmt = new Intl.NumberFormat("uk-UA", {
    maximumFractionDigits: 2,
 });
 
+// ---------------- Logic helpers ----------------
+function parseNumber(text) {
+   const normalized = String(text).replace(/\s/g, "").replace(",", ".");
+   const n = parseFloat(normalized);
+   return Number.isFinite(n) ? n : 0;
+}
+
+function setTotalCost(cost) {
+   if (!totalElement) return;
+   totalElement.textContent = `${numberFmt.format(cost)} грн.`;
+}
+
 function syncUnitPriceFromVisible() {
    if (!totalElement) return;
    const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
-   const priceElement = document.querySelector(SELECTORS.price);
+   const article = getArticleRoot(root);
+   const priceElement = article ? article.querySelector(SELECTORS.price) : (root ? root.querySelector(SELECTORS.price) : null);
    let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
    if (!unitPrice) {
       const totalVisible = parseNumber(totalElement.textContent);
       if (totalVisible && qty > 0) unitPrice = totalVisible / qty;
    }
    if (unitPrice) {
-      totalElement.setAttribute('data-unit-price', numberFmt.format(unitPrice).replace(/\s/g, '').replace(',', '.'));
+      totalElement.setAttribute('data-unit-price', String(unitPrice));
    }
 }
 
-// Public: initialize module (safe if modal not present yet)
-export function initOrderForm(rootNode = document.querySelector(SELECTORS.modal)) {
+export function calcTotalCost() {
+   if (!totalElement) return;
+   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
+
+   const article = getArticleRoot(root);
+   const priceElement = article ? article.querySelector(SELECTORS.price) : (root ? root.querySelector(SELECTORS.price) : null);
+   let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
+
+   if (!unitPrice) {
+      const totalVisible = parseNumber(totalElement.textContent);
+      if (totalVisible && qty > 0) unitPrice = totalVisible / qty;
+   }
+
+   if (!unitPrice && totalElement?.dataset?.unitPrice) {
+      unitPrice = parseNumber(totalElement.dataset.unitPrice);
+   }
+
+   if (!unitPrice) return;
+   setTotalCost(unitPrice * qty);
+   syncUnitPriceFromVisible();
+}
+
+export function setColor(color) {
+   if (!colorElement) return;
+   colorElement.textContent = color;
+   colorElement.setAttribute('data-article-color', String(color));
+
+   for (const cls of [...colorElement.classList]) {
+      if (cls.startsWith('col')) colorElement.classList.remove(cls);
+   }
+   colorElement.classList.add(`col${color}`);
+}
+
+export function initOrderForm(rootNode = document.querySelector(SELECTORS.root)) {
    root = rootNode;
    if (!root) return;
 
@@ -46,192 +95,123 @@ export function initOrderForm(rootNode = document.querySelector(SELECTORS.modal)
    totalElement = root.querySelector(SELECTORS.total);
    colorElement = root.querySelector(SELECTORS.color);
 
-   // Cache a unit price if provided via attribute (data-unit-price)
-   if (root.hasAttribute(SELECTORS.unitPriceAttr)) {
-      const raw = root.getAttribute(SELECTORS.unitPriceAttr);
-      const val = parseNumber(raw);
-      if (val > 0) root.dataset.unitPrice = String(val);
-   }
-
    if (quantityInput) {
-      quantityInput.addEventListener("input", calcTotalCost);
+      quantityInput.addEventListener('input', calcTotalCost);
    }
+   if (totalElement) calcTotalCost();
 
-   // Initial calculation (in case there is a default qty)
-   calcTotalCost();
-
-   // Observe VISIBLE changes of total or unit price to keep data-unit-price in sync
    try {
       const mo = new MutationObserver(() => syncUnitPriceFromVisible());
       if (totalElement) mo.observe(totalElement, { characterData: true, childList: true, subtree: true });
-      const priceEl = document.querySelector(SELECTORS.price);
+      const article = getArticleRoot(root);
+      const priceEl = article ? article.querySelector(SELECTORS.price) : (root ? root.querySelector(SELECTORS.price) : null);
       if (priceEl) mo.observe(priceEl, { characterData: true, childList: true, subtree: true });
    } catch (_) { }
-
-   // Also recalc on generic changes inside the form (e.g., variant selects)
-   root.addEventListener('change', () => calcTotalCost());
 }
 
-// Public: update chosen color text + class
-export function setColor(color) {
-   // lazy resolve if not yet cached
-   if (!colorElement) {
-      colorElement = (root || document).querySelector(SELECTORS.color);
-      if (!colorElement) return;
-   }
-
-   colorElement.textContent = color;
-   colorElement.setAttribute('data-article-color', String(color));
-
-   // Remove previous classes starting with "col"
-   for (const cls of [...colorElement.classList]) {
-      if (cls.startsWith("col")) {
-         colorElement.classList.remove(cls);
-      }
-   }
-   // Add new class like col016
-   colorElement.classList.add(`col${color}`);
+function populateHiddenMeta(form) {
+   const hiddens = form.querySelectorAll('input[type="hidden"][data-source]');
+   hiddens.forEach((input) => {
+      const srcSel = input.getAttribute('data-source');
+      const attr = input.getAttribute('data-attr');
+      const useText = input.hasAttribute('data-text');
+      const srcEl = form.closest(SELECTORS.root)?.querySelector(srcSel) || form.querySelector(srcSel);
+      if (!srcEl) return;
+      let val = '';
+      if (attr) val = srcEl.getAttribute(attr) || '';
+      else if (useText) val = (srcEl.textContent || '').trim();
+      else val = (srcEl.value || srcEl.textContent || '').trim();
+      if (val !== '') input.value = val;
+   });
 }
 
-// Public: recalc total price
-export function calcTotalCost() {
-   // Ensure total element exists
-   if (!totalElement) {
-      totalElement = (root || document).querySelector(SELECTORS.total);
-      if (!totalElement) return;
-   }
-
-   // Current quantity from visible input
-   const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
-
-   // 1) Prefer VISIBLE unit price element, if exists
-   const priceElement = document.querySelector(SELECTORS.price);
-   let unitPrice = priceElement ? parseNumber(priceElement.textContent) : 0;
-
-   // 2) If not found, derive from VISIBLE total text (amount / qty)
-   if (!unitPrice) {
-      const totalVisible = parseNumber(totalElement.textContent);
-      if (totalVisible && qty > 0) {
-         unitPrice = totalVisible / qty;
-      }
-   }
-
-   // 3) Legacy fallback: cached data-unit-price (root)
-   if (!unitPrice && root && root.dataset.unitPrice) {
-      unitPrice = parseNumber(root.dataset.unitPrice);
-   }
-
-   // 4) Legacy fallback: data-unit-price on the total element
-   if (!unitPrice && totalElement?.dataset?.unitPrice) {
-      unitPrice = parseNumber(totalElement.dataset.unitPrice);
-   }
-
-   if (!unitPrice) return; // nothing to calculate
-
-   const total = unitPrice * qty;
-   setTotalCost(total);
-
-   // Keep data-unit-price in sync with the visible/derived unit price
-   syncUnitPriceFromVisible();
-}
-
-// Format and write total (UAH)
-function setTotalCost(cost) {
-   // lazy resolve in case init wasn't called yet
-   if (!totalElement) {
-      totalElement = (root || document).querySelector(SELECTORS.total);
-      if (!totalElement) return;
-   }
-   totalElement.textContent = `${numberFmt.format(cost)} грн.`;
-}
-
-// Helpers
-function parseNumber(text) {
-   // Normalize spaces and decimal separators (supports "2 170", "2,170.50", "2 170,50")
-   const normalized = String(text).replace(/\s/g, "").replace(",", ".");
-   const n = parseFloat(normalized);
-   return Number.isFinite(n) ? n : 0;
-}
-
-// Auto-init when DOM is ready (safe to include on any page)
-if (document.readyState === "loading") {
-   document.addEventListener("DOMContentLoaded", () => initOrderForm());
-} else {
-   initOrderForm();
-}
-// -------------------------------------------------------------------------
-
-function mountCover(rootEl) {
+function mountOrderForm(rootEl) {
    if (!rootEl) return;
 
    const ac = new AbortController();
    const { signal } = ac;
 
-   // Делегування КЛІКІВ в межах компонента
-   rootEl.addEventListener('click', async (e) => {
-      const btn = e.target.closest('[data-send-order-form]');
-      if (!btn || !rootEl.contains(btn) || (btn.type && btn.type !== 'submit')) return;
-
-      e.preventDefault();
-      const form = btn.form || e.target.form;
+   rootEl.addEventListener('click', (e) => {
+      const submitEl = e.target.closest('[data-action="submit-order"]');
+      if (!submitEl || !rootEl.contains(submitEl)) return;
+      const form = submitEl.form || rootEl.querySelector(SELECTORS.form) || submitEl.closest('form');
       if (!form) return;
+      e.preventDefault();
+      if (typeof form.requestSubmit === 'function') form.requestSubmit();
+      else form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+   }, { signal });
 
-      if (!isRequiredInput(form)) return;
+   rootEl.addEventListener('submit', async (e) => {
+      const form = e.target.closest(SELECTORS.form) || e.target.closest('form');
+      if (!form || !rootEl.contains(form)) return;
+      e.preventDefault();
 
-      const formData = new FormData(form);
-      // todo add title, color, etc
+      if (typeof isRequiredInput === 'function' && isRequiredInput(form) === false) return;
+      try { populateHiddenMeta(form); } catch (_) { }
+      const formData = new FormData();
       const formName = form.getAttribute('name');
       if (formName) formData.append('formName', formName);
 
-      // Collect visible meta from DOM and append to FormData (prefer VISIBLE text)
-      const titleEl = rootEl.querySelector('[data-article-title]');
-      const subtitleEl = rootEl.querySelector('[data-article-subtitle]');
-      const idEl = rootEl.querySelector('[data-article-id]');
-      const colorEl = rootEl.querySelector('[data-article-color]');
-      const totalEl = rootEl.querySelector('[data-name="total-cost"]');
+      const articleIdInput = form.querySelector('input[name="article_id"]');
+      let articleId = articleIdInput ? (articleIdInput.value || '').trim() : '';
+      if (!articleId) articleId = (rootEl.getAttribute('data-article-id') || '').trim();
+      if (!articleId) {
+         const src = rootEl.querySelector('[data-article-id]');
+         if (src) articleId = (src.getAttribute('data-article-id') || src.textContent || '').trim();
+      }
+      if (articleId) formData.append('article_id', articleId);
 
-      const articleTitle = (titleEl?.textContent || titleEl?.dataset.articleTitle || '').trim();
-      const articleSubtitle = (subtitleEl?.textContent || subtitleEl?.dataset.articleSubtitle || '').trim();
-      const articleId = (idEl?.textContent || idEl?.dataset.articleId || '').trim();
-      const articleColor = (colorEl?.textContent || colorEl?.dataset.articleColor || '').trim();
+      const qty = quantityInput ? (parseInt(quantityInput.value, 10) || 1) : 1;
+      formData.append('quantity', String(qty));
 
-      if (articleTitle) formData.set('article_title', articleTitle);
-      if (articleSubtitle) formData.set('article_subtitle', articleSubtitle);
-      if (articleId) formData.set('article_id', articleId);
-      if (articleColor) formData.set('color', articleColor);
-      if (totalEl) formData.set('total', totalEl.textContent.trim());
+      const colorInput = form.querySelector('input[name="color_code"]');
+      const sizeInput = form.querySelector('input[name="size"]');
+      const colorVal = colorInput ? (colorInput.value || '').trim() : (colorElement?.dataset?.articleColor || '').trim();
+      const sizeVal = sizeInput ? (sizeInput.value || '').trim() : '';
+      if (colorVal) formData.append('color_code', colorVal);
+      if (sizeVal) formData.append('size', sizeVal);
+
+      const nameInput = form.querySelector('input[name="name"]');
+      const phoneInput = form.querySelector('input[name="phone"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      if (nameInput) formData.append('name', (nameInput.value || '').trim());
+      if (phoneInput) formData.append('phone', (phoneInput.value || '').trim());
+      if (emailInput) formData.append('email', (emailInput.value || '').trim());
 
       try {
          const res = await loadContent('submitOrderForm', formData, undefined, 'json');
-         if (res && res.status === 'success') {
-            if (res.html) {
-               document.body.insertAdjacentHTML('beforeend', res.html);
-            }
-            // Close the surrounding modal (if order form is inside a modal)
+         if (res && res.status === 'ok') {
             const modalRoot = rootEl.closest('[data-component="modal"][data-part="root"]');
             if (modalRoot && typeof close === 'function') {
-               try { close(modalRoot); } catch (_) { const target = modalRoot.getAttribute('data-target'); if (target) try { close(target); } catch (_) { } }
+               try {
+                  close(modalRoot);
+               } catch (_) { }
             }
-            // Emit event for external listeners (analytics, etc.)
+
+            if (res && typeof res.html === 'string' && res.html.trim()) {
+               setTimeout(() => {
+                  document.body.insertAdjacentHTML('beforeend', res.html);
+               }, 600);
+            }
             rootEl.dispatchEvent(new CustomEvent('orderform:success', { bubbles: true, detail: res }));
          } else {
-            // On error/timeout we do not close the form/modal; you can optionally show a fallback message here
+            if (res && typeof res.html === 'string' && res.html.trim()) {
+               document.body.insertAdjacentHTML('beforeend', res.html);
+            }
             rootEl.dispatchEvent(new CustomEvent('orderform:error', { bubbles: true, detail: res }));
          }
       } catch (err) {
-         // Network or unexpected error — leave form open
          rootEl.dispatchEvent(new CustomEvent('orderform:error', { bubbles: true, detail: { message: String(err) } }));
       }
-   }, { signal });
+   }, { signal, capture: true });
 
    return () => ac.abort();
 }
 
-// Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootOrderForm = document.querySelector(SELECTORS.modal);
+const rootOrderForm = document.querySelector(SELECTORS.root);
 if (rootOrderForm) {
    initOrderForm(rootOrderForm);
-   const cleanup = mountCover(rootOrderForm);
+   const cleanup = mountOrderForm(rootOrderForm);
    if (import.meta.hot && cleanup) {
       import.meta.hot.dispose(cleanup);
    }

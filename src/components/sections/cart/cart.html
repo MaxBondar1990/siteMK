@@ -1,0 +1,62 @@
+<div class="cart" data-component="cart" data-part="root">
+   <!-- Фіксована кнопка корзини -->
+   <button data-fls-cart class="cart__floating-btn" data-action="open-modal" data-target="cart-modal"
+      aria-label="Відкрити корзину" title="Відкрити корзину">
+      <svg class="cart__floating-icon" aria-hidden="true" focusable="false">
+         <use xlink:href="__spritemap#sprite-cart"></use>
+      </svg>
+      <span class="cart__count" data-cart-count>0</span>
+   </button>
+   <!-- меню корзини -->
+   <div id="cart-modal" class="cart__modal" data-component="modal" data-part="root" data-target="cart-modal"
+      data-state="open" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title" tabindex="-1"
+      aria-hidden="false">
+      <button class="cart__modal-close" data-action="close-modal" data-part="close" type="button"
+         aria-label="Закрити корзину"></button>
+      <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->
+      <h2 id="cart-modal-title" class="title-visually-hidden">Корзина</h2>
+      <!-- Блок для виводу результатів пошуку -->
+      <ul class="cart__results" data-part="results">
+         <!-- Тут будуть товари корзини -->
+      </ul>
+      <div class="cart__footer" data-part="footer">
+         <div class="cart__total">
+            <span>Всього:</span>
+            <strong data-part="total-value">0 грн</strong>
+         </div>
+         <button type="button" class="cart__clear-btn" data-action="cart-clear" hidden>Очистити корзину</button>
+         <button type="button" class="cart__checkout-btn" data-action="cart-checkout-toggle" aria-expanded="false"
+            aria-controls="cart-order-form">
+            Оформити
+         </button>
+
+         <form id="cart-order-form" class="order-form__form cart__order-form" data-part="form"
+            action="/form/buyAnyGoods/" name="cart-order" novalidate hidden>
+
+            <p class="order-form__form-txt">
+               Ім'я:
+               <i>*</i>
+            </p>
+            <input class="order-form__form-input" type="text" name="name" required>
+
+            <p class="order-form__form-txt">
+               Телефон:
+               <i>*</i>
+            </p>
+            <input class="order-form__form-input" type="tel" name="phone" required>
+
+            <p class="order-form__form-txt">E-mail:</p>
+            <input class="order-form__form-input" type="email" name="email">
+
+            <p class="order-form__form-txt">Додати макет</p>
+            <input type="file" name="file_print">
+
+            <!-- Hidden metadata populated перед відправкою -->
+            <input type="hidden" name="cart" data-cart-json>
+
+            <input data-part="submit" data-send-order-form type="submit" value="Надіслати" name="cartOrderBtn"
+               title="Надіслати заявку">
+         </form>
+      </div>
+   </div>
+</div>
