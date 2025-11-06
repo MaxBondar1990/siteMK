@@ -1,45 +1,96 @@
-<section data-fls-recommended-products class="recommended-products" data-component="recommended-products" data-part="root" aria-labelledby="recommended-products"
-   itemscope itemtype="https://schema.org/ItemList">
-   <h2 class="recommended-products__title" id="popular-products">Найпопулярніші товари</h2>
+<section data-fls-recommended-products 
+         class="recommended-products" 
+         data-component="recommended-products" 
+         data-part="root" 
+         aria-labelledby="popular-products"
+         itemscope 
+         itemtype="https://schema.org/ItemList">
+
+   <h2 class="recommended-products__title" id="popular-products" itemprop="name">
+      Найпопулярніші товари
+   </h2>
+
+   <meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderAscending" />
+   <meta itemprop="numberOfItems" content="12" />
+
    <div class="recommended-products__goods-tiles">
       <div class="recommended-products__tiles-wrapper">
-         <block name="recommended-products-card">
+         
+         <!-- Кожна картка — елемент списку (ListItem) -->
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="1" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="2" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="3" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="4" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="5" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="6" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="7" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="8" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="9" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="10" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="11" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
-         <block name="recommended-products-card">
+         </div>
+         <div itemprop="itemListElement" 
+              itemscope 
+              itemtype="https://schema.org/ListItem">
+            <meta itemprop="position" content="12" />
             <include src="@components/sections/recommended-products/recommended-products-Card.html" locals='{}'></include>
-         </block>
+         </div>
+
       </div>
    </div>
-
 </section>

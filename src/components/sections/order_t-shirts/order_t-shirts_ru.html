@@ -1,4 +1,4 @@
-<section data-fls-order_t-shirts class="order" itemscope itemtype="https://schema.org/HowTo">
+<section data-fls-order_t-shirts class="order" data-component="order_t-shirts" data-part="root" itemscope itemtype="https://schema.org/HowTo">
   <h2 class="order__title" itemprop="name">Как заказать футболки с принтом?</h2>
 
   <ol class="order__steps">
@@ -42,5 +42,12 @@
     </li>
   </ol>
 
-  <button class="order__btn" type="button">Заказать печать на футболках</button>
+  <button class="order__btn" data-action="open-modal" data-target="contact-form" data-part="button" type="button">Заказать печать на футболках</button>
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
 </section>

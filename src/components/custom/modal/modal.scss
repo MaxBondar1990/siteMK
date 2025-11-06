@@ -1,6 +1,6 @@
 .modal {
    position: fixed;
-   top: -110%;
+   top: -310%;
    left: 50%;
    transform: translateX(-50%);
    display: grid;
@@ -28,7 +28,7 @@
    // gap: 4px;
    padding: 4px;
 
-   z-index: 3;
+   z-index: 1000;
 
    &._error {
       background: rgba(114, 51, 40, .6);

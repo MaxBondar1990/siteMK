@@ -67,6 +67,7 @@
       justify-content: center;
 
       border-radius: 20px;
+      box-shadow: 2px 2px 4px rgba(111, 111, 111, 0.5);
       padding: 1em 1.5em;
 
       font-size: 16px;
@@ -79,7 +80,7 @@
          scale: .97;
       }
    }
-   @media (max-width: 1058px) {
+   @media (max-width: 1140px) {
       &__list {
          width: 100%;
       }

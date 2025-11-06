@@ -216,3 +216,22 @@ if (rootOrderForm) {
       import.meta.hot.dispose(cleanup);
    }
 }
+
+// ________________________________________________ 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector('.order-form__form');
+  if (!form) return;
+
+  const fileInput = form.querySelector('input[name="file_print"]');
+  const fileLabel = form.querySelector('[data-name="print-maket"]');
+
+  if (!fileInput || !fileLabel) return;
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      fileLabel.textContent = fileInput.files[0].name;
+    } else {
+      fileLabel.textContent = 'Додати макет';
+    }
+  });
+});
