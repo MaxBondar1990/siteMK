@@ -15,21 +15,50 @@
    </div>
    <form class="order-form__form" data-part="form" action="/" method="post" enctype="multipart/form-data"
       name="article-order" autocomplete="on" novalidate>
+      <!-- Кількість -->
       <p class="order-form__form-txt">Вкажіть кількість<i>*</i></p>
-      <input class="order-form__form-input" type="number" name="quantity" value="1" required placeholder="К-сть" min="1"
-         step="1" inputmode="numeric">
+      <p class="order-form__form-txt">обавши розміри</p>
+      <!-- <input class="order-form__form-input" type="number" name="quantity" value="1" required placeholder="К-сть" min="1"
+         step="1" inputmode="numeric"> -->
 
+      <!-- Розміри -->
+      <div class="order-form__quantity-of-sizes-block">
+         <div class="order-form__quantity-of-sizes">
+            <p class="size-name">XS</p>
+            <p class="size-name">S</p>
+            <p class="size-name">M</p>
+            <p class="size-name">L</p>
+            <p class="size-name">XL</p>
+            <p class="size-name">2XL</p>
+            <p class="size-name">3XL</p>
+            <p class="size-name">4XL</p>
+            <input class="quantity-input" type="number" name="XS" value="0">
+            <input class="quantity-input" type="number" name="S" value="0">
+            <input class="quantity-input" type="number" name="M" value="0">
+            <input class="quantity-input" type="number" name="L" value="0">
+            <input class="quantity-input" type="number" name="XL" value="0">
+            <input class="quantity-input" type="number" name="2XL" value="0">
+            <input class="quantity-input" type="number" name="3XL" value="0">
+            <input class="quantity-input" type="number" name="4XL" value="0">
+         </div>
+      </div>
+
+      <!-- Контактні данні -->
+      <!-- Імʼя -->
       <p class="order-form__form-txt">Ім'я:<i>*</i></p>
       <input class="order-form__form-input" type="text" name="name" required placeholder="Ваше ім'я"
          autocomplete="name">
 
+      <!-- Телефон -->
       <p class="order-form__form-txt">Телефон:<i>*</i></p>
       <input class="order-form__form-input" type="tel" name="phone" required placeholder="Ваш телефон"
          autocomplete="tel" inputmode="tel">
 
+      <!-- Пошта -->
       <p class="order-form__form-txt">E-mail:</p>
       <input class="order-form__form-input" type="email" name="email" placeholder="Ваш e-mail" autocomplete="email">
 
+      <!-- Макет -->
       <p class="order-form__form-txt" data-name="print-maket" data-i18n="orderForm.addDesign">Додати макет</p>
       <input type="file" name="file_print">
 
