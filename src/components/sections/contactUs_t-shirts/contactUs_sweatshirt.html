@@ -5,42 +5,46 @@
    itemtype="https://schema.org/ContactPage">
 
    <h2 id="contact-us-title" class="contact-us__title" itemprop="headline">
-      Все еще есть вопросы? Напишите нам.
+      Все ще є питання? Напишіть нам.
    </h2>
 
    <p class="contact-us__txt" itemprop="description">
-      Наши менеджеры ответят на все ваши вопросы, помогут подобрать футболки, 
-      подскажут какой метод нанесения подойдет вам наилучшим образом, рассчитают стоимость заказа и т.д.
+      Наші менеджери нададуть відповіді на всі ваші запитання, допоможуть підібрати толсовки, худі, світшоти,
+      підкажуть який метод нанесення підійде вам найкращим чином, розрахують вартість замовлення, тощо.
    </p>
 
    <div class="contact-us__block">
-      <div class="contact-us__social-networks" aria-label="Социальные сети для связи">
+      <div class="contact-us__social-networks" aria-label="Соціальні мережі для звʼязку">
          <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
-            <a href="#" title="Telegram" aria-label="Связаться через Telegram" itemprop="url">
+            <a href="#" title="Telegram" aria-label="Звʼязатись через Telegram" itemprop="url">
                <img class="contact-us__img" data-fls-image-ignore src="@img/landing/telegram-t-shirts.webp" alt="Telegram">
             </a>
             <span class="contact-us__name" itemprop="contactType">Telegram</span>
          </div>
+
          <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
-            <a href="#" title="Viber" aria-label="Связаться через Viber" itemprop="url">
+            <a href="#" title="Viber" aria-label="Звʼязатись через Viber" itemprop="url">
                <img class="contact-us__img" data-fls-image-ignore src="@img/landing/viber-t-shirts.webp" alt="Viber">
             </a>
             <span class="contact-us__name" itemprop="contactType">Viber</span>
          </div>
+
          <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
-            <a href="#" title="Instagram" aria-label="Связаться через Instagram" itemprop="url">
+            <a href="#" title="Instagram" aria-label="Звʼязатись через Instagram" itemprop="url">
                <img class="contact-us__img" data-fls-image-ignore src="@img/landing/instagram-t-shirts.webp" alt="Instagram">
             </a>
             <span class="contact-us__name" itemprop="contactType">Instagram</span>
          </div>
+
          <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
-            <a href="#" title="Facebook" aria-label="Связаться через Facebook" itemprop="url">
+            <a href="#" title="Facebook" aria-label="Звʼязатись через Facebook" itemprop="url">
                <img class="contact-us__img" data-fls-image-ignore src="@img/landing/facebook-t-shirts.webp" alt="Facebook">
             </a>
             <span class="contact-us__name" itemprop="contactType">Facebook</span>
          </div>
+
          <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
-            <a href="mailto:info@example.com" title="E-mail" aria-label="Отправить письмо на E-mail" itemprop="email">
+            <a href="mailto:info@example.com" title="E-mail" aria-label="Надіслати листа на E-mail" itemprop="email">
                <img class="contact-us__img" data-fls-image-ignore src="@img/landing/e-mail-t-shirts.webp" alt="E-mail">
             </a>
             <span class="contact-us__name" itemprop="contactType">E-mail</span>
@@ -48,26 +52,26 @@
       </div>
 
       <p class="contact-us__description">
-         Свяжитесь с нами удобным для вас способом, чтобы получить консультацию по поводу печати на футболках.
+         Звʼяжіться з нами зручним для вас способом, щоб отримати консультацію з приводу друку на толсовках, худі, світшотах.
       </p>
 
       <form class="contact-us__contacts-form" 
-         action="/" 
-         name="contactUs" 
-         aria-label="Форма обратной связи" 
-         itemscope 
-         itemtype="https://schema.org/ContactForm">
+            action="/" 
+            name="contactUs" 
+            aria-label="Форма зворотного звʼязку"
+            itemscope 
+            itemtype="https://schema.org/ContactForm">
 
          <label for="phone">Телефон:<i>*</i></label>
          <input id="phone" type="tel" name="phone" required itemprop="telephone">
 
-         <label for="name">Имя:<i>*</i></label>
+         <label for="name">Імʼя:<i>*</i></label>
          <input id="name" type="text" name="name" required itemprop="name">
 
-         <label for="text">Сообщение:</label>
+         <label for="text">Повідомлення:</label>
          <textarea id="text" name="text" itemprop="message"></textarea>
 
-         <input data-send-contactUs-form type="submit" value="Отправить" name="contactBtn">
+         <input data-send-contactUs-form type="submit" value="Надіслати" name="contactBtn">
       </form>
    </div>
 </section>
