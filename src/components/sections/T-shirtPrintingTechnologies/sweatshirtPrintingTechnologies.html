@@ -1,0 +1,98 @@
+<section data-fls-T-shirtPrintingTechnologies class="tshirt-printing-tech" data-component="T-shirtPrintingTechnologies"
+   data-part="root" itemscope itemtype="https://schema.org/Service">
+   <meta itemprop="serviceType" content="Друк на футболках">
+   <h2 class="tshirt-printing-tech__title" itemprop="name">Технології друку на толстоаках</h2>
+   <p class="tshirt-printing-tech__text" itemprop="description">
+      Ми пропонуємо кілька технологій друку, щоб кожен клієнт отримав найкращий результат відповідно до своїх потреб —
+      від великих тиражів до одиничних замовлень.
+   </p>
+
+   <div class="tshirt-printing-tech__card" itemprop="hasOfferCatalog" itemscope
+      itemtype="https://schema.org/OfferCatalog">
+      <meta itemprop="name" content="Методи друку на футболках">
+
+      <!-- Шовкодрук -->
+      <article class="print-method" itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+         <img data-fls-image-ignore class="print-method__img" src="@img/landing/silk-printing.webp"
+            alt="Шовкодрук на футболці — приклад нанесення принта" itemprop="image">
+         <div class="print-method__wrapper" itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+            <h3 class="print-method__title" itemprop="name">Шовкодрук</h3>
+            <p class="print-method__desc" itemprop="description">
+               Класичний метод друку для великих партій. Зображення наноситься через трафарет безпосередньо на тканину,
+               забезпечуючи насичені кольори та високу зносостійкість.
+            </p>
+            <h4 class="print-method__benefits-title">Переваги шовкодруку:</h4>
+            <ul class="print-method__benefits">
+               <li class="print-method__benefit">Вигідно при великих тиражах</li>
+               <li class="print-method__benefit">Яскраві, довговічні принти</li>
+               <li class="print-method__benefit">Підходить для бавовни, поліестеру та змішаних тканин</li>
+
+            </ul>
+         </div>
+      </article>
+
+      <!-- DTF -->
+      <article class="print-method" itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+         <img data-fls-image-ignore class="print-method__img" src="@img/landing/dtf-printing.webp"
+            alt="DTF-друк на футболках — приклад яскравого логотипу" itemprop="image">
+         <div class="print-method__wrapper" itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+            <h3 class="print-method__title" itemprop="name">DTF-друк (Direct to Film)</h3>
+            <p class="print-method__desc" itemprop="description">
+               Інноваційна технологія, що дозволяє друкувати кольорові, деталізовані зображення з плавними переходами
+               навіть на темних тканинах.
+            </p>
+            <h4 class="print-method__benefits-title">Переваги DTF-друку:</h4>
+            <ul class="print-method__benefits">
+               <li class="print-method__benefit">Без обмежень по кольорах</li>
+               <li class="print-method__benefit">Висока чіткість і деталізація</li>
+               <li class="print-method__benefit">Підходить для будь-яких тканин</li>
+               <li class="print-method__benefit">Добре тримається після прання</li>
+            </ul>
+         </div>
+      </article>
+
+      <!-- Термоперенос -->
+      <article class="print-method" itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+         <img data-fls-image-ignore class="print-method__img" src="@img/landing/termo-printing.webp"
+            alt="Термоперенос на футболці — приклад нанесення зображення" itemprop="image">
+         <div class="print-method__wrapper" itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+            <h3 class="print-method__title" itemprop="name">Термоперенос (флексографія)</h3>
+            <p class="print-method__desc" itemprop="description">
+               Метод друку, де зображення попередньо наносять на спеціальну плівку,
+               а потім переносять на тканину під дією температури. Ідеально підходить
+               для невеликих тиражів і друку на темному текстилі.
+            </p>
+            <h4 class="print-method__benefits-title">Переваги термопереносу (флексографії):</h4>
+            <ul class="print-method__benefits">
+               <li class="print-method__benefit">Швидке виготовлення</li>
+               <li class="print-method__benefit">Підходить для малих тиражів</li>
+               <li class="print-method__benefit">Можна друкувати по темному текстилю</li>
+               <li class="print-method__benefit">Висока якість при доступній ціні</li>
+            </ul>
+         </div>
+      </article>
+   </div>
+
+   <div class="tshirt-printing-tech__footer" itemscope itemtype="https://schema.org/ContactPoint">
+      <div class="tshirt-printing-tech__texts">
+         <p class="tshirt-printing-tech__text-question" itemprop="description">
+            Не знаєте, який метод обрати?
+         </p>
+         <p class="tshirt-printing-tech__text" itemprop="description">
+            Наші фахівці допоможуть підібрати оптимальний спосіб друку залежно від тиражу,
+            типу тканини та вашого дизайну. Зв’яжіться з нами — і ми зробимо все якісно та вчасно!
+         </p>
+      </div>
+      <button class="tshirt-printing-tech__button" data-action="open-modal" data-target="contact-form"
+         data-part="button" type="button" itemprop="contactType">
+         Звʼязатись з нами
+      </button>
+   </div>
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
+</section>

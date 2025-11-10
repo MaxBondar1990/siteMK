@@ -74,7 +74,9 @@
       font-weight: 700;
       text-transform: uppercase;
 
-      background: $colorOrange;
+      // background: $colorOrange;
+      background: var(--bgcButton);
+
       transition: all .3s;
       &:hover {
          scale: .97;
