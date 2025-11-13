@@ -1,1 +1,0 @@
-import './advantages_T-shirts.scss'

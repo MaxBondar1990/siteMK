@@ -1,0 +1,73 @@
+<section data-fls-contactUs_landing 
+   class="contact-us" 
+   aria-labelledby="contact-us-title" 
+   itemscope 
+   itemtype="https://schema.org/ContactPage">
+
+   <h2 id="contact-us-title" class="contact-us__title" itemprop="headline">
+      Все ще є питання? Напишіть нам.
+   </h2>
+
+   <p class="contact-us__txt" itemprop="description">
+      Наші менеджери нададуть відповіді на всі ваші запитання, допоможуть підібрати футболки,
+      підкажуть який метод нанесення підійде вам найкращим чином, розрахують вартість замовлення, тощо.
+   </p>
+
+   <div class="contact-us__block">
+      <div class="contact-us__social-networks" aria-label="Соціальні мережі для звʼязку">
+         <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+            <a href="#" title="Telegram" aria-label="Звʼязатись через Telegram" itemprop="url">
+               <img class="contact-us__img" data-fls-image-ignore src="@img/landing/telegram-t-shirts.webp" alt="Telegram">
+            </a>
+            <span class="contact-us__name" itemprop="contactType">Telegram</span>
+         </div>
+         <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+            <a href="#" title="Viber" aria-label="Звʼязатись через Viber" itemprop="url">
+               <img class="contact-us__img" data-fls-image-ignore src="@img/landing/viber-t-shirts.webp" alt="Viber">
+            </a>
+            <span class="contact-us__name" itemprop="contactType">Viber</span>
+         </div>
+         <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+            <a href="#" title="Instagram" aria-label="Звʼязатись через Instagram" itemprop="url">
+               <img class="contact-us__img" data-fls-image-ignore src="@img/landing/instagram-t-shirts.webp" alt="Instagram">
+            </a>
+            <span class="contact-us__name" itemprop="contactType">Instagram</span>
+         </div>
+         <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+            <a href="#" title="Facebook" aria-label="Звʼязатись через Facebook" itemprop="url">
+               <img class="contact-us__img" data-fls-image-ignore src="@img/landing/facebook-t-shirts.webp" alt="Facebook">
+            </a>
+            <span class="contact-us__name" itemprop="contactType">Facebook</span>
+         </div>
+         <div class="contact-us__item" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+            <a href="mailto:info@example.com" title="E-mail" aria-label="Надіслати листа на E-mail" itemprop="email">
+               <img class="contact-us__img" data-fls-image-ignore src="@img/landing/e-mail-t-shirts.webp" alt="E-mail">
+            </a>
+            <span class="contact-us__name" itemprop="contactType">E-mail</span>
+         </div>
+      </div>
+
+      <p class="contact-us__description">
+         Звʼяжіться з нами зручним для вас способом, щоб отримати консультацію з приводу друку на футболках
+      </p>
+
+      <form class="contact-us__contacts-form" 
+         action="/" 
+         name="contactUs" 
+         aria-label="Форма зворотного звʼязку" 
+         itemscope 
+         itemtype="https://schema.org/ContactForm">
+
+         <label for="phone">Телефон:<i>*</i></label>
+         <input id="phone" type="tel" name="phone" required itemprop="telephone">
+
+         <label for="name">Імʼя:<i>*</i></label>
+         <input id="name" type="text" name="name" required itemprop="name">
+
+         <label for="text">Повідомлення:</label>
+         <textarea id="text" name="text" itemprop="message"></textarea>
+
+         <input data-send-contactUs-form type="submit" value="Надіслати" name="contactBtn">
+      </form>
+   </div>
+</section>

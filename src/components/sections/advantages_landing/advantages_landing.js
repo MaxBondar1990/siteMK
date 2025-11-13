@@ -1,0 +1,1 @@
+import './advantages_landing.scss'

@@ -1,0 +1,1 @@
+import './printSize_landing.scss'

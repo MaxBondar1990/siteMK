@@ -1,1 +1,0 @@
-import './models_t-shirts.scss'

@@ -1,1 +1,0 @@
-import './printSize_T-shirts.scss'
