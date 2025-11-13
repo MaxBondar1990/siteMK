@@ -1,4 +1,5 @@
 // Universal form persistence by [name] <-> localStorage[name]
+// data-persist="off" - вимикає авто-збереження
 (function () {
    // Безпека: не зберігаємо чутливі поля
    const SENSITIVE_RE = /(pass(word)?|token|otp|cvv|cvc|iban|card(number)?|cc|ssn|pin|secret|auth|2fa|exp|expiry)/i;

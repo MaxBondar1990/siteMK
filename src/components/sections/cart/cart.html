@@ -1,16 +1,16 @@
-<div class="cart" data-component="cart" data-part="root">
+<div data-fls-cart class="cart" data-component="cart" data-part="root">
    <!-- Фіксована кнопка корзини -->
-   <button data-fls-cart class="cart__floating-btn" data-action="open-modal" data-target="cart-modal"
-      aria-label="Відкрити корзину" title="Відкрити корзину">
+   <button class="cart__floating-btn" data-action="open-modal" data-target="cart-modal" aria-label="Відкрити корзину"
+      title="Відкрити корзину">
       <svg class="cart__floating-icon" aria-hidden="true" focusable="false">
          <use xlink:href="__spritemap#sprite-cart"></use>
       </svg>
       <span class="cart__count" data-cart-count>0</span>
    </button>
    <!-- меню корзини -->
-   <div id="cart-modal" class="cart__modal" data-component="modal" data-part="root" data-target="cart-modal"
-      data-state="open" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title" tabindex="-1"
-      aria-hidden="false">
+   <div id="cart-modal" class="cart__modal" data-component="cart-modal" data-part="root" data-target="cart-modal"
+      data-state="closed" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title" tabindex="-1"
+      aria-hidden="true">
       <button class="cart__modal-close" data-action="close-modal" data-part="close" type="button"
          aria-label="Закрити корзину"></button>
       <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->

@@ -72,6 +72,10 @@
          class="article__price-additional-elements _priceCurrency" itemprop="priceCurrency" content="UAH">грн.</span>
       <link itemprop="availability" href="https://schema.org/InStock">
    </p>
+   <label class="article__field">
+      <span class="article__quantity-label">Вкажіть кількість<i>*</i></span>
+      <input class="article__quantity-input" type="number" name="quantity" value="1" placeholder="1">
+   </label>
    <div class="article__description" itemprop="description">
       <p>
          Наша компанія пропонує <a href="/print-t-shirts/" title="друк на футболках">друк на футболках</a> <strong>Fruit
@@ -120,20 +124,17 @@
             Горловина: гумка 1,9 см. Чи не сідає і не змінює колір в процесі прання. Бирка з перфорацією, при бажанні можна відірвати.
         </p> -->
    </div>
-   <button class="order-btn article__order-button _buy" data-btn="view-order-form" type="button">Замовити</button>
-   <button class="order-btn article__order-button _add-to-cart" class="order-btn article__order-button _get-print"
-      data-action="add-to-cart" data-id="7019001" data-color="white" data-qty="2" data-price="100">Додати до
-      корзини</button>
+   <!--<button class="order-btn article__order-button _buy" data-btn="view-order-form" type="button">Замовити</button>-->
+   <button class="order-btn _add-to-cart" class="order-btn article__order-button _get-print" data-action="add-to-cart"
+      data-id="7019001" data-color="white" data-qty="2" data-price="100">В корзину</button>
    <!-- TODO додати якір на тарифи -->
-   <button class="order-btn article__order-button _get-print" data-fls-scrollto="#article-print-tarif"
-      data-action="get-print-tarif" type="button">Додати
-      друк</button>
-
+   <!--<button class="order-btn article__order-button _get-print" data-fls-scrollto="#article-print-tarif"
+      data-action="get-print-tarif" type="button">Обрати друк</button>
    <include src="@components/custom/modal/modal.html" locals='{
       "dirName":"custom",
       "fileName":"orderform",
       "modalName":"order-form",
       "addClass":"",
       "closeOrRemove":"close"
-    }'></include>
+    }'></include>-->
 </section>
