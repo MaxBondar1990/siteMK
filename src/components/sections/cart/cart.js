@@ -23,7 +23,7 @@ let lastOpener = null;
 // Centralized selectors for the cart component
 const SELECTORS_CART = {
    root: '[data-component="cart"][data-part="root"]',
-   modal: '#cart-modal',
+   modal: '[data-component="cart-modal"][data-part="root"]',
    results: '[data-part="results"]',
    footer: '[data-part="footer"]',
    totalValue: '[data-part="total-value"]',
@@ -59,6 +59,14 @@ function renderFooterFromCart() {
    if (totalEl) totalEl.textContent = `${calcTotal().toLocaleString('uk-UA')} грн`
    toggleClearButton()
 }
+function findItemIndex(id, color) {
+   const c = color ?? null
+   for (let i = 0; i < cart.length; i++) {
+      const it = cart[i]
+      if (it && it.id === id && (it.color ?? null) === c) return i
+   }
+   return -1
+}
 function findItem(id, color) {
    const c = color ?? null
    return cart.find(i => i.id === id && (i.color ?? null) === c)
@@ -82,7 +90,7 @@ function getPriceFromLi(li) {
 }
 
 // --- Core actions ---
-async function appendItemFromServer({ id, color, qty }) {
+async function appendItemFromServer({ id, type = 'product', color, qty }) {
    const resultsEl = getResultsEl();
    if (!resultsEl) return
 
@@ -101,13 +109,34 @@ async function appendItemFromServer({ id, color, qty }) {
          // Append only intended cart item
          const li = t.content.querySelector('li[data-cart-item]')
          if (li) {
+            // annotate li with item-type if we know it
+            if (type) li.setAttribute('data-item-type', type)
             resultsEl.appendChild(li)
-            // Persist price & (server-normalized) qty into local state
+            // Persist price; qty only if server declares authority
             const price = getPriceFromLi(li)
-            const qEl = li.querySelector('.cart__qty-value')
-            const normalizedQty = Number(qEl?.textContent) || qty
             const rec = findItem(id, color)
-            if (rec) { rec.price = price || rec.price || 0; rec.qty = normalizedQty }
+            if (rec) {
+               rec.price = price || rec.price || 0
+
+               // Respect server qty only when explicitly marked
+               const authority = (li.getAttribute('data-authority') || '').toLowerCase()
+               const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
+               const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
+
+               if (serverControlsQty) {
+                  let normalizedQty = qty
+                  const attrQty = li.getAttribute('data-qty')
+                  if (attrQty != null && attrQty !== '') {
+                     const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
+                     if (Number.isFinite(n) && n > 0) normalizedQty = n
+                  } else {
+                     const qEl = li.querySelector('.cart__qty-value')
+                     const n = Number(qEl?.textContent)
+                     if (Number.isFinite(n) && n > 0) normalizedQty = n
+                  }
+                  rec.qty = normalizedQty
+               }
+            }
             saveCart(cart)
             renderFooterFromCart()
          } else {
@@ -119,11 +148,12 @@ async function appendItemFromServer({ id, color, qty }) {
    }
 }
 
-function addToCart({ id, color, qty = 1 }) {
+function addToCart({ id, type = 'product', color, qty = 1 }) {
    if (!id) return
    const quantity = Number.parseInt(qty, 10) > 0 ? Number.parseInt(qty, 10) : 1
+   const itemType = (type === 'service') ? 'service' : 'product'
    const existing = findItem(id, color)
-   if (existing) {
+   if (itemType === 'product' && existing) {
       // Update locally & DOM only
       existing.qty += quantity
       saveCart(cart)
@@ -139,10 +169,10 @@ function addToCart({ id, color, qty = 1 }) {
       }
       updateBadges(); renderFooterFromCart()
    } else {
-      const item = { id, color: color ?? null, qty: quantity, price: 0 }
+      const item = { id, type: itemType, color: color ?? null, qty: quantity, price: 0 }
       cart.push(item); saveCart(cart)
       // Ask backend to render a single <li> and append
-      appendItemFromServer({ id, color: item.color, qty: item.qty })
+      appendItemFromServer({ id, type: item.type, color: item.color, qty: item.qty })
       updateBadges(); renderFooterFromCart()
    }
 }
@@ -150,8 +180,17 @@ function addToCart({ id, color, qty = 1 }) {
 function removeItemDomAndState(holder) {
    const id = holder.getAttribute('data-id')
    const color = holder.getAttribute('data-color') || null
-   cart = cart.filter(i => !(i.id === id && (i.color ?? null) === (color ?? null)))
-   saveCart(cart)
+   // If we know type from DOM, use it; otherwise infer from state
+   const holderType = holder.getAttribute('data-item-type') || null
+
+   if (holderType === 'service') {
+      const idx = findItemIndex(id, color)
+      if (idx >= 0) { cart.splice(idx, 1); saveCart(cart) }
+   } else {
+      // products expected to be unique by id+color
+      const idx = findItemIndex(id, color)
+      if (idx >= 0) { cart.splice(idx, 1); saveCart(cart) }
+   }
    holder.remove()
    updateBadges(); renderFooterFromCart()
 }
@@ -196,7 +235,7 @@ async function openCartModal() {
             t.content.querySelectorAll('li[data-cart-item]').forEach((row) => {
                resultsEl.appendChild(row)
             })
-            // sync prices & qty back into state
+            // sync prices; qty only if server declares authority
             resultsEl.querySelectorAll('[data-cart-item]').forEach(li => {
                const rId = li.getAttribute('data-id')
                const rColor = li.getAttribute('data-color') ?? null
@@ -204,9 +243,29 @@ async function openCartModal() {
                if (rec) {
                   const p = getPriceFromLi(li)
                   if (p > 0) rec.price = p
-                  const qEl = li.querySelector('.cart__qty-value')
-                  if (qEl) rec.qty = Number(qEl.textContent) || rec.qty
+
+                  const authority = (li.getAttribute('data-authority') || '').toLowerCase()
+                  const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
+                  const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
+                  if (serverControlsQty) {
+                     const attrQty = li.getAttribute('data-qty')
+                     if (attrQty != null && attrQty !== '') {
+                        const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
+                        if (Number.isFinite(n) && n > 0) rec.qty = n
+                     } else {
+                        const qEl = li.querySelector('.cart__qty-value')
+                        const n = Number(qEl?.textContent)
+                        if (Number.isFinite(n) && n > 0) rec.qty = n
+                     }
+                  }
                }
+            })
+            // sync DOM annotation for type where available in state
+            resultsEl.querySelectorAll('[data-cart-item]').forEach(li => {
+               const rId = li.getAttribute('data-id')
+               const rColor = li.getAttribute('data-color') ?? null
+               const rec = findItem(rId, rColor)
+               if (rec && rec.type) li.setAttribute('data-item-type', rec.type)
             })
             saveCart(cart)
          }
@@ -237,19 +296,22 @@ function mountCart(rootEl) {
       const btnOpen = t.closest('[data-action="open-modal"][data-target="cart-modal"]')
       if (btnOpen && rootEl.contains(btnOpen)) { lastOpener = btnOpen; openCartModal(); return }
       const btnClose = t.closest('[data-action="close-modal"][data-part="close"]')
-      if (btnClose && btnClose.closest('#cart-modal')) { closeCartModal(); return }
+      if (btnClose && btnClose.closest(SELECTORS_CART.modal)) { closeCartModal(); return }
 
       // quantity / remove (inside list)
       const holder = t.closest('[data-cart-item]')
       if (holder && rootEl.contains(holder)) {
+         const holderType = holder.getAttribute('data-item-type') || null
          const incBtn = t.closest('[data-action="cart-inc"]')
          if (incBtn) {
+            if (holderType === 'service') return // quantity changes are disabled for services
             const v = holder.querySelector('.cart__qty-value'); const id = holder.getAttribute('data-id'); const color = holder.getAttribute('data-color') || null
             const rec = findItem(id, color); if (rec) { rec.qty = (Number(rec.qty) || 0) + 1; saveCart(cart); if (v) v.textContent = String(rec.qty); renderFooterFromCart(); updateBadges() }
             return
          }
          const decBtn = t.closest('[data-action="cart-dec"]')
          if (decBtn) {
+            if (holderType === 'service') return // quantity changes are disabled for services
             const v = holder.querySelector('.cart__qty-value'); const id = holder.getAttribute('data-id'); const color = holder.getAttribute('data-color') || null
             const rec = findItem(id, color); if (rec) { rec.qty = Math.max(0, (Number(rec.qty) || 0) - 1); if (rec.qty === 0) { removeItemDomAndState(holder) } else { saveCart(cart); if (v) v.textContent = String(rec.qty); renderFooterFromCart(); updateBadges() } }
             return
@@ -296,9 +358,10 @@ document.addEventListener('click', (e) => {
    if (!btnAdd) return
    if (rootCart && rootCart.contains(btnAdd)) return // handled by local listener
    const id = btnAdd.getAttribute('data-id') || btnAdd.closest('[data-id]')?.getAttribute('data-id')
+   const type = btnAdd.getAttribute('data-type') || 'product'
    const color = btnAdd.getAttribute('data-color') || btnAdd.closest('[data-color]')?.getAttribute('data-color') || null
    const qtyAttr = btnAdd.getAttribute('data-qty') || btnAdd.closest('[data-qty]')?.getAttribute('data-qty') || 1
-   addToCart({ id, color, qty: qtyAttr })
+   addToCart({ id, type, color, qty: qtyAttr })
 })
 
 // Debug API

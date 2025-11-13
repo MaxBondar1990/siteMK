@@ -15,52 +15,54 @@
    </div>
    <form class="order-form__form" data-part="form" action="/" method="post" enctype="multipart/form-data"
       name="article-order" autocomplete="on" novalidate>
-      <!-- Кількість -->
-      <p class="order-form__form-txt">Вкажіть кількість<i>*</i></p>
-      <p class="order-form__form-txt">обавши розміри</p>
-      <!-- <input class="order-form__form-input" type="number" name="quantity" value="1" required placeholder="К-сть" min="1"
-         step="1" inputmode="numeric"> -->
+      <label class="order-form__field _two-columns">
+         <span class="order-form__form-txt">Вкажіть кількість<i>*</i></span>
+         <input class="order-form__form-input" type="number" name="quantity" value="1" required>
+      </label>
 
       <!-- Розміри -->
-      <div class="order-form__quantity-of-sizes-block">
-         <div class="order-form__quantity-of-sizes">
-            <p class="size-name">XS</p>
-            <p class="size-name">S</p>
-            <p class="size-name">M</p>
-            <p class="size-name">L</p>
-            <p class="size-name">XL</p>
-            <p class="size-name">2XL</p>
-            <p class="size-name">3XL</p>
-            <p class="size-name">4XL</p>
-            <input class="quantity-input" type="number" name="XS" value="0">
-            <input class="quantity-input" type="number" name="S" value="0">
-            <input class="quantity-input" type="number" name="M" value="0">
-            <input class="quantity-input" type="number" name="L" value="0">
-            <input class="quantity-input" type="number" name="XL" value="0">
-            <input class="quantity-input" type="number" name="2XL" value="0">
-            <input class="quantity-input" type="number" name="3XL" value="0">
-            <input class="quantity-input" type="number" name="4XL" value="0">
-         </div>
-      </div>
+      <!--<div class="order-form__sizes" data-part="sizes">
+         <label class="order-form__size" for="size-xs">
+            <span class="order-form__size-name">XS</span>
+            <input id="size-xs" class="order-form__size-input" type="number" name="XS" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-s">
+            <span class="order-form__size-name">S</span>
+            <input id="size-s" class="order-form__size-input" type="number" name="S" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-m">
+            <span class="order-form__size-name">M</span>
+            <input id="size-m" class="order-form__size-input" type="number" name="M" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-l">
+            <span class="order-form__size-name">L</span>
+            <input id="size-l" class="order-form__size-input" type="number" name="L" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-xl">
+            <span class="order-form__size-name">XL</span>
+            <input id="size-xl" class="order-form__size-input" type="number" name="XL" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-2xl">
+            <span class="order-form__size-name">2XL</span>
+            <input id="size-2xl" class="order-form__size-input" type="number" name="2XL" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-3xl">
+            <span class="order-form__size-name">3XL</span>
+            <input id="size-3xl" class="order-form__size-input" type="number" name="3XL" value="0" min="0">
+         </label>
+         <label class="order-form__size" for="size-4xl">
+            <span class="order-form__size-name">4XL</span>
+            <input id="size-4xl" class="order-form__size-input" type="number" name="4XL" value="0" min="0">
+         </label>
+      </div>-->
 
       <!-- Контактні данні -->
       <!-- Імʼя -->
-      <p class="order-form__form-txt">Ім'я:<i>*</i></p>
-      <input class="order-form__form-input" type="text" name="name" required placeholder="Ваше ім'я"
-         autocomplete="name">
 
-      <!-- Телефон -->
-      <p class="order-form__form-txt">Телефон:<i>*</i></p>
-      <input class="order-form__form-input" type="tel" name="phone" required placeholder="Ваш телефон"
-         autocomplete="tel" inputmode="tel">
-
-      <!-- Пошта -->
-      <p class="order-form__form-txt">E-mail:</p>
-      <input class="order-form__form-input" type="email" name="email" placeholder="Ваш e-mail" autocomplete="email">
 
       <!-- Макет -->
-      <p class="order-form__form-txt" data-name="print-maket" data-i18n="orderForm.addDesign">Додати макет</p>
-      <input type="file" name="file_print">
+      <!--<p class="order-form__form-txt" data-name="print-maket" data-i18n="orderForm.addDesign">Додати макет</p>
+      <input type="file" name="file_print">-->
 
       <!-- Hidden metadata (to be populated by JS before submit) -->
       <input type="hidden" name="article_id" data-source="[data-article-id]">
