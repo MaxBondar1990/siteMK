@@ -9,28 +9,35 @@ reviewCards.forEach(card => {
   let currentIndex = 0;
   const total = images.length;
 
-  // Функція для оновлення зображень (без змін у крапках)
+  // Оновлення зображень
   const updateImages = index => {
     images.forEach(img => img.classList.remove('_active'));
     if (images[index]) images[index].classList.add('_active');
   };
 
-  // Клік по крапці — змінюємо зображення + оновлюємо _active
+  // Оновлення крапок
+  const updateDots = index => {
+    dots.forEach(dot => dot.classList.remove('_active'));
+    if (dots[index]) dots[index].classList.add('_active');
+  };
+
+  // Клік по крапці — оновлюємо все
   dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
-      dots.forEach(d => d.classList.remove('_active'));
-      dot.classList.add('_active');
       currentIndex = index;
       updateImages(currentIndex);
+      updateDots(currentIndex);
     });
   });
 
-  // Автоматичне гортання (тільки картинки)
+  // Автоматичне гортання (картинки + крапки)
   if (total > 1) {
     setInterval(() => {
       currentIndex = (currentIndex + 1) % total;
       updateImages(currentIndex);
+      updateDots(currentIndex);
     }, 5000);
   }
 });
+
 
