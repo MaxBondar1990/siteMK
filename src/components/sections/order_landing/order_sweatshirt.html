@@ -1,4 +1,4 @@
-<section data-fls-order_landing class="order" data-component="order_t-shirts" data-part="root" itemscope itemtype="https://schema.org/HowTo">
+<section data-fls-order_landing class="order" data-component="order_landing" data-part="root" itemscope itemtype="https://schema.org/HowTo">
   <h2 class="order__title" itemprop="name">Як замовити толстовки, худі, світшоти з принтом?</h2>
 
   <ol class="order__steps">
@@ -42,10 +42,10 @@
     </li>
   </ol>
 
-  <button class="order__btn" data-action="open-modal" data-target="contact-form" data-part="button" type="button">Замовити друк на толстовках</button>
+  <button class="order__btn" data-action="open-modal" data-target="contact-form-order-landing" data-part="button" type="button">Замовити друк на толстовках</button>
    <include src="@components/custom/modal/modal.html" locals='{
       "addClass": "",
-      "modalName": "contact-form",
+      "modalName": "contact-form-order-landing",
       "closeOrRemove": "close",
       "dirName": "custom",
       "fileName": "contactform"

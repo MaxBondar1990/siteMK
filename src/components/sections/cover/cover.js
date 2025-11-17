@@ -12,7 +12,7 @@ function mountCover(rootEl) {
       const btn = e.target.closest('[data-action="open-modal"]');
       if (!btn || !rootEl.contains(btn)) return;
       const target = btn.dataset.target || 'contact-form';
-      view(target);
+      view(target, rootEl);
    }, { signal });
 
    //// Приклад прямого слухача для input (якщо є)

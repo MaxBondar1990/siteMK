@@ -12,8 +12,8 @@ function mountPricing(rootEl) {
       const btn = e.target.closest('[data-action="open-modal"]');
       if (!btn || !rootEl.contains(btn)) return;
       const target = btn.dataset.target || 'contact-form';
-      view(target);
-   }, { signal });
+      view(target, rootEl);
+   }, { signal});
 
    //// Приклад прямого слухача для input (якщо є)
    //const qtyInput = rootEl.querySelector('input[name="quantity"]');
@@ -27,7 +27,7 @@ function mountPricing(rootEl) {
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootPricing = document.querySelector('[data-component="pricing_T-shirts"][data-part="root"]');
+const rootPricing = document.querySelector('[data-component="pricing_landing"][data-part="root"]');
 if (rootPricing) {
    const cleanup = mountPricing(rootPricing);
    if (import.meta.hot && cleanup) {

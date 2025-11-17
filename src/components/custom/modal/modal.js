@@ -28,16 +28,27 @@ export function close(target) {
    setModalState(modal, 'closed');
 }
 
-export function view(target) {
+export function view(target, component = null) {
    let modal = null;
+
    if (typeof target === 'string') {
-      modal = document.querySelector(`[data-component="modal"][data-part="root"][data-target="${target}"]`);
-   } else if (target && target.matches && target.matches('[data-component="modal"][data-part="root"]')) {
+      const selector = `[data-component="modal"][data-part="root"][data-target="${target}"]`;
+
+      if (component !== null) {
+         modal = component.querySelector(selector);
+      } else {
+         modal = document.querySelector(selector);
+      }
+
+   } else if (target?.matches?.('[data-component="modal"][data-part="root"]')) {
       modal = target;
    }
+
    if (!modal) return;
+
    setModalState(modal, 'open');
 }
+
 
 export function handleModalClick(event) {
    const btn = event.target.closest('[data-action]');

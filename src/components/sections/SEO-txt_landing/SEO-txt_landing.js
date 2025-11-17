@@ -13,7 +13,7 @@ function mountSeoTxt(rootEl) {
       const btn = e.target.closest('[data-action="open-modal"]');
       if (!btn || !rootEl.contains(btn)) return;
       const target = btn.dataset.target || 'contact-form';
-      view(target);
+      view(target, rootEl);
    }, { signal });
 
    //// Приклад прямого слухача для input (якщо є)
@@ -28,7 +28,7 @@ function mountSeoTxt(rootEl) {
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootSeoTxt = document.querySelector('[data-component="SEO-txt_t-shirts"][data-part="root"]');
+const rootSeoTxt = document.querySelector('[data-component="SEO-txt_landing"][data-part="root"]');
 if (rootSeoTxt) {
    const cleanup = mountSeoTxt(rootSeoTxt);
    if (import.meta.hot && cleanup) {

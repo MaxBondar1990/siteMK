@@ -12,7 +12,7 @@ function mountOrder(rootEl) {
       const btn = e.target.closest('[data-action="open-modal"]');
       if (!btn || !rootEl.contains(btn)) return;
       const target = btn.dataset.target || 'contact-form';
-      view(target);
+      view(target, rootEl);
    }, { signal });
 
    //// Приклад прямого слухача для input (якщо є)
@@ -27,7 +27,7 @@ function mountOrder(rootEl) {
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootOrder = document.querySelector('[data-component="order_t-shirts"][data-part="root"]');
+const rootOrder = document.querySelector('[data-component="order_landing"][data-part="root"]');
 if (rootOrder) {
    const cleanup = mountOrder(rootOrder);
    if (import.meta.hot && cleanup) {

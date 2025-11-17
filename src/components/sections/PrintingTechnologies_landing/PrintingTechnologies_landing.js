@@ -13,7 +13,7 @@ function mountPrintingTechnologies(rootEl) {
       const btn = e.target.closest('[data-action="open-modal"]');
       if (!btn || !rootEl.contains(btn)) return;
       const target = btn.dataset.target || 'contact-form';
-      view(target);
+      view(target, rootEl);
    }, { signal });
 
    //// Приклад прямого слухача для input (якщо є)
@@ -28,7 +28,7 @@ function mountPrintingTechnologies(rootEl) {
 }
 
 // Приклад автозапуску, якщо компонент одиничний і вже в DOM:
-const rootPrintingTechnologies = document.querySelector('[data-component="PrintingTechnologies_T-shirt"][data-part="root"]');
+const rootPrintingTechnologies = document.querySelector('[data-component="PrintingTechnologies_landing"][data-part="root"]');
 if (rootPrintingTechnologies) {
    const cleanup = mountPrintingTechnologies(rootPrintingTechnologies);
    if (import.meta.hot && cleanup) {
