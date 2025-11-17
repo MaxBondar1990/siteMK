@@ -127,6 +127,62 @@
    <!--<button class="order-btn article__order-button _buy" data-btn="view-order-form" type="button">Замовити</button>-->
    <button class="order-btn _add-to-cart" class="order-btn article__order-button _get-print" data-action="add-to-cart"
       data-id="7019001" data-color="white" data-qty="2" data-price="100">В корзину</button>
+   
+   <!-- Кнопка виклику посилань на товар на сайтах постачальників -->
+   <button class="supplier-links-call-button" data-action="open-modal" data-target="inks-to-suppliers-modal" aria-label="Показати посилання на товар у постачальників"
+      title="Показати посилання на постачальників">
+      <svg class="supplier-links-call-button__icon" aria-hidden="true" focusable="false">
+         <use xlink:href="__spritemap#sprite-link"></use>
+      </svg>
+   </button>
+
+   <!-- Модалка з лінками на сайти постачальників -->
+   <div class="links-to-suppliers">
+      <!-- Кнопка що зачиняє модалку -->
+      <button class="links-to-suppliers__modal-close" data-action="close-modal" data-part="close" type="button" aria-label="Закрити корзину"></button>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Тотобі</a>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Євросувенір</a>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Бергамо</a>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">ТопТайм</a>
+       <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Туті</a>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Якась їбуча довга назва з довгим коментарем на всі гроші</a>
+      <!-- Лінк на сайт постачальника -->
+      <a class="links-to-suppliers__link" href="#">Борса</a>
+
+      <!-- Кнопка додавання посилання на сайт постачальника -->
+      <button class="links-to-suppliers__link-add-btn" type="button" aria-label="Додати посилання" title="Додати посилання">
+         <svg class="links-to-suppliers__icon" aria-hidden="true" focusable="false">
+            <use xlink:href="__spritemap#sprite-link"></use>
+         </svg>
+         <span class="links-to-suppliers__label"></span>
+      </button>
+   </div>
+   <!-- Модалка з формою для додавання нових лінків на сайт постачальника -->
+    <div class="add-link-to-supplier">
+      <!-- Кнопка що зачиняє модалку -->
+      <button class="add-link-to-supplier__modal-close" data-action="close-modal" data-part="close" type="button" aria-label="Закрити корзину"></button>
+      <form class="add-link-to-supplier__form" action="">
+            <legend class="add-link-to-supplier__form-title">
+               Додайте посилання на сайт постачальника
+            </legend>
+            <label class="add-link-to-supplier__form-label" for="supplier-name">
+               Вкажіть назву постачальника
+            </label>
+            <input class="add-link-to-supplier__form-input" type="text" id="supplier-name">
+            <label class="add-link-to-supplier__form-label" for="supplier-link">
+               Додайте посилання на сторінку товара у постачальника
+            </label>
+            <input class="add-link-to-supplier__form-input" type="url" id="supplier-link">
+
+            <input class="add-link-to-supplier__form-submit" type="submit" value="Надіслати">
+      </form>
+    </div>
    <!-- TODO додати якір на тарифи -->
    <!--<button class="order-btn article__order-button _get-print" data-fls-scrollto="#article-print-tarif"
       data-action="get-print-tarif" type="button">Обрати друк</button>
