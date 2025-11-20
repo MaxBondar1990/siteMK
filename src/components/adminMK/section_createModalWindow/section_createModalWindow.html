@@ -1,0 +1,27 @@
+<div data-fls-section_createModalWindow class="modal-window" data-name="section-create-menu">
+   
+    <form class="content-container" action="/setup/section/create/" title="create-section" method="post"
+    enctype="multipart/form-data" data-name="section-create-form">
+        <!-- Блок з кнопкою закриття та заголовком модалки -->
+        <div class="content-container__header">
+            <!-- кнопка закриття вікна створення параметра секції -->
+            <button class="close-btn" type="button" data-close-modal="section-create-menu"></button>
+            <!-- Заголовок модального вікна -->
+            <p class="content-container__title">Створіть нову секцію</p>
+        </div>
+
+        <!-- поле введення назви секції -->
+        <span class="modal-element_description">Введіть назву секції</span>
+        <input class="modal-element_input" type="text" name="section name">
+        <!-- завантаження титульного малюну (preview) секції -->
+        <span class="modal-element_description">Завантажте зображення для прев'ю секції</span>
+        <input class="image-preview-upload_input" id="create-section-menu-preview" name="section_preview" type="file" accept="image/*">
+        <label class="image-preview-upload_label" for="create-section-menu-preview">
+            Обрати зображення
+            <img class="image-preview-upload_ico-img" src="@img/404/img.png" alt="upload section preview">
+        </label>
+        <!-- кнопка збереження/відправки налаштувань -->
+        <input class="modal_submit-btn" type="submit" value="Зберегти">
+    </form>
+</div>
+
