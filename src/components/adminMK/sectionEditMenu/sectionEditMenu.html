@@ -1,0 +1,130 @@
+<div data-fls-sectionEditMenu class="section_block-menu-container" data-name="section-edit-menu">
+   <button class="section-select-menu__close" type="button" data-name="section-select-menu__close"></button>
+
+   <div class="section_block-menu-container__items-wraper" action="/setup/section/select/" title="select section"
+      method="post" enctype="multipart/form-data">
+      <p class="section_block-menu-container__tiles-container-title">Section name</p>
+      <div class="section_block-menu-container__menu-navigation-block">
+         <p class="section_block-menu-container__items-title">Елементи секції</p>
+         <div class="section_block-menu-container__menu-navigation-items">
+            <a class="section_block-menu-container__item" href="#titleh2" title="title">Title h2</a>
+            <a class="section_block-menu-container__item" href="#subtitle" title="subtitle">Subtitle</a>
+            <a class="section_block-menu-container__item" href="#text" title="text">Text</a>
+         </div>
+         <div class="section_block-menu-container__menu-navigation-items">
+            <a class="section_block-menu-container__item" href="#img" title="img" data-name="btn"
+               data-id="param-1">Image</a>
+            <a class="section_block-menu-container__item" href="#list" title="list" data-name="btn"
+               data-id="param-2">List</a>
+            <a class="section_block-menu-container__item" href="#btn" title="btn" data-name="btn"
+               data-id="param-3">Button</a>
+            <a class="section_block-menu-container__item" href="#textlink" title="link" data-name="btn"
+               data-id="param-4">Text link</a>
+            <a class="section_block-menu-container__item" href="#imagelink" title="link" data-name="btn"
+               data-id="param-5">Image link</a>
+         </div>
+      </div>
+      <div class="section_block-menu-container__items-list">
+         <form class="section_block-menu-container__item-tile _element_selection_animation" id="titleh2">
+            <p class="section_block-menu-container__item-tile-name">Title h2</p>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="subtitle">
+            <p class="section_block-menu-container__item-tile-name">Subtitle</p>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="text">
+            <p class="section_block-menu-container__item-tile-name">Text</p>
+            <textarea class="section_block-menu-container__param-input _textarea tall" type="text"
+               name="param-input"></textarea>
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="img">
+            <p class="section_block-menu-container__item-tile-name">Image</p>
+            <span class="section_block-menu-container__param-name">URL</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Alt</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Title</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <button class="section_block-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <svg class="isection_block-menu-container__block-settings-btn-svg">
+                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
+               </svg>
+            </button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="list">
+            <p class="section_block-menu-container__item-tile-name">List</p>
+            <span class="section_block-menu-container__param-name">1</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">2</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">3</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">4</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">5</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <button class="section_block-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <svg class="isection_block-menu-container__block-settings-btn-svg">
+                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
+               </svg>
+            </button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="btn">
+            <p class="section_block-menu-container__item-tile-name">Button</p>
+            <span class="section_block-menu-container__param-name">Text</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Link to image</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Type</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <button class="section_block-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <svg class="isection_block-menu-container__block-settings-btn-svg">
+                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
+               </svg>
+            </button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="textlink">
+            <p class="section_block-menu-container__item-tile-name">Text Link</p>
+            <span class="section_block-menu-container__param-name">Href</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Title</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Text</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <button class="section_block-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <svg class="isection_block-menu-container__block-settings-btn-svg">
+                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
+               </svg>
+            </button>
+         </form>
+         <form class="section_block-menu-container__item-tile" id="imagelink">
+            <p class="section_block-menu-container__item-tile-name">Image Link</p>
+            <span class="section_block-menu-container__param-name">Href</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Title</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Link to image</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <span class="section_block-menu-container__param-name">Alt for image</span>
+            <input class="section_block-menu-container__param-input" type="text" name="param-input">
+            <button class="section_block-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <button class="section_block-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <svg class="isection_block-menu-container__block-settings-btn-svg">
+                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
+               </svg>
+            </button>
+         </form>
+      </div>
+
+      <button class="section_block-menu-container__confirm-btn" name="section_block-menu-container__confirm-btn"
+         type="button">OK</button>
+   </div>
+</div>
