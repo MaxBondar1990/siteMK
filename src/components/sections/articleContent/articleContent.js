@@ -59,6 +59,59 @@ function applyColorSelection(node) {
    calcTotalCost();
 }
 
+function handleSuppliersModal(event) { 
+   const menu = document.querySelector('[data-name="article-component"]');
+   if (!menu) return;
+
+   const modalSuppliers = menu.querySelector('[data-name="suppliers-modal"]');
+   if (!modalSuppliers) return;
+
+   // ВІДКРИТТЯ — всередині модалки
+   const openBtn = event.target.closest('[data-button="view-suppliers-modal"]');
+   if (openBtn) {
+      modalSuppliers.classList.add('_show');
+      return;
+   }
+
+   // ЗАКРИТТЯ — шукаємо кнопку тільки всередині модалки
+   if (modalSuppliers.contains(event.target)) {
+      const closeBtn = event.target.closest('[data-action="close-modal"]');
+      if (closeBtn && modalSuppliers.contains(closeBtn)) {
+         modalSuppliers.classList.remove('_show');
+      }
+   }
+}
+function handleSupplierModal(event) {
+   const menu = document.querySelector('[data-name="article-component"]');
+   if (!menu) return;
+
+   const modalSupplier = menu.querySelector('[data-name="supplier-modal"]');
+   if (!modalSupplier) return;
+
+   // ВІДКРИТТЯ — всередині модалки
+   const openBtn = event.target.closest('[data-button="view-supplier-modal"]');
+   if (openBtn) {
+      modalSupplier.classList.add('_show');
+      return;
+   }
+
+   // ЗАКРИТТЯ — шукаємо кнопку тільки всередині модалки
+   if (modalSupplier.contains(event.target)) {
+      const closeBtn = event.target.closest('[data-action="close-modal"]');
+      if (closeBtn && modalSupplier.contains(closeBtn)) {
+         modalSupplier.classList.remove('_show');
+      }
+   }
+}
+
+
+
+
 // Single delegated listener instead of two separate calls per click
 // (less work on each event, clearer branching)
-document.addEventListener('click', onDocumentClick);
+// document.addEventListener('click', onDocumentClick, viewSuppliers);
+document.addEventListener('click', function(event) {
+   onDocumentClick(event);
+   handleSuppliersModal(event);
+   handleSupplierModal(event);
+});

@@ -510,7 +510,7 @@
 }
 .links-to-suppliers {
    position: fixed;
-   display: flex;
+   // display: flex;
    flex-wrap: wrap;
    align-content: flex-start;
 
@@ -531,6 +531,11 @@
    -webkit-backdrop-filter: blur(12px);
    border-radius: 20px;
    z-index: 2200;
+
+   display: none;
+      &._show {
+         display: flex;
+      }
    &__modal-close {
       position: absolute;
       top: 8px;
@@ -698,7 +703,7 @@
 }
 .add-link-to-supplier {
    position: absolute;
-   display: flex;
+   // display: flex;
    flex-wrap: nowrap;
 
    align-content: center;
@@ -722,6 +727,11 @@
    -webkit-backdrop-filter: blur(12px);
    border-radius: 20px;
    z-index: 2300;
+
+   display: none;
+      &._show {
+         display: flex;
+      }
    &__modal-close {
       position: absolute;
       top: 8px;
