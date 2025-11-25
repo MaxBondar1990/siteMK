@@ -7,6 +7,7 @@
       </svg>
       <span class="cart__count" data-cart-count>0</span>
    </button>
+
    <!-- меню корзини -->
    <div id="cart-modal" class="cart__modal" data-component="cart-modal" data-part="root" data-target="cart-modal"
       data-state="closed" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title" tabindex="-1"
@@ -15,14 +16,14 @@
          aria-label="Закрити корзину"></button>
       <!-- Назва для скрінрідерів (видимий заголовок не обов'язковий) -->
       <h2 id="cart-modal-title" class="title-visually-hidden">Корзина</h2>
+      <h2 id="cart-modal-title" class="cart__modal-title">Кошик</h2>
       <!-- Блок для виводу результатів пошуку -->
       <ul class="cart__results" data-part="results">
          <!-- Тут будуть товари корзини -->
       </ul>
       <div class="cart__footer" data-part="footer">
          <div class="cart__total">
-            <span>Всього:</span>
-            <strong data-part="total-value">0 грн</strong>
+            Всього: 0 грн.
          </div>
          <button type="button" class="cart__clear-btn" data-action="cart-clear" hidden>Очистити корзину</button>
          <button type="button" class="cart__checkout-btn" data-action="cart-checkout-toggle" aria-expanded="false"
