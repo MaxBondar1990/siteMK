@@ -10,31 +10,33 @@
       </div>
       <div class="cart__result-card-qty">
          <button class="cart__result-card-qty-btn" type="button" data-action="cart-dec" aria-label="Зменшити кількість">−</button>
-         <span class="cart__result-card-qty-value">2</span>
+         <input class="cart__result-card-qty-input" type="number" title="кількість до замовлення" value="120">
          <button class="cart__result-card-qty-btn" type="button" data-action="cart-inc" aria-label="Збільшити кількість">+</button>
       </div>
       <button class="cart__result-card-remove" data-action="cart-remove" aria-label="Видалити товар">
          <img class="cart__result-card-remove-img" src="@img/global/Trash_can.webp" alt="Image">
       </button>
-      <div class="cart__result-card-remove-price">Вартість: 289 грн</div>
+      <div class="cart__result-card-price">Вартість: 51000 грн</div>
    </article>
 </li>
+<!-- Картка вартості друку в кошику -->
 <li class="cart__result-card" data-cart-item data-id="7019003" data-color="black" data-price="250">
-   <article class="cart__result-card-article">
-      <a class="cart__result-card-article-link" href="#" title="">
-         <img class="cart__result-card-article-img" src="@img/global/printing_sticer.webp" alt="">
-      </a>
-      <div class="cart__result-card-article-content">
-         <h3 class="cart__result-card-article-title">Друк на футболках</h3>
-         <p class="cart__result-card-article-number">Шовкодрук А4</p>
-         <p class="cart__result-card-article-description">2 кольори</p>
+   <article class="cart__result-card-article _printing">
+      <!-- Зображення (стікер) картки вартості друку -->
+      <img class="cart__result-card-printing-img" src="@img/global/printing_sticer.webp" alt="вартість нанесення">
+      <!-- Інформація про друк -->
+      <h3 class="cart__result-print-name">Друк на футболках</h3>
+      <p class="cart__result-print-options _print-type">Шовкодрук А4</p>
+      <p class="cart__result-print-options _print-quantity">2 кольори</p>
+      <!-- Інформація про про кількість нанесень -->
+      <div class="cart__result-prin-qty">
+         <p class="cart__result-print-options">Кількість нанесень: <span>120</span></p>
       </div>
-      <div class="cart__result-card-qty">
-         <span class="cart__result-card-qty-value">кількість нанесень: 120</span>
-      </div>
-      <button class="cart__result-card-remove" data-action="cart-remove" aria-label="Видалити товар">
+      <!-- ІКнопка видалення картки друку з кошика -->
+      <button class="cart__result-card-remove _prin" data-action="cart-remove" aria-label="Видалити товар">
          <img class="cart__result-card-remove-img" src="@img/global/Trash_can.webp" alt="Image">
       </button>
-      <div class="cart__result-card-remove-price">Вартість: 289 грн</div>
+      <!-- Вартість друку -->
+      <div class="cart__result-card-price _printing">Вартість: 5896.80 грн</div>
    </article>
 </li>

@@ -207,7 +207,7 @@ $animateTimePassive: .5s;
          // width: auto;
          // max-width: min(95vw, 560px);
          width: 440px;
-         height: 75svh;
+         height: 80svh;
 
          border-radius: 12px;
 
@@ -312,7 +312,7 @@ $animateTimePassive: .5s;
    &__result-card-article {
       display: grid;
       grid-template-columns: min-content min-content 1fr 1fr 1fr;
-      grid-template-rows: 1fr min-content;
+      grid-template-rows: 1fr min-content min-content;
       gap: 8px;
 
       align-items: center;
@@ -321,6 +321,10 @@ $animateTimePassive: .5s;
 
       width: 100%;
       height: min-content;
+      &._printing {
+         grid-template-columns: max-content min-content 1fr;
+         grid-template-rows: 1fr 1fr 1fr 1rf 1fr;
+      }
    }
    &__result-card-article-link {
       grid-column: 1 / 2;
@@ -336,17 +340,57 @@ $animateTimePassive: .5s;
       width: 100%;
       border-radius: 8px;
    }
+   &__result-card-printing-img {
+      grid-column: 1 / 2;
+      grid-row: 1 / 6;
+
+      display: block;
+
+      width: 100px;
+      height: auto;
+      border-radius: 8px;
+   }
    /* === Cart item controls & totals === */
-   &__result-card-qty {
+   &__result-card-qty,
+   &__result-prin-qty {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
       display: inline-flex;
       align-items: center;
       gap: 8px;
    }
+   &__result-prin-qty {
+      grid-column: 2 / 3;
+      grid-row: 4 / 5;
+   }
+   &__result-print-options {
+      display: block;
+      width: 100%;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1em;
+      text-transform: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $colorDarkGray;
+      span {
+         font-size: 1rem;
+         font-weight: 700;
+      }
+      &._print-type {
+         grid-column: 2 / 3;
+         grid-row: 2 / 3;
+      }
+      &._print-quantity {
+         grid-column: 2 / 3;
+         grid-row: 3 / 4;
+      }
+   }
    /* Style +/- buttons via data-action to avoid imposing extra classes */
    &__result-card-qty-btn {
-      width: 36px;
+      width: 16px;
       height: 36px;
       display: inline-flex;
       align-items: center;
@@ -366,7 +410,7 @@ $animateTimePassive: .5s;
       transition: all .3s;
       &:hover {
          // background: rgba(255, 255, 255, 0.9);
-         font-size: 1.8rem;
+         font-size: 1.7rem;
          color: $colorOrange;
       }
       &:active {
@@ -374,12 +418,24 @@ $animateTimePassive: .5s;
          color: $colorOrange;
       }
    }
-   &__result-card-qty-value {
-      min-width: 24px;
-      text-align: center;
+   &__result-card-qty-input {
+      width: 80px;
+      height: auto;
+      background: $colorLightGray;
+      border: 1px solid $colorDarkGray;
+      border-radius: 16px;
+
+      padding: 8px;
+
       font-size: 1rem;
-      font-weight: 700;
+      line-height: 1em;
+      text-align: center;
       color: $colorDarkGray;
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+         -webkit-appearance: none;
+         margin: 0;
+      }
    }
    /* Per-item remove (×) button */
    &__result-card-remove {
@@ -407,6 +463,10 @@ $animateTimePassive: .5s;
 
       color: $colorDarkGray;
       overflow: hidden;
+      &._prin {
+         grid-column: 3 / 4;
+         grid-row: 1 / 3;
+      }
       &:hover {
          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), inset 1px 1px 2px $colorWhite;
          scale: 1.1;
@@ -416,16 +476,27 @@ $animateTimePassive: .5s;
       height: 20px;
    }
    /* Row price */
-   &__result-card-remove-price {
-      grid-column: 3 / 6;
-      grid-row: 2 / 3;
+   &__result-card-price {
+      grid-column: 2 / 6;
+      grid-row: 3 / 4;
+
+      width: 100%;
+      height: auto;
+
+      // border-top: 1px solid $colorLightGray;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      padding-top: 8px;
       font-size: 1rem;
-      font-weight: 400;
-      color: $colorDarkGray;
+      font-weight: 700;
+      color: $colorOrange;
       white-space: nowrap;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
+      &._printing {
+         grid-column: 2 / 4;
+         grid-row: 5 / 6;
+      }
    }
    
    // Make media wrapper (first child div) fill available height
@@ -458,7 +529,8 @@ $animateTimePassive: .5s;
       white-space: normal;
       overflow: hidden;
    }
-   &__result-card-article-title {
+   &__result-card-article-title,
+   &__result-print-name {
       display: block;
       width: 100%;
       font-style: normal;
@@ -470,7 +542,12 @@ $animateTimePassive: .5s;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: $colorDarkGray;
       @media (max-width: 376px) { font-size: 14px; }
+   }
+   &__result-print-name {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
    }
    &__result-card-article-number {
       display: block;
@@ -513,6 +590,47 @@ $animateTimePassive: .5s;
 
       color: $colorLightGray;
    }
+   &__order-form {
+      display: none; // прихована за замовчуванням
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(8, min-content);
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: auto;
+      width: 95%;
+      &._visible {
+         display: grid;
+      }
+   }
+   &__order-form-add-file {
+      position: relative;
+      display: block;
+      width: 44px;
+      height: 44px;
+      padding: 8px;
+      margin-left: 4px;
+      background: $colorLightGray;
+      border-radius: 12px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(0, 0, 0, 0.35), inset 1px 1px 2px rgb(255, 255, 255);
+      border-top: 1px solid $colorWhite;
+      border-left: 1px solid $colorWhite;
+      cursor: pointer;
+      grid-column: 2/3;
+      grid-row: 7/8;
+      transition: all .3s;
+      &:hover {
+         box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4), inset -1px -1px 2px rgba(0, 0, 0, 0.35), inset 1px 1px 2px rgb(255, 255, 255);
+         scale: 1.1;
+      }
+      input[type="file"]::-webkit-file-upload-button {
+         visibility: hidden;
+      }
+   }
+   &__order-form-add-file-img {
+      width: 100%;
+      height: auto;
+   }
 }
 
 // === Footer and Order Form ===
@@ -531,7 +649,6 @@ $animateTimePassive: .5s;
   padding: .9em 1.5em;
   font-weight: 400;
   font-size: 1rem;
-//   text-transform: uppercase;
   color: $colorWhite;
   background: $colorOrange;
   border-radius: 16px;
@@ -549,87 +666,50 @@ $animateTimePassive: .5s;
   }
 }
 
-.cart__order-form {
-  display: none; // прихована за замовчуванням
-  &._visible {
-    display: grid;
-  }
 
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(9, min-content);
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: auto;
-  width: 95%;
 
-  input[type="file"]::-webkit-file-upload-button {
-    visibility: hidden;
-  }
+   // input[type="file"] {
+   //    position: relative;
+   //    display: block;
+   //    margin-left: 20px;
+   //    margin-bottom: 0;
+   //    grid-column: 2/3;
+   //    grid-row: 8/9;
+   //    height: 44px;
+   //    width: 44px;
+   //    padding: 1em;
+   //    background: url(@image/global/add_file_btn_DG.webp);
+   //    border: 1px solid #CACACA;
+   //    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+   //    border-radius: 12px;
+   //    cursor: pointer;
+   // }
 
-  input[type="file"] {
-    position: relative;
-    display: block;
-    margin-left: 20px;
-    margin-bottom: 0;
-    grid-column: 2/3;
-    grid-row: 8/9;
-    height: 44px;
-    width: 44px;
-    padding: 1em;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid #CACACA;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
-    border-radius: 12px;
-    cursor: pointer;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 3px;
-      background-color: $colorDarkGray;
-      border-radius: 3px;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 3px;
-      height: 20px;
-      background-color: $colorDarkGray;
-      border-radius: 3px;
-    }
-  }
+   // input[type="number"] {
+   //    padding-right: 8px;
+   // }
+   
 
-  input[type="number"] {
-    padding-right: 8px;
-  }
-
-  input[type="submit"] {
-    grid-column: 1/3;
-    grid-row: 9/10;
-    height: min-content;
-    width: min-content;
-    padding: 0.9em 1.5em;
-    margin: auto;
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 16px;
-    color: $colorDarkGray;
-    transition: all 0.3s;
-    &:hover {
-      background: rgba(255, 255, 255, 0.4);
-      color: $colorLightGray;
-    }
-  }
+   input[type="submit"] {
+      grid-column: 1/3;
+      grid-row: 9/10;
+      height: min-content;
+      width: min-content;
+      padding: 0.9em 1.5em;
+      margin: auto;
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 400;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      color: $colorDarkGray;
+      transition: all 0.3s;
+      &:hover {
+         background: rgba(255, 255, 255, 0.4);
+         color: $colorLightGray;
+      }
+   }
 
   .cart__form-input {
     width: 100%;
@@ -649,17 +729,17 @@ $animateTimePassive: .5s;
     &:nth-child(8) { grid-column: 1/3; grid-row: 8/9; }
   }
 
-  .cart__form-txt {
-    font-size: 1em;
-    font-weight: 400;
-    color: $colorWhite;
-    i { color: red; }
-    &:nth-child(1) { grid-column: 1/3; grid-row: 1/2; }
-    &:nth-child(3) { grid-column: 1/3; grid-row: 3/4; }
-    &:nth-child(5) { grid-column: 1/3; grid-row: 5/6; }
-    &:nth-child(7) { grid-column: 1/3; grid-row: 7/8; }
-    &:nth-child(9) { grid-column: 1/2; grid-row: 9/10; margin-right: 2px; text-align: right; }
-  }
+.cart__form-txt {
+   display: flex;
+   font-size: 1em;
+   font-weight: 400;
+   color: $colorWhite;
+   i { color: red; }
+   &:nth-child(1) { grid-column: 1/3; grid-row: 1/2; }
+   &:nth-child(3) { grid-column: 1/3; grid-row: 3/4; }
+   &:nth-child(5) { grid-column: 1/3; grid-row: 5/6; }
+   &:nth-child(7) { grid-column: 1/2; grid-row: 7/8; justify-self: flex-end; margin-right: 4px; }
+   &:nth-child(9) { grid-column: 1/2; grid-row: 8/9; margin-right: 2px; text-align: right; }
 }
 
 /* Totals block (can be li or div) */
