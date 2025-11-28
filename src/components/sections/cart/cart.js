@@ -1,6 +1,6 @@
 import './cart.scss'
 import { loadContent } from '../../globalBlokcs/fetch/fetch.js'
-
+//console.log('dv');
 // ===== Guest-only cart (localStorage as source of truth) =====
 const CART_KEY = 'mk_cart_v1'
 const CART_STATE_KEY = 'mk_cart_modal_state' // 'open' | 'closed'
@@ -26,8 +26,21 @@ const SELECTORS_CART = {
    modal: '[data-component="cart-modal"][data-part="root"]',
    results: '[data-part="results"]',
    footer: '[data-part="footer"]',
-   totalValue: '[data-part="total-value"]',
+   totalValue: '[data-part="cart-total"]',
    clearBtn: '[data-action="cart-clear"]',
+   item: '[data-cart-item]',
+   qtyInput: 'input[data-target="cart-qty"]',
+   price: '[data-part="price"]',
+   badge: '[data-cart-count]',
+   btnOpen: '[data-action="open-modal"][data-target="cart-modal"]',
+   btnClose: '[data-action="close-modal"][data-part="close"]',
+   btnInc: '[data-action="cart-inc"]',
+   btnDec: '[data-action="cart-dec"]',
+   btnRemove: '[data-action="cart-remove"]',
+   btnCheckoutToggle: '[data-action="cart-checkout-toggle"]',
+   form: '#cart-order-form',
+   cartJsonInput: 'input[name="cart"][data-cart-json]',
+   floatingOpenBtn: '.cart__floating-btn[data-action="open-modal"][data-target="cart-modal"]',
 }
 
 // Small helpers
@@ -42,7 +55,11 @@ function getFooterEl() { const m = getModal(); return m ? qs(SELECTORS_CART.foot
 
 // --- Utils ---
 function cartCount() { return cart.reduce((s, i) => s + (Number(i.qty) || 0), 0) }
-function updateBadges() { document.querySelectorAll('[data-cart-count]').forEach(el => { el.textContent = String(cartCount()) }) }
+function updateBadges() {
+   document.querySelectorAll(SELECTORS_CART.badge).forEach(el => {
+      el.textContent = String(cartCount())
+   })
+}
 function calcTotal() { return cart.reduce((s, i) => s + (Number(i.price) || 0) * (Number(i.qty) || 0), 0) }
 function toggleClearButton() {
    const footerEl = getFooterEl();
@@ -78,7 +95,7 @@ function getPriceFromLi(li) {
       const n = Number(String(attr).replace(/[^\d.,-]/g, '').replace(',', '.'))
       return Number.isFinite(n) ? n : 0
    }
-   const pEl = li.querySelector('.cart__row-price')
+   const pEl = li.querySelector(SELECTORS_CART.price)
    if (pEl) {
       const m = pEl.textContent.match(/([\d\s]+(?:[.,]\d+)?)/)
       if (m) {
@@ -87,6 +104,17 @@ function getPriceFromLi(li) {
       }
    }
    return 0
+}
+
+// Helper to update the row price based on unit price and qty
+function updateRowPrice(holder, rec) {
+   if (!holder || !rec) return
+   const priceEl = holder.querySelector(SELECTORS_CART.price)
+   if (!priceEl) return
+   const unit = Number(rec.price) || 0
+   const qty = Number(rec.qty) || 0
+   const total = unit * qty
+   priceEl.textContent = `Вартість: ${total.toLocaleString('uk-UA')} грн`
 }
 
 // --- Core actions ---
@@ -107,7 +135,7 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
          // 🔒 Remove any scripts injected by dev tooling (e.g., Vite /@vite/client)
          t.content.querySelectorAll('script').forEach(s => s.remove())
          // Append only intended cart item
-         const li = t.content.querySelector('li[data-cart-item]')
+         const li = t.content.querySelector(SELECTORS_CART.item)
          if (li) {
             // annotate li with item-type if we know it
             if (type) li.setAttribute('data-item-type', type)
@@ -130,12 +158,15 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
                      const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
                      if (Number.isFinite(n) && n > 0) normalizedQty = n
                   } else {
-                     const qEl = li.querySelector('.cart__qty-value')
-                     const n = Number(qEl?.textContent)
-                     if (Number.isFinite(n) && n > 0) normalizedQty = n
+                     const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
+                     if (inputEl && inputEl.value !== '') {
+                        const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+                        if (Number.isFinite(n) && n > 0) normalizedQty = n
+                     }
                   }
                   rec.qty = normalizedQty
                }
+               updateRowPrice(li, rec)
             }
             saveCart(cart)
             renderFooterFromCart()
@@ -162,9 +193,12 @@ function addToCart({ id, type = 'product', color, qty = 1 }) {
          const sel = `[data-cart-item][data-id="${CSS.escape(String(id))}"][data-color="${CSS.escape(String(color ?? ''))}"]`
          const li = resultsEl.querySelector(sel)
          if (li) {
-            const v = li.querySelector('.cart__qty-value')
-            if (v) v.textContent = String(existing.qty)
-            if (!existing.price) { const p = getPriceFromLi(li); if (p > 0) { existing.price = p; saveCart(cart) } }
+            const inputEl = li.querySelector('input[data-target="cart-qty"]')
+            if (inputEl) inputEl.value = String(existing.qty)
+            if (!existing.price) {
+               const p = getPriceFromLi(li)
+               if (p > 0) { existing.price = p; saveCart(cart) }
+            }
          }
       }
       updateBadges(); renderFooterFromCart()
@@ -232,11 +266,11 @@ async function openCartModal() {
             t.content.querySelectorAll('script').forEach(s => s.remove())
             // Clear current list and append only cart items
             resultsEl.innerHTML = ''
-            t.content.querySelectorAll('li[data-cart-item]').forEach((row) => {
+            t.content.querySelectorAll(SELECTORS_CART.item).forEach((row) => {
                resultsEl.appendChild(row)
             })
             // sync prices; qty only if server declares authority
-            resultsEl.querySelectorAll('[data-cart-item]').forEach(li => {
+            resultsEl.querySelectorAll(SELECTORS_CART.item).forEach(li => {
                const rId = li.getAttribute('data-id')
                const rColor = li.getAttribute('data-color') ?? null
                const rec = findItem(rId, rColor)
@@ -253,15 +287,17 @@ async function openCartModal() {
                         const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
                         if (Number.isFinite(n) && n > 0) rec.qty = n
                      } else {
-                        const qEl = li.querySelector('.cart__qty-value')
-                        const n = Number(qEl?.textContent)
-                        if (Number.isFinite(n) && n > 0) rec.qty = n
+                        const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
+                        if (inputEl && inputEl.value !== '') {
+                           const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+                           if (Number.isFinite(n) && n > 0) rec.qty = n
+                        }
                      }
                   }
                }
             })
             // sync DOM annotation for type where available in state
-            resultsEl.querySelectorAll('[data-cart-item]').forEach(li => {
+            resultsEl.querySelectorAll(SELECTORS_CART.item).forEach(li => {
                const rId = li.getAttribute('data-id')
                const rColor = li.getAttribute('data-color') ?? null
                const rec = findItem(rId, rColor)
@@ -293,47 +329,81 @@ function mountCart(rootEl) {
       const t = e.target
 
       // open/close modal
-      const btnOpen = t.closest('[data-action="open-modal"][data-target="cart-modal"]')
+      const btnOpen = t.closest(SELECTORS_CART.btnOpen)
       if (btnOpen && rootEl.contains(btnOpen)) { lastOpener = btnOpen; openCartModal(); return }
-      const btnClose = t.closest('[data-action="close-modal"][data-part="close"]')
+      const btnClose = t.closest(SELECTORS_CART.btnClose)
       if (btnClose && btnClose.closest(SELECTORS_CART.modal)) { closeCartModal(); return }
 
       // quantity / remove (inside list)
-      const holder = t.closest('[data-cart-item]')
+      const holder = t.closest(SELECTORS_CART.item)
       if (holder && rootEl.contains(holder)) {
          const holderType = holder.getAttribute('data-item-type') || null
-         const incBtn = t.closest('[data-action="cart-inc"]')
+         const incBtn = t.closest(SELECTORS_CART.btnInc)
          if (incBtn) {
             if (holderType === 'service') return // quantity changes are disabled for services
-            const v = holder.querySelector('.cart__qty-value'); const id = holder.getAttribute('data-id'); const color = holder.getAttribute('data-color') || null
-            const rec = findItem(id, color); if (rec) { rec.qty = (Number(rec.qty) || 0) + 1; saveCart(cart); if (v) v.textContent = String(rec.qty); renderFooterFromCart(); updateBadges() }
+
+            const qtyInput = holder.querySelector(SELECTORS_CART.qtyInput)
+
+            const id = holder.getAttribute('data-id')
+            const color = holder.getAttribute('data-color') || null
+            const rec = findItem(id, color)
+            if (rec) {
+               const current = Number(rec.qty) || 0
+               rec.qty = current + 1
+               saveCart(cart)
+
+               if (qtyInput) qtyInput.value = String(rec.qty)
+
+               updateRowPrice(holder, rec)
+               renderFooterFromCart()
+               updateBadges()
+            }
             return
          }
-         const decBtn = t.closest('[data-action="cart-dec"]')
+         const decBtn = t.closest(SELECTORS_CART.btnDec)
          if (decBtn) {
             if (holderType === 'service') return // quantity changes are disabled for services
-            const v = holder.querySelector('.cart__qty-value'); const id = holder.getAttribute('data-id'); const color = holder.getAttribute('data-color') || null
-            const rec = findItem(id, color); if (rec) { rec.qty = Math.max(0, (Number(rec.qty) || 0) - 1); if (rec.qty === 0) { removeItemDomAndState(holder) } else { saveCart(cart); if (v) v.textContent = String(rec.qty); renderFooterFromCart(); updateBadges() } }
+
+            const qtyInput = holder.querySelector(SELECTORS_CART.qtyInput)
+
+            const id = holder.getAttribute('data-id')
+            const color = holder.getAttribute('data-color') || null
+            const rec = findItem(id, color)
+            if (rec) {
+               const current = Number(rec.qty) || 0
+               const next = Math.max(0, current - 1)
+               rec.qty = next
+
+               if (next === 0) {
+                  removeItemDomAndState(holder)
+               } else {
+                  saveCart(cart)
+                  if (qtyInput) qtyInput.value = String(rec.qty)
+                  updateRowPrice(holder, rec)
+                  renderFooterFromCart()
+                  updateBadges()
+               }
+            }
             return
          }
-         const rmBtn = t.closest('[data-action="cart-remove"]')
+         const rmBtn = t.closest(SELECTORS_CART.btnRemove)
          if (rmBtn) { removeItemDomAndState(holder); return }
       }
 
       // clear cart
-      const clearBtn = t.closest('[data-action="cart-clear"]')
+      const clearBtn = t.closest(SELECTORS_CART.clearBtn)
       if (clearBtn && rootEl.contains(clearBtn)) { clearCart(); return }
 
       // checkout toggle (show form once)
-      const checkoutToggle = t.closest('[data-action="cart-checkout-toggle"]')
+      const checkoutToggle = t.closest(SELECTORS_CART.btnCheckoutToggle)
       if (checkoutToggle && rootEl.contains(checkoutToggle)) {
-         const form = document.getElementById('cart-order-form'); if (!form) return
+         const form = qs(SELECTORS_CART.form); if (!form) return
          const isVisible = form.classList.contains('_visible')
          if (!isVisible) {
             form.classList.add('_visible'); if (form.hasAttribute('hidden')) form.removeAttribute('hidden')
             checkoutToggle.setAttribute('aria-expanded', 'true'); checkoutToggle.style.display = 'none'
          } else {
-            let cartInput = form.querySelector('input[name="cart"][data-cart-json]')
+            let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
             if (!cartInput) { cartInput = document.createElement('input'); cartInput.type = 'hidden'; cartInput.name = 'cart'; cartInput.setAttribute('data-cart-json', ''); form.appendChild(cartInput) }
             cartInput.value = JSON.stringify(cart); if (typeof form.requestSubmit === 'function') form.requestSubmit(); else form.submit()
          }
@@ -341,17 +411,97 @@ function mountCart(rootEl) {
       }
    }, { signal })
 
+   // Qty change via direct input (data-target="cart-qty")
+   rootEl.addEventListener('change', (e) => {
+      const input = e.target.closest(SELECTORS_CART.qtyInput)
+      if (!input || !rootEl.contains(input)) return
+
+      const holder = input.closest(SELECTORS_CART.item)
+      if (!holder) return
+
+      const holderType = holder.getAttribute('data-item-type') || null
+      if (holderType === 'service') return // services qty is not editable via input
+
+      const id = holder.getAttribute('data-id')
+      const color = holder.getAttribute('data-color') || null
+      const rec = findItem(id, color)
+      if (!rec) return
+
+      let next = Number(String(input.value).replace(/[^\d.-]/g, ''))
+      if (!Number.isFinite(next) || next < 0) {
+         // fallback to previous value if invalid
+         next = Number(rec.qty) || 1
+      }
+
+      if (next === 0) {
+         removeItemDomAndState(holder)
+      } else {
+         rec.qty = next
+         saveCart(cart)
+         input.value = String(rec.qty)
+         updateRowPrice(holder, rec)
+         renderFooterFromCart()
+         updateBadges()
+      }
+   }, { signal })
+
    return () => ac.abort()
 }
 
 // Floating open button (outside root)
-const floatingOpenBtn = document.querySelector('.cart__floating-btn[data-action="open-modal"][data-target="cart-modal"]')
+const floatingOpenBtn = document.querySelector(SELECTORS_CART.floatingOpenBtn)
 if (floatingOpenBtn) { floatingOpenBtn.addEventListener('click', (e) => { e.preventDefault(); lastOpener = e.currentTarget; openCartModal() }) }
 
 // Global add-to-cart for buttons outside the cart root
+// --- Hydrate cart state from static DOM ---
+function hydrateCartFromDom() {
+   const resultsEl = getResultsEl()
+   if (!resultsEl) return
+
+   resultsEl.querySelectorAll(SELECTORS_CART.item).forEach((li) => {
+      const id = li.getAttribute('data-id')
+      if (!id) return
+      const colorAttr = li.getAttribute('data-color')
+      const color = colorAttr === '' ? null : (colorAttr ?? null)
+      const existing = findItem(id, color)
+      // determine type; default to 'product'
+      const typeAttr = li.getAttribute('data-item-type')
+      const itemType = typeAttr || 'product'
+
+      // read qty from input[data-target="cart-qty"], fallback to 1
+      let qty = 1
+      const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
+      if (inputEl && inputEl.value !== '') {
+         const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+         if (Number.isFinite(n) && n > 0) qty = n
+      }
+
+      const price = getPriceFromLi(li)
+
+      if (!existing) {
+         cart.push({ id, type: itemType, color, qty, price: price || 0 })
+      } else {
+         // merge: prefer existing.qty, but fill missing price
+         if (!existing.price && price) existing.price = price
+      }
+
+      const rec = findItem(id, color)
+      if (rec) updateRowPrice(li, rec)
+   })
+
+   saveCart(cart)
+   renderFooterFromCart()
+   updateBadges()
+}
+
 const rootCart = getRootCart()
 let unmountCart = null
-if (rootCart) { unmountCart = mountCart(rootCart); if (import.meta.hot && unmountCart) { import.meta.hot.dispose(unmountCart) } }
+if (rootCart) {
+   // Sync any hardcoded DOM items into state before mounting listeners
+   hydrateCartFromDom()
+   unmountCart = mountCart(rootCart)
+   if (import.meta.hot && unmountCart) { import.meta.hot.dispose(unmountCart) }
+}
 
 document.addEventListener('click', (e) => {
    const btnAdd = e.target.closest('[data-action="add-to-cart"]')
@@ -380,11 +530,11 @@ updateBadges()
 
 // Sync cart JSON into order form on submit
 ; (function attachCartFormSync() {
-   const form = document.getElementById('cart-order-form'); if (!form) return
+   const form = qs(SELECTORS_CART.form); if (!form) return
    form.addEventListener('submit', () => {
-      let cartInput = form.querySelector('input[name="cart"][data-cart-json]')
+      let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
       if (!cartInput) { cartInput = document.createElement('input'); cartInput.type = 'hidden'; cartInput.name = 'cart'; cartInput.setAttribute('data-cart-json', ''); form.appendChild(cartInput) }
       cartInput.value = JSON.stringify(cart)
-      const checkoutBtn = document.querySelector('[data-action="cart-checkout-toggle"]'); if (checkoutBtn) checkoutBtn.style.display = ''
+      const checkoutBtn = document.querySelector(SELECTORS_CART.btnCheckoutToggle); if (checkoutBtn) checkoutBtn.style.display = ''
    })
 })()

@@ -22,7 +22,7 @@
          <!-- Тут будуть товари корзини -->
       </ul>
       <div class="cart__footer" data-part="footer">
-         <div class="cart__total">
+         <div class="cart__total" data-part="cart-total">
             Всього: 56896.80 грн.
          </div>
          <button type="button" class="cart__clear-btn" data-action="cart-clear" hidden>Очистити корзину</button>
@@ -52,7 +52,8 @@
             <p class="cart__form-txt">Додати макет</p>
             <label class="cart__order-form-add-file">
                <img class="cart__order-form-add-file-img" src="@img/global/add_file_btn_DG.webp" alt="Image">
-               <input type="file" class="add-file__input" accept=".jpg, .jpeg, .png, image/*, .psd, .ai, .eps, .svg, .cdr" multiple>
+               <input type="file" class="add-file__input"
+                  accept=".jpg, .jpeg, .png, image/*, .psd, .ai, .eps, .svg, .cdr" multiple>
             </label>
             <!-- Hidden metadata populated перед відправкою -->
             <input type="hidden" name="cart" data-cart-json>

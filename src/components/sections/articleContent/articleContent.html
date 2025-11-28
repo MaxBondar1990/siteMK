@@ -1,8 +1,9 @@
 <!-- Основний блок сторінки -->
-<section data-fls-articleContent class="article" data-name="article-component" itemscope itemtype="https://schema.org/Product">
+<section data-fls-articleContent class="article" data-name="article-component" itemscope
+   itemtype="https://schema.org/Product">
    <div class="article__imgs">
       <div class="article__mine-img-block" data-name="mine-img">
-         <img class="article__mine-img" src="@img/articleContent/article_mine.jpg"
+         <img data-fls-image-ignore class="article__mine-img" src="@img/articleContent/article_mine.jpg"
             alt="Футболка Gildan SoftStyle 153 жовта" itemprop="image">
       </div>
    </div>
@@ -127,9 +128,10 @@
    <!--<button class="order-btn article__order-button _buy" data-btn="view-order-form" type="button">Замовити</button>-->
    <button class="order-btn _add-to-cart" class="order-btn article__order-button _get-print" data-action="add-to-cart"
       data-id="7019001" data-color="white" data-qty="2" data-price="100">В корзину</button>
-   
+
    <!-- Кнопка виклику посилань на товар на сайтах постачальників -->
-   <button class="supplier-links-call-button" data-button="view-suppliers-modal" data-action="open-modal" data-target="inks-to-suppliers-modal" aria-label="Показати посилання на товар у постачальників"
+   <button class="supplier-links-call-button" data-button="view-suppliers-modal" data-action="open-modal"
+      data-target="inks-to-suppliers-modal" aria-label="Показати посилання на товар у постачальників"
       title="Показати посилання на постачальників">
       <svg class="supplier-links-call-button__icon" aria-hidden="true" focusable="false">
          <use xlink:href="__spritemap#sprite-link"></use>
@@ -139,7 +141,8 @@
    <!-- Модалка з лінками на сайти постачальників -->
    <div class="links-to-suppliers" data-name="suppliers-modal">
       <!-- Кнопка що зачиняє модалку -->
-      <button class="links-to-suppliers__modal-close" data-action="close-modal" data-part="close" type="button" aria-label="Закрити корзину"></button>
+      <button class="links-to-suppliers__modal-close" data-action="close-modal" data-part="close" type="button"
+         aria-label="Закрити корзину"></button>
       <!-- Лінк на сайт постачальника -->
       <a class="links-to-suppliers__link" href="#">Тотобі</a>
       <!-- Лінк на сайт постачальника -->
@@ -148,7 +151,7 @@
       <a class="links-to-suppliers__link" href="#">Бергамо</a>
       <!-- Лінк на сайт постачальника -->
       <a class="links-to-suppliers__link" href="#">ТопТайм</a>
-       <!-- Лінк на сайт постачальника -->
+      <!-- Лінк на сайт постачальника -->
       <a class="links-to-suppliers__link" href="#">Туті</a>
       <!-- Лінк на сайт постачальника -->
       <a class="links-to-suppliers__link" href="#">Якась їбуча довга назва з довгим коментарем на всі гроші</a>
@@ -156,7 +159,8 @@
       <a class="links-to-suppliers__link" href="#">Борса</a>
 
       <!-- Кнопка додавання посилання на сайт постачальника -->
-      <button class="links-to-suppliers__link-add-btn" data-button="view-supplier-modal" type="button" aria-label="Додати посилання" title="Додати посилання">
+      <button class="links-to-suppliers__link-add-btn" data-button="view-supplier-modal" type="button"
+         aria-label="Додати посилання" title="Додати посилання">
          <svg class="links-to-suppliers__icon" aria-hidden="true" focusable="false">
             <use xlink:href="__spritemap#sprite-link"></use>
          </svg>
@@ -164,25 +168,26 @@
       </button>
    </div>
    <!-- Модалка з формою для додавання нових лінків на сайт постачальника -->
-    <div class="add-link-to-supplier" data-name="supplier-modal">
+   <div class="add-link-to-supplier" data-name="supplier-modal">
       <!-- Кнопка що зачиняє модалку -->
-      <button class="add-link-to-supplier__modal-close" data-action="close-modal" data-part="close" type="button" aria-label="Закрити корзину"></button>
+      <button class="add-link-to-supplier__modal-close" data-action="close-modal" data-part="close" type="button"
+         aria-label="Закрити корзину"></button>
       <form class="add-link-to-supplier__form" action="">
-            <legend class="add-link-to-supplier__form-title">
-               Додайте посилання на сайт постачальника
-            </legend>
-            <label class="add-link-to-supplier__form-label" for="supplier-name">
-               Вкажіть назву постачальника
-            </label>
-            <input class="add-link-to-supplier__form-input" type="text" id="supplier-name">
-            <label class="add-link-to-supplier__form-label" for="supplier-link">
-               Додайте посилання на сторінку товара у постачальника
-            </label>
-            <input class="add-link-to-supplier__form-input" type="url" id="supplier-link">
+         <legend class="add-link-to-supplier__form-title">
+            Додайте посилання на сайт постачальника
+         </legend>
+         <label class="add-link-to-supplier__form-label" for="supplier-name">
+            Вкажіть назву постачальника
+         </label>
+         <input class="add-link-to-supplier__form-input" type="text" id="supplier-name">
+         <label class="add-link-to-supplier__form-label" for="supplier-link">
+            Додайте посилання на сторінку товара у постачальника
+         </label>
+         <input class="add-link-to-supplier__form-input" type="url" id="supplier-link">
 
-            <input class="add-link-to-supplier__form-submit" type="submit" value="Надіслати">
+         <input class="add-link-to-supplier__form-submit" type="submit" value="Надіслати">
       </form>
-    </div>
+   </div>
    <!-- TODO додати якір на тарифи -->
    <!--<button class="order-btn article__order-button _get-print" data-fls-scrollto="#article-print-tarif"
       data-action="get-print-tarif" type="button">Обрати друк</button>
