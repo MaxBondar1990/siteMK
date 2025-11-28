@@ -38,6 +38,7 @@ const SELECTORS_CART = {
    btnDec: '[data-action="cart-dec"]',
    btnRemove: '[data-action="cart-remove"]',
    btnCheckoutToggle: '[data-action="cart-checkout-toggle"]',
+   btnHideForm: '[data-action="cart-close"]',
    form: '#cart-order-form',
    cartJsonInput: 'input[name="cart"][data-cart-json]',
    floatingOpenBtn: '.cart__floating-btn[data-action="open-modal"][data-target="cart-modal"]',
@@ -64,10 +65,39 @@ function calcTotal() { return cart.reduce((s, i) => s + (Number(i.price) || 0) *
 function toggleClearButton() {
    const footerEl = getFooterEl();
    if (!footerEl) return
-   const btn = footerEl.querySelector(SELECTORS_CART.clearBtn)
-   if (!btn) return
-   if (cart.length > 0) btn.removeAttribute('hidden')
-   else btn.setAttribute('hidden', '')
+
+   const clearBtn = footerEl.querySelector(SELECTORS_CART.clearBtn)
+   const checkoutBtn = footerEl.querySelector(SELECTORS_CART.btnCheckoutToggle)
+   const hideFormBtn = footerEl.querySelector(SELECTORS_CART.btnHideForm)
+   const form = qs(SELECTORS_CART.form)
+
+   const hasItems = cart.length > 0
+   const formVisible = !!(form && form.classList.contains('_visible') && !form.hasAttribute('hidden'))
+
+   // 1) Якщо корзина порожня — ховаємо всі три кнопки і форму
+   if (!hasItems) {
+      ;[clearBtn, checkoutBtn, hideFormBtn].forEach(btn => {
+         if (!btn) return
+         btn.classList.add('_hidden')
+      })
+      if (form) {
+         form.classList.remove('_visible')
+         if (!form.hasAttribute('hidden')) form.setAttribute('hidden', '')
+      }
+      return
+   }
+
+   // 2) Є товари, форма закрита: "Оформити" + "Очистити" видимі, "Сховати форму" схована
+   if (!formVisible) {
+      if (clearBtn) clearBtn.classList.remove('_hidden')
+      if (checkoutBtn) checkoutBtn.classList.remove('_hidden')
+      if (hideFormBtn) hideFormBtn.classList.add('_hidden')
+   } else {
+      // 3) Форма відкрита: "Очистити" і "Оформити" ховаємо, показуємо "Сховати форму"
+      if (clearBtn) clearBtn.classList.add('_hidden')
+      if (checkoutBtn) checkoutBtn.classList.add('_hidden')
+      if (hideFormBtn) hideFormBtn.classList.remove('_hidden')
+   }
 }
 function renderFooterFromCart() {
    const footerEl = getFooterEl();
@@ -400,13 +430,35 @@ function mountCart(rootEl) {
          const form = qs(SELECTORS_CART.form); if (!form) return
          const isVisible = form.classList.contains('_visible')
          if (!isVisible) {
-            form.classList.add('_visible'); if (form.hasAttribute('hidden')) form.removeAttribute('hidden')
-            checkoutToggle.setAttribute('aria-expanded', 'true'); checkoutToggle.style.display = 'none'
+            // перший клік — просто відкриваємо форму
+            form.classList.add('_visible')
+            if (form.hasAttribute('hidden')) form.removeAttribute('hidden')
+            checkoutToggle.setAttribute('aria-expanded', 'true')
+            toggleClearButton() // покажемо/сховаємо потрібні кнопки
          } else {
+            // другий клік (якщо залишиш цю гілку) — відправка форми
             let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
-            if (!cartInput) { cartInput = document.createElement('input'); cartInput.type = 'hidden'; cartInput.name = 'cart'; cartInput.setAttribute('data-cart-json', ''); form.appendChild(cartInput) }
-            cartInput.value = JSON.stringify(cart); if (typeof form.requestSubmit === 'function') form.requestSubmit(); else form.submit()
+            if (!cartInput) {
+               cartInput = document.createElement('input')
+               cartInput.type = 'hidden'
+               cartInput.name = 'cart'
+               cartInput.setAttribute('data-cart-json', '')
+               form.appendChild(cartInput)
+            }
+            cartInput.value = JSON.stringify(cart)
+            if (typeof form.requestSubmit === 'function') form.requestSubmit()
+            else form.submit()
          }
+         return
+      }
+      const hideFormBtn = t.closest(SELECTORS_CART.btnHideForm)
+      if (hideFormBtn && rootEl.contains(hideFormBtn)) {
+         const form = qs(SELECTORS_CART.form); if (!form) return
+         form.classList.remove('_visible')
+         if (!form.hasAttribute('hidden')) form.setAttribute('hidden', '')
+         const checkoutBtn = qs(SELECTORS_CART.btnCheckoutToggle)
+         if (checkoutBtn) checkoutBtn.setAttribute('aria-expanded', 'false')
+         toggleClearButton() // переключаємо кнопки назад: показати "Оформити" + "Очистити"
          return
       }
    }, { signal })
@@ -535,6 +587,8 @@ updateBadges()
       let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
       if (!cartInput) { cartInput = document.createElement('input'); cartInput.type = 'hidden'; cartInput.name = 'cart'; cartInput.setAttribute('data-cart-json', ''); form.appendChild(cartInput) }
       cartInput.value = JSON.stringify(cart)
-      const checkoutBtn = document.querySelector(SELECTORS_CART.btnCheckoutToggle); if (checkoutBtn) checkoutBtn.style.display = ''
+      const checkoutBtn = document.querySelector(SELECTORS_CART.btnCheckoutToggle)
+      if (checkoutBtn) checkoutBtn.classList.remove('_hidden')
+      toggleClearButton()
    })
 })()

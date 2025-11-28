@@ -655,6 +655,9 @@ $animateTimePassive: .5s;
   box-shadow: 2px 2px 4px rgba(111, 111, 111, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
+  &._hidden {
+   display: none;
+  }
 
   &:hover {
     background: darken($colorOrange, 5%);
@@ -783,6 +786,9 @@ $animateTimePassive: .5s;
   box-shadow: 2px 2px 4px rgba(111, 111, 111, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
+  &._hidden{
+   display: none;
+  }
 }
 
 .cart__clear-btn:hover {
