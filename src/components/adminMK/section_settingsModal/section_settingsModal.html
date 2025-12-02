@@ -1,0 +1,36 @@
+<div class="modal-window" data-name="modal-window">
+
+   <form class="content-container" action="" name="section-settings-form">
+      <!-- Блок з кнопкою закриття та заголовком модалки -->
+      <div class="content-container__header">
+         <!-- кнопка закриття вікна створення параметра секції -->
+         <button class="close-btn" type="button" data-name="close-modal-window-button"></button>
+         <!-- Заголовок модального вікна -->
+         <p class="content-container__title">Створіть новий блок</p>
+      </div>
+      <!-- поле зміни назви секції -->
+      <span class="modal-element_description">Тут ви можете змінити назву секції</span>
+      <input class="modal-element_input" type="text" name="Section text" value="Section name">
+      <!-- завантаження титульного малюну (preview) секції -->
+      <span class="modal-element_description">Тут ви можете завантажте зображення для прев'ю секції</span>
+      <input class="image-preview-upload_input" id="section_preview" name="section_preview" type="file"
+         accept="image/*">
+      <label class="image-preview-upload_label" for="section_preview">
+         Обрати зображення
+         <img class="image-preview-upload_ico-img" src="@img/404/img.png" alt="upload section preview">
+      </label>
+      <span class="modal-element_description file-name">Ім я файла</span>
+      <!-- меню вибору типу секції (section on moderation/regular section etc.) -->
+      <span class="modal-element_description">Тут ви можете обрати тип секції</span>
+      <div class="section-settings-modal__section-type-checkbox-wrapper">
+         <input class="section-settings-modal__section-type-checkbox" type="radio" name="section-type-checkbox"
+            value="moderation" id="moderation" checked>
+         <label class="section-settings-modal__label-for-checkbox" for="moderation">Section on moderation</label>
+         <input class="section-settings-modal__section-type-checkbox" type="radio" name="section-type-checkbox"
+            value="regular" id="regular" focus>
+         <label class="section-settings-modal__label-for-checkbox" for="regular">Regular section</label>
+      </div>
+      <!-- кнопка збереження/відправки налаштувань -->
+      <input class="modal_submit-btn" type="submit" value="Зберегти">
+   </form>
+</div>

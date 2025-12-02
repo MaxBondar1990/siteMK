@@ -1,0 +1,112 @@
+<!-- меню модерації секції -->
+<div data-fls-section_moderationMenu class="moderation-menu" data-name="section-moderation-menu">
+   <!-- кнопка закриття та заголовок меню модерації секції-->
+   <div class="moderation-menu__header">
+      <!-- Кнопка закриття меню модерації секції-->
+      <button class="close-btn" type="button" data-close-modal="section-moderation-menu"></button>
+      <!-- заголовок меню -->
+      <p class="moderation-menu__title">Section moderation name</p>
+   </div>
+   <!-- обгортка меню модерації секції -->
+   <div class="moderation-menu__wrapper">
+      <!-- список-меню елементів для навігації по елементам -->
+      <div class="section-item-navigation moderation-menu__item-navigation">
+         <!-- Контейнер навігаціі по елементам блока/секції -->
+         <div class="section-item-navigation__items-container _items">
+            <!-- заголовок списку навігації по парметрам -->
+            <p class="section-item-navigation__title">Елементи секції</p>
+            <!-- параметри навігації -->
+            <div class="section-item-navigation__items">
+               <!-- посилання на форму модерації параметра секції -->
+               <a class="section-item-navigation__item" href="#section-moderation-param-1" title="title"
+                  data-name="item-btn" data-id="section-moderation-param-1">title</a>
+               <!-- кнопка додавання параметра секції -->
+               <button class="section-item-navigation__add_item_btn" type="button" title="Додати елемент"
+                  data-fetch-modal="paramForSection_createModalWindow"></button>
+            </div>
+         </div>
+         <!-- Контейнер навігаціі по блокам блока/секції -->
+         <div class="section-item-navigation__items-container _blocks">
+            <!-- заголовок списку навігації по блокам -->
+            <p class="section-item-navigation__title">Блоки секції</p>
+            <!-- блоки навігації -->
+            <div class="section-item-navigation__items">
+               <!-- посилання на форму модерації блоку секції -->
+               <a class="section-item-navigation__item" href="#section-moderation-block-1" title="first block"
+                  data-name="item-btn" data-id="section-moderation-block-1">first block</a>
+               <!-- кнопка додавання блока секції -->
+               <button class="section-item-navigation__add_item_btn" type="button" title="Додати елемент" data-fetch-modal="block_createModalWindow"></button>
+            </div>
+         </div>
+      </div>
+      
+      <!-- список форм модерації елементів -->
+      <div class="item-forms moderation-menu__item-forms">
+         <!-- підказка, що жодного параметра чи сеції не створенно -->
+         <p class="hint">Почніть створення секціі додавши необідний елемент</p>
+         <!-- форма модерації парметра -->
+         <div class="moderation-param-form">
+            <!-- форма модерації полів парметра -->
+            <form class="edit-form" id="s-m-p-navigate-1" data-id="s-m-p-navigate-1"
+               action="/setup/param/upd-defoult-value/" title="moderat param form" method="post"
+               enctype="multipart/form-data">
+               <!-- заголовок форми модерації полів парметра -->
+               <p class="edit-form__title">title</p>
+               <!-- поле модерації назви параметра -->
+               <label for="s-m-p-input-1" class="edit-form__param-label">Назва елементу</label>
+               <input id="s-m-p-input-1" class="edit-form__param-input" type="text" name="param-name" value="title">
+               <!-- поле модерації значення параметра -->
+               <label for="param-value-1" class="edit-form__param-label">Значення елементу</label>
+               <textarea id="param-value-1" class="edit-form__param-input _textarea" type="text"
+                  name="param-value">title value</textarea>
+               <!-- ПХП ключ параметра -->
+               <div class="edit-form__key-copy-unit">
+                  <span class="edit-form__param-label">Скопіювати PHP ключ елемента</span>
+                  <!-- кнопка копіювання ключа параметра -->
+                  <button class="edit-form__key-copy-btn" type="button" title="Скопіювати PHP ключ елемента">
+                     <svg class="edit-form__key-copy-svg">
+                        <use xlink:href="img/icons/icons.svg#copy"></use>
+                     </svg>
+                  </button>
+               </div>
+               <!-- ПХП ключ параметра -->
+               <div class="edit-form__key-copy-unit">
+                  <span class="edit-form__param-label _key">Місце для виведення PHP ключа</span>
+               </div>
+               <!-- скритий інпут -->
+               <input type="hidden" name="param_id" value="1">
+               <!-- кнопка відправки форми модерації параметра -->
+               <button class="edit-form__submit" data-close-modal="section-moderation-menu" type="submit">OK</button>
+            </form>
+            <form class="remove-form" action="/setup/param/remove-defoult-value/" title="remove param form"
+               method="post" enctype="multipart/form-data">
+               <input type="hidden" name="param_id" value="1">
+               <button class="remove-form__submit" type="submit" title="Видалити елемент">
+                  <svg class="remove-form__svg">
+                     <use xlink:href="img/icons/icons.svg#del-btn"></use>
+                  </svg>
+               </button>
+            </form>
+         </div>
+      </div>
+
+      <!-- форма додавання ХТМЛ частини секції -->
+      <form class="create-view-form moderation-menu__create-view-form" action="/setup/section/add_view/"
+         title="add php view" method="post" enctype="multipart/form-data">
+         <!-- Поле виводу завантаженого коду -->
+         <label class="create-view-form__label">HTML/PHP Код секції:</label>
+         <xmp class="create-view-form__code-display-panel" data-name="view-active"><div>34</div></xmp>
+         <!-- поле додавння ХТМЛ частини секції -->
+         <label class="create-view-form__label">Вставте сюди HTML розмітку вашої секції для створення/редагування</label>
+         <textarea class="create-view-form__textarea" name="" id="" data-name="view-new"></textarea>
+         <!-- <button class="create-view-form__textarea-scale_btn _scale_up" type="button" button-data-name="scale_up"></button> -->
+         <!-- скритий інпут -->
+         <input type="hidden" name="section_id" value="1">
+         <!-- кнопка відправки форми додавання ХТМЛ частини секції -->
+         <button class="create-view-form__submit _diplay-none" data-button="view" type="submit" title="Надіслати">GO</button>
+      </form>
+      <!-- кнопка закриття форми -->
+      <button class="moderation-menu__confirm-btn" type="submit" data-button="close-section-moderation-menu">OK</button>
+   </div>
+
+</div>

@@ -1,0 +1,24 @@
+   <!-- модальне вікно створення параметра блоку -->
+   <div class="modal-window" data-name="block-create-menu">
+      
+      <!-- форма створення параметра секції -->
+      <div class="content-container" title="add php view" data-name="create-section-param-form">
+      
+         <!-- Блок з кнопкою закриття та заголовком модалки -->
+         <div class="content-container__header">
+            <!-- кнопка закриття вікна створення параметра секції -->
+            <button class="close-btn" type="button" data-close-modal="block-create-menu"></button>
+            <!-- Заголовок модального вікна -->
+            <p class="content-container__title">Створіть новий блок</p>
+         </div>
+         
+         <!-- поле створення назви параметра -->
+         <label for="s-m-p-create-name" class="modal-element_description">Назва блоку</label>
+         <input id="s-m-p-create-name" class="modal-element_input" type="text" name="param-name">
+         <!-- скритий інпут -->
+         <input type="hidden" name="section_id" value="1">
+         <!-- кнопка відправки форми створення параметра -->
+         <button class="modal_submit-btn" data-close-modal="block-create-menu" data-fetch-modal="blocks_moderationMenu" 
+          type="submit">OK</button>
+      </div>
+   </div>
