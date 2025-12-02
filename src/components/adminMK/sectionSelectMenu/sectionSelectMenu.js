@@ -24,7 +24,24 @@ export function buttonViewSectionCreateMenu(event) {
       fetchUrl.loadContent("section_createModalWindow");
    }
 }
+// export function viewSectionModerationMenu(event) {
+//    const buttonView = event.target.closest('[data-button-name="view-section-moderation-menu"]');
 
+//    if (buttonView) {
+//       const section_id = buttonView.dataset.id;
+//       const url = buttonView.dataset.url;
+//       const data = { 'section_id': section_id };
+//       // Вызываем функцию
+//       fetchUrl.getUrlFormData(url, data)
+//          .then((response) => {
+//             //console.log(document.body);
+//             document.body.innerHTML += response;
+//             //console.log(data); // JSON data parsed by `response.json()` call
+//             // console.log(myModal)
+//             //myModal.innerHTML = data; // JSON data parsed by `response.json()` call
+//          });
+//    }
+// }
 export function viewSectionModerationMenu(event) {
    if (event.target.closest('[data-button-name="view-section-moderation-menu"]') || event.target.closest('[data-name="confirm-alarm-section-select-moderation-view"]')) {
       fetchUrl.loadContent("section_moderationMenu");
@@ -205,3 +222,4 @@ export function addClasses(event) {
 }
 // додаємо слухач на клік по документу
 document.addEventListener('click', close);
+document.addEventListener('click', viewSectionModerationMenu);
