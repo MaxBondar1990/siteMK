@@ -8,7 +8,7 @@
    height: 0;
    z-index: 3000;
    overflow: hidden;
-   animation: emersion 1s ease 1s 1 normal forwards;
+   animation: christmasStikerEmersion 1s ease 1s 1 normal forwards;
    &__close {
       position: absolute;
       top: 16px;
@@ -22,7 +22,7 @@
       transition: all .3s ease;
       z-index: 3001;
       overflow: hidden;
-      animation: appearance .3s ease 2.2s 1 normal forwards;
+      animation: cristmasStikerCloseBtnAppearance .3s ease 2.2s 1 normal forwards;
       &::before {
          content: '';
          position: absolute;
@@ -57,14 +57,14 @@
       width: 100%;
       height: auto;
       transition: all .3s;
-      animation: shudder 3s ease 3.2s infinite normal none;
+      animation: christmasStikershudder 3s ease 3.2s infinite normal none;
       &:hover {
          scale: .95;
       }
    }
 }
 
-@keyframes emersion {
+@keyframes christmasStikerEmersion {
    0% {
       width: 0;
       height: 0;
@@ -90,7 +90,7 @@
       height: 262px;
    }
 }
-@keyframes appearance {
+@keyframes cristmasStikerCloseBtnAppearance {
    0% {
       width: 0;
       height: 0;
@@ -104,7 +104,7 @@
       height: 36px;
    }
 }
-@keyframes shudder {
+@keyframes christmasStikershudder {
    0% {
       transform: rotate(0);
       scale: 1.05;
