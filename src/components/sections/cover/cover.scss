@@ -175,29 +175,3 @@
       height: 75svh;
    }
 }
-
-@property --y {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: -1%;
-}
-.snowfall,
-.snowfall::before,
-.snowfall::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  overflow: hidden;
-  pointer-events: none;
-
-  background-image: radial-gradient(
-      circle at 5% calc(var(--y) * 1),
-      #fff 3px,
-      transparent 6px
-    ),
-    radial-gradient(
-      circle at 65% calc(var(--y) * 1.3),
-      #fff 2px,
-      transparent 4px
-    );
-}
