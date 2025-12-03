@@ -1,14 +1,17 @@
 
 .christmas-gifts {
    position: fixed;
-   top: 70%;
+   top: 60%;
    left: 70%;
-   transform: translateY(-50%);
    width: 0;
    height: 0;
    z-index: 3000;
    overflow: hidden;
    animation: christmasStikerEmersion 1s ease 1s 1 normal forwards;
+   &._departure {
+      animation: christmasStikerDeparture .5s ease 0s 1 normal forwards;
+   }
+
    &__close {
       position: absolute;
       top: 16px;
@@ -48,6 +51,9 @@
       &:hover {
          scale: 1.2;
       }
+       &._departure {
+         scale: 0;
+       }
    }
    &__link {
       width: 100%;
@@ -58,12 +64,40 @@
       height: auto;
       transition: all .3s;
       animation: christmasStikershudder 3s ease 3.2s infinite normal none;
+       &._departure {
+         animation: none;
+       }
+   }
+}
+.christmas-gifts-causes-btn {
+   position: fixed;
+   top: 50%;
+   right: -85px;
+   width: 80px;
+   height: auto;
+   overflow: hidden;
+   z-index: 3001;
+   transition: all .2s;
+   &__img {
+      width: 100%;
+      height: auto;
+   }
+   &._show {
+      animation: showGiftsCausesBtn .3s ease 0s 1 normal none;
+      right: -20px;
+      transform: rotate(-15deg);
       &:hover {
-         scale: .95;
+         right: -12px;
+         transform: rotate(-25deg);
       }
+   }
+   &._hide {
+      animation: hideGiftsCausesBtn .3s ease 0s 1 normal forwards;
    }
 }
 
+// Анімації різдвяного стікера arrival
+   // Анімація появи різдвяного стікера
 @keyframes christmasStikerEmersion {
    0% {
       width: 0;
@@ -90,6 +124,31 @@
       height: 262px;
    }
 }
+   // Анімація згортання різдвяного стікера при закритті
+@keyframes christmasStikerDeparture {
+   0% {
+      display: block;
+      top: 60%;
+      left: 70%;
+      width: 300px;
+      height: 262px;
+   }
+   99% {
+      display: block;
+      top: 52%;
+      left: 100%;
+      width: 40px;
+      height: 35px;
+   }
+   100% {
+      display: none;
+      top: 52%;
+      left: 100%;
+      width: 10px;
+      height: 9px;
+   }
+}
+   // Анімація появи кнопки закриття різдвяного стікера
 @keyframes cristmasStikerCloseBtnAppearance {
    0% {
       width: 0;
@@ -104,6 +163,7 @@
       height: 36px;
    }
 }
+   // Анімація (потряхування) зображення різдвяного стікера
 @keyframes christmasStikershudder {
    0% {
       transform: rotate(0);
@@ -134,3 +194,34 @@
       scale: 1;
    }
 }
+
+// Анімації кнопки виклику різдвяного стікера
+   // Анімації появи кнопки виклику різдвяного стікера
+@keyframes showGiftsCausesBtn {
+   0% {
+      right: -85px;
+   }
+   50% {
+      right: -20px;
+   }
+   80% {
+      right: -20px;
+      transform: rotate(-25deg);
+   }
+   100% {
+      right: -20px;
+      transform: rotate(-15deg);
+   }
+}
+   // Анімації зникнення кнопки виклику різдвяного стікера
+@keyframes hideGiftsCausesBtn {
+   0% {
+      right: -20px;
+      transform: rotate(-15deg);
+   }
+   100% {
+      right: -85px;
+      transform: rotate(0);
+   }
+}
+
