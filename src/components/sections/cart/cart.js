@@ -1,5 +1,5 @@
 import './cart.scss'
-import { loadContent } from '../../globalBlokcs/fetch/fetch.js'
+import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js'
 //console.log('dv');
 // ===== Guest-only cart (localStorage as source of truth) =====
 const CART_KEY = 'mk_cart_v1'
@@ -125,14 +125,14 @@ function getPriceFromLi(li) {
       const n = Number(String(attr).replace(/[^\d.,-]/g, '').replace(',', '.'))
       return Number.isFinite(n) ? n : 0
    }
-   const pEl = li.querySelector(SELECTORS_CART.price)
-   if (pEl) {
-      const m = pEl.textContent.match(/([\d\s]+(?:[.,]\d+)?)/)
-      if (m) {
-         const n = Number(m[1].replace(/\s+/g, '').replace(',', '.'))
-         return Number.isFinite(n) ? n : 0
-      }
-   }
+   //const pEl = li.querySelector(SELECTORS_CART.price)
+   //if (pEl) {
+   //   const m = pEl.textContent.match(/([\d\s]+(?:[.,]\d+)?)/)
+   //   if (m) {
+   //      const n = Number(m[1].replace(/\s+/g, '').replace(',', '.'))
+   //      return Number.isFinite(n) ? n : 0
+   //   }
+   //}
    return 0
 }
 
@@ -174,7 +174,9 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
             const price = getPriceFromLi(li)
             const rec = findItem(id, color)
             if (rec) {
-               rec.price = price || rec.price || 0
+               if (price > 0) {
+                  rec.price = price
+               }
 
                // Respect server qty only when explicitly marked
                const authority = (li.getAttribute('data-authority') || '').toLowerCase()
@@ -209,7 +211,7 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
    }
 }
 
-function addToCart({ id, type = 'product', color, qty = 1 }) {
+function addToCart({ id, type = 'product', color, qty = 1, price }) {
    if (!id) return
    const quantity = Number.parseInt(qty, 10) > 0 ? Number.parseInt(qty, 10) : 1
    const itemType = (type === 'service') ? 'service' : 'product'
@@ -233,11 +235,27 @@ function addToCart({ id, type = 'product', color, qty = 1 }) {
       }
       updateBadges(); renderFooterFromCart()
    } else {
-      const item = { id, type: itemType, color: color ?? null, qty: quantity, price: 0 }
-      cart.push(item); saveCart(cart)
+      // Початкова ціна з payload, якщо передана і валідна, інакше 0
+      let initialPrice = 0
+      const p = Number(price)
+      if (Number.isFinite(p) && p >= 0) {
+         initialPrice = p
+      }
+
+      const item = {
+         id,
+         type: itemType,
+         color: color ?? null,
+         qty: quantity,
+         price: initialPrice,
+      }
+
+      cart.push(item)
+      saveCart(cart)
       // Ask backend to render a single <li> and append
       appendItemFromServer({ id, type: item.type, color: item.color, qty: item.qty })
-      updateBadges(); renderFooterFromCart()
+      updateBadges()
+      renderFooterFromCart()
    }
 }
 
@@ -282,8 +300,9 @@ async function openCartModal() {
    const focusTarget = modal.querySelector('[data-part="close"], button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
    if (focusTarget) { try { focusTarget.focus({ preventScroll: true }) } catch { } }
 
-   // Якщо список порожній, але в localStorage є товари — одноразово попросимо весь список
-   if (resultsEl && !resultsEl.children.length && cart.length) {
+   // Якщо в localStorage є товари — при відкритті завжди просимо повний список у бека,
+   // щоб DOM повністю відповідав поточному стану кошика (навіть після переходу між сторінками)
+   if (resultsEl && cart.length) {
       const fd = new FormData()
       fd.append('formName', 'cartView')
       fd.append('cart', JSON.stringify(cart))
@@ -555,16 +574,9 @@ if (rootCart) {
    if (import.meta.hot && unmountCart) { import.meta.hot.dispose(unmountCart) }
 }
 
-document.addEventListener('click', (e) => {
-   const btnAdd = e.target.closest('[data-action="add-to-cart"]')
-   if (!btnAdd) return
-   if (rootCart && rootCart.contains(btnAdd)) return // handled by local listener
-   const id = btnAdd.getAttribute('data-id') || btnAdd.closest('[data-id]')?.getAttribute('data-id')
-   const type = btnAdd.getAttribute('data-type') || 'product'
-   const color = btnAdd.getAttribute('data-color') || btnAdd.closest('[data-color]')?.getAttribute('data-color') || null
-   const qtyAttr = btnAdd.getAttribute('data-qty') || btnAdd.closest('[data-qty]')?.getAttribute('data-qty') || 1
-   addToCart({ id, type, color, qty: qtyAttr })
-})
+// NOTE: Components (article, tariff, etc.) are responsible for calling window.cartAPI.addToCart({...})
+// with a normalized payload: { id, type: 'product' | 'service', color, qty, price? }.
+// This file no longer listens globally for [data-action="add-to-cart"] clicks.
 
 // Debug API
 window.cartAPI = { addToCart, clearCart, loadCart: () => loadCart(), getCart: () => cart }
@@ -580,15 +592,89 @@ updateBadges()
    }
 }
 
-// Sync cart JSON into order form on submit
+// Sync cart JSON into order form on submit + send via fetch to /html/create-cart-order/
 ; (function attachCartFormSync() {
-   const form = qs(SELECTORS_CART.form); if (!form) return
-   form.addEventListener('submit', () => {
+   const form = qs(SELECTORS_CART.form)
+   if (!form) return
+
+   form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      // 1) Гарантуємо наявність hidden-поля cart і записуємо туди поточну корзину
       let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
-      if (!cartInput) { cartInput = document.createElement('input'); cartInput.type = 'hidden'; cartInput.name = 'cart'; cartInput.setAttribute('data-cart-json', ''); form.appendChild(cartInput) }
+      if (!cartInput) {
+         cartInput = document.createElement('input')
+         cartInput.type = 'hidden'
+         cartInput.name = 'cart'
+         cartInput.setAttribute('data-cart-json', '')
+         form.appendChild(cartInput)
+      }
       cartInput.value = JSON.stringify(cart)
-      const checkoutBtn = document.querySelector(SELECTORS_CART.btnCheckoutToggle)
-      if (checkoutBtn) checkoutBtn.classList.remove('_hidden')
-      toggleClearButton()
+
+      // 2) Кастомна валідація обовʼязкових полів + HTML5 як fallback
+      if (typeof isRequiredInput === 'function') {
+         const ok = isRequiredInput(form)
+         if (ok === false) return
+      } else // 2) Кастомна валідація обовʼязкових полів + HTML5 як fallback
+         if (typeof isRequiredInput === 'function') {
+            const ok = isRequiredInput(form)
+            if (ok === false) return
+         } else if (!form.checkValidity()) {
+            // Дасть стандартні браузерні підказки по required полях
+            form.reportValidity()
+            return
+         }
+
+      if (!cart || !Array.isArray(cart) || cart.length === 0) {
+         // Якщо хочеш — заміниш на більш красивий UI
+         alert('Будь ласка, додайте товари до корзини перед оформленням замовлення.')
+         return
+      }
+
+      const fd = new FormData(form)
+      fd.append('formName', 'cartOrder')
+      if (!fd.has('page')) {
+         try {
+            fd.append('page', window.location.href || '')
+         } catch {
+            fd.append('page', '')
+         }
+      }
+
+      try {
+         const res = await loadContent('create-cart-order', fd, undefined, 'html')
+         // Очікуємо структуру { status: 'ok' | 'error', html: '<div>...</div>' }
+         if (res && typeof res === 'object') {
+            if (typeof res.html === 'string' && res.html.trim()) {
+               const wrapper = document.createElement('div')
+               wrapper.innerHTML = res.html
+               document.body.appendChild(wrapper)
+            }
+
+            if (res.status === 'ok') {
+               clearCart()
+               try { form.reset() } catch { }
+
+               const checkoutBtn = document.querySelector(SELECTORS_CART.btnCheckoutToggle)
+               if (checkoutBtn) {
+                  checkoutBtn.classList.remove('_hidden')
+                  checkoutBtn.setAttribute('aria-expanded', 'false')
+               }
+               const hideFormBtn = document.querySelector(SELECTORS_CART.btnHideForm)
+               if (hideFormBtn) hideFormBtn.classList.add('_hidden')
+
+               const formContainer = qs(SELECTORS_CART.form)
+               if (formContainer) {
+                  formContainer.classList.remove('_visible')
+                  if (!formContainer.hasAttribute('hidden')) formContainer.setAttribute('hidden', '')
+               }
+
+               toggleClearButton()
+               closeCartModal()
+            }
+         }
+      } catch (err) {
+         console.warn('cart order submit error', err)
+      }
    })
 })()

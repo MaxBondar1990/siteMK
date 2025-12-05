@@ -297,35 +297,8 @@ function mountPrintingTariff(rootEl) {
       set('[data-note="total-sum"]', formatNumberUA(total.toFixed(0)));
       set('[data-note="total-qty"]', formatNumberUA(qtyNum));
       set('[data-note="total-colors"]', colorsLabel);
-
-      // Keep the Add-to-cart button in sync with current selection
-      syncAddButton(context, qtyNum);
    }
 
-   function syncAddButton(context, qtyNum) {
-      const addBtn = rootEl.querySelector('.tariff__printing-order-btn');
-      if (!addBtn) return;
-
-      // Ensure it is wired for cart component
-      addBtn.setAttribute('data-action', 'add-to-cart');
-
-      const sku = rootEl.getAttribute('data-printing-sku') || rootEl.getAttribute('data-sku') || '';
-      if (sku) addBtn.setAttribute('data-id', sku);
-
-      // Mark as service item
-      addBtn.setAttribute('data-type', 'service');
-
-      // Row key and qty
-      const rowKey = context.rowKey || '';
-      if (rowKey) addBtn.setAttribute('data-color', rowKey);
-
-      const q = Number.isFinite(qtyNum) && qtyNum > 0 ? qtyNum : 1;
-      addBtn.setAttribute('data-qty', String(q));
-
-      // Optional: pass unit price for convenience (backend is the source of truth)
-      const unitPrice = parseNumber(context.price);
-      if (Number.isFinite(unitPrice)) addBtn.setAttribute('data-price', String(unitPrice.toFixed(2)));
-   }
 
    function handleTariffPriceClick(event) {
       const cell = event.target.closest('[data-tariff="price"], td[data-price], td[data-tariff]');
@@ -354,18 +327,32 @@ function mountPrintingTariff(rootEl) {
 
       // Recalculate note using the updated qty
       updateNote(ctx);
-
-      const finalQty = qtyForSync ?? (Number.parseInt((qtyEl?.value || '1').replace(/\D/g, ''), 10) || 1);
-      syncAddButton(ctx, finalQty);
    }
 
    // Делегування кліків у межах компонента
-   rootEl.addEventListener('click', (e) => {
-      // Stop demo on first user interaction
-      if (!previewStopped) stopAutoPreview();
-      switchTariffTab(e);
-      handleTariffPriceClick(e);
-   }, { signal });
+   rootEl.addEventListener(
+      'click',
+      (e) => {
+         // Stop demo on first user interaction
+         if (!previewStopped) stopAutoPreview();
+
+         const t = e.target;
+
+         // 1) Додати друк до корзини
+         const addBtn = t.closest('[data-action="tariff-add-to-cart"]');
+         if (addBtn && rootEl.contains(addBtn)) {
+            handlePrintingAddToCart(rootEl, addBtn);
+            return;
+         }
+
+         // 2) Перемикання табів тарифів
+         switchTariffTab(e);
+
+         // 3) Клік по клітинці з ціною
+         handleTariffPriceClick(e);
+      },
+      { signal }
+   );
 
    const note = rootEl.querySelector('[data-name="tariff-note"], .tariff__note');
    const qtyInput = note?.querySelector('[data-note="qty"]');
@@ -403,11 +390,51 @@ function mountPrintingTariff(rootEl) {
       }, { signal });
    }
 
-   // Prepare Add-to-cart button with action hook
-   (function initAddBtn() {
-      const addBtn = rootEl.querySelector('.tariff__printing-order-btn');
-      if (addBtn) addBtn.setAttribute('data-action', 'add-to-cart');
-   })();
+
+   // Додавання друку в корзину як сервіс
+   function handlePrintingAddToCart(rootEl, btn) {
+      if (!rootEl || !btn) return;
+      if (!window.cartAPI || typeof window.cartAPI.addToCart !== 'function') return;
+
+      // id друку беремо з data-printing-sku на секції
+      const id = rootEl.getAttribute('data-printing-sku') || rootEl.getAttribute('data-sku') || 'printing-service';
+      const type = 'service';
+
+      // Кількість нанесень із інпута "Кількість нанесень"
+      let qty = 1;
+      const note = rootEl.querySelector('[data-name="tariff-note"], .tariff__note');
+      const qtyInput = note?.querySelector('[data-note="qty"]');
+      if (qtyInput) {
+         const raw = qtyInput.value || qtyInput.textContent || '';
+         const n = Number.parseInt(String(raw).replace(/\D/g, ''), 10);
+         if (Number.isFinite(n) && n > 0) qty = n;
+      }
+
+      // Загальна вартість з поля "Всього"
+      let price = 0;
+      const totalSumEl = note?.querySelector('[data-note="total-sum"]');
+      if (totalSumEl) {
+         const raw = (totalSumEl.textContent || '').trim().replace(',', '.');
+         const num = parseFloat(raw.replace(/[^\d.]/g, ''));
+         if (Number.isFinite(num) && num >= 0) price = num;
+      }
+
+      // Опис/варіант друку — з поля total-colors (людське читабельне значення)
+      let color = null;
+      const colorsEl = note?.querySelector('[data-note="total-colors"]');
+      if (colorsEl) {
+         const text = colorsEl.textContent.trim();
+         if (text) color = text;
+      }
+
+      window.cartAPI.addToCart({
+         id,
+         type,
+         color,
+         qty,
+         price,
+      });
+   }
 
    // kick off demo until user clicks
    startAutoPreview(800);

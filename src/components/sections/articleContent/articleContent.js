@@ -3,115 +3,214 @@ import './articleContent.scss'
 import { view } from '../../custom/modal/modal.js'
 import { setColor, calcTotalCost } from '../../custom/orderform/orderform.js'
 
-// Centralized selectors
+// Centralized selectors (component-first, всі селектори відносні до root)
 const SELECTORS = {
+   // загальні елементи
    colorItem: '[data-name="color-items"]',
    productCost: '[data-name="product-cost"]',
    mainImg: '[data-name="mine-img"] img',
    orderBtn: '[data-btn="view-order-form"]',
-};
 
-// Cached refs (lazy-resolved when first used)
-let costEl, imgEl;
+   // кількість товару на сторінці
+   qtyInput: '.article__quantity-input',
 
-function getCostEl() {
-   if (!costEl) costEl = document.querySelector(SELECTORS.productCost);
-   return costEl;
-}
-function getImgEl() {
-   if (!imgEl) imgEl = document.querySelector(SELECTORS.mainImg);
-   return imgEl;
-}
+   // корзина: кнопка додавання з артикла
+   addToCartBtn: '[data-action="article-add-to-cart"]',
 
-function onDocumentClick(event) {
-   // 1) Handle color selection
-   const colorNode = event.target.closest(SELECTORS.colorItem);
-   if (colorNode) {
-      applyColorSelection(colorNode);
-      return; // avoid extra work if it's a color click
-   }
-
-   // 2) Handle open-order modal button
-   const btn = event.target.closest(SELECTORS.orderBtn);
-   if (btn) {
-      view('order-form');
-   }
+   // постачальники (модалки)
+   suppliersModal: '[data-name="suppliers-modal"]',
+   supplierModal: '[data-name="supplier-modal"]',
+   suppliersOpenBtn: '[data-button="view-suppliers-modal"]',
+   supplierOpenBtn: '[data-button="view-supplier-modal"]',
+   closeBtn: '[data-action="close-modal"]',
 }
 
-function applyColorSelection(node) {
-   // dataset values
-   const imgSrc = node.dataset.imgSrc;
-   const cost = node.dataset.cost;
-   const colorText = node.textContent.trim();
+// Поточний обраний колір для цього компонента (оновлюється при кліку по кольору)
+let currentColor = null
+
+// допоміжні функції для пошуку елементів всередині root
+function getCostEl(rootEl) {
+   return rootEl.querySelector(SELECTORS.productCost)
+}
+function getImgEl(rootEl) {
+   return rootEl.querySelector(SELECTORS.mainImg)
+}
+
+// застосувати вибір кольору (оновлення картинки, ціни, ордер-форми)
+function applyColorSelection(rootEl, node) {
+   if (!rootEl || !node) return
+
+   const imgSrc = node.dataset.imgSrc
+   const cost = node.dataset.cost
+
+   // Колір беремо з data-color, якщо є, інакше з тексту елемента
+   const rawColor =
+      (typeof node.dataset.color === 'string' && node.dataset.color) ||
+      (typeof node.textContent === 'string' && node.textContent) ||
+      ''
+   const colorText = rawColor.trim()
+
+   // Запам'ятовуємо поточний вибір кольору для подальшого додавання в корзину
+   currentColor = colorText || null
 
    // Update main image (if present)
-   const img = getImgEl();
-   if (img && imgSrc) img.src = imgSrc;
+   const img = getImgEl(rootEl)
+   if (img && imgSrc) img.src = imgSrc
 
    // Update product cost text (if present)
-   const costElement = getCostEl();
-   if (costElement && cost) costElement.textContent = cost;
+   const costElement = getCostEl(rootEl)
+   if (costElement && cost) costElement.textContent = cost
 
    // Sync color into order form UI and classes
-   setColor(colorText);
+   setColor(colorText)
 
    // Recalculate total (uses current price * qty inside order form)
-   calcTotalCost();
+   calcTotalCost()
 }
 
-function handleSuppliersModal(event) { 
-   const menu = document.querySelector('[data-name="article-component"]');
-   if (!menu) return;
+// логіка відкриття/закриття модалки з усіма постачальниками
+function handleSuppliersModal(rootEl, event) {
+   const modalSuppliers = rootEl.querySelector(SELECTORS.suppliersModal)
+   if (!modalSuppliers) return
 
-   const modalSuppliers = menu.querySelector('[data-name="suppliers-modal"]');
-   if (!modalSuppliers) return;
+   const target = event.target
 
-   // ВІДКРИТТЯ — всередині модалки
-   const openBtn = event.target.closest('[data-button="view-suppliers-modal"]');
-   if (openBtn) {
-      modalSuppliers.classList.add('_show');
-      return;
+   // ВІДКРИТТЯ — кнопка всередині компонента
+   const openBtn = target.closest(SELECTORS.suppliersOpenBtn)
+   if (openBtn && rootEl.contains(openBtn)) {
+      modalSuppliers.classList.add('_show')
+      return
    }
 
-   // ЗАКРИТТЯ — шукаємо кнопку тільки всередині модалки
-   if (modalSuppliers.contains(event.target)) {
-      const closeBtn = event.target.closest('[data-action="close-modal"]');
+   // ЗАКРИТТЯ — по кнопці закриття всередині самої модалки
+   if (modalSuppliers.contains(target)) {
+      const closeBtn = target.closest(SELECTORS.closeBtn)
       if (closeBtn && modalSuppliers.contains(closeBtn)) {
-         modalSuppliers.classList.remove('_show');
+         modalSuppliers.classList.remove('_show')
       }
    }
 }
-function handleSupplierModal(event) {
-   const menu = document.querySelector('[data-name="article-component"]');
-   if (!menu) return;
 
-   const modalSupplier = menu.querySelector('[data-name="supplier-modal"]');
-   if (!modalSupplier) return;
+// логіка модалки одного постачальника
+function handleSupplierModal(rootEl, event) {
+   const modalSupplier = rootEl.querySelector(SELECTORS.supplierModal)
+   if (!modalSupplier) return
 
-   // ВІДКРИТТЯ — всередині модалки
-   const openBtn = event.target.closest('[data-button="view-supplier-modal"]');
-   if (openBtn) {
-      modalSupplier.classList.add('_show');
-      return;
+   const target = event.target
+
+   // ВІДКРИТТЯ
+   const openBtn = target.closest(SELECTORS.supplierOpenBtn)
+   if (openBtn && rootEl.contains(openBtn)) {
+      modalSupplier.classList.add('_show')
+      return
    }
 
-   // ЗАКРИТТЯ — шукаємо кнопку тільки всередині модалки
-   if (modalSupplier.contains(event.target)) {
-      const closeBtn = event.target.closest('[data-action="close-modal"]');
+   // ЗАКРИТТЯ
+   if (modalSupplier.contains(target)) {
+      const closeBtn = target.closest(SELECTORS.closeBtn)
       if (closeBtn && modalSupplier.contains(closeBtn)) {
-         modalSupplier.classList.remove('_show');
+         modalSupplier.classList.remove('_show')
       }
    }
 }
 
+// додавання товару в корзину з артикла
+function handleAddToCart(rootEl, btn) {
+   if (!rootEl || !btn) return
+   if (!window.cartAPI || typeof window.cartAPI.addToCart !== 'function') return
 
+   const id = btn.dataset.id
+   if (!id) return
 
+   const type = btn.dataset.type || 'product'
 
-// Single delegated listener instead of two separate calls per click
-// (less work on each event, clearer branching)
-// document.addEventListener('click', onDocumentClick, viewSuppliers);
-document.addEventListener('click', function(event) {
-   onDocumentClick(event);
-   handleSuppliersModal(event);
-   handleSupplierModal(event);
-});
+   // Колір беремо з поточного вибору компонента
+   let color = currentColor
+
+   // Якщо з якоїсь причини колір ще не вибрано (наприклад, користувач не клікав по кольорах),
+   // пробуємо взяти перший елемент кольору як дефолтний.
+   if (!color) {
+      const firstColorNode = rootEl.querySelector(SELECTORS.colorItem)
+      if (firstColorNode) {
+         const rawColor =
+            (typeof firstColorNode.dataset.color === 'string' && firstColorNode.dataset.color) ||
+            (typeof firstColorNode.textContent === 'string' && firstColorNode.textContent) ||
+            ''
+         color = rawColor.trim() || null
+      }
+   }
+
+   // кількість беремо з інпута на сторінці артикла
+   let qty = 1
+   const qtyInput = rootEl.querySelector(SELECTORS.qtyInput)
+   if (qtyInput) {
+      const n = Number(qtyInput.value)
+      if (Number.isFinite(n) && n > 0) qty = n
+   }
+
+   window.cartAPI.addToCart({
+      id,
+      type,
+      color,
+      qty,
+   })
+}
+
+// основний монтувальний метод компонента
+function mountArticleContent(rootEl) {
+   if (!rootEl) return
+
+   const ac = new AbortController()
+   const { signal } = ac
+
+   rootEl.addEventListener(
+      'click',
+      (event) => {
+         const t = event.target
+
+         // 1) Вибір кольору
+         const colorNode = t.closest(SELECTORS.colorItem)
+         if (colorNode && rootEl.contains(colorNode)) {
+            applyColorSelection(rootEl, colorNode)
+            return
+         }
+
+         // 2) Кнопка відкриття модалки ордер-форми (стара логіка, якщо вона лишається)
+         const btnOrder = t.closest(SELECTORS.orderBtn)
+         if (btnOrder && rootEl.contains(btnOrder)) {
+            view('order-form')
+            return
+         }
+
+         // 3) Модалка постачальників (усі)
+         handleSuppliersModal(rootEl, event)
+
+         // 4) Модалка одного постачальника
+         handleSupplierModal(rootEl, event)
+
+         // 5) Додавання товару в корзину з артикла
+         const addBtn = t.closest(SELECTORS.addToCartBtn)
+         if (addBtn && rootEl.contains(addBtn)) {
+            //console.log(rootEl, addBtn)
+            handleAddToCart(rootEl, addBtn)
+            return
+         }
+      },
+      { signal }
+   )
+
+   // cleanup для HMR
+   return () => ac.abort()
+}
+
+// Автозапуск компонента (локалізація root)
+// Основний варіант — data-component="article-content" data-part="root"
+// Залишаємо fallback на старий [data-name="article-component"], щоб нічого не зламати прямо зараз
+const rootArticle = document.querySelector('[data-component="article-content"][data-part="root"]');
+
+if (rootArticle) {
+   const cleanup = mountArticleContent(rootArticle)
+   if (import.meta.hot && cleanup) {
+      import.meta.hot.dispose(cleanup)
+   }
+}
