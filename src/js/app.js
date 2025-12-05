@@ -30,7 +30,19 @@
       if (!name) return false;
 
       const type = (el.getAttribute("type") || "").toLowerCase();
-      if (type === "password") return false;
+
+      // Не зберігаємо чутливі або службові поля
+      if (
+         type === "password" ||
+         type === "file" ||
+         type === "button" ||
+         type === "submit" ||
+         type === "reset" ||
+         type === "image"
+      ) {
+         return false;
+      }
+
       if (SENSITIVE_RE.test(name)) return false;
 
       return true;
@@ -91,6 +103,10 @@
    function deserialize(name, raw) {
       const els = byName.get(name) || [];
       if (!els.length) return;
+
+      // Захист: ніколи не намагаємося виставити value для input[type="file"]
+      const firstType = (els[0].getAttribute("type") || "").toLowerCase();
+      if (firstType === "file") return;
 
       let val = raw;
       // Ми завжди записуємо JSON. Якщо колись записували «сирий» рядок — спробуємо парсити та fallback.
