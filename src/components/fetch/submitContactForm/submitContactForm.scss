@@ -44,7 +44,7 @@
       gap: 20px 4px;
       padding: 20px 4px;
 
-      z-index: 3;
+      z-index: 1001;
       @media (min-width: $tabletWidth) {
          width: 300px;
          min-width: 418px;
