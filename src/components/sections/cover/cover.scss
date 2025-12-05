@@ -27,17 +27,6 @@
       max-height: 100%;
       
       object-fit: cover;
-      // ПЛАНШЕТИ
-      @media (max-width: 1024px) {
-      /* горизонтальний планшет */ 
-         grid-column: 1 / 4;
-         width: 70%;
-      }
-      @media (max-width: 768px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         width: 100%;
-         font-size: 8svw;
-      }
    }
    &__img {
       height: 100%;
@@ -57,24 +46,12 @@
       // padding-bottom: 24px;
       padding-left: 80px;
       gap: 24px;
-      @media (max-width: 1023px) {
-         grid-column: 1 / 3;
-         padding-left: 0;
-      }
-      @media (max-width: 768px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         grid-column: 1 / 4;
-         justify-content: center;
-         height: 65svh;
-         padding-left: 0;
-      }
    }
    &__title {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
 
       width: var(--titleWidth);
-
 
       margin: 0;
 
@@ -86,24 +63,6 @@
       text-transform: uppercase;
 
       color:  var(--color);
-      // ПЛАНШЕТИ
-      @media (max-width: 1023px) {
-      /* горизонтальний планшет */
-         width: 100%;
-         padding-left: 16px;
-         font-size: 48px;
-      }
-      @media (max-width: 768px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         grid-column: 1 / 2;
-         text-align: center;
-         font-size: 6svw;
-      }
-      // ТЕЛЕФОН
-      @media (max-width: 450px) {
-            font-size: 8svw;
-            line-height: 1.5em;
-      }
    }
    &__txt {
       grid-column: 1 / 2;
@@ -119,23 +78,11 @@
       line-height: 1.5em;
       text-align: left;
 
-      // mix-blend-mode: difference;
       letter-spacing: 0.02em;
       color: var(--txtColor);
       &._view {
          -webkit-line-clamp: unset;
-      }
-
-      @media (max-width: 1023px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         width: 50%;
-         margin: 0 36px;
-      }
-      @media (max-width: 768px) {
-      /* вертикальний планшет або великий мобільний телефон */
-         width: auto;
-
-      }  
+      } 
    }
    &__button {
       display: flex;
@@ -144,9 +91,9 @@
       grid-column: 1 / 2;
       grid-row: 3 / 4;
 
-      align-self: flex-end;
+      align-self: center;
       padding: 1em 1.5em;
-      margin: 0 0 0 16px;
+      margin: 0 0 0 36px;
 
       font-size: 16px;
       font-weight: 700;
@@ -161,17 +108,58 @@
       &:hover {
          scale: .97;
       }
-      @media (min-width: $tabletWidth) {
-         align-self: center;
-         margin: 0 0 0 24px;
-      }
    }
    // ПЛАНШЕТИ
-   @media (max-width: 1024px) {
+   @media (max-width: 1023px) {
    /* горизонтальний планшет */ 
-         height: 50svh;
+      height: 60svh;
+      &__pic {
+         grid-column: 1 / 4;
+         width: 70%;
+      }
+      &__content {
+         grid-column: 1 / 3;
+         padding-left: 0;
+      }
+      &__title {
+         width: 100%;
+         font-size: 48px;
+      }
+      &__txt {
+         width: 50%;
+         margin: 0 36px;
+      }
    }
    @media (max-width: 768px) {
       height: 75svh;
+      &__pic {
+         width: 100%;
+         font-size: 8svw;
+      }
+      &__content {
+         grid-column: 1 / 4;
+         justify-content: center;
+         padding-left: 0;
+      }
+      &__title {
+         grid-column: 1 / 2;
+         text-align: center;
+         font-size: 6svw;
+      }
+      &__txt {
+         width: auto;
+      }
+      &__button {
+         margin: 0 0 0 20px;
+      }
+   }
+   @media (max-width: 450px) {
+      &__title {
+         font-size: 8svw;
+         line-height: 1.5em;
+      }
+      &__button {
+         margin: 0 0 0 12px;
+      }
    }
 }

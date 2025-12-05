@@ -32,6 +32,7 @@
 
    &._error {
       background: rgba(114, 51, 40, .6);
+      z-index: 1001;
    }
    &._view {
       top: 50%;
