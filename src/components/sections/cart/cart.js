@@ -294,8 +294,11 @@ async function openCartModal() {
    const modal = getModal();
    const resultsEl = getResultsEl();
    if (!modal) return
-   modal.removeAttribute('aria-hidden'); modal.inert = false
-   modal.classList.add('_view'); modal.dataset.state = 'open'
+   modal.removeAttribute('aria-hidden')
+   modal.inert = false
+   modal.classList.remove('_hide')
+   modal.classList.add('_view')
+   modal.dataset.state = 'open'
    saveCartState('open')
    const focusTarget = modal.querySelector('[data-part="close"], button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
    if (focusTarget) { try { focusTarget.focus({ preventScroll: true }) } catch { } }
@@ -362,8 +365,11 @@ function closeCartModal() {
    const modal = getModal();
    if (!modal) return
    const active = document.activeElement; if (isInside(active, modal)) { try { active.blur() } catch { } }
-   modal.classList.remove('_view'); modal.dataset.state = 'closed'
-   modal.setAttribute('aria-hidden', 'true'); modal.inert = true
+   modal.classList.remove('_view')
+   modal.classList.add('_hide')
+   modal.dataset.state = 'closed'
+   modal.setAttribute('aria-hidden', 'true')
+   modal.inert = true
    saveCartState('closed')
    if (lastOpener && document.contains(lastOpener)) { try { lastOpener.focus({ preventScroll: true }) } catch { } }
 }

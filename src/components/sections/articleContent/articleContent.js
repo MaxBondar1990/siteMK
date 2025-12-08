@@ -25,9 +25,6 @@ const SELECTORS = {
    closeBtn: '[data-action="close-modal"]',
 }
 
-// Поточний обраний колір для цього компонента (оновлюється при кліку по кольору)
-let currentColor = null
-
 // допоміжні функції для пошуку елементів всередині root
 function getCostEl(rootEl) {
    return rootEl.querySelector(SELECTORS.productCost)
@@ -40,6 +37,11 @@ function getImgEl(rootEl) {
 function applyColorSelection(rootEl, node) {
    if (!rootEl || !node) return
 
+   // Перемикаємо клас _active між елементами кольорів
+   const allColorNodes = rootEl.querySelectorAll(SELECTORS.colorItem)
+   allColorNodes.forEach((el) => el.classList.remove('_active'))
+   node.classList.add('_active')
+
    const imgSrc = node.dataset.imgSrc
    const cost = node.dataset.cost
 
@@ -49,9 +51,6 @@ function applyColorSelection(rootEl, node) {
       (typeof node.textContent === 'string' && node.textContent) ||
       ''
    const colorText = rawColor.trim()
-
-   // Запам'ятовуємо поточний вибір кольору для подальшого додавання в корзину
-   currentColor = colorText || null
 
    // Update main image (if present)
    const img = getImgEl(rootEl)
@@ -124,20 +123,22 @@ function handleAddToCart(rootEl, btn) {
 
    const type = btn.dataset.type || 'product'
 
-   // Колір беремо з поточного вибору компонента
-   let color = currentColor
+   // Колір завжди беремо з активного елемента (або з першого, якщо активного немає)
+   let color = null
 
-   // Якщо з якоїсь причини колір ще не вибрано (наприклад, користувач не клікав по кольорах),
-   // пробуємо взяти перший елемент кольору як дефолтний.
-   if (!color) {
-      const firstColorNode = rootEl.querySelector(SELECTORS.colorItem)
-      if (firstColorNode) {
-         const rawColor =
-            (typeof firstColorNode.dataset.color === 'string' && firstColorNode.dataset.color) ||
-            (typeof firstColorNode.textContent === 'string' && firstColorNode.textContent) ||
-            ''
-         color = rawColor.trim() || null
-      }
+   let colorNode =
+      rootEl.querySelector(`${SELECTORS.colorItem}._active`) ||
+      rootEl.querySelector(SELECTORS.colorItem)
+
+   if (colorNode) {
+      // Синхронізуємо стан (картинка, ціна, класи) з вибраним кольором
+      applyColorSelection(rootEl, colorNode)
+
+      const rawColor =
+         (typeof colorNode.dataset.color === 'string' && colorNode.dataset.color) ||
+         (typeof colorNode.textContent === 'string' && colorNode.textContent) ||
+         ''
+      color = rawColor.trim() || null
    }
 
    // кількість беремо з інпута на сторінці артикла
@@ -198,6 +199,17 @@ function mountArticleContent(rootEl) {
       },
       { signal }
    )
+
+   // Ініціалізація дефолтного кольору при завантаженні:
+   // 1) спочатку шукаємо елемент із класом _active
+   // 2) якщо немає — беремо перший елемент зі списку кольорів
+   const activeColorNode =
+      rootEl.querySelector(`${SELECTORS.colorItem}._active`) ||
+      rootEl.querySelector(SELECTORS.colorItem)
+
+   if (activeColorNode) {
+      applyColorSelection(rootEl, activeColorNode)
+   }
 
    // cleanup для HMR
    return () => ac.abort()
