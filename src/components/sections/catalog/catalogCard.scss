@@ -58,11 +58,8 @@
 
    }
    &__color-items {
-      //position: relative;
       position: absolute;
       bottom: 0;
-      //left: 50%;
-      //transform: translateX(-50%);
  
       display: grid;
       grid-template-columns: repeat(auto-fill, 40px);
@@ -79,11 +76,9 @@
       background: rgba(246, 246, 246, 0.6);
       box-shadow: -1px -1px 3px 1px rgba(111, 111, 111, 0.25);
       backdrop-filter: blur(6px);
-      //background-color: rgba($colorWhite, 0.8);
       overflow: hidden;
       transition: max-height .6s;
       &._action {
-         // grid-template-columns: repeat(auto-fill, 40px);
          max-height: 400px;
          padding-bottom: 7px;
       }
@@ -97,7 +92,6 @@
          top: 20px;
          transform: translateX(-50%);
          background-color: rgba($colorDarkGray, .03);
-         // border: 1px solid rgba(111, 111, 111, 0.04);
          box-shadow: 1px 1px 4px rgba($colorDarkGray, .07), inset 1px 2px 3px rgba($colorDarkGray, .3), inset -1px -2px 4px rgba(255, 255, 255, 0.9);
       }
    }
@@ -115,7 +109,6 @@
       border-radius: 8px;
 
       transition: all .3s;
-     
       &._action {
          width: 40px;
          height: 40px;
