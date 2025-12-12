@@ -204,14 +204,14 @@ $animateTimePassive: .5s;
       &::-webkit-scrollbar {
          display: none;
       }
-      @media (max-width: 768px) {
-         &._view {
-            animation: cartModalViewMobile 1s ease 0s 1 normal forwards;
-         }
-         &._hide {
-            animation: cartModalHideMobile .5s ease 0s 1 normal forwards;
-         }
-      }
+      // @media (max-width: 768px) {
+      //    &._view {
+      //       animation: cartModalViewMobile 1s ease 0s 1 normal forwards;
+      //    }
+      //    &._hide {
+      //       animation: cartModalHideMobile .5s ease 0s 1 normal forwards;
+      //    }
+      // }
    }
    &__modal-close {
       position: absolute;
@@ -311,7 +311,7 @@ $animateTimePassive: .5s;
       width: 100%;
       height: min-content;
       &._printing {
-         grid-template-columns: max-content min-content 1fr;
+         grid-template-columns: max-content 1fr min-content;
          grid-template-rows: 1fr 1fr 1fr 1rf 1fr;
       }
    }
@@ -487,22 +487,6 @@ $animateTimePassive: .5s;
          grid-row: 5 / 6;
       }
    }
-   
-   // Make media wrapper (first child div) fill available height
-   &__result-card-article > div:first-child {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-   }
-   // Right column wrapper (last child div)
-   &__result-card-article > div:last-child {
-      min-width: 0;            // allow shrinking inside grid
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;   // align price/remove to the right edge
-      gap: 8px;
-   }
    &__result-card-article-content {
       grid-column: 2 / 5;
       grid-row: 1 / 2;
@@ -520,19 +504,22 @@ $animateTimePassive: .5s;
    }
    &__result-card-article-title,
    &__result-print-name {
-      display: block;
       width: 100%;
+      max-width: 260px;
       font-style: normal;
       font-weight: 700;
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 1rem;
+      line-height: 1.2em;
       text-align: left;
       text-transform: uppercase;
-      white-space: nowrap;
+
+      display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
       overflow: hidden;
+
       text-overflow: ellipsis;
       color: $colorDarkGray;
-      @media (max-width: 376px) { font-size: 14px; }
    }
    &__result-print-name {
       grid-column: 2 / 3;
@@ -583,12 +570,17 @@ $animateTimePassive: .5s;
       margin-top: auto;
       padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.3);
-      display: flex;
-      flex-direction: column;
+      // display: flex;
+      // flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr min-content 1fr;
+      grid-template-rows: min-content min-content 1fr;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
    }
    &__total {
+      grid-column: 1 / 4;
+      grid-row: 1 / 2;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -602,13 +594,14 @@ $animateTimePassive: .5s;
       color: $colorWhite;
    }
    &__clear-btn {
-      width: auto;
-      padding: .9em 1.5em;
-      font-weight: 400;
-      font-size: 1rem;
-      color: $colorDarkGray;
+      position: relative;
+      grid-column: 3 / 4;
+      grid-row: 2 / 4;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
       background: $colorLightGray;
-      border-radius: 16px;
+      border-radius: 50%;
       box-shadow: 2px 2px 4px rgba(111, 111, 111, 0.5);
       cursor: pointer;
       transition: all 0.3s ease;
@@ -616,14 +609,25 @@ $animateTimePassive: .5s;
          display: none;
       }
       &:hover {
-         background: rgba(255, 255, 255, 0.8);
+         background: $colorWhite;
+         transform: scale(1.03);
+
       }
    }
-   &__checkout-btn {
+   &__clear-btn-img {
+      height: 100%;
       width: auto;
+   }
+   &__checkout-btn {
+      display: flex;
+      justify-self: flex-end;
+      grid-column: 2 / 3;
+      grid-row: 2 / 4;
+      width: min-content;
       padding: .9em 1.5em;
       font-weight: 400;
       font-size: 1rem;
+      line-height: 1em;
       color: $colorWhite;
       background: $colorOrange;
       border-radius: 16px;
@@ -633,17 +637,17 @@ $animateTimePassive: .5s;
       &._hidden {
          display: none;
       }
-
       &:hover {
          background: darken($colorOrange, 5%);
          transform: scale(1.03);
       }
-
       &:active {
          transform: scale(0.98);
       }
    }
    &__order-form {
+      grid-column: 1 / 4;
+      grid-row: 3 / 4;
       display: none; // прихована за замовчуванням
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(8, min-content);
@@ -733,6 +737,43 @@ $animateTimePassive: .5s;
       width: 100%;
       height: auto;
    }
+   @media (max-width: 768px) {
+      &__modal {
+         &._view {
+            animation: cartModalViewMobile 1s ease 0s 1 normal forwards;
+         }
+         &._hide {
+            animation: cartModalHideMobile .5s ease 0s 1 normal forwards;
+         }
+      }
+   }
+}
+// Make media wrapper (first child div) fill available height
+.cart__result-card-article > div:first-child {
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+// Right column wrapper (last child div)
+.cart__result-card-article > div:last-child {
+   min-width: 0;            // allow shrinking inside grid
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;   // align price/remove to the right edge
+   gap: 8px;
+}
+.hide-form-btn {
+   grid-column: 2 / 3;
+   grid-row: 2 / 3;
+   width: max-content;
+   height: auto;
+   padding: .9em 1.5em;
+   font-weight: 400;
+   font-size: 1rem;
+   line-height: 1em;
+   color: $colorDarkGray;
+   border-radius: 16px;
 }
 
 @keyframes cartModalView {

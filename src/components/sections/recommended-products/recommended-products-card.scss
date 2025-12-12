@@ -46,11 +46,22 @@
         line-height: 1.2em;
 
         color: #6f6f6f;
-        // &:hover {
-        //     -webkit-line-clamp: unset;
-        //     height: 2.4rem;
-        // }
     }
+    &__brand {
+        width: 136px;
+        height: .8rem;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+
+        font-size: .8rem;
+        line-height: 1em;
+
+        color: #6f6f6f;
+    }
+
     &__price {
         font-size: 1rem;
         font-weight: 700;
