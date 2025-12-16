@@ -256,9 +256,9 @@ function mountPrintingTariff(rootEl) {
          if (!Number.isFinite(qtyNum)) qtyNum = ctxQtyParsed;
       }
 
-      const unitPrice = parseNumber(context.price);
+      const baseUnitPrice = parseNumber(context.price);
       const colorsLabel = context.colorsLabel || '';
-      if (!Number.isFinite(qtyNum) || !Number.isFinite(unitPrice)) return;
+      if (!Number.isFinite(qtyNum) || !Number.isFinite(baseUnitPrice)) return;
 
       // Billable qty: if entered qty is below the smallest tier, charge the minimum lot
       let billableQty = qtyNum;
@@ -268,7 +268,15 @@ function mountPrintingTariff(rootEl) {
          if (qtyNum < minBp) billableQty = minBp;
       }
 
-      const total = billableQty * unitPrice;
+      // Total за прайсовою логікою
+      const total = billableQty * baseUnitPrice;
+
+      // Ефективна ціна за 1 нанесення для фактичної кількості
+      // (щоб у нотатці 38 × ефективна_ціна = 3250, а не 50 × 65)
+      let effectiveUnitPrice = baseUnitPrice;
+      if (qtyNum > 0) {
+         effectiveUnitPrice = total / qtyNum;
+      }
 
       const setInner = (sel, value) => {
          const el = note.querySelector(sel);
@@ -278,7 +286,6 @@ function mountPrintingTariff(rootEl) {
       const set = (sel, value) => {
          const el = note.querySelector(sel);
          if (!el) return;
-         // If target is a form control, write to .value; otherwise to textContent
          const tag = el.tagName?.toLowerCase();
          if (tag === 'input' || tag === 'textarea' || tag === 'select') {
             el.value = String(value);
@@ -290,9 +297,9 @@ function mountPrintingTariff(rootEl) {
       set('[data-note="qty"]', qtyNum);
       set('[data-note="colors-label"]', colorsLabel);
       set('[data-note="unit-qty"]', '1');
-      set('[data-note="unit-price"]', unitPrice.toFixed(2));
+      set('[data-note="unit-price"]', effectiveUnitPrice.toFixed(2));
       set('[data-note="calc-qty"]', formatNumberUA(qtyNum));
-      set('[data-note="calc-price"]', unitPrice.toFixed(2));
+      set('[data-note="calc-price"]', effectiveUnitPrice.toFixed(2));
       set('[data-note="calc-sum"]', formatNumberUA(total.toFixed(2)));
       set('[data-note="total-sum"]', formatNumberUA(total.toFixed(0)));
       set('[data-note="total-qty"]', formatNumberUA(qtyNum));
@@ -396,8 +403,118 @@ function mountPrintingTariff(rootEl) {
       if (!rootEl || !btn) return;
       if (!window.cartAPI || typeof window.cartAPI.addToCart !== 'function') return;
 
-      // id друку беремо з data-printing-sku на секції
-      const id = rootEl.getAttribute('data-printing-sku') || rootEl.getAttribute('data-sku') || 'printing-service';
+      // Активна вкладка (таба)
+      const activeTabBtn = rootEl.querySelector('[data-btn="tariff-tab"]._active');
+
+      // Поточний вибраний тариф (контекст клітинки таблиці)
+      let ctx = getCurrentSelectionContext();
+      const table = ctx?.table || pickActiveTable();
+      // If no ctx but table is present, reconstruct a context from qty input
+      if (!ctx && table) {
+         const note = rootEl.querySelector('[data-name="tariff-note"], .tariff__note');
+         const qtyInput = note?.querySelector('[data-note="qty"]');
+         let desiredQty = null;
+         if (qtyInput) {
+            const raw = qtyInput.value || qtyInput.textContent || '';
+            const n = Number.parseInt(String(raw).replace(/\D/g, ''), 10);
+            if (Number.isFinite(n) && n > 0) desiredQty = n;
+         }
+         // fallback to min breakpoint if not parsed
+         const headerRow = getHeaderRow(table);
+         // If headerRow is missing, abort
+         if (headerRow) {
+            // findBestQtyColumnIndex expects a number (use 1 if not set)
+            const colIndex = findBestQtyColumnIndex(table, desiredQty || 1);
+            if (colIndex != null) {
+               const row = getRowForSelection(table, colIndex);
+               if (row && row.children && row.children[colIndex]) {
+                  ctx = getCellContext(row.children[colIndex]);
+               }
+            }
+         }
+      }
+
+      // Технологія друку (decal / sublimation / і т.д.) з таблиці, кнопки або rootEl (також перевіряємо data-tech)
+      const tech =
+         (table &&
+            (
+               table.getAttribute('data-print-tech') ||
+               table.dataset.printTech ||
+               table.getAttribute('data-tech') ||
+               table.dataset.tech
+            )) ||
+         (activeTabBtn &&
+            (
+               activeTabBtn.getAttribute('data-print-tech') ||
+               activeTabBtn.dataset.printTech ||
+               activeTabBtn.getAttribute('data-tech') ||
+               activeTabBtn.dataset.tech
+            )) ||
+         (rootEl.getAttribute('data-print-tech') ||
+            rootEl.dataset.printTech ||
+            rootEl.getAttribute('data-tech') ||
+            rootEl.dataset.tech) ||
+         null;
+
+      // Розмір (std / a5 / a4 / ...) з таблиці, кнопки або rootEl (також перевіряємо data-size)
+      const size =
+         (table &&
+            (
+               table.getAttribute('data-print-size') ||
+               table.dataset.printSize ||
+               table.getAttribute('data-size') ||
+               table.dataset.size
+            )) ||
+         (activeTabBtn &&
+            (
+               activeTabBtn.getAttribute('data-print-size') ||
+               activeTabBtn.dataset.printSize ||
+               activeTabBtn.getAttribute('data-size') ||
+               activeTabBtn.dataset.size
+            )) ||
+         (rootEl.getAttribute('data-print-size') ||
+            rootEl.dataset.printSize ||
+            rootEl.getAttribute('data-size') ||
+            rootEl.dataset.size) ||
+         null;
+
+      // Кількість у прайсовій колонці (50 / 100 / 200 / ...)
+      let tierQty = null;
+      if (ctx && ctx.headerRow && ctx.td) {
+         const headerCell = ctx.headerRow.children[ctx.td.cellIndex];
+         tierQty = parseQtyFromHeaderCell(headerCell);
+      }
+
+      // Код рядка (1+0 / 2+0 / CMYK / ...)
+      const rowKey =
+         (ctx && ctx.rowKey) ||
+         (ctx && ctx.colorsLabel ? ctx.colorsLabel.trim() : null);
+
+      // Прайс‑модифікація для CRM, наприклад: "100_1+0"
+      let tierCode = null;
+      if (Number.isFinite(tierQty) && tierQty > 0 && rowKey) {
+         const safeRowKey = String(rowKey).replace(/\s+/g, '');
+         tierCode = `${tierQty}_${safeRowKey}`;
+      }
+
+      // Базовий id друку (товару в CRM): тех + розмір (наприклад, "decal_std").
+      // Якщо з якихось причин tech/size немає, тоді вже падаємо у data-* / секцію.
+      let baseId = null;
+
+      if (tech && size) {
+         // Основний, канонічний варіант: "decal_std", "sublimation_a4" і т.д.
+         baseId = `${tech}_${size}`;
+      } else {
+         // Fallback: спробувати взяти з data-print-sku на таблиці / кнопці, або з секції
+         baseId =
+            (table && (table.getAttribute('data-print-sku') || table.dataset.printSku)) ||
+            (activeTabBtn && (activeTabBtn.getAttribute('data-print-sku') || activeTabBtn.dataset.printSku)) ||
+            rootEl.getAttribute('data-printing-sku') ||
+            rootEl.getAttribute('data-sku') ||
+            'printing-service';
+      }
+
+      const id = baseId;
       const type = 'service';
 
       // Кількість нанесень із інпута "Кількість нанесень"
@@ -410,13 +527,29 @@ function mountPrintingTariff(rootEl) {
          if (Number.isFinite(n) && n > 0) qty = n;
       }
 
-      // Загальна вартість з поля "Всього"
-      let price = 0;
+      // Загальна вартість з поля "Всього" (для контролю / можливих розрахунків)
+      let totalPrice = 0;
       const totalSumEl = note?.querySelector('[data-note="total-sum"]');
       if (totalSumEl) {
-         const raw = (totalSumEl.textContent || '').trim().replace(',', '.');
-         const num = parseFloat(raw.replace(/[^\d.]/g, ''));
-         if (Number.isFinite(num) && num >= 0) price = num;
+         const raw = (totalSumEl.textContent || '').trim();
+         const num = parseNumber(raw); // parseNumber вже є у файлі вище
+         if (Number.isFinite(num) && num >= 0) totalPrice = num;
+      }
+
+      // Ціна за 1 нанесення:
+      //  1) основний варіант — totalPrice / qty (щоб CRM завжди множив "фактичну кількість × ефективну ціну"),
+      //  2) якщо totalPrice або qty відсутні — fallback до unit-price з нотатки.
+      let unitPrice = 0;
+
+      if (Number.isFinite(totalPrice) && totalPrice > 0 && qty > 0) {
+         unitPrice = totalPrice / qty;
+      } else {
+         const unitPriceEl = note?.querySelector('[data-note="unit-price"]');
+         if (unitPriceEl) {
+            const raw = (unitPriceEl.textContent || unitPriceEl.value || '').trim();
+            const num = parseNumber(raw);
+            if (Number.isFinite(num) && num >= 0) unitPrice = num;
+         }
       }
 
       // Опис/варіант друку — з поля total-colors (людське читабельне значення)
@@ -427,12 +560,44 @@ function mountPrintingTariff(rootEl) {
          if (text) color = text;
       }
 
+      // Назва послуги друку — беремо з активної вкладки (labels.tab[ua] => текст кнопки)
+      let serviceName = 'Друк';
+      if (activeTabBtn) {
+         const txt = activeTabBtn.textContent?.trim();
+         if (txt) serviceName = txt;
+      }
+
+      // Детальний заголовок тарифу (title.ua з JSON) — очікуємо у data-print-title активної вкладки (якщо є)
+      let serviceTitle = null;
+      if (activeTabBtn && activeTabBtn.dataset.printTitle) {
+         const t = activeTabBtn.dataset.printTitle.trim();
+         if (t) serviceTitle = t;
+      }
+
+      // Прайсова ціна за 1 нанесення в обраній колонці (з таблиці)
+      let tierPrice = null;
+      if (ctx && ctx.price != null) {
+         const base = parseNumber(ctx.price);
+         if (Number.isFinite(base) && base >= 0) {
+            tierPrice = base;
+         }
+      }
+
+      // У корзину передаємо:
+      //  - price: ціну за одиницю (як у товарах),
+      //  - name: людську назву послуги (Деколь / Сублімація / ...),
+      //  - title: повний опис тарифу (може бути null, якщо не заданий у розмітці)
       window.cartAPI.addToCart({
          id,
          type,
          color,
          qty,
-         price,
+         price: unitPrice,   // ефективна ціна
+         name: serviceName,
+         title: serviceTitle,
+         tierPrice,          // прайсовий тариф за 1 шт (для базового тиражу)
+         tierQty,            // базовий тираж (50 / 100 / ...)
+         tierCode,           // модифікація для CRM, наприклад "100_1+0"
       });
    }
 
@@ -445,11 +610,42 @@ function mountPrintingTariff(rootEl) {
    };
 }
 
-// Автозапуск, якщо компонент є у DOM
-const rootPrintingTariff = document.querySelector('[data-component="printing-tariff"][data-part="root"]');
-if (rootPrintingTariff) {
-   const cleanup = mountPrintingTariff(rootPrintingTariff);
-   if (import.meta.hot && cleanup) {
-      import.meta.hot.dispose(cleanup);
+// Автозапуск: підтримка кількох однакових компонентів на сторінці
+const printingTariffRoots = document.querySelectorAll(
+   '[data-component="printing-tariff"][data-part="root"]'
+);
+
+const printingTariffCleanups = [];
+
+printingTariffRoots.forEach((rootEl) => {
+   if (!rootEl) return;
+
+   // Захист від подвійного маунта (на випадок повторного імпорту / HMR)
+   if (rootEl.dataset.mounted === '1') return;
+   rootEl.dataset.mounted = '1';
+
+   const cleanup = mountPrintingTariff(rootEl);
+   if (typeof cleanup === 'function') {
+      printingTariffCleanups.push(() => {
+         try {
+            cleanup();
+         } finally {
+            delete rootEl.dataset.mounted;
+         }
+      });
    }
+});
+
+// HMR: чистимо всі інстанси
+if (import.meta.hot) {
+   import.meta.hot.dispose(() => {
+      while (printingTariffCleanups.length) {
+         const fn = printingTariffCleanups.pop();
+         try {
+            fn && fn();
+         } catch (_) {
+            // ignore
+         }
+      }
+   });
 }

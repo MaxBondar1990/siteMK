@@ -9,15 +9,36 @@ const CART_STATE_KEY = 'mk_cart_modal_state' // 'open' | 'closed'
 function loadCart() {
    try { return JSON.parse(localStorage.getItem(CART_KEY)) || [] } catch { return [] }
 }
+// Normalize cart state (e.g., strip service-only fields from products)
+function normalizeCartState(raw) {
+   if (!Array.isArray(raw)) return []
+   return raw
+      .map((it) => {
+         if (!it || typeof it !== 'object') return null
+         const copy = { ...it }
+         // name and tierPrice мають бути тільки в сервісів (друк)
+         if (copy.type !== 'service') {
+            delete copy.name
+            delete copy.tierPrice
+            delete copy.tierQty
+            delete copy.tierCode
+         }
+         return copy
+      })
+      .filter(Boolean)
+}
 function saveCart(state) {
-   try { localStorage.setItem(CART_KEY, JSON.stringify(state)) } catch { }
+   try {
+      const normalized = normalizeCartState(Array.isArray(state) ? state : [])
+      localStorage.setItem(CART_KEY, JSON.stringify(normalized))
+   } catch { }
 }
 function loadCartState() {
    try { return localStorage.getItem(CART_STATE_KEY) === 'open' ? 'open' : 'closed' } catch { return 'closed' }
 }
 function saveCartState(v) { try { localStorage.setItem(CART_STATE_KEY, v) } catch { } }
 
-let cart = loadCart();
+let cart = normalizeCartState(loadCart());
 let lastOpener = null;
 
 // Centralized selectors for the cart component
@@ -139,24 +160,79 @@ function getPriceFromLi(li) {
 // Helper to update the row price based on unit price and qty
 function updateRowPrice(holder, rec) {
    if (!holder || !rec) return
-   const priceEl = holder.querySelector(SELECTORS_CART.price)
+
+   // Спочатку шукаємо універсальний data-part="price",
+   // якщо немає — пробуємо блок для друку
+   const priceEl =
+      holder.querySelector(SELECTORS_CART.price) ||
+      holder.querySelector('.cart__result-card-price._printing') ||
+      holder.querySelector('.cart__result-card-price')
+
    if (!priceEl) return
+
    const unit = Number(rec.price) || 0
    const qty = Number(rec.qty) || 0
    const total = unit * qty
-   priceEl.textContent = `Вартість: ${total.toLocaleString('uk-UA')} грн`
+
+   const isPrinting = !!holder.querySelector('.cart__result-card-article._printing')
+
+   priceEl.textContent = isPrinting
+      ? `Вартість друку: ${total.toLocaleString('uk-UA')} грн`
+      : `Вартість: ${total.toLocaleString('uk-UA')} грн`
 }
 
 // --- Core actions ---
-async function appendItemFromServer({ id, type = 'product', color, qty }) {
+async function appendItemFromServer({ id, type = 'product', color, qty, price, name, tierPrice }) {
    const resultsEl = getResultsEl();
    if (!resultsEl) return
 
    const fd = new FormData()
+
+   // Базові поля для всіх типів
    fd.append('formName', 'cartItem')
    fd.append('id', id)
+   fd.append('type', type)
    if (color != null) fd.append('color', color)
    fd.append('qty', String(qty))
+
+   // Для сервісів (друк) — передаємо ціну за одиницю та загальну суму
+   if (type === 'service') {
+      let unit = Number(price)
+      if (!Number.isFinite(unit) || unit < 0) {
+         // якщо раптом price не передали — шукаємо в state
+         const rec = findItem(id, color)
+         if (rec && Number.isFinite(Number(rec.price))) {
+            unit = Number(rec.price)
+         }
+      }
+
+      let quantity = Number(qty)
+      if (!Number.isFinite(quantity) || quantity <= 0) {
+         const rec = findItem(id, color)
+         if (rec && Number.isFinite(Number(rec.qty))) {
+            quantity = Number(rec.qty)
+         } else {
+            quantity = 1
+         }
+      }
+
+      const total = unit * quantity
+
+      if (Number.isFinite(unit) && unit > 0) {
+         fd.append('unitPrice', String(unit))
+      }
+      if (Number.isFinite(total) && total > 0) {
+         fd.append('totalPrice', String(total))
+      }
+      if (name) {
+         fd.append('name', name);
+      }
+      // Add tierPrice if provided and valid (use passed-in tierPrice)
+      const tp = Number(tierPrice)
+      if (Number.isFinite(tp) && tp > 0) {
+         fd.append('tierPrice', String(tp))
+      }
+   }
    try {
       const res = await loadContent('cart__item', fd, undefined, 'html')
       if (res && res.status === 'success' && typeof res.html === 'string' && res.html.trim()) {
@@ -170,34 +246,37 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
             // annotate li with item-type if we know it
             if (type) li.setAttribute('data-item-type', type)
             resultsEl.appendChild(li)
-            // Persist price; qty only if server declares authority
-            const price = getPriceFromLi(li)
+
             const rec = findItem(id, color)
             if (rec) {
-               if (price > 0) {
-                  rec.price = price
-               }
-
-               // Respect server qty only when explicitly marked
-               const authority = (li.getAttribute('data-authority') || '').toLowerCase()
-               const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
-               const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
-
-               if (serverControlsQty) {
-                  let normalizedQty = qty
-                  const attrQty = li.getAttribute('data-qty')
-                  if (attrQty != null && attrQty !== '') {
-                     const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
-                     if (Number.isFinite(n) && n > 0) normalizedQty = n
-                  } else {
-                     const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
-                     if (inputEl && inputEl.value !== '') {
-                        const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
-                        if (Number.isFinite(n) && n > 0) normalizedQty = n
-                     }
+               if (type !== 'service') {
+                  // For products: sync price and qty from DOM if server is authoritative
+                  const domPrice = getPriceFromLi(li)
+                  if (domPrice > 0) {
+                     rec.price = domPrice
                   }
-                  rec.qty = normalizedQty
+
+                  const authority = (li.getAttribute('data-authority') || '').toLowerCase()
+                  const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
+                  const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
+
+                  if (serverControlsQty) {
+                     let normalizedQty = qty
+                     const attrQty = li.getAttribute('data-qty')
+                     if (attrQty != null && attrQty !== '') {
+                        const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
+                        if (Number.isFinite(n) && n > 0) normalizedQty = n
+                     } else {
+                        const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
+                        if (inputEl && inputEl.value !== '') {
+                           const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+                           if (Number.isFinite(n) && n > 0) normalizedQty = n
+                        }
+                     }
+                     rec.qty = normalizedQty
+                  }
                }
+               // For services we fully trust the state (price, qty) that came from addToCart
                updateRowPrice(li, rec)
             }
             saveCart(cart)
@@ -211,15 +290,35 @@ async function appendItemFromServer({ id, type = 'product', color, qty }) {
    }
 }
 
-function addToCart({ id, type = 'product', color, qty = 1, price }) {
+function addToCart({
+   id,
+   type = 'product',
+   color = null,
+   qty = 1,
+   price = null,
+   name = null,
+   tierPrice = null,
+   tierQty = null,
+   tierCode = null,
+}) {
    if (!id) return
+
    const quantity = Number.parseInt(qty, 10) > 0 ? Number.parseInt(qty, 10) : 1
-   const itemType = (type === 'service') ? 'service' : 'product'
+   const itemType = type || 'product'
+
+   // normalize tierPrice only for possible use with services
+   const tq = Number(tierQty)
+   const normalizedTierQty = Number.isFinite(tq) && tq > 0 ? tq : null
+   const tp = Number(tierPrice)
+   const normalizedTierPrice = Number.isFinite(tp) && tp >= 0 ? tp : null
+
    const existing = findItem(id, color)
+
    if (itemType === 'product' && existing) {
-      // Update locally & DOM only
+      // Update locally & DOM only for products
       existing.qty += quantity
       saveCart(cart)
+
       const resultsEl = getResultsEl();
       if (resultsEl) {
          const sel = `[data-cart-item][data-id="${CSS.escape(String(id))}"][data-color="${CSS.escape(String(color ?? ''))}"]`
@@ -229,34 +328,70 @@ function addToCart({ id, type = 'product', color, qty = 1, price }) {
             if (inputEl) inputEl.value = String(existing.qty)
             if (!existing.price) {
                const p = getPriceFromLi(li)
-               if (p > 0) { existing.price = p; saveCart(cart) }
+               if (p > 0) {
+                  existing.price = p
+                  saveCart(cart)
+               }
             }
          }
       }
-      updateBadges(); renderFooterFromCart()
-   } else {
-      // Початкова ціна з payload, якщо передана і валідна, інакше 0
-      let initialPrice = 0
-      const p = Number(price)
-      if (Number.isFinite(p) && p >= 0) {
-         initialPrice = p
-      }
 
-      const item = {
-         id,
-         type: itemType,
-         color: color ?? null,
-         qty: quantity,
-         price: initialPrice,
-      }
-
-      cart.push(item)
-      saveCart(cart)
-      // Ask backend to render a single <li> and append
-      appendItemFromServer({ id, type: item.type, color: item.color, qty: item.qty })
       updateBadges()
       renderFooterFromCart()
+      return
    }
+
+   // --- New item (product or service) ---
+   // Початкова ціна з payload, якщо передана і валідна, інакше 0
+   let normalizedPrice = 0
+   const p = Number(price)
+   if (Number.isFinite(p) && p >= 0) {
+      normalizedPrice = p
+   }
+
+   // Для product ми принципово НЕ зберігаємо ні name, ні tierPrice
+   // Для service зберігаємо name та tierPrice (якщо є)
+   const isService = itemType === 'service'
+   const item = {
+      id,
+      type: itemType,
+      color: color ?? null,
+      qty: quantity,
+      price: normalizedPrice,
+   }
+
+   if (isService) {
+      item.name = name ?? null
+
+      if (normalizedTierPrice !== null) {
+         item.tierPrice = normalizedTierPrice
+      }
+
+      if (normalizedTierQty !== null) {
+         item.tierQty = normalizedTierQty
+      }
+
+      if (tierCode != null && tierCode !== '') {
+         item.tierCode = String(tierCode)
+      }
+   }
+
+   cart.push(item)
+   saveCart(cart)
+
+   // Ask backend to render a single <li> and append
+   appendItemFromServer({
+      id: item.id,
+      type: item.type,
+      color: item.color,
+      qty: item.qty,
+      price: item.price,
+      name: isService ? (item.name ?? null) : null,
+      tierPrice: isService ? (item.tierPrice ?? null) : null,
+   })
+
+   updateBadges()
+   renderFooterFromCart()
 }
 
 function removeItemDomAndState(holder) {
@@ -327,25 +462,31 @@ async function openCartModal() {
                const rColor = li.getAttribute('data-color') ?? null
                const rec = findItem(rId, rColor)
                if (rec) {
-                  const p = getPriceFromLi(li)
-                  if (p > 0) rec.price = p
+                  if (rec.type !== 'service') {
+                     const p = getPriceFromLi(li)
+                     if (p > 0) rec.price = p
 
-                  const authority = (li.getAttribute('data-authority') || '').toLowerCase()
-                  const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
-                  const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
-                  if (serverControlsQty) {
-                     const attrQty = li.getAttribute('data-qty')
-                     if (attrQty != null && attrQty !== '') {
-                        const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
-                        if (Number.isFinite(n) && n > 0) rec.qty = n
-                     } else {
-                        const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
-                        if (inputEl && inputEl.value !== '') {
-                           const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+                     const authority = (li.getAttribute('data-authority') || '').toLowerCase()
+                     const qtyAuthority = (li.getAttribute('data-qty-authority') || '').toLowerCase()
+                     const serverControlsQty = qtyAuthority === 'server' || authority.includes('qty')
+                     if (serverControlsQty) {
+                        const attrQty = li.getAttribute('data-qty')
+                        if (attrQty != null && attrQty !== '') {
+                           const n = Number(String(attrQty).replace(/[^\d.-]/g, ''))
                            if (Number.isFinite(n) && n > 0) rec.qty = n
+                        } else {
+                           const inputEl = li.querySelector(SELECTORS_CART.qtyInput)
+                           if (inputEl && inputEl.value !== '') {
+                              const n = Number(String(inputEl.value).replace(/[^\d.-]/g, ''))
+                              if (Number.isFinite(n) && n > 0) rec.qty = n
+                           }
                         }
                      }
                   }
+
+                  // Для сервісів повністю довіряємо state (price/qty),
+                  // просто оновлюємо текст в картці
+                  updateRowPrice(li, rec)
                }
             })
             // sync DOM annotation for type where available in state
@@ -621,15 +762,11 @@ updateBadges()
       if (typeof isRequiredInput === 'function') {
          const ok = isRequiredInput(form)
          if (ok === false) return
-      } else // 2) Кастомна валідація обовʼязкових полів + HTML5 як fallback
-         if (typeof isRequiredInput === 'function') {
-            const ok = isRequiredInput(form)
-            if (ok === false) return
-         } else if (!form.checkValidity()) {
-            // Дасть стандартні браузерні підказки по required полях
-            form.reportValidity()
-            return
-         }
+      } else if (!form.checkValidity()) {
+         // Дасть стандартні браузерні підказки по required полях
+         form.reportValidity()
+         return
+      }
 
       if (!cart || !Array.isArray(cart) || cart.length === 0) {
          // Якщо хочеш — заміниш на більш красивий UI
