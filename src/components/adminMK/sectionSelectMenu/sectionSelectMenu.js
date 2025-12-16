@@ -5,19 +5,19 @@ export function viewSectionSelectMenu(nuberOfSection) {
    fetchUrl.loadContent("section_selectMenu", { sectionNumber: nuberOfSection });
 }
 
-export function close(event) {
-   if (event.target.closest('[name="close-section-select-menu"]')) {
-      const SECTION_SELECT_MENU = event.target.closest('[data-name="section-select-menu"]');
-      if (SECTION_SELECT_MENU) {
-         // SECTION_SELECT_MENU.classList.remove('[data-name="section-select-menu"]');
-         setTimeout(() => {
-            document.querySelector('[data-name="section-select-menu"]')?.remove();
-        }, 200);
-         return;
-      }
-      alert('cannont close SECTION_SELECT_MENU is epsent on document');
-   }
-}
+// export function close(event) {
+//    if (event.target.closest('[name="close-section-select-menu"]')) {
+//       const SECTION_SELECT_MENU = event.target.closest('[data-name="section-select-menu"]');
+//       if (SECTION_SELECT_MENU) {
+//          // SECTION_SELECT_MENU.classList.remove('[data-name="section-select-menu"]');
+//          setTimeout(() => {
+//             document.querySelector('[data-name="section-select-menu"]')?.remove();
+//         }, 200);
+//          return;
+//       }
+//       alert('cannont close SECTION_SELECT_MENU is epsent on document');
+//    }
+// }
 
 export function buttonViewSectionCreateMenu(event) {
    if (event.target.closest('[data-button-name="section-create"]')) {
