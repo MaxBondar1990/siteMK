@@ -1,167 +1,137 @@
 <nav data-fls-navigation class="navigate" data-name="nav-bar-menu" aria-label="Главное навигационное меню сайта">
-  <ul class="navigate__list">
-    <!-- Текстиль (имеющий подменю) -->
-    <li class="navigate__item" data-name="textile">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-textile"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-merchandise"></use>
-        </svg>
-        <span class="navigate__content">Текстиль</span>
-      </button>
-        <!-- Включение подменю -->
-        <include src="@components/layout/navigation/textileRU.html" locals='{}'></include>
-    </li>
+   <ul class="navigate__list">
+      <!-- Текстиль (имеющий подменю) -->
+      <li class="navigate__item" data-name="textile">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-textile"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-merchandise"></use>
+            </svg>
+            <span class="navigate__content">Текстиль</span>
+         </button>
+         <!-- Включение подменю -->
+         <include src="@components/sections/navigation/partsMenu/textileRU.html" locals='{}'></include>
+      </li>
 
-    <!-- Чашки (имеет подменю) -->
-    <li class="navigate__item" data-name="dishes">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-dishes"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-mugs"></use>
-        </svg>
-        <span class="navigate__content">Чашки</span>
-      </button>
-        <include src="@components/layout/navigation/dishesRU.html" locals='{}'></include>
-    </li>
+      <!-- Чашки (имеет подменю) -->
+      <li class="navigate__item" data-name="dishes">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-dishes"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-mugs"></use>
+            </svg>
+            <span class="navigate__content">Чашки</span>
+         </button>
+         <include src="@components/sections/navigation/partsMenu/dishesRU.html" locals='{}'></include>
+      </li>
 
-    <!-- Электроника (имеет подменю) -->
-    <li class="navigate__item" data-name="electronics">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-electronics"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-flash-drives"></use>
-        </svg>
-        <span class="navigate__content">Электроника</span>
-      </button>
-        <include src="@components/layout/navigation/electronicsRU.html" locals='{}'></include>
-    </li>
+      <!-- Электроника (имеет подменю) -->
+      <li class="navigate__item" data-name="electronics">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-electronics"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-flash-drives"></use>
+            </svg>
+            <span class="navigate__content">Электроника</span>
+         </button>
+         <include src="@components/sections/navigation/partsMenu/electronicsRU.html" locals='{}'></include>
+      </li>
 
-    <!-- Зонтики (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-umbrellas/catalog-umbrellas/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-umbrellas"></use>
-        </svg>
-        <span class="navigate__content">Зонтики</span>
-      </a>
-    </li>
+      <!-- Зонтики (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-umbrellas/catalog-umbrellas/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-umbrellas"></use>
+            </svg>
+            <span class="navigate__content">Зонтики</span>
+         </a>
+      </li>
 
-    <!-- Браслеты (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-silicone-bracelet/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-braslets"></use>
-        </svg>
-        <span class="navigate__content">Браслеты</span>
-      </a>
-    </li>
+      <!-- Браслеты (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-silicone-bracelet/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-braslets"></use>
+            </svg>
+            <span class="navigate__content">Браслеты</span>
+         </a>
+      </li>
 
-    <!-- Шары (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-balloons/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-baloons"></use>
-        </svg>
-        <span class="navigate__content">Шары</span>
-      </a>
-    </li>
+      <!-- Шары (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-balloons/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-baloons"></use>
+            </svg>
+            <span class="navigate__content">Шары</span>
+         </a>
+      </li>
 
-    <!-- Сумки и пакеты (имеет подменю) -->
-    <li class="navigate__item" data-name="bags">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-bags"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-bags"></use>
-        </svg>
-        <span class="navigate__content">Сумки и пакеты</span>
-      </button>
-        <include src="@components/layout/navigation/bagsRU.html" locals='{}'></include>
-    </li>
+      <!-- Сумки и пакеты (имеет подменю) -->
+      <li class="navigate__item" data-name="bags">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-bags"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-bags"></use>
+            </svg>
+            <span class="navigate__content">Сумки и пакеты</span>
+         </button>
+         <include src="@components/sections/navigation/partsMenu/bagsRU.html" locals='{}'></include>
+      </li>
 
-    <!-- Блокноты (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-notepad/catalog-notepad/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-notebooks"></use>
-        </svg>
-        <span class="navigate__content">Блокноты</span>
-      </a>
-    </li>
+      <!-- Блокноты (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-notepad/catalog-notepad/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-notebooks"></use>
+            </svg>
+            <span class="navigate__content">Блокноты</span>
+         </a>
+      </li>
 
-    <!-- Кепки (имеет подменю) -->
-    <li class="navigate__item" data-name="caps">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-caps"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-caps"></use>
-        </svg>
-        <span class="navigate__content">Кепки</span>
-      </button>
-        <include src="@components/layout/navigation/capsRU.html" locals='{}'></include>
-    </li>
+      <!-- Кепки (имеет подменю) -->
+      <li class="navigate__item" data-name="caps">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-caps"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-caps"></use>
+            </svg>
+            <span class="navigate__content">Кепки</span>
+         </button>
+         <include src="@components/sections/navigation/partsMenu/capsRU.html" locals='{}'></include>
+      </li>
 
-    <!-- Брелки (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-keychain/catalog-keychain/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-keychains"></use>
-        </svg>
-        <span class="navigate__content">Брелки</span>
-      </a>
-    </li>
+      <!-- Брелки (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-keychain/catalog-keychain/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-keychains"></use>
+            </svg>
+            <span class="navigate__content">Брелки</span>
+         </a>
+      </li>
 
-    <!-- Зажигалки (ссылка без подменю) -->
-    <li class="navigate__item">
-      <a href="/print-lighter/catalog-lighter/" class="navigate__link">
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-lighters"></use>
-        </svg>
-        <span class="navigate__content">Зажигалки</span>
-      </a>
-    </li>
+      <!-- Зажигалки (ссылка без подменю) -->
+      <li class="navigate__item">
+         <a href="/print-lighter/catalog-lighter/" class="navigate__link">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-lighters"></use>
+            </svg>
+            <span class="navigate__content">Зажигалки</span>
+         </a>
+      </li>
 
-    <!-- Ручки (имеет подменю) -->
-    <li class="navigate__item" data-name="pens">
-      <button 
-        class="navigate__link" 
-        aria-haspopup="true" 
-        aria-expanded="false" 
-        aria-controls="submenu-pens"
-        type="button"
-      >
-        <svg class="navigate__svg" role="img" aria-hidden="true">
-          <use xlink:href="__spritemap#sprite-pens"></use>
-        </svg>
-        <span class="navigate__content">Ручки</span>
-      </button>
-        <include src="@components/layout/navigation/pensRU.html" locals='{}'></include>
-    </li>
+      <!-- Ручки (имеет подменю) -->
+      <li class="navigate__item" data-name="pens">
+         <button class="navigate__link" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-pens"
+            type="button">
+            <svg class="navigate__svg" role="img" aria-hidden="true">
+               <use xlink:href="__spritemap#sprite-pens"></use>
+            </svg>
+            <span class="navigate__content">Ручки</span>
+         </button>
+         <include src="@components/sections/navigation/partsMenu/pensRU.html" locals='{}'></include>
+      </li>
 
-  </ul>
+   </ul>
 </nav>
