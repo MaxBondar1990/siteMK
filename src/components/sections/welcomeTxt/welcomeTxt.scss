@@ -6,7 +6,6 @@
    align-items: center;
 
    height: auto;
-   max-height: 30svh;
 
    // padding: 8px 8px 8px 8px;
    padding: 40px 40px 40px 88px;
@@ -90,6 +89,7 @@
    }
    @media (max-width: 1023px) {
       padding: 20px 12px 20px 12px;
+      max-height: 30svh;
       &._action {
          height: auto;
          max-height: max-content;
