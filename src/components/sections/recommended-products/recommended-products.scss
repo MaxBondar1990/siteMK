@@ -100,3 +100,37 @@
       }
    }
 }
+
+.to-catalog {
+   display: flex;
+   flex-wrap: nowrap;
+   align-items: center;
+   justify-content: center;
+
+   width: 100%;
+   height: auto;
+
+   padding: 12px 0;
+
+   background: $colorWhite;
+   &__btn {
+      width: auto;
+      max-width: 300px;
+      height: auto;
+
+      font-size: 1rem;
+      line-height: 1em;
+      font-weight: 400;
+
+
+      padding: .9em 1.5em;
+
+      color: $colorWhite;
+      background: $colorOrange;
+      border-radius: 16px;
+      box-shadow: 2px 2px 4px rgba(111, 111, 111, 0.5);
+      &:hover {
+      background: #fbb03b;
+      }
+   }
+}
