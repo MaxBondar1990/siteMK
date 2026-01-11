@@ -60,6 +60,7 @@
 
       color: $colorBlue;
    }
+   h4,
    p,
    a {
       margin-bottom: 1rem;
@@ -71,8 +72,13 @@
 
       color: $colorBlue;
    }
+   h4 {
+      font-weight: 700;
+      font-size: 1rem;
+   }
    a {
       color: $colorOrange;
+      margin-bottom: 0;
    }
    &__list {
       padding-left: 1rem;
