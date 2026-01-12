@@ -1,0 +1,16 @@
+<section data-fls-catalog_cover class="catalog-cover" data-component="catalogCover" data-part="root" aria-label="Обкладинка каталогу товарів рекламної агенції МК">
+   <div class="catalog-cover__wrapper">
+      <div class="catalog-cover__title">Каталог ручок для нанесення логотипа</div>
+      <div class="catalog-cover__img-box">
+         <img src="@img" alt="Image">
+      </div>
+      <button data-fls-button type="button" class="catalog-cover__btn">Замовити</button>
+   </div>
+   <include src="@components/custom/modal/modal.html" locals='{
+      "addClass": "",
+      "modalName": "contact-form",
+      "closeOrRemove": "close",
+      "dirName": "custom",
+      "fileName": "contactform"
+   }'></include>
+</section>
