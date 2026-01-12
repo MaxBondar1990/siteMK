@@ -1,10 +1,13 @@
-<section data-fls-catalog-cover class="catalog-cover" data-component="catalogCover" data-part="root" aria-label="Обкладинка каталогу товарів рекламної агенції МК">
+<section data-fls-catalog-cover class="catalog-cover" data-component="catalogCover" data-part="root"
+   aria-label="Обкладинка каталогу товарів рекламної агенції МК">
    <div class="catalog-cover__wrapper">
       <picture class="catalog-cover__pic">
-         <img data-fls-image-ignore class="catalog-cover__img" src="@img/cover/coverCatalogPen.webp" alt="Image" title="Image">
+         <img data-fls-image-ignore class="catalog-cover__img" src="@img/cover/coverCatalogPen.webp" alt="Image"
+            title="Image">
       </picture>
       <h1 class="catalog-cover__title">Каталог ручок для нанесення логотипа</h1>
-      <button type="button" class="catalog-cover__btn">Замовити</button>
+      <button class="catalog-cover__btn" data-action="open-modal" data-target="contact-form" data-part="button"
+         type="button" aria-label="Замовити послугу">Замовити</button>
    </div>
    <include src="@components/custom/modal/modal.html" locals='{
       "addClass": "",

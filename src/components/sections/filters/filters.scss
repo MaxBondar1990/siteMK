@@ -1,0 +1,32 @@
+
+.filters {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 1fr 1fr;
+   width: 100%;
+   padding: 0 12px 0 64px;
+   justify-content: center;
+   align-items: center;
+   &__types {
+      display: flex;
+      width: min-content;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 4px;
+   }
+   &__btn-types {
+      background: $colorWhite;
+      padding: 1em 1.2em;
+      border-radius: 16px;
+      box-shadow: 2px 2px 4px rgba(111, 111, 111, .6);
+      color: $colorDarkGray;
+      transition: all .3s;
+      text-transform: uppercase;
+      &:hover {
+         scale: 0.95;
+         color: $colorBlue;
+         box-shadow: 1px 1px 2px #6f6f6f;
+      }
+   }
+}
