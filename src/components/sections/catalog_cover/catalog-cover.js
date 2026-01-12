@@ -1,4 +1,4 @@
-import './catalog_cover.scss'
+import './catalog-cover.scss'
 import { view } from '../../custom/modal/modal.js'
 
 function mountCatalogCover(rootEl) {
