@@ -1,14 +1,15 @@
 <div data-fls-auth class="auth" data-component="auth" data-part="root">
    <!-- Форма логіну -->
-   <form class="auth__form auth__form--login" data-part="auth-form-login" autocomplete="off" novalidate>
+   <form class="auth__form auth__form--login" action="/api/auth/login/" method="post" name="user-login"
+      data-part="auth-form-login" autocomplete="off" novalidate="">
       <h4 class="auth__title">Вхід</h4>
       <label class="auth__label">
-         <span class="auth__label-text">E-mail</span>
-         <input type="email" name="email" class="auth__input" placeholder="Ваш e-mail" required>
+         <span class="auth__label-text">Телефон</span>
+         <input type="tel" name="phone" class="auth__input" placeholder="Ваш телефон" required="">
       </label>
       <label class="auth__label">
          <span class="auth__label-text">Пароль</span>
-         <input type="password" name="password" class="auth__input" placeholder="Ваш пароль" required>
+         <input type="password" name="password" class="auth__input" placeholder="Ваш пароль" required="">
       </label>
       <button type="submit" class="auth__btn" data-action="auth-login">Увійти</button>
       <p class="auth__switch">
@@ -18,23 +19,28 @@
    </form>
 
    <!-- Форма реєстрації -->
-   <form class="auth__form auth__form--register" data-part="auth-form-register" autocomplete="off" novalidate hidden>
+   <form class="auth__form auth__form--register" action="/api/auth/register/" method="post" name="user-registretion"
+      data-part="auth-form-register" autocomplete="off" novalidate="" hidden="">
       <h4 class="auth__title">Реєстрація</h4>
       <label class="auth__label">
          <span class="auth__label-text">Ім’я</span>
-         <input type="text" name="name" class="auth__input" placeholder="Ваше ім’я" required>
+         <input type="text" name="name" class="auth__input" placeholder="Ваше ім’я" required="">
       </label>
       <label class="auth__label">
-         <span class="auth__label-text">E-mail</span>
-         <input type="email" name="email" class="auth__input" placeholder="Ваш e-mail" required>
+         <span class="auth__label-text">Телефон</span>
+         <input type="tel" name="phone" class="auth__input" placeholder="Ваш телефон" required="">
+      </label>
+      <label class="auth__label">
+         <span class="auth__label-text">E-mail (необовʼязково)</span>
+         <input type="email" name="email" class="auth__input" placeholder="Ваш e-mail">
       </label>
       <label class="auth__label">
          <span class="auth__label-text">Пароль</span>
-         <input type="password" name="password" class="auth__input" placeholder="Пароль" required>
+         <input type="password" name="password" class="auth__input" placeholder="Пароль" required="">
       </label>
       <label class="auth__label">
          <span class="auth__label-text">Повторіть пароль</span>
-         <input type="password" name="confirm-password" class="auth__input" placeholder="Повторіть пароль" required>
+         <input type="password" name="confirm-password" class="auth__input" placeholder="Повторіть пароль" required="">
       </label>
       <button type="submit" class="auth__btn" data-action="auth-register">Зареєструватись</button>
       <p class="auth__switch">

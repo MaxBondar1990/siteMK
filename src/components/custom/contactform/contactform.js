@@ -11,30 +11,6 @@ function collectFormData(form) {
    return fd;
 }
 
-// Returns fallback error HTML string from the page (if present)
-function getFallbackErrorHTML() {
-   // Preferred: <template data-part="contactform-error">
-   const tpl = document.querySelector('template[data-part="contactform-error"]');
-   if (tpl) {
-      return tpl.innerHTML.trim();
-   }
-   // Alternative: hidden element to clone: <div id="contactform-error-template" hidden>...</div>
-   const node = document.getElementById('contactform-error-template') || document.querySelector('[data-part="contactform-error"]');
-   if (node) {
-      return node.innerHTML.trim();
-   }
-   return '';
-}
-
-// Returns fallback success HTML string from the page (if present)
-function getFallbackSuccessHTML() {
-   const tpl = document.querySelector('template[data-part="contactform-success"]');
-   if (tpl) return tpl.innerHTML.trim();
-   const node = document.getElementById('contactform-success-template') || document.querySelector('[data-part="contactform-success"]');
-   if (node) return node.innerHTML.trim();
-   return '';
-}
-
 async function submitContactForm(form, rootEl) {
    if (form.dataset.loading === '1') return; // prevent double submit
    form.dataset.loading = '1';
@@ -51,39 +27,42 @@ async function submitContactForm(form, rootEl) {
 
    try {
       const res = await loadContent('submitContactForm', formData, undefined, 'json');
-      if (res && res.status === 'success') {
-         const html = res.html || getFallbackSuccessHTML();
-         if (html) {
-            document.body.insertAdjacentHTML('beforeend', html);
-            // Only now signal success (modal will close itself on this event)
-            rootEl.dispatchEvent(new CustomEvent('contactform:success', { bubbles: true, detail: res }));
-         } else {
-            // No HTML to show -> keep the form open and do not close the modal
-            console.warn('[contactform] success without HTML; modal remains open');
-         }
+
+      // Expect backend to always return HTML for all statuses.
+      const html = res && typeof res.html === 'string' ? res.html : '';
+      if (html) {
+         document.body.insertAdjacentHTML('beforeend', html);
+      } else {
+         console.warn('[contactform] response without HTML', res);
+      }
+
+      const isSuccess = !!(res && (res.status === 'success' || res.status === 'ok'));
+
+      if (isSuccess) {
+         // Analytics hook: expose source for GTM/GA4/Ads
+         const source = form.dataset.formSource || 'unknown';
+         window.dataLayer = window.dataLayer || [];
+         window.dataLayer.push({
+            event: 'contact_form_success',
+            source,
+            formName: form.getAttribute('name') || 'unknown'
+         });
+
+         // Only now signal success (modal will close itself on this event)
+         rootEl.dispatchEvent(new CustomEvent('contactform:success', { bubbles: true, detail: res }));
       } else if (res && res.status === 'timeout') {
-         const fallback = getFallbackErrorHTML();
-         if (fallback) {
-            document.body.insertAdjacentHTML('beforeend', fallback);
-         }
          rootEl.dispatchEvent(new CustomEvent('contactform:timeout', { bubbles: true, detail: res }));
       } else {
-         // Any non-success (network/HTTP error shape, or unexpected)
-         const html = (res && res.html) ? res.html : getFallbackErrorHTML();
-         if (html) {
-            document.body.insertAdjacentHTML('beforeend', html);
-         }
          rootEl.dispatchEvent(new CustomEvent('contactform:error', { bubbles: true, detail: res }));
       }
    } catch (err) {
-      const fallback = getFallbackErrorHTML();
-      if (fallback) {
-         document.body.insertAdjacentHTML('beforeend', fallback);
-      }
+      console.error('[contactform] submit failed', err);
       rootEl.dispatchEvent(new CustomEvent('contactform:error', { bubbles: true, detail: { message: String(err) } }));
    } finally {
       form.dataset.loading = '0';
-      if (submitBtn) submitBtn.disabled = !!prevDisabled;
+      // Restore previous disabled state (default to enabled)
+      const restoredDisabled = prevDisabled === undefined ? false : !!prevDisabled;
+      if (submitBtn) submitBtn.disabled = restoredDisabled;
    }
 }
 
@@ -98,27 +77,26 @@ function mountContactForm(rootEl) {
 
    try { formEl.noValidate = true; } catch (_) { }
 
-   // Fallback to avoid blocked native submit: handle click on submit controls
-   formEl.addEventListener('click', async (e) => {
-      const btn = e.target.closest('button[type="submit"], input[type="submit"], [data-action="send-contact-form"]');
-      if (!btn) return;
+   // Native submit handler (single source of truth)
+   formEl.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = formEl;
-      if (!form) return;
       if (!isRequiredInput(form)) return;
       await submitContactForm(form, rootEl);
    }, { signal });
 
-   // Enter-to-submit inside the form (except textarea)
-   formEl.addEventListener('keydown', async (e) => {
-      if (e.key !== 'Enter' || e.shiftKey) return;
-      const tag = (e.target.tagName || '').toLowerCase();
-      if (tag === 'textarea') return;
-      e.preventDefault();
-      const form = formEl;
-      if (!isRequiredInput(form)) return;
-      await submitContactForm(form, rootEl);
-   }, { signal });
+   // File input label (per-form)
+   const fileInput = formEl.querySelector('input[name="file_print"]');
+   const fileLabel = formEl.querySelector('[data-name="print-maket"]');
+   if (fileInput && fileLabel) {
+      fileInput.addEventListener('change', () => {
+         if (fileInput.files && fileInput.files.length > 0) {
+            fileLabel.textContent = fileInput.files[0].name;
+         } else {
+            fileLabel.textContent = 'Додати макет';
+         }
+      }, { signal });
+   }
 
    return () => ac.abort();
 }
@@ -138,22 +116,3 @@ if (document.readyState === 'loading') {
 } else {
    initContactForms();
 }
-
-// ________________________________________________ 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector('.contact-form__form');
-  if (!form) return;
-
-  const fileInput = form.querySelector('input[name="file_print"]');
-  const fileLabel = form.querySelector('[data-name="print-maket"]');
-
-  if (!fileInput || !fileLabel) return;
-
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-      fileLabel.textContent = fileInput.files[0].name;
-    } else {
-      fileLabel.textContent = 'Додати макет';
-    }
-  });
-});

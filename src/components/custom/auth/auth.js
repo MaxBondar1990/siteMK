@@ -1,56 +1,71 @@
 import './auth.scss'
-import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js';
+import { isRequiredInput } from '../../globalBlokcs/fetch/fetch.js';
 
-// ——— Auth portal & response handling ———
-function ensureAuthPortal() {
-   let portal = document.querySelector('#app-portal[data-portal="auth"]');
-   if (!portal) {
-      portal = document.createElement('div');
-      portal.id = 'app-portal';
-      portal.setAttribute('data-portal', 'auth');
-      portal.setAttribute('aria-live', 'polite');
-      document.body.appendChild(portal);
-   }
-   return portal;
+function clearFormErrors(form) {
+   if (!form) return;
+   form.querySelectorAll('.auth__field-error').forEach(el => el.remove());
+   form.querySelectorAll('._error').forEach(el => el.classList.remove('_error'));
 }
 
-function renderAuthHtml(html) {
-   const portal = ensureAuthPortal();
-   portal.innerHTML = html || '';
-   return portal;
+function setFieldError(form, fieldName, message) {
+   if (!form || !fieldName || !message) return;
+
+   let input = form.querySelector(`[name="${CSS.escape(fieldName)}"]`);
+   if (!input && fieldName === 'confirm_password') {
+      input = form.querySelector('[name="confirm-password"]');
+   }
+   if (!input) return;
+
+   input.classList.add('_error');
+   const label = input.closest('.auth__label');
+   if (label) label.classList.add('_error');
+
+   const err = document.createElement('div');
+   err.className = 'auth__field-error';
+   err.textContent = String(message);
+   input.insertAdjacentElement('afterend', err);
+}
+
+function applyBackendErrors(form, fields) {
+   if (!form || !fields || typeof fields !== 'object') return;
+   for (const [k, v] of Object.entries(fields)) {
+      if (!v) continue;
+      setFieldError(form, k, v);
+   }
 }
 
 function handleAuthResponse(rootEl, res) {
-   // Якщо прийшов html — вставляємо його лише у разі помилки або якщо статус не "ok"
-   if (res && typeof res.html === 'string' && res.status !== 'ok') {
-      renderAuthHtml(res.html);
-   }
+   const ok = !!(res && (res.ok === true || res.status === 'ok'));
 
-   if (res && res.status === 'ok') {
-      // Закриваємо модалку логіну/реєстрації
+   if (ok) {
       const authModal = rootEl.querySelector('[data-part="modal"][data-name="login"]');
       if (authModal) authModal.classList.remove('_view');
 
-      // Сповіщаємо застосунок
       document.dispatchEvent(new CustomEvent('auth:success', {
-         detail: { redirect: res.redirect || null }
+         detail: { user: res.user || null }
       }));
 
-      // Якщо є redirect → переходимо, якщо ні — просто перезавантажуємо
-      if (res.redirect) {
-         location.href = res.redirect;
-      } else {
-         location.reload();
-      }
+      location.reload();
       return;
    }
 
-   // Помилка: модалку не закриваємо, показуємо html (вище вставили), й сповіщаємо інших
+   const loginForm = rootEl.querySelector('[data-part="auth-form-login"]');
+   const registerForm = rootEl.querySelector('[data-part="auth-form-register"]');
+
+   clearFormErrors(loginForm);
+   clearFormErrors(registerForm);
+
+   const activeForm = (registerForm && registerForm.hidden === false) ? registerForm : loginForm;
+
+   if (res && res.fields && typeof res.fields === 'object') {
+      applyBackendErrors(activeForm, res.fields);
+   }
+
+   console.warn('Auth error response:', res);
    document.dispatchEvent(new CustomEvent('auth:error', {
-      detail: { reason: (res && res.reason) || (res && res.meta && res.meta.reason) || 'unknown' }
+      detail: { reason: (res && (res.error || res.reason)) || 'unknown' }
    }));
 }
-// ——— end auth helpers ———
 
 function mountAuth(rootEl) {
    if (!rootEl) return;
@@ -58,7 +73,6 @@ function mountAuth(rootEl) {
    const ac = new AbortController();
    const { signal } = ac;
 
-   // Делегування КЛІКІВ в межах компонента
    rootEl.addEventListener('click', (e) => {
       const actionEl = e.target.closest('[data-action]');
       if (!actionEl || !rootEl.contains(actionEl)) return;
@@ -67,7 +81,6 @@ function mountAuth(rootEl) {
       switch (action) {
          case 'auth-login':
          case 'auth-register': {
-            // Викликаємо submit поточної форми через requestSubmit
             const form = actionEl.closest('form');
             if (form) {
                e.preventDefault();
@@ -81,6 +94,8 @@ function mountAuth(rootEl) {
             const loginForm = rootEl.querySelector('[data-part="auth-form-login"]');
             const registerForm = rootEl.querySelector('[data-part="auth-form-register"]');
             if (loginForm && registerForm) {
+               clearFormErrors(loginForm);
+               clearFormErrors(registerForm);
                loginForm.hidden = true;
                registerForm.hidden = false;
             }
@@ -91,9 +106,27 @@ function mountAuth(rootEl) {
             const loginForm = rootEl.querySelector('[data-part="auth-form-login"]');
             const registerForm = rootEl.querySelector('[data-part="auth-form-register"]');
             if (loginForm && registerForm) {
+               clearFormErrors(loginForm);
+               clearFormErrors(registerForm);
                loginForm.hidden = false;
                registerForm.hidden = true;
             }
+            return;
+         }
+
+         case 'auth-logout': {
+            e.preventDefault();
+            fetch('/api/auth/logout/', {
+               method: 'POST',
+               headers: { 'Accept': 'application/json' },
+               credentials: 'same-origin'
+            })
+               .then(r => r.json())
+               .then(res => {
+                  if (res && res.ok) location.reload();
+                  else console.warn('Logout failed:', res);
+               })
+               .catch(err => console.error('Logout request failed:', err));
             return;
          }
 
@@ -102,11 +135,12 @@ function mountAuth(rootEl) {
       }
    }, { signal });
 
-   // Делегування submit для auth-форм через fetch (мінімальний контракт: {status, html, redirect?})
    rootEl.addEventListener('submit', async (e) => {
       const form = e.target.closest('[data-part="auth-form-login"], [data-part="auth-form-register"]');
       if (!form || !rootEl.contains(form)) return;
       e.preventDefault();
+
+      clearFormErrors(form);
 
       if (typeof isRequiredInput === 'function') {
          const ok = isRequiredInput(form);
@@ -114,19 +148,40 @@ function mountAuth(rootEl) {
       }
 
       const formData = new FormData(form);
-      const fileName = form.getAttribute('data-fetch-file') || (form.matches('[data-part="auth-form-login"]') ? 'userLogin' : 'userregistration');
+      const url = form.getAttribute('action') || '';
 
       const submitBtn = form.querySelector('[type="submit"]');
       const prevDisabled = submitBtn ? submitBtn.disabled : false;
       if (submitBtn) submitBtn.disabled = true;
 
       try {
-         const res = await loadContent(fileName, formData, undefined, 'json');
-         console.log(res);
+         const payload = Object.fromEntries(formData.entries());
+
+         const resp = await fetch(url, {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(payload)
+         });
+
+         let res = {};
+         try {
+            res = await resp.json();
+         } catch (e) {
+            res = { ok: false, error: 'invalid_json_response' };
+         }
+
+         if (!resp.ok && res && typeof res === 'object') {
+            res.ok = false;
+         }
+
          handleAuthResponse(rootEl, res || {});
       } catch (err) {
          console.error('Auth request failed:', err);
-         handleAuthResponse(rootEl, { status: 'error', html: '<div data-auth-view="login-error">Сталася помилка. Спробуйте пізніше.</div>' });
+         handleAuthResponse(rootEl, { ok: false, error: 'network_error' });
       } finally {
          if (submitBtn) submitBtn.disabled = prevDisabled;
       }
@@ -135,7 +190,6 @@ function mountAuth(rootEl) {
    return () => ac.abort();
 }
 
-// Приклад автозапуску, якщо компонент одиничний і вже в DOM:
 const rootAuth = document.querySelector('[data-component="auth"][data-part="root"]');
 if (rootAuth) {
    const cleanup = mountAuth(rootAuth);
