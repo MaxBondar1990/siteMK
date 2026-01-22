@@ -795,6 +795,18 @@ updateBadges()
             }
 
             if (res.status === 'ok') {
+               // GTM / GA4 / Ads event: cart order success
+               const total = calcTotal();
+               const itemsCount = cartCount();
+
+               window.dataLayer = window.dataLayer || [];
+               window.dataLayer.push({
+                  event: 'cart_order_success',
+                  source: 'cart',
+                  value: total,          // число
+                  currency: 'UAH',
+                  items_count: itemsCount
+               });
                clearCart()
                try { form.reset() } catch { }
 

@@ -1,0 +1,46 @@
+<div data-fls-componentInsertMenu class="component-insert-menu _view" data-component="componentInsertMenu"
+   data-part="root" data-name="component-insert">
+   <div class="header-modal">
+      <button class="component-insert-menu__close" type="button" data-action="close-modal"
+         data-target="component-insert" aria-label="Закрити"></button>
+      <p>Обрати компонент для додавання на сторінку</p>
+   </div>
+
+
+   <form class="component-insert-menu__tiles-container" method="post" action="/admin/setup/component-insert/">
+      <input type="hidden" name="instance_id" value="24">
+      <input type="hidden" name="position" value="after">
+      <ul class="component-insert-menu__tiles-wrapper _reverse-direction">
+         <li>
+            <label class="component-insert-menu__tile" data-component-id="9" data-component-view="catalog_classic">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required="">
+               <span class="component-insert-menu__tile-title">
+                  catalog_classic </span>
+               <span class="component-insert-menu__tile-type">
+                  catalog </span>
+            </label>
+         </li>
+         <li>
+            <label class="component-insert-menu__tile" data-component-id="9" data-component-view="catalog_classic">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required="">
+               <span class="component-insert-menu__tile-title">
+                  catalog_classic </span>
+               <span class="component-insert-menu__tile-type">
+                  catalog </span>
+            </label>
+         </li>
+         <li>
+            <label class="component-insert-menu__tile" data-component-id="9" data-component-view="catalog_classic">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required="">
+               <span class="component-insert-menu__tile-title">
+                  catalog_classic </span>
+               <span class="component-insert-menu__tile-type">
+                  catalog </span>
+            </label>
+         </li>
+      </ul>
+      <button class="component-insert-menu__add" type="submit">
+         Додати
+      </button>
+   </form>
+</div>

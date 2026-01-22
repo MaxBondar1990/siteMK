@@ -26,8 +26,21 @@ function mountFooter(rootEl) {
 
       try {
          const res = await loadContent('submitContactForm', formData, undefined, 'json');
-         if (res && res.status === 'success' && res.html) {
+
+         const isOk = !!(res && (res.status === 'ok' || res.status === 'success'));
+
+         if (isOk && res.html) {
             document.body.insertAdjacentHTML('beforeend', res.html);
+         }
+
+         if (isOk) {
+            const source = form.dataset.formSource || form.getAttribute('name') || 'unknown';
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+               event: 'contact_form_success',
+               source,
+               formName: form.getAttribute('name') || undefined,
+            });
          }
          // On error/timeout: do nothing here (footer form is not modal and should remain open)
       } catch (_) {

@@ -4,71 +4,24 @@
 <link rel="stylesheet" href="@components/pages/adminMK/home.scss">
 
 <main class="page page--home">
-   <block name="sectionControlPanel">
-      <include src="@components/adminMK/sectionControlPanel/sectionControlPanel.html" locals='{}'></include>
-   </block>
-   <block name="CreateNewPageBtn">
-      <include src="@components/adminMK/CreateNewPageBtn/CreateNewPageBtn.html" locals='{}'></include>
-   </block>
-
    <block name="mainScreen404">
       <include src="@components/adminMK/mainScreen404/mainScreen404.html" locals='{}'></include>
    </block>
-   <block name="sectionControlPanel">
-      <include src="@components/adminMK/sectionControlPanel/sectionControlPanel.html" locals='{}'></include>
+   <!-- Меню вставки компонента на сторінку -->
+   <block name="componentInsertButton">
+      <include src="@components/adminMK/componentInsertButton/componentInsertButton.html" locals='{}'></include>
    </block>
-   <block name="sectionSelectPanel">
-      <include src="@components/adminMK/sectionSelectPanel/sectionSelectPanel.html" locals='{}'></include>
+   <block name="componentInsertMenu">
+      <include src="@components/adminMK/componentInsertMenu/componentInsertMenu.html" locals='{}'></include>
    </block>
-   <block name="AddSectionBtn">
-      <include src="@components/adminMK/AddSectionBtn/AddSectionBtn.html" locals='{}'></include>
+   <!-- Меню редагування змінних компонента на сторінці -->
+   <block name="componentEditButtons">
+      <include src="@components/adminMK/componentEditButtons/componentEditButtons.html" locals='{}'></include>
    </block>
-
-   <!-- Модалки -->
-   <block name="sectionEditMenu">
-      <include src="@components/adminMK/sectionEditMenu/sectionEditMenu.html" locals='{}'></include>
+   <block name="componentEditMenu">
+      <include src="@components/adminMK/componentEditMenu/componentEditMenu.html" locals='{}'></include>
    </block>
-   <block name="pageCreateMenu">
-      <include src="@components/adminMK/pageCreateMenu/pageCreateMenu.html" locals='{}'></include>
+   <block name="mainScreen404">
+      <include src="@components/adminMK/mainScreen404/mainScreen404.html" locals='{}'></include>
    </block>
-   <block name="sectionSelectMenu">
-      <include src="@components/adminMK/sectionSelectMenu/sectionSelectMenu.html" locals='{}'></include>
-   </block>
-   <block name="alarmMesageModal">
-      <include src="@components/adminMK/alarmMesageModal/alarmMesageModal.html" locals='{}'></include>
-   </block>
-   <block name="section_createModalWindow">
-      <include src="@components/adminMK/section_createModalWindow/section_createModalWindow.html" locals='{}'></include>
-   </block>
-   <block name="block_createModalWindow">
-      <include src="@components/adminMK/block_createModalWindow/block_createModalWindow.html" locals='{}'></include>
-   </block>
-   <block name="blocks_moderationMenu">
-      <include src="@components/adminMK/blocks_moderationMenu/blocks_moderationMenu.html" locals='{}'></include>
-   </block>
-   <block name="blockToBlock_createModalWindow">
-      <include src="@components/adminMK/blockToBlock_createModalWindow/blockToBlock_createModalWindow.html" locals='{}'></include>
-   </block>
-   <block name="paramForBlock_createModalWindow">
-      <include src="@components/adminMK/paramForBlock_createModalWindow/paramForBlock_createModalWindow.html" locals='{}'></include>
-   </block>
-   <block name="paramForSection_createModalWindow">
-      <include src="@components/adminMK/paramForSection_createModalWindow/paramForSection_createModalWindow.html" locals='{}'></include>
-   </block>
-   <block name="section_settingsModal">
-      <include src="@components/adminMK/section_settingsModal/section_settingsModal.html" locals='{}'></include>
-   </block>
-   <block name="section_settingsMenu">
-      <include src="@components/adminMK/section_settingsMenu/section_settingsMenu.html" locals='{}'></include>
-   </block>
-   <block name="section_moderationMenu">
-      <include src="@components/adminMK/section_moderationMenu/section_moderationMenu.html" locals='{}'></include>
-   </block>
-
-   <!-- <block name="leftSideBar">alarmMesageModal
-      <include src="@components/layout/leftSideBar/leftSideBar.html" locals='{}'></include>
-   </block> -->
-   <!-- <block name="navigation">
-      <include src="@components/layout/navigation/navigation.html" locals='{}'></include>
-   </block> -->
 </main>
