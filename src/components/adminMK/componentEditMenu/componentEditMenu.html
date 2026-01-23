@@ -1,21 +1,22 @@
 <div data-fls-componentEditMenu class="component-edit-menu-container _view" data-component="component_edit_menu"
    data-part="root">
-   <div class="menu-header">
-      <button class="menu-header__close" type="button" data-action="close-menu" data-target="section-edit-menu"
+   <!-- Хедер меню -->
+   <header class="menu-header">
+      <button class="menu-header__close" type="button" data-action="close-menu" data-target="edit-menu"
          aria-label="Закрити меню"></button>
       <p class="menu-header__title">Меню редагування параметрів секції</p>
-   </div>
+   </header>
 
    <div class="component-edit-menu-container__items-wraper" action="/setup/section/select/" title="select section"
       method="post" enctype="multipart/form-data">
+
+      <!-- Навігаційний блок меню -->
       <div class="component-edit-menu-container__menu-navigation-block">
          <p class="component-edit-menu-container__items-title">Елементи секції</p>
          <div class="component-edit-menu-container__menu-navigation-items">
             <a class="component-edit-menu-container__item" href="#titleh2" title="title">Title h2</a>
             <a class="component-edit-menu-container__item" href="#subtitle" title="subtitle">Subtitle</a>
             <a class="component-edit-menu-container__item" href="#text" title="text">Text</a>
-         </div>
-         <div class="component-edit-menu-container__menu-navigation-items">
             <a class="component-edit-menu-container__item" href="#img" title="img" data-name="btn"
                data-id="param-1">Image</a>
             <a class="component-edit-menu-container__item" href="#list" title="list" data-name="btn"
@@ -26,170 +27,293 @@
                data-id="param-4">Text link</a>
             <a class="component-edit-menu-container__item" href="#imagelink" title="link" data-name="btn"
                data-id="param-5">Image link</a>
+            <!-- Кнопка "Додати елемент" -->
+            <button type="button" class="component-edit-menu-container__add-component-element"></button>
          </div>
       </div>
+
+      <!-- Блок введення данних меню -->
       <div class="component-edit-menu-container__items-list">
          <form class="component-edit-menu-container__item-tile _element_selection_animation" id="titleh2">
             <p class="component-edit-menu-container__item-tile-name">Title h2</p>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Заголовок секції</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="subtitle">
             <p class="component-edit-menu-container__item-tile-name">Subtitle</p>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Короткий опис або підзаголовок</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="text">
             <p class="component-edit-menu-container__item-tile-name">Text</p>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea tall" name="param-input"
+               <textarea class="component-edit-menu-container__param-input tall" name="param-input"
                   data-autosize="true" data-placeholder="Введіть текст…">Це демонстраційний текст секції.
-Тут може бути кілька рядків опису,
-які пояснюють суть блоку або пропозиції.
-</textarea>
+                  Тут може бути кілька рядків опису,
+                  які пояснюють суть блоку або пропозиції.
+               </textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="img">
             <p class="component-edit-menu-container__item-tile-name">Image</p>
             <span class="component-edit-menu-container__param-name">URL</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
-                  data-autosize="true" data-placeholder="Введіть значення…">/img/demo/section-image.webp</textarea>
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
+                  data-autosize="true" data-placeholder="Введіть значення…">/img/demo/image.webp</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Alt</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Опис зображення для SEO</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Title</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Title зображення</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
-            <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
-               <svg class="icomponent-edit-menu-container__block-settings-btn-svg">
-                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
-               </svg>
-            </button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="list">
             <p class="component-edit-menu-container__item-tile-name">List</p>
             <span class="component-edit-menu-container__param-name">1</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Пункт списку 1</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">2</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Пункт списку 2</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">3</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Пункт списку 3</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">4</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Пункт списку 4</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">5</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Пункт списку 5</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
-            <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
-               <svg class="icomponent-edit-menu-container__block-settings-btn-svg">
-                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
-               </svg>
-            </button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="btn">
             <p class="component-edit-menu-container__item-tile-name">Button</p>
             <span class="component-edit-menu-container__param-name">Text</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Дізнатись більше</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Link to image</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">/img/icons/arrow-right.svg</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Type</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">primary</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
-            <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
-               <svg class="icomponent-edit-menu-container__block-settings-btn-svg">
-                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
-               </svg>
-            </button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="textlink">
             <p class="component-edit-menu-container__item-tile-name">Text Link</p>
             <span class="component-edit-menu-container__param-name">Href</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">/about/</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Title</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Перейти на сторінку «Про нас»</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Text</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Про компанію</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
-            <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
-               <svg class="icomponent-edit-menu-container__block-settings-btn-svg">
-                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
-               </svg>
-            </button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
          <form class="component-edit-menu-container__item-tile" id="imagelink">
             <p class="component-edit-menu-container__item-tile-name">Image Link</p>
             <span class="component-edit-menu-container__param-name">Href</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">/contact/</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Title</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Звʼязатися з нами</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Link to image</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">/img/demo/banner-link.webp</textarea>
             </div>
             <span class="component-edit-menu-container__param-name">Alt for image</span>
             <div class="component-edit-menu-container__field">
-               <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+               <textarea class="component-edit-menu-container__param-input" name="param-input"
                   data-autosize="true" data-placeholder="Введіть значення…">Банер з переходом на контакти</textarea>
             </div>
-            <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
-            <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
-               <svg class="icomponent-edit-menu-container__block-settings-btn-svg">
-                  <use xlink:href="@img/icons/icons.svg#GearNew"></use>
-               </svg>
-            </button>
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+            <!-- Блок кнопок "ОК", "Налаштування", "Видалити" -->
+            <div class="component-edit-menu-container__buttons-block">
+               <!-- Кнопка "Підтвердження змін" -->
+               <button class="component-edit-menu-container__tile-confirm-btn" type="submit">OK</button>
+               <!-- Кнопка "Налаштування" -->
+               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__block-settings-btn-svg">
+                     <use xlink:href="__spritemap#sprite-GearNew"></use>
+                  </svg>
+               </button>
+               <!-- Кнопка "Видалити" -->
+               <button class="component-edit-menu-container__del-button" type="button" title="Налаштування блоку">
+                  <svg class="component-edit-menu-container__del-button-svg">
+                     <use xlink:href="__spritemap#sprite-del_btn"></use>
+                  </svg>
+               </button>
+            </div>
          </form>
       </div>
 
