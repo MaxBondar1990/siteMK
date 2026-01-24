@@ -1,18 +1,18 @@
-<section data-fls-componentEditButtons class="section-control-panel" data-name="section-control-panel"
+<section data-fls-componentEditButtons class="component-edit-buttons" data-name="component-edit-buttons"
    data-section-id="@@number">
-   <div class="section-control-panel__wrapper">
-      <div class="section-control-panel__btns-wrapper">
-         <button class="section-control-panel__btn" title="Налаштування секції">
-            <div class="section-control-panel__items items">
-               <span class="items__number" data-number="@@number">@@number</span>
+   <div class="component-edit-buttons__wrapper">
+      <div class="component-edit-buttons__btns-wrapper">
+         <button class="component-edit-buttons__btn" title="Налаштування секції">
+            <div class="component-edit-buttons__items items">
+               <span class="items__number" data-number="@@number">00</span>
                <svg class="items__svg">
                   <use xlink:href="__spritemap#sprite-GearNew"></use>
                </svg>
             </div>
-            <p class="section-control-panel__name">@@name</p>
+            <p class="component-edit-buttons__name">Name</p>
          </button>
-         <div class="section-control-panel__management-block management-block">
-            <div class="section-control-panel__management management">
+         <div class="component-edit-buttons__management-block management-block">
+            <div class="component-edit-buttons__management management">
                <form class="management__form" action="/setup/section/up/" title="up section" method="post"
                   enctype="multipart/form-data">
                   <input type="hidden" name="page_id" value="php">
@@ -33,7 +33,7 @@
                   </button>
                </form>
             </div>
-            <div class="section-control-panel__management">
+            <div class="component-edit-buttons__management">
                <button class="management__button" type="button" title="Редагування контенту секції">
                   <svg class="management__svg" data-fetch-modal="section_editMenu">
                      <use xlink:href="__spritemap#sprite-editing-btn"></use>
@@ -42,14 +42,11 @@
                <form class="management__form" action="/">
                   <button class="management__button" type="submit" title="Видалити секцію">
                      <svg class="management__svg">
-                        <use xlink:href="__spritemap#sprite-del-btn"></use>
+                        <use xlink:href="__spritemap#sprite-del_btn"></use>
                      </svg>
                   </button>
                </form>
-
-
             </div>
-            <!-- <button class="management-block__close-btn" type="button"></button> -->
          </div>
       </div>
    </div>

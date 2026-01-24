@@ -27,16 +27,16 @@ import './componentEditButtons.scss'
 
 function show(event) {
    // шукаємо найближчу кнопку
-   const btn = event.target.closest('.section-control-panel__btn');
+   const btn = event.target.closest('.component-edit-buttons__btn');
    if (!btn) return;
 
    // шукаємо контейнер кнопок
-   const wrapper = btn.closest('.section-control-panel__btns-wrapper');
+   const wrapper = btn.closest('.component-edit-buttons__btns-wrapper');
    if (!wrapper) return;
 
    // знаходимо блок управління і заголовок
    const buttonBlock = wrapper.querySelector('.management-block');
-   const title = wrapper.querySelector('.section-control-panel__name');
+   const title = wrapper.querySelector('.component-edit-buttons__name');
 
    // перемикаємо класи _view
    if (buttonBlock) buttonBlock.classList.toggle('_view');

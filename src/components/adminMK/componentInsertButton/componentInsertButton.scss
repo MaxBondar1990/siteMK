@@ -1,46 +1,58 @@
 .component-insert {
   position: relative;
   width: 100%;
-  height: 2px;
-  background-color: #4170b4;
+  height: 0;
   overflow: visible;
+  &__btn {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: var(--admin-accent, #4170b4);
+    color: #fff;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    &::before {
+      content: '';
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 3px;
+      height: 20px;
+
+      background: $colorWhite;
+      border-radius: 2px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 20px;
+      height: 3px;
+
+      background: $colorWhite;
+      border-radius: 2px;
+    }
+    &:hover {
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow: 4px 4px 28px rgba(0, 0, 0, 0.4);
+    }
+  }
 }
-.component-insert__btn {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: var(--admin-accent, #2f80ed);
-  color: #fff;
-  cursor: pointer;
-  z-index: 50;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-.component-insert__btn:hover {
-  transform: translate(-50%, -50%) scale(1.06);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-  background: var(--admin-accent-hover, #2566c7);
-}
-.component-insert__btn:active {
-  transform: translate(-50%, -50%) scale(0.96);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-.component-insert__btn:focus-visible {
-  outline: 2px solid rgba(47, 128, 237, 0.55);
-  outline-offset: 2px;
-}
-.component-insert__icon {
-  pointer-events: none;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1;
-  transform: translateY(-1px);
-}
+
