@@ -1,4 +1,4 @@
-.section-control-panel{
+.component-edit-buttons {
    position: relative;
    width: auto;
    height: 2px;
@@ -6,10 +6,10 @@
 
    background: linear-gradient(90deg, #4976B3 55%, rgba(73, 118, 179, 0.00) 99%);
 
-   &._invisible{
+   &._invisible {
       display: none;
-      }
-   &__button-section-select{
+   }
+   &__button-section-select {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,7 +23,7 @@
       border-radius: 50%;
       z-index: 5;
 
-}
+   }
    &__wrapper {
       position: absolute;
       left: 0;
@@ -33,7 +33,7 @@
       height: max-content;
       padding-bottom: 4px;
    }
-   &__btns-wrapper{
+   &__btns-wrapper {
       position: relative;
       display: flex;
       align-items: center;
@@ -55,15 +55,6 @@
       transition-delay: .2s;
 
       z-index: 5;
-      &._active{
-         // padding: 14px 24px;
-         // p{
-         //    font-size: 16px;
-         //    line-height: 16px;
-         //    margin-left: 8px;
-         //    opacity: 1;
-         // }
-      }
       &::before {
          content: "";
          position: absolute;
@@ -101,19 +92,18 @@
          }
       }
    }
-   &__btn{
+   &__btn {
       display: flex;
       justify-content: center;
       align-items: center;
       width: min-content;
-      // min-width: 52px;
       height: 52px;
       background: none;
    }
    &__items {
       position: relative;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
    }
    .items {
       &__svg {
@@ -121,8 +111,8 @@
          left: 0;
          top: 0;
    
-         width: 24px;
-         height: 24px;
+         width: 32px;
+         height: 32px;
          margin: 0;
          padding: 0;
 
@@ -187,7 +177,7 @@
 
       }
    }
-   &__management{
+   &__management {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -198,46 +188,40 @@
    }
 }
 
-.management{
-   // &__svg{
-   //    width: 36px;
-   //    height: 36px;
-   //    // transform: rotate(-90deg);
-   //    // flex-shrink: 0;
-   //       }
-         &__form{
-            width: 36px;
-            height: 36px;
-   
-         }
-         &__button{
-            width: 36px;
-            height: 36px;
-            background: none;
-            
-         }
-         &__svg{
-            width: 36px;
-            height: 36px;
+.management {
+   &__form {
+      width: 36px;
+      height: 36px;
 
-            fill: #FFF;
-         }
+   }
+   &__button {
+      width: 36px;
+      height: 36px;
+      background: none;
+      
+   }
+   &__svg {
+      width: 36px;
+      height: 36px;
+
+      fill: #FFF;
+   }
 }
-.button-section-select{
+.button-section-select {
    background: $colorBlue;
    box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.30);
    transition: all .3s;
-   &:hover{
+   &:hover {
       box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.40);
    }
-   &__circle{
+   &__circle {
       position: relative;
       display: block;
       width: 36px;
       height: 36px;
       border: solid 2px $colorWhite;
       border-radius: 50%;
-      &::before{
+      &::before {
          content:"";
          position: absolute;
          top: 50%;
@@ -247,7 +231,7 @@
          height: 14px;
          background: $colorWhite;
       }
-      &::after{
+      &::after {
          content:"";
          position: absolute;
          top: 50%;
