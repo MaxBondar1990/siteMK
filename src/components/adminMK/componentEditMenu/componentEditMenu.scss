@@ -1,8 +1,36 @@
-.menu-header {
+
+.component-edit-menu-container {
+   display: flex;
+   flex-direction: column;
+   position: fixed;
+   top: 16px;
+   right: -110%;
+   height: auto;
+   width: auto;
+   padding: 8px 8px 8px 12px;
+   gap: 16px;
+
+   border-radius: 20px 0px 0px 20px;
+   border: 1px solid $colorWhite;
+   background: rgba(111, 111, 111, 0.40);
+   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.30), 1px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
+   backdrop-filter: blur(10px);
+
+   overflow: hidden;
+   z-index: 1000;
+
+   transition: all .5s;
+
+   &._view {
+      right: 0;
+      transition: all .3s;
+   }
+   // Хедер меню
+   &__menu-header {
    display: flex;
    align-items: center;
    gap: 12px;
-
+   // Кнопка закриття меню 
    &__close {
       position: relative;
 
@@ -44,6 +72,7 @@
          //transform: translateY(-50%) rotate(135deg);
       }
    }
+   // Заголовок меню
    &__title {
    margin: 0;
 
@@ -58,32 +87,7 @@
    text-overflow: ellipsis;
    }
 }
-.component-edit-menu-container {
-   display: flex;
-   flex-direction: column;
-   position: fixed;
-   top: 16px;
-   right: -110%;
-   height: auto;
-   width: auto;
-   padding: 8px 8px 8px 12px;
-   gap: 16px;
-
-   border-radius: 20px 0px 0px 20px;
-   border: 1px solid $colorWhite;
-   background: rgba(111, 111, 111, 0.40);
-   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.30), 1px 1px 2px 0px rgba(0, 0, 0, 0.25) inset;
-   backdrop-filter: blur(10px);
-
-   overflow: hidden;
-   z-index: 1000;
-
-   transition: all .5s;
-
-   &._view {
-      right: 0;
-      transition: all .3s;
-   }
+// Налаштування компоненту   
    &__items-wraper {
       display: grid;
       grid-template-columns: max-content 1fr;
@@ -93,20 +97,7 @@
 
       gap: 12px;
    }
-   &__tiles-container-title {
-      grid-column: 1/4;
-      grid-row: 1/2;
-      margin: 10px 0 0 36px;
-      
-      color: #FFF;
-      font-family: Montserrat;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 20px;
-   }
-
-   // Налаштування секції
+   // Блок навігаціїспо меню
    &__menu-navigation-block {
       grid-column: 1/2;
       grid-row: 1/2;
@@ -173,6 +164,7 @@
          }
       }
    }
+   // Кнопка додавання компонента/змінної
    &__add-component-element {
       position: relative;
       display: flex;
@@ -215,7 +207,9 @@
          box-shadow: 2px 2px 4px rgba(111, 111, 111, .7), inset 1px 1px 2px #FFF, inset -1px -1px 2px rgba(111, 111, 111, .4);
       }
    }
-   &__items-list {   
+
+   // Меню введення парамеьрів/змінних компоненту
+   &__list {   
       grid-column: 2/3;
       grid-row: 1/3;   
       position: relative;
@@ -241,19 +235,8 @@
          display: none;
       }
    }
-   &__mesage {
-      width: 320px;
-      padding: 8px;
-
-   }
-   &__mesage-text {
-      font-size: 14px;
-      line-height: 14px;
-      font-weight: 400;
-      text-align: center;
-      color: $colorDarkGray;
-   }
-   &__item-tile {
+   // Картка параметрів/змінних
+   &__tile {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -279,24 +262,6 @@
          transition: all .3s;
       }
    }
-   &__del-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 24px;
-      height: 24px;
-      background: transparent;
-      border-radius: 50%;
-      transition: all .5s;
-      &:hover {
-         box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0.7), 0 0 8px 0 rgba(255, 255, 255, 0.7) inset;
-      }
-   }
-   &__del-button-svg {
-      fill: #F5F5F5;
-      width: 24px;
-      height: 24px;
-   }
    &__form {
       display: grid;
       grid-template-columns: 1fr min-content;
@@ -311,7 +276,7 @@
 
       gap: 12px;
    }
-   &__item-tile-name {
+   &__tile-name {
       grid-column: 1/3;
       grid-row: 1/2;
       width: max-content;
@@ -429,35 +394,6 @@
       gap: 12px;
       padding: 0 20px 0 0;
    }
-   &__sent-btn {
-      grid-column: 1/2;
-      grid-row: 2/3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      justify-self: center;
-      align-self: flex-end;
-      width: min-content;
-      height: min-content;
-      padding: .9em 1.5em;
-
-      transition: all .3s;
-
-      color: $colorWhite;
-      font-family: Montserrat;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-
-      border-radius: 20px;
-      background: $colorDarkGray;
-      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
-      &:hover{
-         background: $colorLightGray;
-         color: $colorDarkGray;
-      }
-   }
    &__block-settings-btn {
       display: flex;
       justify-content: center;
@@ -482,30 +418,23 @@
       width: 24px;
       height: 24px;
    }
-}
-
-.tall {
-   min-height: 124px;
-}
-
-.in_tile {
-   width: 32px;
-   height: 32px;
-   &::before {
+   &__del-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 24px;
-      height: 4px;
-   }
-   &::after {
-      width: 4px;
       height: 24px;
+      background: transparent;
+      border-radius: 50%;
+      transition: all .5s;
+      &:hover {
+         box-shadow: 0 0 8px 0 rgba(255, 255, 255, 0.7), 0 0 8px 0 rgba(255, 255, 255, 0.7) inset;
+      }
    }
-   &:hover {
-      &::before {
-         width: 32px;
-      }
-      &::after {
-         height: 32px;
-      }
+   &__del-button-svg {
+      fill: #F5F5F5;
+      width: 24px;
+      height: 24px;
    }
 }
 

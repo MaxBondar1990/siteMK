@@ -1,10 +1,10 @@
 <div data-fls-componentEditMenu class="component-edit-menu-container _view" data-component="component_edit_menu"
    data-part="root">
    <!-- Хедер меню -->
-   <header class="menu-header">
-      <button class="menu-header__close" type="button" data-action="close-menu" data-target="edit-menu"
+   <header class="component-edit-menu-container__menu-header">
+      <button class="component-edit-menu-container__close" type="button" data-action="close-menu" data-target="edit-menu"
          aria-label="Закрити меню"></button>
-      <p class="menu-header__title">Меню редагування параметрів секції</p>
+      <p class="component-edit-menu-container__title">Меню редагування параметрів секції</p>
    </header>
 
    <div class="component-edit-menu-container__items-wraper" action="/setup/section/select/" title="select section"
@@ -12,7 +12,7 @@
 
       <!-- Навігаційний блок меню -->
       <div class="component-edit-menu-container__menu-navigation-block">
-         <p class="component-edit-menu-container__items-title">Елементи секції</p>
+         <p class="component-edit-menu-container__items-title">Параметри компонента</p>
          <div class="component-edit-menu-container__menu-navigation-items">
             <a class="component-edit-menu-container__item" href="#titleh2" title="title">Title h2</a>
             <a class="component-edit-menu-container__item" href="#subtitle" title="subtitle">Subtitle</a>
@@ -21,22 +21,28 @@
                data-id="param-1">Image</a>
             <a class="component-edit-menu-container__item" href="#list" title="list" data-name="btn"
                data-id="param-2">List</a>
-            <a class="component-edit-menu-container__item" href="#btn" title="btn" data-name="btn"
-               data-id="param-3">Button</a>
-            <a class="component-edit-menu-container__item" href="#textlink" title="link" data-name="btn"
-               data-id="param-4">Text link</a>
-            <a class="component-edit-menu-container__item" href="#imagelink" title="link" data-name="btn"
-               data-id="param-5">Image link</a>
+            <!-- Кнопка "Додати елемент" -->
+            <button type="button" class="component-edit-menu-container__add-component-element"></button>
+         </div>
+         <p class="component-edit-menu-container__items-title">Елементи компонента</p>
+         <div class="component-edit-menu-container__menu-navigation-items">
+            <a class="component-edit-menu-container__item" href="#titleh2" title="title">Title h2</a>
+            <a class="component-edit-menu-container__item" href="#subtitle" title="subtitle">Subtitle</a>
+            <a class="component-edit-menu-container__item" href="#text" title="text">Text</a>
+            <a class="component-edit-menu-container__item" href="#img" title="img" data-name="btn"
+               data-id="param-1">Image</a>
+            <a class="component-edit-menu-container__item" href="#list" title="list" data-name="btn"
+               data-id="param-2">List</a>
             <!-- Кнопка "Додати елемент" -->
             <button type="button" class="component-edit-menu-container__add-component-element"></button>
          </div>
       </div>
 
       <!-- Блок введення данних меню -->
-      <ul class="component-edit-menu-container__items-list">
-         <li class="component-edit-menu-container__item-tile _element_selection_animation">
+      <ul class="component-edit-menu-container__list">
+         <li class="component-edit-menu-container__tile">
             <form class="component-edit-menu-container__form" id="titleh2">
-               <p class="component-edit-menu-container__item-tile-name">Назва компоненту</p>
+               <p class="component-edit-menu-container__tile-name">Назва компоненту</p>
                <textarea class="component-edit-menu-container__param-input" name="param-input" data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
                <!-- Кнопка "Підтвердження змін" -->
                <input type="submit" class="component-edit-menu-container__submit-btn" type="submit" value="OK">
@@ -58,7 +64,7 @@
                   </svg>
                </button>
             </div>
-         </div>
+         </li>
       </ul>
    </div>
 </div>
