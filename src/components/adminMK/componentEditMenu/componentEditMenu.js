@@ -3,8 +3,6 @@ import './componentEditMenu.scss';
 /**
  * Component Edit Menu
  * - Autosize for textareas (Variant 3)
- * - Ghost placeholder (data-placeholder)
- * - Lightweight preview line
  * - Close by [data-action="close-menu"] with data-target
  */
 export function mountComponentEditMenu(rootEl) {
@@ -15,8 +13,6 @@ export function mountComponentEditMenu(rootEl) {
 
    const FIELD_SEL = '.component-edit-menu-container__field';
    const TA_SEL = 'textarea._textarea';
-   const GHOST_SEL = '.section_block-menu-container__ghost';
-   const PREVIEW_SEL = '.section_block-menu-container__preview';
 
    const autosize = (ta) => {
       // Variant 3 autosize (reliable)
@@ -34,25 +30,12 @@ export function mountComponentEditMenu(rootEl) {
          autosize(ta);
       }
 
-      // Ghost placeholder
-      const ghost = field.querySelector(GHOST_SEL);
-      const placeholder = ta.dataset.placeholder || 'Введіть значення…';
+      // Value state (useful for styling)
       const valueRaw = ta.value ?? '';
       const value = valueRaw.trim();
       const isEmpty = value.length === 0;
-
       field.classList.toggle('_is-empty', isEmpty);
       field.classList.toggle('_has-value', !isEmpty);
-
-      if (ghost) {
-         ghost.textContent = placeholder;
-      }
-
-      // Lightweight preview (single-line)
-      const preview = field.querySelector(PREVIEW_SEL);
-      if (preview) {
-         preview.textContent = value ? value.replace(/\s+/g, ' ') : '';
-      }
    };
 
    const initAll = () => {
@@ -80,7 +63,7 @@ export function mountComponentEditMenu(rootEl) {
       { signal }
    );
 
-   // Delegate input for autosize + ghost/preview
+   // Delegate input for autosize + value state
    rootEl.addEventListener(
       'input',
       (e) => {
@@ -120,11 +103,54 @@ export function mountComponentEditMenu(rootEl) {
    return () => ac.abort();
 }
 
-// Auto-mount for single instance
-const root = document.querySelector('[data-fls-componentEditMenu]');
-if (root) {
-   const cleanup = mountComponentEditMenu(root);
-   if (import.meta?.hot && cleanup) {
-      import.meta.hot.dispose(cleanup);
+// Auto-mount for existing + dynamically inserted instances
+const mounted = new WeakSet();
+
+function tryMount(el) {
+   if (!el || mounted.has(el)) return;
+   const cleanup = mountComponentEditMenu(el);
+   mounted.add(el);
+   // Store cleanup to allow potential manual cleanup if needed
+   if (typeof cleanup === 'function') {
+      el.__componentEditMenuCleanup = cleanup;
    }
+}
+
+// Mount existing
+document
+   .querySelectorAll('[data-fls-componentEditMenu]')
+   .forEach((el) => tryMount(el));
+
+// Observe future inserts (menus injected via fetch)
+const mo = new MutationObserver((mutations) => {
+   mutations.forEach((m) => {
+      m.addedNodes.forEach((node) => {
+         if (!(node instanceof Element)) return;
+
+         // If the inserted node itself is the root
+         if (node.matches?.('[data-fls-componentEditMenu]')) {
+            tryMount(node);
+         }
+
+         // Or it contains roots
+         node
+            .querySelectorAll?.('[data-fls-componentEditMenu]')
+            .forEach((el) => tryMount(el));
+      });
+   });
+});
+
+mo.observe(document.documentElement, { childList: true, subtree: true });
+
+if (import.meta?.hot) {
+   import.meta.hot.dispose(() => {
+      mo.disconnect();
+      document
+         .querySelectorAll('[data-fls-componentEditMenu]')
+         .forEach((el) => {
+            try {
+               el.__componentEditMenuCleanup?.();
+            } catch (_) { }
+         });
+   });
 }
