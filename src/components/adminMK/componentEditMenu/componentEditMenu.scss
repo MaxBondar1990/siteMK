@@ -144,9 +144,6 @@
       width: 100%;
 
       gap: 12px;
-      // &:last-child {
-      //    margin-top: 12px;
-      // }
    }
    &__item {
       display: block;
@@ -286,9 +283,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      // position: absolute;
-      // bottom: 18px;
-      // right: 12px;
       width: 24px;
       height: 24px;
       background: transparent;
@@ -303,7 +297,24 @@
       width: 24px;
       height: 24px;
    }
+   &__form {
+      display: grid;
+      grid-template-columns: 1fr min-content;
+      grid-template-rows: min-content min-content min-content;
+
+      width: 100%;
+
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+
+      gap: 12px;
+   }
    &__item-tile-name {
+      grid-column: 1/3;
+      grid-row: 1/2;
+      width: max-content;
       margin-bottom: 4px;
       font-size: 14px;
       line-height: 14px;
@@ -311,29 +322,13 @@
       text-align: center;
       color: $colorWhite;
    }
-   &__param-name {
-      width: 100%;
-      margin-left: 16px;
-      font-size: 12px;
-      line-height: 12px;
-      font-weight: 400;
-      text-align: left;
-      color: $colorWhite;
-      &._kiy {
-         font-size: 14px;
-         line-height: 14px;
-      }
-   }
-   &__field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      align-items: center;
-   }
    &__param-input {
-      // width: 80svw;
-      width: clamp(320px, 80vw, 1200px);
-      // min-width: 320px;
+      grid-column: 1/2;
+      grid-row: 2/3;
+      display: flex;
+      align-self: center;
+      width: clamp(320px, 75vw, 1200px);
+      min-height: 3em;
       margin-bottom: 4px;
       padding: 8px;
 
@@ -351,16 +346,40 @@
       font-weight: 400;
       text-align: left;
       color: $colorDarkGray;
-      // &._textarea {
-      //    line-height: 14px;
-      //    resize: vertical;
-      //    &::-webkit-scrollbar {
-      //       display: none;
-      //    }
-      // }
+   }
+   &__submit-btn {
+      grid-column: 2/3;
+      grid-row: 2/3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      aspect-ratio: 1 / 1;
+
+      transition: all .3s;
+
+      color: $colorWhite;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 12px;
+
+      padding: 1.2em;
+
+      border-radius: 50%;
+      background: $colorOrange;
+      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
+      &:hover{
+         background: $colorLightOrange;
+         color: $colorDarkGray;
+      }
    }
    &__add-input-btn {
+      grid-column: 1/3;
+      grid-row: 3/4;
       position: relative;
+      display: flex;
+      justify-self: center;
       width: 32px;
       height: 32px;
 
@@ -410,32 +429,7 @@
       gap: 12px;
       padding: 0 20px 0 0;
    }
-   &__tile-confirm-btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-self: flex-end;
-      width: min-content;
-      height: min-content;
-      padding: .9em 1.5em;
-
-      transition: all .3s;
-
-      color: $colorWhite;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-
-      border-radius: 16px;
-      background: $colorOrange;
-      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
-      &:hover{
-         background: $colorLightOrange;
-         color: $colorDarkGray;
-      }
-   }
-   &__confirm-btn {
+   &__sent-btn {
       grid-column: 1/2;
       grid-row: 2/3;
       display: flex;
@@ -468,15 +462,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      // position: absolute;
-      // bottom: 18px;
-      // right: 44px;
 
       width: 24px;
       height: 24px;
 
       background: transparent;
-      // background: red;
+
       border-radius: 50%;
       overflow: hidden;
       transition: all .5s;
