@@ -43,6 +43,7 @@ async function openAdminMenu({ rootEl, triggerEl, signal }) {
    const fd = new FormData();
    fd.append("instance_id", instanceId);
    fd.append("position", position);
+   fd.append("page_id", triggerEl.dataset.pageId || "");
    const fetchUrl2 = triggerEl.dataset.fetchUrl;
    try {
       let html = null;

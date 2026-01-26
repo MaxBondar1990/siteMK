@@ -2,9 +2,9 @@
    data-part="root">
    <!-- Хедер меню -->
    <header class="component-edit-menu-container__menu-header">
-      <button class="component-edit-menu-container__close" type="button" data-action="close-menu" data-target="edit-menu"
-         aria-label="Закрити меню"></button>
-      <p class="component-edit-menu-container__title">Меню редагування параметрів секції</p>
+      <button class="component-edit-menu-container__close" type="button" data-action="close-menu"
+         data-target="edit-menu" aria-label="Закрити меню"></button>
+      <p class="component-edit-menu-container__title">Меню редагування параметрів секції header</p>
    </header>
 
    <div class="component-edit-menu-container__items-wraper" action="/setup/section/select/" title="select section"
@@ -21,8 +21,6 @@
                data-id="param-1">Image</a>
             <a class="component-edit-menu-container__item" href="#list" title="list" data-name="btn"
                data-id="param-2">List</a>
-            <!-- Кнопка "Додати елемент" -->
-            <button type="button" class="component-edit-menu-container__add-component-element"></button>
          </div>
          <p class="component-edit-menu-container__items-title">Елементи компонента</p>
          <div class="component-edit-menu-container__menu-navigation-items">
@@ -40,19 +38,90 @@
 
       <!-- Блок введення данних меню -->
       <ul class="component-edit-menu-container__list">
+         <!-- Змінні компонента -->
          <li class="component-edit-menu-container__tile">
+            <p class="component-edit-menu-container__tile-name">Title h2</p>
             <form class="component-edit-menu-container__form" id="titleh2">
-               <p class="component-edit-menu-container__tile-name">Назва компоненту</p>
-               <textarea class="component-edit-menu-container__param-input" name="param-input" data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+               <div class="component-edit-menu-container__field _has-value">
+                  <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                     data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+               </div>
                <!-- Кнопка "Підтвердження змін" -->
-               <input type="submit" class="component-edit-menu-container__submit-btn" type="submit" value="OK">
-               <!-- Кнопка "Додати input" -->
-               <button type="button" class="component-edit-menu-container__add-input-btn"></button>
+               <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
             </form>
+         </li>
+         <li class="component-edit-menu-container__tile">
+            <p class="component-edit-menu-container__tile-name">Subtitle</p>
+            <form class="component-edit-menu-container__form" id="titleh2">
+               <div class="component-edit-menu-container__field _has-value">
+                  <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                     data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+               </div>
+               <!-- Кнопка "Підтвердження змін" -->
+               <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
+            </form>
+         </li>
+         <li class="component-edit-menu-container__tile">
+            <p class="component-edit-menu-container__tile-name">logo</p>
+
+            <ul class="component-edit-menu-container__tile-params">
+               <li>
+                  <p>href</p>
+                  <form class="component-edit-menu-container__form" id="titleh2">
+                     <div class="component-edit-menu-container__field _has-value">
+                        <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                           data-autosize="true"
+                           data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+                     </div>
+                     <!-- Кнопка "Підтвердження змін" -->
+                     <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
+                  </form>
+               </li>
+               <li>
+                  <p>title</p>
+                  <form class="component-edit-menu-container__form" id="titleh2">
+                     <div class="component-edit-menu-container__field _has-value">
+                        <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                           data-autosize="true"
+                           data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+                     </div>
+                     <!-- Кнопка "Підтвердження змін" -->
+                     <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
+                  </form>
+               </li>
+               <li>
+                  <p>img_alt</p>
+                  <form class="component-edit-menu-container__form" id="titleh2">
+                     <div class="component-edit-menu-container__field _has-value">
+                        <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                           data-autosize="true"
+                           data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+                     </div>
+                     <!-- Кнопка "Підтвердження змін" -->
+                     <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
+                  </form>
+               </li>
+               <li>
+                  <p>img_src</p>
+                  <form class="component-edit-menu-container__form" id="titleh2">
+                     <div class="component-edit-menu-container__field _has-value">
+                        <textarea class="component-edit-menu-container__param-input _textarea" name="param-input"
+                           data-autosize="true"
+                           data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+                     </div>
+                     <!-- Кнопка "Підтвердження змін" -->
+                     <input class="component-edit-menu-container__submit-btn" type="submit" value="OK">
+                  </form>
+               </li>
+            </ul>
+
+            <!-- Кнопка "Додати input" -->
+            <button type="button" class="component-edit-menu-container__add-input-btn"></button>
             <!-- Блок кнопок "Налаштування", "Видалити" -->
             <div class="component-edit-menu-container__buttons-block">
                <!-- Кнопка "Налаштування" -->
-               <button class="component-edit-menu-container__block-settings-btn" type="button" title="Налаштування блоку">
+               <button class="component-edit-menu-container__block-settings-btn" type="button"
+                  title="Налаштування блоку">
                   <svg class="component-edit-menu-container__block-settings-btn-svg">
                      <use xlink:href="__spritemap#sprite-GearNew"></use>
                   </svg>

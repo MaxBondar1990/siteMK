@@ -118,7 +118,7 @@ function tryMount(el) {
 
 // Mount existing
 document
-   .querySelectorAll('[data-fls-componentEditMenu]')
+   .querySelectorAll('[data-component="component_edit_menu"][data-part="root"]')
    .forEach((el) => tryMount(el));
 
 // Observe future inserts (menus injected via fetch)
@@ -128,13 +128,13 @@ const mo = new MutationObserver((mutations) => {
          if (!(node instanceof Element)) return;
 
          // If the inserted node itself is the root
-         if (node.matches?.('[data-fls-componentEditMenu]')) {
+         if (node.matches?.('[data-component="component_edit_menu"][data-part="root"]')) {
             tryMount(node);
          }
 
          // Or it contains roots
          node
-            .querySelectorAll?.('[data-fls-componentEditMenu]')
+            .querySelectorAll?.('[data-component="component_edit_menu"][data-part="root"]')
             .forEach((el) => tryMount(el));
       });
    });
@@ -146,7 +146,7 @@ if (import.meta?.hot) {
    import.meta.hot.dispose(() => {
       mo.disconnect();
       document
-         .querySelectorAll('[data-fls-componentEditMenu]')
+         .querySelectorAll('[data-component="component_edit_menu"][data-part="root"]')
          .forEach((el) => {
             try {
                el.__componentEditMenuCleanup?.();
