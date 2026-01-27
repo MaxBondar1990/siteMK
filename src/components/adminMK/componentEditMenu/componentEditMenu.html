@@ -1,11 +1,12 @@
 <div data-fls-componentEditMenu class="component-edit-menu _view" data-component="component_edit_menu" data-part="root">
    <!-- Хедер меню -->
    <header class="component-edit-menu__menu-header">
-      <button class="component-edit-menu__close" type="button" data-action="close-menu" data-target="edit-menu" aria-label="Закрити меню"></button>
+      <button class="component-edit-menu__close" type="button" data-action="close-menu" data-target="edit-menu"
+         aria-label="Закрити меню"></button>
       <p class="component-edit-menu__title">Меню редагування параметрів header</p>
    </header>
 
-   <div class="component-edit-menu__items-wraper" action="/setup/section/select/" title="select section" method="post" enctype="multipart/form-data">
+   <div class="component-edit-menu__items-wraper">
 
       <!-- Навігаційний блок меню -->
       <div class="component-edit-menu__menu-navigation-block">
@@ -19,58 +20,82 @@
             </li>
          </ul>
          <ul class="component-edit-menu__menu-navigation-items">
-            <p class="component-edit-menu__items-title">Елементи компонента</p>
+            <p class="component-edit-menu__items-title">Дочірні компонента</p>
             <li class="component-edit-menu__menu-navigation-li">
                <div class="component-edit-menu__menu-navigation-btns">
-                  <batton class="component-edit-menu__item" type="button" title="title">Logo</batton>
-                  <button type="button" class="component-edit-menu__submenu-open-btn _hide"></button>
+                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
+                     data-target="/admin/html/component-edit-menu/" data-instance-id="101" data-page-id="5"
+                     data-component-id="501">Logo</button>
+                  <button type="button" class="component-edit-menu__submenu-open-btn _hide" data-action="toggle-submenu"
+                     data-target="logo"></button>
                </div>
-               <ul class="component-edit-menu__submenu-navigation-items">
+               <ul class="component-edit-menu__submenu-navigation-items" data-submenu="logo">
                   <li class="component-edit-menu__menu-navigation-li">
-                     <batton class="component-edit-menu__item _submenu" type="button" title="title">Image</batton>
+                     <button class="component-edit-menu__item _submenu" type="button" title="title"
+                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
+                        data-instance-id="102" data-page-id="5" data-component-id="502">Image</button>
                   </li>
                   <li class="component-edit-menu__menu-navigation-li">
-                     <batton class="component-edit-menu__item _submenu" type="button" title="title">Width</batton>
+                     <button class="component-edit-menu__item _submenu" type="button" title="title"
+                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
+                        data-instance-id="103" data-page-id="5" data-component-id="503">Width</button>
                   </li>
                </ul>
             </li>
             <li class="component-edit-menu__menu-navigation-li">
                <div class="component-edit-menu__menu-navigation-btns">
-                  <batton class="component-edit-menu__item" type="button" title="title">Language</batton>
-                  <button type="button" class="component-edit-menu__submenu-open-btn _show"></button>
+                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
+                     data-target="/admin/html/component-edit-menu/" data-instance-id="104" data-page-id="5"
+                     data-component-id="504">Language</button>
+                  <button type="button" class="component-edit-menu__submenu-open-btn _show" data-action="toggle-submenu"
+                     data-target="language"></button>
                </div>
-               <ul class="component-edit-menu__submenu-navigation-items _collapsed-menu">
+               <ul class="component-edit-menu__submenu-navigation-items _collapsed-menu" data-submenu="language">
                   <li class="component-edit-menu__menu-navigation-li">
-                     <batton class="component-edit-menu__item _submenu" type="button" title="title">Img</batton>
+                     <button class="component-edit-menu__item _submenu" type="button" title="title"
+                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
+                        data-instance-id="105" data-page-id="5" data-component-id="505">Img</button>
                   </li>
                </ul>
             </li>
             <li class="component-edit-menu__menu-navigation-li">
                <div class="component-edit-menu__menu-navigation-btns">
-                  <batton class="component-edit-menu__item" type="button" title="title">Search</batton>
+                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
+                     data-target="/admin/html/component-edit-menu/" data-instance-id="106" data-page-id="5"
+                     data-component-id="506">Search</button>
                </div>
             </li>
          </ul>
          <!-- Кнопка "Додати елемент" -->
          <button type="button" class="component-edit-menu__add-component-element"></button>
-         
+
       </div>
 
       <!-- Блок введення данних меню -->
       <ul class="component-edit-menu__list">
          <!-- Змінні компонента -->
          <li class="component-edit-menu__tile">
-            <form class="component-edit-menu__form" id="titleh2">
+            <form class="component-edit-menu__form" id="titleh2" action="/admin/setup/component-var-update/"
+               method="post">
+               <input type="hidden" name="instance_id" value="101">
+               <input type="hidden" name="page_id" value="5">
+               <input type="hidden" name="var_name" value="titleh2">
                <p class="component-edit-menu__input-name">Title h2</p>
-               <textarea class="component-edit-menu__param-input" name="param-input" data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+               <textarea class="component-edit-menu__param-input" name="param-input" data-autosize="true"
+                  data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
                <!-- Кнопка "Підтвердження змін" -->
                <input class="component-edit-menu__submit-btn" type="submit" value="OK">
             </form>
          </li>
          <li class="component-edit-menu__tile">
-            <form class="component-edit-menu__form" id="titleh2">
+            <form class="component-edit-menu__form" id="subtitle" action="/admin/setup/component-var-update/"
+               method="post">
+               <input type="hidden" name="instance_id" value="101">
+               <input type="hidden" name="page_id" value="5">
+               <input type="hidden" name="var_name" value="subtitle">
                <p class="component-edit-menu__input-name">Subtitle</p>
-               <textarea class="component-edit-menu__param-input" name="param-input" data-autosize="true" data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
+               <textarea class="component-edit-menu__param-input" name="param-input" data-autosize="true"
+                  data-placeholder="Введіть значення…">Значення компоненту/змінної</textarea>
                <!-- Кнопка "Підтвердження змін" -->
                <input class="component-edit-menu__submit-btn" type="submit" value="OK">
             </form>

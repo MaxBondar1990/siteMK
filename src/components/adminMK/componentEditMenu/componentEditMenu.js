@@ -11,8 +11,8 @@ export function mountComponentEditMenu(rootEl) {
    const ac = new AbortController();
    const { signal } = ac;
 
-   const FIELD_SEL = '.component-edit-menu-container__field';
-   const TA_SEL = 'textarea._textarea';
+   const FIELD_SEL = '.component-edit-menu__tile';
+   const TA_SEL = 'textarea.component-edit-menu__param-input';
 
    const autosize = (ta) => {
       // Variant 3 autosize (reliable)
@@ -74,28 +74,135 @@ export function mountComponentEditMenu(rootEl) {
       { signal }
    );
 
-   // Close menu action
+   // Remember menu state before native form submit (for reopen after reload)
+   rootEl.addEventListener(
+      'submit',
+      (e) => {
+         const form = e.target?.closest?.('.component-edit-menu__form');
+         if (!form || !rootEl.contains(form)) return;
+
+         const instanceId = form.querySelector('input[name="instance_id"]')?.value || null;
+         const pageId = form.querySelector('input[name="page_id"]')?.value || null;
+         const anchor = form.getAttribute('id') || null;
+
+         if (!instanceId) return;
+
+         const payload = {
+            url: '/admin/html/component-edit-menu/',
+            instance_id: instanceId,
+            page_id: pageId,
+            anchor,
+         };
+
+         try {
+            sessionStorage.setItem('adminMenuReopen', JSON.stringify(payload));
+         } catch (_) { }
+         // IMPORTANT: do NOT preventDefault — native submit + reload must happen
+      },
+      { signal }
+   );
+
+   // Actions (close menu, toggle submenu)
    rootEl.addEventListener(
       'click',
       (e) => {
-         const btn = e.target?.closest?.('[data-action="close-menu"]');
-         if (!btn || !rootEl.contains(btn)) return;
+         const actionEl = e.target?.closest?.('[data-action]');
+         if (!actionEl || !rootEl.contains(actionEl)) return;
 
-         const target = btn.getAttribute('data-target');
+         const action = actionEl.getAttribute('data-action');
 
-         // If target matches this menu, close it. Otherwise, try to find by [data-name]
-         const menuEl =
-            (target && document.querySelector(`[data-name="${CSS.escape(target)}"]`)) ||
-            rootEl;
+         // 0) Open admin menu (fetch menu for another instance) — used by child component buttons
+         if (action === 'open-admin-menu') {
+            const url = actionEl.getAttribute('data-target');
+            if (!url) return;
 
-         // Preferred: toggle state class
-         menuEl.classList.remove('_view');
+            const fd = new FormData();
+            const instanceId = actionEl.getAttribute('data-instance-id');
+            const pageId = actionEl.getAttribute('data-page-id');
+            const componentId = actionEl.getAttribute('data-component-id');
 
-         // Optional: if menu is inserted into DOM dynamically, remove it
-         // (keep if you prefer just hiding)
-         // menuEl.remove();
+            if (instanceId) fd.append('instance_id', instanceId);
+            if (pageId) fd.append('page_id', pageId);
+            if (componentId) fd.append('component_id', componentId);
 
-         e.preventDefault();
+            // Optional: prevent double-click spam
+            actionEl.disabled = true;
+
+            fetch(url, {
+               method: 'POST',
+               body: fd,
+               headers: { 'X-Requested-With': 'fetch' },
+               signal,
+            })
+               .then(async (res) => {
+                  const ct = (res.headers.get('content-type') || '').toLowerCase();
+                  if (ct.includes('application/json')) {
+                     const json = await res.json();
+                     const html = json?.html || json?.data?.html || '';
+                     return { ok: res.ok, html };
+                  }
+                  const html = await res.text();
+                  return { ok: res.ok, html };
+               })
+               .then(({ ok, html }) => {
+                  if (!ok || !html) return;
+
+                  // Remove current menu and insert new one
+                  try {
+                     rootEl.remove();
+                  } catch (_) { }
+
+                  document.body.insertAdjacentHTML('beforeend', html);
+               })
+               .catch(() => {
+                  // ignore (abort/network)
+               })
+               .finally(() => {
+                  try { actionEl.disabled = false; } catch (_) { }
+               });
+
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+         }
+
+         // 1) Close menu
+         if (action === 'close-menu') {
+            const target = actionEl.getAttribute('data-target');
+
+            // If target matches this menu, close it. Otherwise, try to find by [data-name]
+            const menuEl =
+               (target && document.querySelector(`[data-name="${CSS.escape(target)}"]`)) ||
+               rootEl;
+
+            menuEl.classList.remove('_view');
+            e.preventDefault();
+            return;
+         }
+
+         // 2) Toggle submenu
+         if (action === 'toggle-submenu') {
+            const target = actionEl.getAttribute('data-target');
+            if (!target) return;
+
+            const submenu = rootEl.querySelector(`[data-submenu="${CSS.escape(target)}"]`);
+            if (!submenu) return;
+
+            const wasCollapsed = submenu.classList.contains('_collapsed-menu');
+            // If collapsed -> open (remove). If open -> collapse (add).
+            submenu.classList.toggle('_collapsed-menu', !wasCollapsed);
+
+            const nowCollapsed = !wasCollapsed;
+
+            // Visual state of the toggle button:
+            // - when submenu is OPEN -> show "cross" (_show)
+            // - when submenu is COLLAPSED -> show "tick" (_hide)
+            actionEl.classList.toggle('_show', !nowCollapsed);
+            actionEl.classList.toggle('_hide', nowCollapsed);
+
+            e.preventDefault();
+            return;
+         }
       },
       { signal }
    );
@@ -141,6 +248,63 @@ const mo = new MutationObserver((mutations) => {
 });
 
 mo.observe(document.documentElement, { childList: true, subtree: true });
+
+// Reopen admin menu after page reload (sessionStorage-based)
+(function reopenAdminMenuAfterReload() {
+   let raw = null;
+   try {
+      raw = sessionStorage.getItem('adminMenuReopen');
+   } catch (_) { }
+
+   if (!raw) return;
+
+   let data;
+   try {
+      data = JSON.parse(raw);
+   } catch (_) {
+      sessionStorage.removeItem('adminMenuReopen');
+      return;
+   }
+
+   if (!data || !data.url || !data.instance_id) {
+      sessionStorage.removeItem('adminMenuReopen');
+      return;
+   }
+
+   // Clean immediately to avoid loops
+   sessionStorage.removeItem('adminMenuReopen');
+
+   const fd = new FormData();
+   fd.append('instance_id', data.instance_id);
+   if (data.page_id) fd.append('page_id', data.page_id);
+
+   fetch(data.url, {
+      method: 'POST',
+      body: fd,
+      headers: { 'X-Requested-With': 'fetch' },
+   })
+      .then(async (res) => {
+         const ct = (res.headers.get('content-type') || '').toLowerCase();
+         if (ct.includes('application/json')) {
+            const json = await res.json();
+            return json?.html || json?.data?.html || '';
+         }
+         return res.text();
+      })
+      .then((html) => {
+         if (!html) return;
+
+         document.body.insertAdjacentHTML('beforeend', html);
+
+         if (data.anchor) {
+            requestAnimationFrame(() => {
+               const el = document.getElementById(data.anchor);
+               if (el) el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+            });
+         }
+      })
+      .catch(() => { });
+})();
 
 if (import.meta?.hot) {
    import.meta.hot.dispose(() => {
