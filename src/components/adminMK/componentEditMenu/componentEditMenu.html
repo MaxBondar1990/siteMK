@@ -28,17 +28,28 @@
                      data-component-id="501">Logo</button>
                   <button type="button" class="component-edit-menu__submenu-open-btn _hide" data-action="toggle-submenu"
                      data-target="logo"></button>
+                  <!-- Кнопка видалення компонента -->
+                  <button type="button" class="component-edit-menu__item-del-btn" title="Del">
+                     <svg class="component-edit-menu__item-del-btn-svg" role="img" aria-hidden="true">
+                        <use xlink:href="__spritemap#sprite-trash_can_ico"></use>
+                     </svg>
+                  </button>
                </div>
                <ul class="component-edit-menu__submenu-navigation-items" data-submenu="logo">
                   <li class="component-edit-menu__menu-navigation-li">
-                     <button class="component-edit-menu__item _submenu" type="button" title="title"
+                     <div class="component-edit-menu__menu-navigation-btns">
+                        <button class="component-edit-menu__item _submenu" type="button" title="title"
                         data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
                         data-instance-id="102" data-page-id="5" data-component-id="502">Image</button>
-                  </li>
-                  <li class="component-edit-menu__menu-navigation-li">
-                     <button class="component-edit-menu__item _submenu" type="button" title="title"
-                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
-                        data-instance-id="103" data-page-id="5" data-component-id="503">Width</button>
+                        <button type="button" class="component-edit-menu__submenu-open-btn _show" data-action="toggle-submenu"
+                           data-target="logo"></button>
+                        <!-- Кнопка видалення компонента -->
+                        <button type="button" class="component-edit-menu__item-del-btn" title="Del">
+                           <svg class="component-edit-menu__item-del-btn-svg" role="img" aria-hidden="true">
+                              <use xlink:href="__spritemap#sprite-trash_can_ico"></use>
+                           </svg>
+                        </button>
+                     </div>
                   </li>
                </ul>
             </li>
@@ -49,6 +60,12 @@
                      data-component-id="504">Language</button>
                   <button type="button" class="component-edit-menu__submenu-open-btn _show" data-action="toggle-submenu"
                      data-target="language"></button>
+                  <!-- Кнопка видалення компонента -->
+                  <button type="button" class="component-edit-menu__item-del-btn" title="Del">
+                     <svg class="component-edit-menu__item-del-btn-svg" role="img" aria-hidden="true">
+                        <use xlink:href="__spritemap#sprite-trash_can_ico"></use>
+                     </svg>
+                  </button>
                </div>
                <ul class="component-edit-menu__submenu-navigation-items _collapsed-menu" data-submenu="language">
                   <li class="component-edit-menu__menu-navigation-li">
@@ -58,16 +75,40 @@
                   </li>
                </ul>
             </li>
-            <li class="component-edit-menu__menu-navigation-li">
-               <div class="component-edit-menu__menu-navigation-btns">
-                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
-                     data-target="/admin/html/component-edit-menu/" data-instance-id="106" data-page-id="5"
-                     data-component-id="506">Search</button>
-               </div>
-            </li>
          </ul>
          <!-- Кнопка "Додати елемент" -->
-         <button type="button" class="component-edit-menu__add-component-element"></button>
+         <button type="button" class="component-edit-menu__add-component-element-btn"></button>
+         <!-- Меню додавання елемента -->
+         <div class="component-edit-menu__add-component-element-modal _show-menu">
+            <header class="component-edit-menu__menu-header">
+               <button class="component-edit-menu__close" type="button" data-action="close-menu" data-target="edit-menu"
+                  aria-label="Закрити меню"></button>
+               <p class="component-edit-menu__modal-title">Компоненти доступні до додавання</p>
+            </header>
+            <ul class="component-edit-menu__add-component-element-items">
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+               <li class="component-edit-menu__add-component-element-item">
+                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
+               </li>
+            </ul>
+
+         </div>
+
+
 
       </div>
 
