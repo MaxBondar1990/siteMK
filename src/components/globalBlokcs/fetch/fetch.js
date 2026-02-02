@@ -32,7 +32,16 @@ if (hostname === "localhost" && port === "1111") {
  * - Callers are responsible for rendering/inserting html and reacting to status.
  */
 export function loadContent(fileName, postData = null, _containerSelector = undefined, fetchType = 'json') {
-   const url = CONFIG.apiUrl + CONFIG.getPath(fileName, fetchType);
+   // Allow direct endpoints: if fileName is an absolute path or full URL,
+   // don't prepend CONFIG.getPath() (which would add /json or /html).
+   const isFullUrl = typeof fileName === 'string' && /^https?:\/\//i.test(fileName);
+   const isAbsPath = typeof fileName === 'string' && fileName.startsWith('/');
+
+   const url = isFullUrl
+      ? fileName
+      : (isAbsPath
+         ? (CONFIG.apiUrl + fileName)
+         : (CONFIG.apiUrl + CONFIG.getPath(fileName, fetchType)));
    const options = { method: 'POST', body: postData };
 
    // Timeout/abort setup

@@ -1,10 +1,12 @@
-<div data-fls-componentEditMenu class="component-edit-menu _view" data-component="component_edit_menu" data-part="root">
+<div data-fls-edit_component_menu class="component-edit-menu _view" data-component="component_edit_menu"
+   data-part="root">
    <!-- Хедер меню -->
-   <header class="component-edit-menu__menu-header">
-      <button class="component-edit-menu__close" type="button" data-action="close-menu" data-target="edit-menu"
-         aria-label="Закрити меню"></button>
-      <p class="component-edit-menu__title">Меню редагування параметрів header</p>
-   </header>
+   <include src="@components/adminMK/components/menu_header/menu_header.html" locals='{
+      "dataAction": "close-menu",
+      "dataTarget": "component_edit_menu",
+      "ariaTabel": "Закрити меню",
+      "pTitle": "Меню редагування параметрів header"
+   }'></include>
 
    <div class="component-edit-menu__items-wraper">
 
@@ -23,9 +25,9 @@
             <p class="component-edit-menu__items-title">Дочірні компонента</p>
             <li class="component-edit-menu__menu-navigation-li">
                <div class="component-edit-menu__menu-navigation-btns">
-                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
-                     data-target="/admin/html/component-edit-menu/" data-instance-id="101" data-page-id="5"
-                     data-component-id="501">Logo</button>
+                  <button class="component-edit-menu__item" type="button" title="title"
+                     data-action="open-admin-edit-component-menu" data-target="/admin/html/component-edit-menu/"
+                     data-instance-id="101" data-page-id="5" data-component-id="501">Logo</button>
                   <button type="button" class="component-edit-menu__submenu-open-btn _hide" data-action="toggle-submenu"
                      data-target="logo"></button>
                   <!-- Кнопка видалення компонента -->
@@ -39,10 +41,10 @@
                   <li class="component-edit-menu__menu-navigation-li">
                      <div class="component-edit-menu__menu-navigation-btns">
                         <button class="component-edit-menu__item _submenu" type="button" title="title"
-                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
-                        data-instance-id="102" data-page-id="5" data-component-id="502">Image</button>
-                        <button type="button" class="component-edit-menu__submenu-open-btn _show" data-action="toggle-submenu"
-                           data-target="logo"></button>
+                           data-action="open-admin-edit-component-menu" data-target="/admin/html/component-edit-menu/"
+                           data-instance-id="102" data-page-id="5" data-component-id="502">Image</button>
+                        <button type="button" class="component-edit-menu__submenu-open-btn _show"
+                           data-action="toggle-submenu" data-target="logo"></button>
                         <!-- Кнопка видалення компонента -->
                         <button type="button" class="component-edit-menu__item-del-btn" title="Del">
                            <svg class="component-edit-menu__item-del-btn-svg" role="img" aria-hidden="true">
@@ -55,9 +57,9 @@
             </li>
             <li class="component-edit-menu__menu-navigation-li">
                <div class="component-edit-menu__menu-navigation-btns">
-                  <button class="component-edit-menu__item" type="button" title="title" data-action="open-admin-menu"
-                     data-target="/admin/html/component-edit-menu/" data-instance-id="104" data-page-id="5"
-                     data-component-id="504">Language</button>
+                  <button class="component-edit-menu__item" type="button" title="title"
+                     data-action="open-admin-edit-component-menu" data-target="/admin/html/component-edit-menu/"
+                     data-instance-id="104" data-page-id="5" data-component-id="504">Language</button>
                   <button type="button" class="component-edit-menu__submenu-open-btn _show" data-action="toggle-submenu"
                      data-target="language"></button>
                   <!-- Кнопка видалення компонента -->
@@ -70,46 +72,20 @@
                <ul class="component-edit-menu__submenu-navigation-items _collapsed-menu" data-submenu="language">
                   <li class="component-edit-menu__menu-navigation-li">
                      <button class="component-edit-menu__item _submenu" type="button" title="title"
-                        data-action="open-admin-menu" data-target="/admin/html/component-edit-menu/"
+                        data-action="open-admin-edit-component-menu" data-target="/admin/html/component-edit-menu/"
                         data-instance-id="105" data-page-id="5" data-component-id="505">Img</button>
                   </li>
                </ul>
             </li>
          </ul>
          <!-- Кнопка "Додати елемент" -->
-         <button type="button" class="component-edit-menu__add-component-element-btn"></button>
-         <!-- Меню додавання елемента -->
-         <div class="component-edit-menu__add-component-element-modal _show-menu">
-            <header class="component-edit-menu__menu-header">
-               <button class="component-edit-menu__close" type="button" data-action="close-menu" data-target="edit-menu"
-                  aria-label="Закрити меню"></button>
-               <p class="component-edit-menu__modal-title">Компоненти доступні до додавання</p>
-            </header>
-            <ul class="component-edit-menu__add-component-element-items">
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-               <li class="component-edit-menu__add-component-element-item">
-                  <button type="button" class="component-edit-menu__add-component-element-choice">Component name</button>
-               </li>
-            </ul>
+         <button type="button" class="component-edit-menu__add-component-element-btn"
+            data-action="fetch-admin-form-insert-component-child" data-form-instance-id="101" data-form-page-id="5"
+            data-form-parent-instance-id="101" data-form-position="last"></button>
 
-         </div>
-
-
-
+         <!-- Меню додавання елемента (оболонка в DOM; контент підвантажуємо фетчем) -->
+         <include src="@components/adminMK/components/insert_component_child_menu/insert_component_child_menu.html"
+            locals='{}'></include>
       </div>
 
       <!-- Блок введення данних меню -->
@@ -141,7 +117,6 @@
                <input class="component-edit-menu__submit-btn" type="submit" value="OK">
             </form>
          </li>
-
       </ul>
    </div>
 </div>

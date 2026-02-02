@@ -1,9 +1,12 @@
-import './componentEditMenu.scss';
+import './edit_component_menu.scss';
+import { findInsertMenu, openInsertMenu, fetchAndInsert } from '../insert_component_child_menu/insert_component_child_menu.js';
 
 /**
  * Component Edit Menu
  * - Autosize for textareas (Variant 3)
- * - Close by [data-action="close-menu"] with data-target
+ * - Handles internal actions like toggle-submenu and open-admin-menu
+ *
+ * NOTE: Closing any menu/modal is owned by the `menu-header` component.
  */
 export function mountComponentEditMenu(rootEl) {
    if (!rootEl) return;
@@ -11,8 +14,20 @@ export function mountComponentEditMenu(rootEl) {
    const ac = new AbortController();
    const { signal } = ac;
 
-   const FIELD_SEL = '.component-edit-menu__tile';
-   const TA_SEL = 'textarea.component-edit-menu__param-input';
+   const SELECTORS = {
+      // Root
+      ROOT: '[data-component="component_edit_menu"][data-part="root"]',
+      // Actions
+      ACTION: '[data-action]',
+      // Forms/fields
+      FORM: '.component-edit-menu__form',
+      // Existing autosize selectors
+      FIELD: '.component-edit-menu__tile',
+      TEXTAREA: 'textarea.component-edit-menu__param-input',
+   };
+
+   const FIELD_SEL = SELECTORS.FIELD;
+   const TA_SEL = SELECTORS.TEXTAREA;
 
    const autosize = (ta) => {
       // Variant 3 autosize (reliable)
@@ -78,7 +93,7 @@ export function mountComponentEditMenu(rootEl) {
    rootEl.addEventListener(
       'submit',
       (e) => {
-         const form = e.target?.closest?.('.component-edit-menu__form');
+         const form = e.target?.closest?.(SELECTORS.FORM);
          if (!form || !rootEl.contains(form)) return;
 
          const instanceId = form.querySelector('input[name="instance_id"]')?.value || null;
@@ -106,13 +121,57 @@ export function mountComponentEditMenu(rootEl) {
    rootEl.addEventListener(
       'click',
       (e) => {
-         const actionEl = e.target?.closest?.('[data-action]');
+         const actionEl = e.target?.closest?.(SELECTORS.ACTION);
          if (!actionEl || !rootEl.contains(actionEl)) return;
 
          const action = actionEl.getAttribute('data-action');
 
-         // 0) Open admin menu (fetch menu for another instance) — used by child component buttons
-         if (action === 'open-admin-menu') {
+         // Open insert child menu and fetch ONLY the form into its content
+         if (action === 'fetch-admin-form-insert-component-child') {
+            const menuRoot = findInsertMenu(rootEl);
+            if (!menuRoot) return;
+
+            openInsertMenu(menuRoot);
+
+            const fd = new FormData();
+
+            // Build FormData from button dataset: data-form-*
+            // Example: data-form-instance-id -> fd.append('instance_id', ...)
+            const ds = actionEl.dataset || {};
+            Object.keys(ds).forEach((k) => {
+               if (!k.startsWith('form')) return;
+               const val = ds[k];
+               if (val == null || String(val).trim() === '') return;
+
+               // formInstanceId -> instance_id
+               const raw = k.slice(4); // remove 'form'
+               if (!raw) return;
+               const snake = raw
+                  .replace(/^[A-Z]/, (m) => m.toLowerCase())
+                  .replace(/[A-Z]/g, (m) => `_${m.toLowerCase()}`);
+
+               fd.append(snake, val);
+            });
+
+            // Fallback (in case some pages still rely on hidden inputs)
+            if (!fd.has('instance_id')) {
+               const instanceId = rootEl.querySelector('input[name="instance_id"]')?.value;
+               if (instanceId) fd.append('instance_id', instanceId);
+            }
+            if (!fd.has('page_id')) {
+               const pageId = rootEl.querySelector('input[name="page_id"]')?.value;
+               if (pageId) fd.append('page_id', pageId);
+            }
+
+            fetchAndInsert({ menuRoot, formData: fd });
+
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+         }
+
+         // Open edit menu for another component instance (used by child component buttons)
+         if (action === 'open-admin-edit-component-menu') {
             const url = actionEl.getAttribute('data-target');
             if (!url) return;
 
@@ -166,21 +225,7 @@ export function mountComponentEditMenu(rootEl) {
             return;
          }
 
-         // 1) Close menu
-         if (action === 'close-menu') {
-            const target = actionEl.getAttribute('data-target');
-
-            // If target matches this menu, close it. Otherwise, try to find by [data-name]
-            const menuEl =
-               (target && document.querySelector(`[data-name="${CSS.escape(target)}"]`)) ||
-               rootEl;
-
-            menuEl.classList.remove('_view');
-            e.preventDefault();
-            return;
-         }
-
-         // 2) Toggle submenu
+         // 1) Toggle submenu
          if (action === 'toggle-submenu') {
             const target = actionEl.getAttribute('data-target');
             if (!target) return;
