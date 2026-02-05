@@ -1,5 +1,6 @@
 import './cart.scss'
 import { loadContent, isRequiredInput } from '../../globalBlokcs/fetch/fetch.js'
+import { modalMessage } from '../modal_message/modal_message.js'
 //console.log('dv');
 // ===== Guest-only cart (localStorage as source of truth) =====
 const CART_KEY = 'mk_cart_v1'
@@ -746,7 +747,8 @@ updateBadges()
 
    form.addEventListener('submit', async (e) => {
       e.preventDefault()
-
+      // Показуємо модалку “дякую” з прелоадером, доки чекаємо відповідь
+      modalMessage.showLoading({ title: 'Відправляємо…' })
       // 1) Гарантуємо наявність hidden-поля cart і записуємо туди поточну корзину
       let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
       if (!cartInput) {
@@ -786,27 +788,34 @@ updateBadges()
 
       try {
          const res = await loadContent('create-cart-order', fd, undefined, 'html')
-         // Очікуємо структуру { status: 'ok' | 'error', html: '<div>...</div>' }
+         // Small delay to let the preloader play
+         await new Promise(resolve => setTimeout(resolve, 4000))
+
+         // Expected response: { status: 'ok'|'error'|'success', title?: string, html?: string }
          if (res && typeof res === 'object') {
-            if (typeof res.html === 'string' && res.html.trim()) {
-               const wrapper = document.createElement('div')
-               wrapper.innerHTML = res.html
-               document.body.appendChild(wrapper)
-            }
+            const status = String(res.status || '').toLowerCase()
+            const title = typeof res.title === 'string' ? res.title : ''
+            const html = typeof res.html === 'string' ? res.html : ''
 
-            if (res.status === 'ok') {
+            if (status === 'ok' || status === 'success') {
+               modalMessage.showSuccess({
+                  title: title || 'Дякуємо!',
+                  message: html || '',
+               })
+
                // GTM / GA4 / Ads event: cart order success
-               const total = calcTotal();
-               const itemsCount = cartCount();
+               const total = calcTotal()
+               const itemsCount = cartCount()
 
-               window.dataLayer = window.dataLayer || [];
+               window.dataLayer = window.dataLayer || []
                window.dataLayer.push({
                   event: 'cart_order_success',
                   source: 'cart',
-                  value: total,          // число
+                  value: total,
                   currency: 'UAH',
-                  items_count: itemsCount
-               });
+                  items_count: itemsCount,
+               })
+
                clearCart()
                try { form.reset() } catch { }
 
@@ -815,6 +824,7 @@ updateBadges()
                   checkoutBtn.classList.remove('_hidden')
                   checkoutBtn.setAttribute('aria-expanded', 'false')
                }
+
                const hideFormBtn = document.querySelector(SELECTORS_CART.btnHideForm)
                if (hideFormBtn) hideFormBtn.classList.add('_hidden')
 
@@ -826,10 +836,19 @@ updateBadges()
 
                toggleClearButton()
                closeCartModal()
+            } else {
+               modalMessage.showError({
+                  title: title || 'Помилка',
+                  message: html || 'Спробуйте ще раз трохи пізніше.',
+               })
             }
          }
       } catch (err) {
          console.warn('cart order submit error', err)
+         modalMessage.showError({
+            title: 'Помилка',
+            message: 'Не вдалося відправити запит. Спробуйте ще раз.',
+         })
       }
    })
 })()
