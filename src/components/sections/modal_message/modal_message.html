@@ -1,0 +1,70 @@
+<div class="modal-message" data-component="modal_message" data-part="root">
+   <!-- Хедер (може бути, може не бути — логіка не залежить) -->
+   <include src="@components/custom/menu_header/menu_header.html" locals='{
+         "dataAction": "close-menu",
+         "dataTarget": "modal_message",
+         "ariaTabel": "Закрити меню",
+         "pTitle": "Виконується..."
+      }'></include>
+
+   <!-- ===== PRELOADER ===== -->
+   <div class="modal-message__preloader" data-part="preloader" hidden aria-hidden="true">
+      <svg class="logo" width="220" height="140" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg"
+         aria-hidden="true">
+
+         <!-- BLUE M : довга ліва паличка -->
+         <g transform="rotate(30 70 72)">
+            <line class="logo__item _v _d1" x1="69" y1="35" x2="69" y2="110" stroke="#4170b4" stroke-width="37"
+               stroke-linecap="round" />
+         </g>
+
+         <!-- BLUE M : коротша (має рости зверху вниз) -->
+         <g transform="rotate(30 98 72)">
+            <line class="logo__item _v _from-top _d2" x1="109" y1="47" x2="109" y2="102" stroke="#4170b4"
+               stroke-width="37" stroke-linecap="round" />
+         </g>
+
+         <!-- ORANGE : центральна (під K, щоб сірий зверху робив “краплю”) -->
+         <g transform="rotate(30 126 78)">
+            <line class="logo__item _v _from-top _d3" x1="146" y1="58" x2="146" y2="95" stroke="#f7931e"
+               stroke-width="37" stroke-linecap="round" />
+         </g>
+
+         <!-- GRAY K : дві “руки” ростуть з однієї точки (зліва) вправо -->
+         <!-- верхня рука накриває верх помаранчевої -->
+         <g transform="rotate(30 140 78)">
+            <line class="logo__item _v _d4" x1="147" y1="29" x2="147" y2="66" stroke="#6f6f6f" stroke-width="37"
+               stroke-linecap="round" />
+         </g>
+
+         <!-- нижня рука дзеркально вниз -->
+         <g transform="rotate(-30 140 78)">
+            <line class="logo__item _v _from-top _d5" x1="154" y1="115" x2="154" y2="78" stroke="#6f6f6f"
+               stroke-width="37" stroke-linecap="round" />
+         </g>
+
+      </svg>
+   </div>
+
+   <!-- ===== CONTENT CONTAINER ===== -->
+   <div class="modal-message__content" data-part="container" hidden aria-hidden="true">
+
+      <!-- ===== SUCCESS (default) ===== -->
+      <div class="modal-message__success" data-part="success" hidden>
+         <img data-part="image-success" src="/img/global/Thumb_up_for_alarm.webp" alt="Успішно">
+         <h3 data-part="title-success">Успішно!</h3>
+         <p data-part="text-success">
+            Запит надіслано! Ми зв’яжемося з вами найближчим часом.
+         </p>
+      </div>
+
+      <!-- ===== ERROR (default) ===== -->
+      <div class="modal-message__error" data-part="error" hidden>
+         <img data-part="image-error" src="/img/global/we_have_problems_for_alarm.webp" alt="Помилка">
+         <h3 data-part="title-error">Щось пішло не так.</h3>
+         <p data-part="text-error">
+            Виникла технічна помилка. Будь ласка, спробуйте пізніше.
+         </p>
+      </div>
+   </div>
+</div>
