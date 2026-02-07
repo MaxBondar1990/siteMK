@@ -11,6 +11,7 @@
 
    width: 100%;
    height: auto;
+
    overflow: hidden;
    background:#f5f5f5;
 
@@ -118,9 +119,9 @@
       cursor: pointer;
    }
    @media (max-width: 1200px) {
-         column-count: 2; /* скільки колонок показувати */
-         column-gap: 16px; /* відстань між колонками */
-      }
+      column-count: 2; /* скільки колонок показувати */
+      column-gap: 16px; /* відстань між колонками */
+   }
    @media (max-width: 1023px) {
       height: 30svh;
       &._action {

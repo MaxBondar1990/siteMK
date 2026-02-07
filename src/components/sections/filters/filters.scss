@@ -9,18 +9,32 @@
    &__types {
       display: flex;
       width: min-content;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      width: 100%;
+
       gap: 8px;
       padding: 4px;
+
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+         display: none;
+      }
    }
    &__btn-types {
-      background: $colorWhite;
+      width: max-content;
+
       padding: 1em 1.2em;
+
+      background: $colorWhite;
       border-radius: 16px;
       box-shadow: 2px 2px 4px rgba(111, 111, 111, .6);
       color: $colorDarkGray;
       transition: all .3s;
+
+      font-size: .8rem;
+      line-height: 1em;
       text-transform: uppercase;
       &._active {
          color: $colorOrange;
@@ -46,24 +60,33 @@
 
       border: 1px solid #ddd;
       border-radius: 24px;
-      overflow-y: scroll;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+         display: none;
+      }
    }
    &__btn-colors {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   position: relative;
-   width: 34px;
-   height: 34px;
-   border-radius: 50%;
-   transition: all .3s ease;
-   cursor: pointer;
-   &:hover {
-      transform: scale(1.1);
-   }
-   &._active{
-   transform: scale(1.1);
-      &::after {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      box-shadow: inset 0px 0px 0px rgba(111, 111, 111, .8), inset 0px 0px 0px rgba(111, 111, 111, .2);
+      filter: brightness(1) saturate(1);
+      transition: all .3s ease;
+      cursor: pointer;
+      &:hover {
+         transform: scale(1.1);
+         filter: brightness(1.05) saturate(1.4);
+      }
+      &._active {
+         transform: scale(1.1);
+         box-shadow: inset 2px 2px 8px rgba(111, 111, 111, .8), inset -2px -2px 4px rgba(111, 111, 111, .2);
+         filter: brightness(1.05) saturate(1.4);
+         &::after {
             content: '';
             position: absolute;
             width: calc(100% + 6px);
@@ -77,24 +100,11 @@
          }
       }
    }
+   @media (max-width: 1023px) {
+      padding: 0 12px 0 12px;
+   }
 }
 
-
-//.color._checked{
-//   transform: scale(1.1);
-//   &::after {
-//         content: '';
-//         position: absolute;
-//         width: calc(100% + 6px);
-//         height: calc(100% + 6px);
-//         top: 50%;
-//         left: 50%;
-//         transform: translate(-50%, -50%);
-//         border: 2px solid #ddd;
-//         border-radius: 50%;
-//         animation: circleEmergence .3s ease 0s 1;
-//      }
-//}
 
 @keyframes circleEmergence {
    0% {

@@ -2,6 +2,7 @@
 @use "contacts-form" as *;
 
 .footer {
+   position: relative;
    display: grid;
    grid-template-columns: repeat(2, 1fr);
    grid-template-areas:
@@ -13,6 +14,8 @@
    background-color: #6f6f6f;
    overflow: hidden;
    width: 100%;
+
+   z-index: 5;
    @media (max-width: 768px) {
       grid-template-columns: 100%;
       grid-template-areas:

@@ -1,7 +1,12 @@
 .logo {
-  z-index: 2;
-  // opacity: .4;
-  overflow: visible;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   z-index: 2;
+   // opacity: .4;
+   overflow: visible;
 
   /* shared settings for all strokes */
   &__item {
@@ -89,11 +94,15 @@
 
    &__preloader {
       position: relative;
-      min-width: 200px;
-      min-height: 140px;
+      width: 200px;
+      aspect-ratio: 1 / 1;
+      // min-height: 140px;
 
-      background-color: transparent;
-      border-radius: 16px;
+
+      background: rgba(245, 245, 245, .5);
+      box-shadow: 0px 0px 40px rgba(245, 245, 245, 1);
+
+      border-radius: 50%;
       overflow: hidden;
    }
    &._error {
