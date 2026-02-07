@@ -46,6 +46,7 @@
 
       border: 1px solid #ddd;
       border-radius: 24px;
+      overflow-y: scroll;
    }
    &__btn-colors {
    display: flex;
@@ -56,6 +57,7 @@
    height: 34px;
    border-radius: 50%;
    transition: all .3s ease;
+   cursor: pointer;
    &:hover {
       transform: scale(1.1);
    }
