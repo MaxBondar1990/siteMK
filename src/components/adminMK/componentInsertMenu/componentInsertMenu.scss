@@ -86,7 +86,7 @@
     color: #6f6f6f;
   }
   &__tiles-container {
-    position: relative;
+   // position: relative;
     display: flex;
     flex-direction: column;
 
@@ -196,7 +196,7 @@
     border-radius: 16px;
 
     width: min-content;
-    background: tomato;
+    background: $colorOrange;
 
     color: $colorWhite;
   }
