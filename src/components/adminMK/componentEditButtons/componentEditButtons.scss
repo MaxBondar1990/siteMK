@@ -29,9 +29,10 @@
       left: 0;
       top: 2px;
       overflow: hidden;
-      width: 100%;
+      width: max-content;
       height: max-content;
       padding-bottom: 4px;
+      padding-right: 12px;
    }
    &__btns-wrapper {
       position: relative;
