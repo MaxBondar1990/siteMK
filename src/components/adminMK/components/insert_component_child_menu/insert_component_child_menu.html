@@ -1,47 +1,25 @@
-<!-- insert-component-child-menu (standalone block) -->
-<div data-fls-insert_component_child_menu class="insert-component-child-menu _view"
-   data-component="insert-component-child-menu" data-part="root">
+<div data-fls-insert_component_child_menu="" class="insert-component-child-menu _view" data-component="insert-component-child-menu" data-part="root">
 
-   <!-- Хедер меню -->
-   <include src="@components/adminMK/components/menu_header/menu_header.html" locals='{
-      "dataAction": "close-menu",
-      "dataTarget": "insert-component-child-menu",
-      "ariaTabel": "Закрити меню",
-      "pTitle": "Компоненти доступні до додавання"
-   }'></include>
+   <header data-fls-menu_header="" class="menu-header" data-component="menu-header" data-part="part" data-menu-header-mounted="1">
+      <button class="menu-header__close" type="button" data-action="close-menu" data-target="insert-component-child-menu" aria-label="Закрити меню"></button>
+      <p class="menu-header__title">Компоненти доступні до додавання</p>
+   </header>
 
-   <!-- Контент (форма підвантажується фетчем і вставляється сюди) -->
    <div class="insert-component-child-menu__content" data-part="content">
       <form method="post" action="/admin/setup/insert-component-child/">
 
-         <!-- Тут ти потім підставиш реальні hidden поля (page_id, parent_instance_id, anchor тощо) -->
-         <!--
-      <input type="hidden" name="page_id" value="">
-      <input type="hidden" name="parent_instance_id" value="">
-      <input type="hidden" name="position" value="">
-      -->
+         <input type="hidden" name="page_id" value="5">
+         <input type="hidden" name="instance_id" value="776">
+         <input type="hidden" name="parent_instance_id" value="776">
+         <input type="hidden" name="position" value="last">
 
          <ul class="insert-component-child-menu__items">
-            <!-- DEMO items (потім заміниш на рендер з фетча або шаблонізації) -->
             <li class="insert-component-child-menu__item">
-               <label class="insert-component-child-menu__choice" data-component-id="9"
-                  data-component-view="catalog_classic">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required>
-                  <span class="component-insert-menu__tile-title">catalog_classic catalog</span>
-               </label>
-            </li>
+               <label class="insert-component-child-menu__choice" data-component-id="49" data-component-view="advantages_items">
 
-            <li class="insert-component-child-menu__item">
-               <label class="insert-component-child-menu__choice" data-component-id="10" data-component-view="button">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="10" required>
-                  <span class="component-insert-menu__tile-title">button</span>
-               </label>
-            </li>
+                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="49" required="">
 
-            <li class="insert-component-child-menu__item">
-               <label class="insert-component-child-menu__choice" data-component-id="11" data-component-view="image">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="11" required>
-                  <span class="component-insert-menu__tile-title">image</span>
+                  <span class="component-insert-menu__tile-title">advantages_items</span>
                </label>
             </li>
          </ul>
