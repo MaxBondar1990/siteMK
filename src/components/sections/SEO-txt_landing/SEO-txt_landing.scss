@@ -35,15 +35,34 @@
       gap: 10px;
 
       width: 100%;
-
    }
-   &__txt {
-      width: 100%;
+   &__title,
+   &__title-h3 {
+      color: $colorDarkGray;
+
+      text-align: left;
+      font-family: Montserrat;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2em;
+   }
+   &__title-h3 {
+      font-size: 1rem;
+   }
+   &__step-title {
       text-align: left;
 
       color: $colorDarkGray;
 
-      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+   }
+   &__txt {
+      text-align: left;
+
+      color: $colorDarkGray;
+
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
@@ -54,17 +73,6 @@
          font-weight: 700;
          line-height: 20px;
       }
-   }
-   &__title {
-      width: 100%;
-
-      color: $colorDarkGray;
-
-      text-align: left;
-      font-family: Montserrat;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.2em;
    }
    &__list {
       width: 100%;
@@ -78,7 +86,7 @@
       font-weight: 400;
       line-height: 20px;
       li {
-      list-style-type: disc;
+         list-style-type: disc;
       }
    }
 }
