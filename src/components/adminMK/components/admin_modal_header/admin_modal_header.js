@@ -1,4 +1,4 @@
-import './menu_header.scss';
+import './admin_modal_header.scss';
 
 /**
  * Menu Header component
