@@ -19,22 +19,10 @@ export function mountMenuHeader(rootEl) {
       const btn = e.target?.closest?.('[data-action="close-menu"]');
       if (!btn || !rootEl.contains(btn)) return;
 
-      const target = btn.getAttribute('data-target');
-
-      // 1) Prefer explicit target: close the menu with matching data-component
-      if (target) {
-         const menuEl = document.querySelector(`[data-component="${CSS.escape(target)}"]`);
-         if (menuEl) {
-            menuEl.classList.remove('_view');
-            e.preventDefault();
-            return;
-         }
-      }
-
-      // 2) Fallback: close the nearest visible menu-like container
-      const fallbackMenu = btn.closest('._view');
-      if (fallbackMenu) {
-         fallbackMenu.classList.remove('_view');
+      // Close the nearest component root (local closing, supports nested menus)
+      const menuRoot = btn.closest('[data-part="root"]');
+      if (menuRoot) {
+         menuRoot.classList.remove('_view');
          e.preventDefault();
       }
    }, { signal });
@@ -45,7 +33,7 @@ export function mountMenuHeader(rootEl) {
 
 // Self-mount: supports both initial DOM and dynamically injected menus (fetch -> insert)
 (function selfMountMenuHeaders() {
-   const ROOT_SELECTOR = '[data-component="menu-header"][data-part="part"]';
+   const ROOT_SELECTOR = '[data-component="admin_modal_header"][data-part="part"]';
    const MOUNT_FLAG = 'data-menu-header-mounted';
 
    const tryMount = (el) => {

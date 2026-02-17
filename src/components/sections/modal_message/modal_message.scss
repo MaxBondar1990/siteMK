@@ -63,9 +63,9 @@
 }
 .modal-message {
    position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -40%) scale(0.98);
+   top: -100%;
+   left: -100%;
+   transform: scale(0.98);
    opacity: 0;
    pointer-events: none;
 
@@ -91,27 +91,10 @@
    transition:
       opacity .3s ease,
       transform .3s ease;
-
-   &__preloader {
-      position: relative;
-      width: 200px;
-      aspect-ratio: 1 / 1;
-      // min-height: 140px;
-
-
-      background: rgba(245, 245, 245, .5);
-      box-shadow: 0px 0px 40px rgba(245, 245, 245, 1);
-
-      border-radius: 50%;
-      overflow: hidden;
-   }
-   &._error {
-      // background: rgba(157, 89, 34, .6);
-      // background: rgba(114, 101, 98, .9);
-      background: rgba(114, 51, 40, .6);
-   }
    &._view {
       opacity: 1;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%) scale(1);
       pointer-events: auto;
 
@@ -133,78 +116,55 @@
       }
    }
    
-   &__pic {
-      width: auto;
-      height: 140px;
+   &._error {
+      // background: rgba(157, 89, 34, .6);
+      // background: rgba(114, 101, 98, .9);
+      background: rgba(114, 51, 40, .6);
    }
-   &__title {
-      font-size: 1.6em;
-      font-weight: 400;
-      text-align: center;
-      color: $colorWhite;
+
+   &__preloader {
+      position: relative;
+      width: 200px;
+      aspect-ratio: 1 / 1;
+      // min-height: 140px;
+
+
+      background: rgba(245, 245, 245, .5);
+      box-shadow: 0px 0px 40px rgba(245, 245, 245, 1);
+
+      border-radius: 50%;
+      overflow: hidden;
    }
-   &__txt {
-      margin-top: 20px;
-      font-size: 16px;
-      font-weight: 400;
-      text-align: center;
-      color: $colorWhite;
-   }
-   &__form {
+   &__content {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      margin: auto;
-      width: 90%;
-      input, textarea{
-         width: 100%;
-         height: 2em;
-         // padding: 0.1em;
-         font-size: 1em;
-         margin: .4em 0 .8em 0;
-   
-         padding: 1em;
-         background: rgba(255, 255, 255, 0.6);
-         border: 1px solid #CACACA;
-         box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25), inset 1px 1px 2px rgba(0, 0, 0, 0.35);
-         border-radius: 12px;
+      align-items: center;
+      text-align: center;
 
-         text-transform: none;
-         
-         color: $colorDarkGray;
+      img {
+         display: block;
+         width: auto;
+         height: 140px;
+         margin: 0 auto;
       }
-      textarea{
-         height: 8em;
-      }
-      input[type=submit]{
-         height: min-content;
-         width: min-content;
-   
-         padding: .9em 1.5em;
-         margin: auto;
-   
-         font-size: 16px;
-         font-weight: 400;
-         
-         cursor: pointer;
-         background: rgba(255, 255, 255, 0.6);
-         color: $colorDarkGray;
-         transition: all .3s;
-         &:hover{
-            background: rgba(255, 255, 255, 0.4);
-            color: $colorLightGray;
-         }
-      }
-      label{
-         font-size: 1em;
+
+      h3 {
+         margin-top: 12px;
+         font-size: 1.6em;
          font-weight: 400;
          color: $colorWhite;
-         i{
-            color: red;
-         }
+      }
+
+      p {
+         margin-top: 20px;
+         font-size: 16px;
+         font-weight: 400;
+         color: $colorWhite;
       }
    }
 }
+
+//======= PRELOADER LOGO TRANSFORM =======
 @keyframes PulseD1 {
    0% {
       transform: scaleY(0.05);
@@ -379,5 +339,3 @@
       opacity: 0;
    }
 }
-
-

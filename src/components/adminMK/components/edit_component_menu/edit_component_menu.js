@@ -206,11 +206,7 @@ export function mountComponentEditMenu(rootEl) {
                .then(({ ok, html }) => {
                   if (!ok || !html) return;
 
-                  // Remove current menu and insert new one
-                  try {
-                     rootEl.remove();
-                  } catch (_) { }
-
+                  // Keep current (parent) menu open; just insert the new edit menu
                   document.body.insertAdjacentHTML('beforeend', html);
                })
                .catch(() => {

@@ -1,342 +1,370 @@
+<div data-fls-componentInsertMenu class="component-insert-menu _view" data-component="componentInsertMenu"
+   data-part="root" data-name="component-insert">
+   <!-- Хедер меню -->
+   <include src="@components/adminMK/components/admin_modal_header/admin_modal_header.html" locals='{
+      "dataAction": "close-menu",
+      "ariaTabel": "Закрити меню",
+      "pTitle": "Обрати компонент для додавання на сторінку"
+   }'></include>
 
-   <div data-fls-componentInsertMenu class="component-insert-menu _view" data-component="componentInsertMenu" data-part="root" data-name="component-insert">
-      <div class="component-insert-menu__header">
-         <button class="component-insert-menu__close" type="button" data-action="close-modal" data-target="component-insert" aria-label="Закрити"></button>
-         <p class="component-insert-menu__title">Обрати компонент для додавання на сторінку</p>
-      </div>
+   <form class="component-insert-menu__tiles-container" method="post" action="/admin/setup/component-insert/">
+      <input type="hidden" name="instance_id" value="24">
+      <input type="hidden" name="position" value="after">
+      <input type="hidden" name="page_id" value="5">
 
-      <form class="component-insert-menu__tiles-container" method="post" action="/admin/setup/component-insert/">
-         <input type="hidden" name="instance_id" value="24">
-         <input type="hidden" name="position" value="after">
-         <input type="hidden" name="page_id" value="5">
+      <ul class="component-insert-menu__tiles-wrapper _reverse-direction">
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="9"
+               data-component-view="catalog_classic">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required="">
+               <span class="component-insert-menu__tile-title">
+                  catalog_classic </span>
 
-         <ul class="component-insert-menu__tiles-wrapper _reverse-direction">
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="9" data-component-view="catalog_classic">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="9" required="">
-                  <span class="component-insert-menu__tile-title">
-                     catalog_classic                     </span>
+               <span class="component-insert-menu__tile-type">
+                  catalog </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     catalog                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/catalog_classic.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="8" data-component-view="special_offer">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="8" required="">
+               <span class="component-insert-menu__tile-title">
+                  special_offer </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/catalog_classic.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="8" data-component-view="special_offer">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="8" required="">
-                  <span class="component-insert-menu__tile-title">
-                     special_offer                     </span>
+               <span class="component-insert-menu__tile-type">
+                  catalog </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     catalog                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/special_offer.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="23" data-component-view="advantages">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="23" required="">
+               <span class="component-insert-menu__tile-title">
+                  advantages </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/special_offer.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="23" data-component-view="advantages">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="23" required="">
-                  <span class="component-insert-menu__tile-title">
-                     advantages                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/advantages.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="55" data-component-view="brands">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="55" required="">
+               <span class="component-insert-menu__tile-title">
+                  brands </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/advantages.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="55" data-component-view="brands">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="55" required="">
-                  <span class="component-insert-menu__tile-title">
-                     brands                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/brands.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="32" data-component-view="button_link">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="32" required="">
+               <span class="component-insert-menu__tile-title">
+                  button_link </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/brands.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="32" data-component-view="button_link">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="32" required="">
-                  <span class="component-insert-menu__tile-title">
-                     button_link                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/button_link.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="33" data-component-view="catalog-cover">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="33" required="">
+               <span class="component-insert-menu__tile-title">
+                  catalog-cover </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/button_link.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="33" data-component-view="catalog-cover">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="33" required="">
-                  <span class="component-insert-menu__tile-title">
-                     catalog-cover                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/catalog-cover.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="2" data-component-view="header">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="2" required="">
+               <span class="component-insert-menu__tile-title">
+                  header </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/catalog-cover.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="2" data-component-view="header">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="2" required="">
-                  <span class="component-insert-menu__tile-title">
-                     header                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/header.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="31" data-component-view="html">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="31" required="">
+               <span class="component-insert-menu__tile-title">
+                  html </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/header.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="31" data-component-view="html">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="31" required="">
-                  <span class="component-insert-menu__tile-title">
-                     html                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/html.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="53" data-component-view="models">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="53" required="">
+               <span class="component-insert-menu__tile-title">
+                  models </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/html.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="53" data-component-view="models">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="53" required="">
-                  <span class="component-insert-menu__tile-title">
-                     models                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/models.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="57" data-component-view="order_steps">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="57" required="">
+               <span class="component-insert-menu__tile-title">
+                  order_steps </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/models.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="57" data-component-view="order_steps">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="57" required="">
-                  <span class="component-insert-menu__tile-title">
-                     order_steps                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/order_steps.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="7"
+               data-component-view="page_description">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="7" required="">
+               <span class="component-insert-menu__tile-title">
+                  page_description </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/order_steps.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="7" data-component-view="page_description">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="7" required="">
-                  <span class="component-insert-menu__tile-title">
-                     page_description                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/page_description.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="40" data-component-view="pricing">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="40" required="">
+               <span class="component-insert-menu__tile-title">
+                  pricing </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/page_description.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="40" data-component-view="pricing">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="40" required="">
-                  <span class="component-insert-menu__tile-title">
-                     pricing                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/pricing.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="50" data-component-view="printing-tech">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="50" required="">
+               <span class="component-insert-menu__tile-title">
+                  printing-tech </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/pricing.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="50" data-component-view="printing-tech">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="50" required="">
-                  <span class="component-insert-menu__tile-title">
-                     printing-tech                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/printing-tech.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="43"
+               data-component-view="print_size_and_place">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="43" required="">
+               <span class="component-insert-menu__tile-title">
+                  print_size_and_place </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/printing-tech.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="43" data-component-view="print_size_and_place">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="43" required="">
-                  <span class="component-insert-menu__tile-title">
-                     print_size_and_place                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img"
+                     src="/img/admin/components/print_size_and_place.png" alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="59" data-component-view="reviews">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="59" required="">
+               <span class="component-insert-menu__tile-title">
+                  reviews </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/print_size_and_place.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="59" data-component-view="reviews">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="59" required="">
-                  <span class="component-insert-menu__tile-title">
-                     reviews                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/reviews.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="62" data-component-view="SEO_txt">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="62" required="">
+               <span class="component-insert-menu__tile-title">
+                  SEO текст - текстовий блок </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/reviews.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="62" data-component-view="SEO_txt">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="62" required="">
-                  <span class="component-insert-menu__tile-title">
-                     SEO текст - текстовий блок                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/SEO_txt.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="10" data-component-view="tarifs">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="10" required="">
+               <span class="component-insert-menu__tile-title">
+                  tarifs </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/SEO_txt.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="10" data-component-view="tarifs">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="10" required="">
-                  <span class="component-insert-menu__tile-title">
-                     tarifs                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/tarifs.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="24" data-component-view="technologies">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="24" required="">
+               <span class="component-insert-menu__tile-title">
+                  technologies </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/tarifs.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="24" data-component-view="technologies">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="24" required="">
-                  <span class="component-insert-menu__tile-title">
-                     technologies                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/technologies.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="22" data-component-view="tiles_6x3">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="22" required="">
+               <span class="component-insert-menu__tile-title">
+                  tiles_6x311 </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/technologies.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="22" data-component-view="tiles_6x3">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="22" required="">
-                  <span class="component-insert-menu__tile-title">
-                     tiles_6x311                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/tiles_6x3.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="6" data-component-view="welcomeTxt">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="6" required="">
+               <span class="component-insert-menu__tile-title">
+                  welcomeTxt </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/tiles_6x3.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="6" data-component-view="welcomeTxt">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="6" required="">
-                  <span class="component-insert-menu__tile-title">
-                     welcomeTxt                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/welcomeTxt.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="5" data-component-view="cover">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="5" required="">
+               <span class="component-insert-menu__tile-title">
+                  Банег, обкладинка сторінки </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/welcomeTxt.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="5" data-component-view="cover">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="5" required="">
-                  <span class="component-insert-menu__tile-title">
-                     Банег, обкладинка сторінки                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/cover.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="76" data-component-view="contact_us">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="76" required="">
+               <span class="component-insert-menu__tile-title">
+                  Блок контактів, месенджерів та соц мереж </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/cover.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="76" data-component-view="contact_us">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="76" required="">
-                  <span class="component-insert-menu__tile-title">
-                     Блок контактів, месенджерів та соц мереж                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/contact_us.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+         <li class="component-insert-menu__tile">
+            <label class="component-insert-menu__tile-items" data-component-id="71" data-component-view="txt_info">
+               <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="71" required="">
+               <span class="component-insert-menu__tile-title">
+                  Текстовий блок на сірому фоні </span>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/contact_us.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-            <li class="component-insert-menu__tile">
-               <label class="component-insert-menu__tile-items" data-component-id="71" data-component-view="txt_info">
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="71" required="">
-                  <span class="component-insert-menu__tile-title">
-                     Текстовий блок на сірому фоні                     </span>
+               <span class="component-insert-menu__tile-type">
+                  content </span>
 
-                  <span class="component-insert-menu__tile-type">
-                     content                     </span>
+               <div class="component-insert-menu__component-preview">
+                  <img class="component-insert-menu__component-preview-img" src="/img/admin/components/txt_info.png"
+                     alt="Component preview">
+               </div>
+            </label>
+         </li>
+      </ul>
 
-                  <div class="component-insert-menu__component-preview">
-                     <img class="component-insert-menu__component-preview-img" src="/img/admin/components/txt_info.png" alt="Component preview">
-                  </div>
-               </label>
-            </li>
-         </ul> 
-
-         <button class="component-insert-menu__add-btn" type="submit">
-            Додати
-         </button>
-      </form>
-   </div>
+      <button class="component-insert-menu__add-btn" type="submit">
+         Додати
+      </button>
+   </form>
+</div>

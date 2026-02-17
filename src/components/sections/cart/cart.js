@@ -747,8 +747,6 @@ updateBadges()
 
    form.addEventListener('submit', async (e) => {
       e.preventDefault()
-      // Показуємо модалку “дякую” з прелоадером, доки чекаємо відповідь
-      modalMessage.showLoading({ title: 'Відправляємо…' })
       // 1) Гарантуємо наявність hidden-поля cart і записуємо туди поточну корзину
       let cartInput = form.querySelector(SELECTORS_CART.cartJsonInput)
       if (!cartInput) {
@@ -785,22 +783,22 @@ updateBadges()
             fd.append('page', '')
          }
       }
+      // Показуємо модалку “дякую” з прелоадером тільки перед реальною відправкою
+      modalMessage.showLoading({ title: 'Відправляємо…' })
 
       try {
-         const res = await loadContent('create-cart-order', fd, undefined, 'html')
-         // Small delay to let the preloader play
-         await new Promise(resolve => setTimeout(resolve, 4000))
+         const res = await loadContent('create-cart-order', fd, undefined, 'json')
 
-         // Expected response: { status: 'ok'|'error'|'success', title?: string, html?: string }
+         // Expected response: { status: 'ok'|'error'|'success', title?: string, message?: string }
          if (res && typeof res === 'object') {
             const status = String(res.status || '').toLowerCase()
             const title = typeof res.title === 'string' ? res.title : ''
-            const html = typeof res.html === 'string' ? res.html : ''
+            const message = typeof res.message === 'string' ? res.message : ''
 
             if (status === 'ok' || status === 'success') {
                modalMessage.showSuccess({
                   title: title || 'Дякуємо!',
-                  message: html || '',
+                  message: message || '',
                })
 
                // GTM / GA4 / Ads event: cart order success
@@ -839,7 +837,7 @@ updateBadges()
             } else {
                modalMessage.showError({
                   title: title || 'Помилка',
-                  message: html || 'Спробуйте ще раз трохи пізніше.',
+                  message: message || 'Спробуйте ще раз трохи пізніше.',
                })
             }
          }

@@ -1,9 +1,13 @@
-<div data-fls-insert_component_child_menu class="insert-component-child-menu _view" data-component="insert-component-child-menu" data-part="root">
+<div data-fls-insert_component_child_menu class="insert-component-child-menu _view"
+   data-component="insert-component-child-menu" data-part="root">
 
-   <header data-fls-menu_header class="menu-header" data-component="menu-header" data-part="part" data-menu-header-mounted="1">
-      <button class="menu-header__close" type="button" data-action="close-menu" data-target="insert-component-child-menu" aria-label="Закрити меню"></button>
-      <p class="menu-header__title">Компоненти доступні до додавання</p>
-   </header>
+   <!-- Хедер меню -->
+   <include src="@components/adminMK/components/admin_modal_header/admin_modal_header.html" locals='{
+      "dataAction": "close-menu",
+      "dataTarget": "insert-component-child-menu",
+      "ariaTabel": "Закрити меню",
+      "pTitle": "Компоненти доступні до додавання"
+   }'></include>
 
    <div class="insert-component-child-menu__content" data-part="content">
       <form method="post" action="/admin/setup/insert-component-child/">
@@ -15,9 +19,11 @@
 
          <ul class="insert-component-child-menu__items">
             <li class="insert-component-child-menu__item">
-               <label class="insert-component-child-menu__choice" data-component-id="49" data-component-view="advantages_items">
+               <label class="insert-component-child-menu__choice" data-component-id="49"
+                  data-component-view="advantages_items">
 
-                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="49" required="">
+                  <input class="component-insert-menu__tile-radio" type="radio" name="component_id" value="49"
+                     required="">
 
                   <span class="component-insert-menu__tile-title">advantages_items</span>
                </label>

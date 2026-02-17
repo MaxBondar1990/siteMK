@@ -12,6 +12,9 @@ import './menu_header.scss';
 export function mountMenuHeader(rootEl) {
    if (!rootEl) return () => { };
 
+   const titleEl = rootEl.querySelector('[data-part="title"]');
+   const originalTitle = titleEl ? titleEl.textContent : '';
+
    const ac = new AbortController();
    const { signal } = ac;
 
@@ -26,6 +29,7 @@ export function mountMenuHeader(rootEl) {
          const menuEl = document.querySelector(`[data-component="${CSS.escape(target)}"]`);
          if (menuEl) {
             menuEl.classList.remove('_view');
+            if (titleEl) titleEl.textContent = originalTitle;
             e.preventDefault();
             return;
          }
@@ -35,12 +39,24 @@ export function mountMenuHeader(rootEl) {
       const fallbackMenu = btn.closest('._view');
       if (fallbackMenu) {
          fallbackMenu.classList.remove('_view');
+         if (titleEl) titleEl.textContent = originalTitle;
          e.preventDefault();
       }
    }, { signal });
 
    // Unmount helper
    return () => ac.abort();
+}
+
+export function setMenuHeaderTitle(rootEl, newTitle) {
+   if (!rootEl) return;
+
+   const titleEl = rootEl.querySelector('[data-part="title"]');
+   if (!titleEl) return;
+
+   if (typeof newTitle === 'string') {
+      titleEl.textContent = newTitle;
+   }
 }
 
 // Self-mount: supports both initial DOM and dynamically injected menus (fetch -> insert)

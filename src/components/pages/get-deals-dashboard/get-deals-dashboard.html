@@ -4,952 +4,988 @@
 <link rel="stylesheet" href="@components/pages/get-deals-dashboard/get-deals-dashboard.scss">
 
 <main class="page page--home">
-<div class="dash-board">
-    <!-- Animated gradient BG -->
-    <div class="blob-outer-container">
-        <div class="blob-inner-container">
+   <div class="dash-board">
+      <!-- Animated gradient BG -->
+      <div class="blob-outer-container">
+         <div class="blob-inner-container">
             <div class="blob"></div>
-        </div>
-    </div>
-
-    <div class="dash-board__items-block">
-      <!-- Кнопка повернення до сьогодняшньої дати -->
-      <button class="return-to-today-btn" type="button" title="Повернутись до сьогодняшньої дати">
-         <svg class="return-to-today-btn__svg">
-            <use xlink:href="__spritemap#sprite-today"></use>
-         </svg>
-         <p class="return-to-today-btn__txt">today</p>
-      </button>
-      <!-- Панель дати -->
-      <div class="dash-board__date-screen">
-         <p class="dash-board__date-screen-month" data-name="date-screen-month">ТРАВЕНЬ</p>
-         <p class="dash-board__date-screen-date" data-name="date-screen-date">13</p>
-         <p class="dash-board__date-screen-day" data-name="date-screen-day">Вівторок</p>
+         </div>
       </div>
-      <!-- Панель відображення денної ефективності -->
-      <div class="dash-board__daily-efficiency">
-         <p class="dash-board__daily-efficiency-title">Данні за день</p>
-         <div class="dash-board__daily-efficiency-items">
+
+      <div class="dash-board__items-block">
+         <!-- Кнопка повернення до сьогодняшньої дати -->
+         <button class="return-to-today-btn" type="button" title="Повернутись до сьогодняшньої дати">
+            <svg class="return-to-today-btn__svg">
+               <use xlink:href="__spritemap#sprite-today"></use>
+            </svg>
+            <p class="return-to-today-btn__txt">today</p>
+         </button>
+         <!-- Панель дати -->
+         <div class="dash-board__date-screen">
+            <p class="dash-board__date-screen-month" data-name="date-screen-month">ТРАВЕНЬ</p>
+            <p class="dash-board__date-screen-date" data-name="date-screen-date">13</p>
+            <p class="dash-board__date-screen-day" data-name="date-screen-day">Вівторок</p>
+         </div>
+         <!-- Панель відображення денної ефективності -->
+         <div class="dash-board__daily-efficiency">
+            <p class="dash-board__daily-efficiency-title">Данні за день</p>
+            <div class="dash-board__daily-efficiency-items">
                <p class="dash-board__daily-efficiency-data cost-value">Витрати: 5 000 грн.</p>
                <p class="dash-board__daily-efficiency-data profit-falue">Дохід: 12 000 грн.</p>
-               <p class="dash-board__daily-efficiency-data result _green" data-name="daily-efficiency-data">+ 27 000 <span class="dash-board__daily-efficiency-data-currency">грн.</span></p>
-         </div>
-      </div>
-      <!-- Панель вибору дати та тижня -->
-      <div class="dash-board__date-selection-block">
-         <button class="dash-board__change-of-week-btn back" type="button" title="попередній тиждень"></button>
-         <div class="dash-board__days-block-wrapper">
-            <div class="dash-board__days-block">
-                  <button class="dash-board__button-day _red" data-btn-day="Monday" data-date="2025-01-12" type="button" title="понеділок">12<span class="dash-board__button-day_name">ПН</span></button>
-                  <button class="dash-board__button-day _green _active" data-btn-day="Tuesday" data-date="2025-02-13" type="button" title="вівторок">13<span class="dash-board__button-day_name">ВТ</span></button>
-                  <button class="dash-board__button-day _green" data-btn-day="Wednesday" data-date="2025-03-14" type="button" title="середа">14 <span class="dash-board__button-day_name">СР</span></button>
-                  <button class="dash-board__button-day _green" data-btn-day="Thursday" data-date="2025-04-15" type="button" title="четвер">15 <span class="dash-board__button-day_name">ЧЕ</span></button>
-                  <button class="dash-board__button-day _red" data-btn-day="Friday" data-date="2025-05-16" type="button" title="п'ятниця">16 <span class="dash-board__button-day_name">ПТ</span></button>
-                  <button class="dash-board__button-day" data-btn-day="Saturday" data-date="2025-06-17" type="button" title="субота">17 <span class="dash-board__button-day_name">СБ</span></button>
-                  <button class="dash-board__button-day _red" data-btn-day="Sunday" data-date="2025-12-18" type="button" title="неділя">18 <span class="dash-board__button-day_name">НД</span></button>
+               <p class="dash-board__daily-efficiency-data result _green" data-name="daily-efficiency-data">+ 27 000
+                  <span class="dash-board__daily-efficiency-data-currency">грн.</span></p>
             </div>
          </div>
-         <button class="dash-board__change-of-week-btn forward" type="button" title="наступний тиждень"></button>
-      </div>
-      <!-- Панель вибору докладної аналітики -->
-      <div class="dash-board__fin-inform-buttons-block">
-         <button class="dash-board__fin-inform-button income" data-btn-name="fin-inform-button">
-            <p class="dash-board__fin-inform-button-name">ДОХІД</p>
-            <svg class="dash-board__fin-inform-button-ico">
-               <use xlink:href="__spritemap#sprite-ico_income"></use>
-            </svg>
-         </button>
-         <p class="dash-board__fin-inform-button-description for-income">Докладна інформація щодо доходів за цей день. Щоб побачити інформацію натисніть на кнопку.</p>
-         <button class="dash-board__fin-inform-button outlay" data-btn-name="fin-inform-button-outlay">
-            <p class="dash-board__fin-inform-button-name">ВИДАТКИ</p>
-            <svg class="dash-board__fin-inform-button-ico">
-               <use xlink:href="__spritemap#sprite-ico_outlay"></use>
-            </svg>
-         </button>
-         <p class="dash-board__fin-inform-button-description for-outlay">Розгорнуті данні щодо видвтків за поточний день. Щоб побачити інформацію натисніть на кнопку.</p>
-         <button class="dash-board__fin-inform-button weekly _active" data-btn-name="fin-inform-button-weekly">
-            <p class="dash-board__fin-inform-button-name">ЗА ТИЖДЕНЬ</p>
-            <svg class="dash-board__fin-inform-button-ico">
-               <use xlink:href="__spritemap#sprite-ico_weekly"></use>
-            </svg>
-         </button>
-         <p class="dash-board__fin-inform-button-description for-weekly">Статистика по фінансовій фективності за тиждень. Щоб побачити інформацію натисніть на кнопку.</p>
-      </div>
-      <!-- Дісплей виводу докладної аналітики -->
-      <div class="dash-board__fin-inform-display">
-      <!-- Подробиці по доходу за день -->
-         <!-- ЗА ПОНЕДІЛОК -->
-         <div class="dash-board__daily-income-info" data-day="Monday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 1</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+         <!-- Панель вибору дати та тижня -->
+         <div class="dash-board__date-selection-block">
+            <button class="dash-board__change-of-week-btn back" type="button" title="попередній тиждень"></button>
+            <div class="dash-board__days-block-wrapper">
+               <div class="dash-board__days-block">
+                  <button class="dash-board__button-day _red" data-btn-day="Monday" data-date="2025-01-12" type="button"
+                     title="понеділок">12<span class="dash-board__button-day_name">ПН</span></button>
+                  <button class="dash-board__button-day _green _active" data-btn-day="Tuesday" data-date="2025-02-13"
+                     type="button" title="вівторок">13<span class="dash-board__button-day_name">ВТ</span></button>
+                  <button class="dash-board__button-day _green" data-btn-day="Wednesday" data-date="2025-03-14"
+                     type="button" title="середа">14 <span class="dash-board__button-day_name">СР</span></button>
+                  <button class="dash-board__button-day _green" data-btn-day="Thursday" data-date="2025-04-15"
+                     type="button" title="четвер">15 <span class="dash-board__button-day_name">ЧЕ</span></button>
+                  <button class="dash-board__button-day _red" data-btn-day="Friday" data-date="2025-05-16" type="button"
+                     title="п'ятниця">16 <span class="dash-board__button-day_name">ПТ</span></button>
+                  <button class="dash-board__button-day" data-btn-day="Saturday" data-date="2025-06-17" type="button"
+                     title="субота">17 <span class="dash-board__button-day_name">СБ</span></button>
+                  <button class="dash-board__button-day _red" data-btn-day="Sunday" data-date="2025-12-18" type="button"
+                     title="неділя">18 <span class="dash-board__button-day_name">НД</span></button>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">2 260,00 грн</p>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">2 260,00 грн</p>
-            </div>
+            <button class="dash-board__change-of-week-btn forward" type="button" title="наступний тиждень"></button>
          </div>
-         <!-- ЗА ВІВТОРОК -->
-         <div class="dash-board__daily-income-info" data-day="Tuesday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 1</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">2 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
+         <!-- Панель вибору докладної аналітики -->
+         <div class="dash-board__fin-inform-buttons-block">
+            <button class="dash-board__fin-inform-button income" data-btn-name="fin-inform-button">
+               <p class="dash-board__fin-inform-button-name">ДОХІД</p>
+               <svg class="dash-board__fin-inform-button-ico">
+                  <use xlink:href="__spritemap#sprite-ico_income"></use>
+               </svg>
+            </button>
+            <p class="dash-board__fin-inform-button-description for-income">Докладна інформація щодо доходів за цей
+               день. Щоб побачити інформацію натисніть на кнопку.</p>
+            <button class="dash-board__fin-inform-button outlay" data-btn-name="fin-inform-button-outlay">
+               <p class="dash-board__fin-inform-button-name">ВИДАТКИ</p>
+               <svg class="dash-board__fin-inform-button-ico">
+                  <use xlink:href="__spritemap#sprite-ico_outlay"></use>
+               </svg>
+            </button>
+            <p class="dash-board__fin-inform-button-description for-outlay">Розгорнуті данні щодо видвтків за поточний
+               день. Щоб побачити інформацію натисніть на кнопку.</p>
+            <button class="dash-board__fin-inform-button weekly _active" data-btn-name="fin-inform-button-weekly">
+               <p class="dash-board__fin-inform-button-name">ЗА ТИЖДЕНЬ</p>
+               <svg class="dash-board__fin-inform-button-ico">
+                  <use xlink:href="__spritemap#sprite-ico_weekly"></use>
+               </svg>
+            </button>
+            <p class="dash-board__fin-inform-button-description for-weekly">Статистика по фінансовій фективності за
+               тиждень. Щоб побачити інформацію натисніть на кнопку.</p>
          </div>
-         <!-- ЗА СЕРЕДУ -->
-         <div class="dash-board__daily-income-info" data-day="Wednesday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+         <!-- Дісплей виводу докладної аналітики -->
+         <div class="dash-board__fin-inform-display">
+            <!-- Подробиці по доходу за день -->
+            <!-- ЗА ПОНЕДІЛОК -->
+            <div class="dash-board__daily-income-info" data-day="Monday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 1</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0,
+                        Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0,
+                        Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">2 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0,
+                        Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0,
+                        Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">000 Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0,
+                        Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">2 260,00 грн</p>
                </div>
-               <p class="dash-board__employee-income">860,00 грн</p>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА ВІВТОРОК -->
+            <div class="dash-board__daily-income-info" data-day="Tuesday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 1</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">2 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА СЕРЕДУ -->
+            <div class="dash-board__daily-income-info" data-day="Wednesday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">860,00 грн</p>
                </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
             </div>
-         </div>
-         <!-- ЗА ЧЕТВЕР -->
-         <div class="dash-board__daily-income-info" data-day="Thursday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 4</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА ЧЕТВЕР -->
+            <div class="dash-board__daily-income-info" data-day="Thursday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 4</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 000,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <p class="dash-board__employee-income">1 000,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА П'ЯТНИЦЮ -->
+            <div class="dash-board__daily-income-info" data-day="Friday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 5</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">570,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА СУБОТУ -->
+            <div class="dash-board__daily-income-info" data-day="Saturday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 6</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
             </div>
-         </div>
-         <!-- ЗА П'ЯТНИЦЮ -->
-         <div class="dash-board__daily-income-info" data-day="Friday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 5</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+            <!-- ЗА НЕДІЛЮ -->
+            <div class="dash-board__daily-income-info" data-day="Sunday">
+               <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 7</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото,
+                        Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 2</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
                </div>
-               <p class="dash-board__employee-income">570,00 грн</p>
+               <div class="dash-board__statistics-panel">
+                  <p class="dash-board__employee-title">Робітник 3</p>
+                  <div class="dash-board__work-done">
+                     <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
+                     <p class="dash-board__order-cost">630,00 грн</p>
+                  </div>
+                  <p class="dash-board__employee-income">1 260,00 грн</p>
+               </div>
             </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-         </div>
-         <!-- ЗА СУБОТУ -->
-         <div class="dash-board__daily-income-info" data-day="Saturday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 6</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-         </div>
-         <!-- ЗА НЕДІЛЮ -->
-         <div class="dash-board__daily-income-info" data-day="Sunday">
-            <p class="dash-board__fin-inform-display-title">перелік виконаних робіт за день</p>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 7</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 2</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">РРучки 100 шт., 1+0 , Золото Готель</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-            <div class="dash-board__statistics-panel">
-               <p class="dash-board__employee-title">Робітник 3</p>
-               <div class="dash-board__work-done">
-                  <p class="dash-board__order-title">Ручки, 100 шт., 1+0, Золото, Ріксос</p>
-                  <p class="dash-board__order-cost">630,00 грн</p>
-               </div>
-               <p class="dash-board__employee-income">1 260,00 грн</p>
-            </div>
-         </div>
 
-      <!-- Подробиці по видатках за день -->
-         <!-- Понеділок -->
-         <div class="dash-board__daily-outlay-info" data-day="Monday" data-name="cost-data">
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
+            <!-- Подробиці по видатках за день -->
+            <!-- Понеділок -->
+            <div class="dash-board__daily-outlay-info" data-day="Monday" data-name="cost-data">
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <!-- кнопка виклику форми для додавання нової статті витрат -->
+                  <button class="dash-board__outlay-add-btn" type="button"
+                     title="Додати статтю видатків">Додати</button>
+                  <!-- форма додавання новогї статті витрат -->
+                  <form class="dash-board__outlay-add-form _active" action="">
+                     <!-- кнопка закриття форми витрат -->
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__outlay-add-input-title">Стаття видатків</p>
+                     <input class="dash-board__outlay-add-input" type="text">
+                     <p class="dash-board__outlay-add-input-title">Сума</p>
+                     <input class="dash-board__outlay-add-input" type="text">
+                     <!-- кнопка відправки форми -->
+                     <input class="dash-board__outlay-add-input _submit" type="submit">
+                  </form>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">7 000,00 грн</p>
+               </div>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
+               </div>
+            </div>
+            <!-- Вівторок -->
+            <div class="dash-board__daily-outlay-info" data-day="Tuesday" data-name="cost-data">
                <!-- кнопка виклику форми для додавання нової статті витрат -->
                <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-               <!-- форма додавання новогї статті витрат -->
-               <form class="dash-board__outlay-add-form _active" action="">
-                  <!-- кнопка закриття форми витрат -->
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__outlay-add-input-title">Стаття видатків</p>
-                  <input class="dash-board__outlay-add-input" type="text">
-                  <p class="dash-board__outlay-add-input-title">Сума</p>
-                  <input class="dash-board__outlay-add-input" type="text">
-                  <!-- кнопка відправки форми -->
-                  <input class="dash-board__outlay-add-input _submit" type="submit">
-               </form>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">3 400,00 грн</p>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form _active" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">7 000,00 грн</p>
             </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+            <!-- Середа -->
+            <div class="dash-board__daily-outlay-info" data-day="Wednesday" data-name="cost-data">
+               <!-- кнопка виклику форми для додавання нової статті витрат -->
+               <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">12 000,00 грн</p>
                </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
+               </div>
             </div>
-         </div>
-         <!-- Вівторок -->
-         <div class="dash-board__daily-outlay-info" data-day="Tuesday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+            <!-- Четвер -->
+            <div class="dash-board__daily-outlay-info" data-day="Thursday" data-name="cost-data">
+               <!-- кнопка виклику форми для додавання нової статті витрат -->
+               <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">756,00 грн</p>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">3 400,00 грн</p>
             </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+            <!-- П'ятниця -->
+            <div class="dash-board__daily-outlay-info" data-day="Friday" data-name="cost-data">
+               <!-- кнопка виклику форми для додавання нової статті витрат -->
+               <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">2 4370,00 грн</p>
                </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form _active" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
+               </div>
             </div>
-         </div>
-         <!-- Середа -->
-         <div class="dash-board__daily-outlay-info" data-day="Wednesday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+            <!-- Субота -->
+            <div class="dash-board__daily-outlay-info" data-day="Saturday" data-name="cost-data">
+               <!-- кнопка виклику форми для додавання нової статті витрат -->
+               <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">300,00 грн</p>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
                </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">12 000,00 грн</p>
             </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+            <!-- Неділя -->
+            <div class="dash-board__daily-outlay-info" data-day="Sunday" data-name="cost-data">
+               <!-- кнопка виклику форми для додавання нової статті витрат -->
+               <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
+               <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
+               <div class="dash-board__statistics-panel">
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 1</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 2</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 3</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 4</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 5</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 6</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 7</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 8</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <div class="dash-board__outlay-block">
+                     <p class="dash-board__outlay-title">Стаття видаткв 9</p>
+                     <p class="dash-board__outlay-cost">000,00 грн</p>
+                  </div>
+                  <p class="dash-board__amount-of-expenses">1 000,00 грн</p>
                </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
+               <!-- Панель виводу додаткових/нерегулярних витрат -->
+               <div class="dash-board__statistics-panel additional-costs">
+                  <div class="dash-board__additional-costs-block">
+                     <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
+                     <p class="dash-board__additional-costs-cost">000,00 грн</p>
+                     <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
+                     <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
+                  </div>
+                  <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                  <form class="dash-board__additional-costs-del-form" action="">
+                     <button class="form-close-btn" type="button"></button>
+                     <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?
+                     </p>
+                     <span>Стаття нерегулярних видаткв 1</span>
+                     <span>000,00 грн</span>
+                     <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
+                     <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити"
+                        title="Підтвердити видалення">
+                  </form>
+               </div>
             </div>
-         </div>
-         <!-- Четвер -->
-         <div class="dash-board__daily-outlay-info" data-day="Thursday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">756,00 грн</p>
-            </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
-               </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
-            </div>
-         </div>
-         <!-- П'ятниця -->
-         <div class="dash-board__daily-outlay-info" data-day="Friday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">2 4370,00 грн</p>
-            </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
-               </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
-            </div>
-         </div>
-         <!-- Субота -->
-         <div class="dash-board__daily-outlay-info" data-day="Saturday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">300,00 грн</p>
-            </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
-               </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
-            </div>
-         </div>
-         <!-- Неділя -->
-         <div class="dash-board__daily-outlay-info" data-day="Sunday" data-name="cost-data">
-            <!-- кнопка виклику форми для додавання нової статті витрат -->
-            <button class="dash-board__outlay-add-btn" type="button" title="Додати статтю видатків">Додати</button>
-            <p class="dash-board__fin-inform-display-title">данні щодо витрат за день</p>
-            <div class="dash-board__statistics-panel">
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 1</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 2</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 3</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 4</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 5</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 6</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 7</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 8</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <div class="dash-board__outlay-block">
-                  <p class="dash-board__outlay-title">Стаття видаткв 9</p>
-                  <p class="dash-board__outlay-cost">000,00 грн</p>
-               </div>
-               <p class="dash-board__amount-of-expenses">1 000,00 грн</p>
-            </div>
-            <!-- Панель виводу додаткових/нерегулярних витрат -->
-            <div class="dash-board__statistics-panel additional-costs">
-               <div class="dash-board__additional-costs-block">
-                  <p class="dash-board__additional-costs-title">Стаття нерегулярних видаткв 1</p>
-                  <p class="dash-board__additional-costs-cost">000,00 грн</p>
-                  <!-- Кнопка видалення запису про додаткові/нерегулярні витрати -->
-                  <button class="dash-board__additional-costs-del-btn" type="button" title="Видалити запис"></button>
-               </div>
-               <!-- Форма підтвердження видалення запису про додаткові/нерегулярні витрати -->
-               <form class="dash-board__additional-costs-del-form" action="">
-                  <button class="form-close-btn" type="button"></button>
-                  <p class="dash-board__additional-costs-del-form-title">Ви впевнені що хочете видалити цей запис?</p>
-                  <span>Стаття нерегулярних видаткв 1</span>
-                  <span>000,00 грн</span>
-                  <!-- Кнопка підтвердження видалення запису про додаткові/нерегулярні витрати -->
-                  <input class="dash-board__additional-costs-del-form-submit" type="submit" value="Видалити" title="Підтвердити видалення">
-               </form>
-            </div>
-         </div>
 
-      <!-- Подробиці по ефективності за тиждень -->
-         <div class="dash-board__weekly-report weekly _on-screen" data-day data-name="details-for-the-week">
-            <p class="dash-board__fin-inform-display-title">фінансова ефективність за тиждень</p>
-            <div class="dash-board__weekly-report-items">
-               <div class="dash-board__weekly-profit-info">
-                  <p class="dash-board__weekly-profit_gradient-text">+ 26 475,00 <span>грн</span></p>
+            <!-- Подробиці по ефективності за тиждень -->
+            <div class="dash-board__weekly-report weekly _on-screen" data-day data-name="details-for-the-week">
+               <p class="dash-board__fin-inform-display-title">фінансова ефективність за тиждень</p>
+               <div class="dash-board__weekly-report-items">
+                  <div class="dash-board__weekly-profit-info">
+                     <p class="dash-board__weekly-profit_gradient-text">+ 26 475,00 <span>грн</span></p>
+                  </div>
+                  <div class="dash-board__weekly-report-data _weekly-income">
+                     <span>Зароблено:</span>
+                     <span>47 475,00 грн</span>
+                  </div>
+                  <div class="dash-board__weekly-report-data _weekly-break-even-point">
+                     <span>Мінімально потрібно:</span>
+                     <span>21 000,00 грн</span>
+                  </div>
                </div>
-               <div class="dash-board__weekly-report-data _weekly-income">
-                  <span>Зароблено:</span>
-                  <span>47 475,00 грн</span>
-               </div>
-               <div class="dash-board__weekly-report-data _weekly-break-even-point">
-                  <span>Мінімально потрібно:</span>
-                  <span>21 000,00 грн</span>
-               </div>
-            </div>
-            <div class="dash-board__circular-progress-bar">
+               <div class="dash-board__circular-progress-bar">
 
 
+               </div>
             </div>
          </div>
-      </div>
-      <!-- Графік ефективності за тиждень -->
-      <div class="dash-board__efficiency-chart-block">
-         <div class="dash-board__efficiency-chart">
+         <!-- Графік ефективності за тиждень -->
+         <div class="dash-board__efficiency-chart-block">
+            <div class="dash-board__efficiency-chart">
 
-            <!-- Графік фінансової ефективності за тиждень -->
-            <div class="chart-wrapper">
-               <div class="y-axis">
-                  <div class="y-label">10K</div>
-                  <div class="y-label">9K</div>
-                  <div class="y-label">8K</div>
-                  <div class="y-label">7K</div>
-                  <div class="y-label">6K</div>
-                  <div class="y-label">5K</div>
-                  <div class="y-label">4K</div>
-                  <div class="y-label">3K</div>
-                  <div class="y-label">2K</div>
-                  <div class="y-label">1K</div>
-                  <div class="y-label">0</div>
-               </div>
-               <div class="chart">
-                  <svg class="line-chart" viewBox="0 0 548 178" preserveAspectRatio="none">
-                  <defs>
-                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#2cffed" />
-                        <stop offset="100%" stop-color="#ff7b3d" />
-                     </linearGradient>
-                  </defs>
+               <!-- Графік фінансової ефективності за тиждень -->
+               <div class="chart-wrapper">
+                  <div class="y-axis">
+                     <div class="y-label">10K</div>
+                     <div class="y-label">9K</div>
+                     <div class="y-label">8K</div>
+                     <div class="y-label">7K</div>
+                     <div class="y-label">6K</div>
+                     <div class="y-label">5K</div>
+                     <div class="y-label">4K</div>
+                     <div class="y-label">3K</div>
+                     <div class="y-label">2K</div>
+                     <div class="y-label">1K</div>
+                     <div class="y-label">0</div>
+                  </div>
+                  <div class="chart">
+                     <svg class="line-chart" viewBox="0 0 548 178" preserveAspectRatio="none">
+                        <defs>
+                           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" stop-color="#2cffed" />
+                              <stop offset="100%" stop-color="#ff7b3d" />
+                           </linearGradient>
+                        </defs>
 
-              
-                  <path
-                     d="
+
+                        <path d="
                         M 0,103.04
                         C 45.67,22.86 45.67,22.86 91.33,22.86
                         C 136.995,22.86 136.995,56.96 182.66,56.96
@@ -957,27 +993,23 @@
                         C 319.655,122.82 319.655,16.22 365.32,16.22
                         C 410.985,16.22 410.985,67.96 456.65,67.96
                         C 502.315,67.96 502.315,178 547.98,178
-                     "
-                     fill="none"
-                     stroke="url(#lineGradient)"
-                     stroke-width="2"
-                  />
-                  </svg>
-                  <div class="x-axis">
-                     <span>Пн</span>
-                     <span>Вт</span>
-                     <span>Ср</span>
-                     <span>Чт</span>
-                     <span>Пт</span>
-                     <span>Сб</span>
-                     <span>Нд</span>
+                     " fill="none" stroke="url(#lineGradient)" stroke-width="2" />
+                     </svg>
+                     <div class="x-axis">
+                        <span>Пн</span>
+                        <span>Вт</span>
+                        <span>Ср</span>
+                        <span>Чт</span>
+                        <span>Пт</span>
+                        <span>Сб</span>
+                        <span>Нд</span>
+                     </div>
                   </div>
                </div>
-            </div>
 
+            </div>
          </div>
       </div>
-    </div>
-</div>
+   </div>
 
 </main>

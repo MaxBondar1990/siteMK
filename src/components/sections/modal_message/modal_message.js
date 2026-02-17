@@ -1,4 +1,5 @@
 import './modal_message.scss'
+import { setMenuHeaderTitle } from '../../custom/menu_header/menu_header'
 
 /**
  * modal_message (simple)
@@ -80,6 +81,16 @@ function buildController(rootEl) {
       rootEl.setAttribute('aria-busy', String(Boolean(isBusy)))
    }
 
+   function setErrorState() {
+      if (!rootEl?.classList) return
+      rootEl.classList.add('_error')
+   }
+
+   function clearErrorState() {
+      if (!rootEl?.classList) return
+      rootEl.classList.remove('_error')
+   }
+
    function showPreparedSuccess(message) {
       // Show container + success block
       hideEl(errorEl)
@@ -105,14 +116,15 @@ function buildController(rootEl) {
          const { title = '' } = payload
          openModal(rootEl)
          setBusy(false)
-         if (titleEl) setText(titleEl, title)
+         setMenuHeaderTitle(rootEl, title)
       },
 
       showLoading(payload = {}) {
          const { title = '' } = payload
          openModal(rootEl)
+         clearErrorState()
          setBusy(true)
-         if (titleEl) setText(titleEl, title)
+         setMenuHeaderTitle(rootEl, title)
 
          showEl(preloaderEl)
          hideEl(containerEl)
@@ -126,8 +138,9 @@ function buildController(rootEl) {
       showSuccess(payload = {}) {
          const { title = '', message = '', html = '' } = payload
          openModal(rootEl)
+         clearErrorState()
          setBusy(false)
-         if (titleEl) setText(titleEl, title)
+         setMenuHeaderTitle(rootEl, title)
 
          hideEl(preloaderEl)
          showEl(containerEl)
@@ -148,8 +161,9 @@ function buildController(rootEl) {
       showError(payload = {}) {
          const { title = '', message = '', html = '' } = payload
          openModal(rootEl)
+         setErrorState()
          setBusy(false)
-         if (titleEl) setText(titleEl, title)
+         setMenuHeaderTitle(rootEl, title)
 
          hideEl(preloaderEl)
          showEl(containerEl)
