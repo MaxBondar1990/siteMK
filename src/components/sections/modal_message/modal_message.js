@@ -77,6 +77,26 @@ function buildController(rootEl) {
    const successTextEl = qs(rootEl, SELECTORS.successText)
    const errorTextEl = qs(rootEl, SELECTORS.errorText)
 
+   const initialContainerHtml = containerEl ? containerEl.innerHTML : ''
+   const initialSuccessText = successTextEl ? successTextEl.textContent : ''
+   const initialErrorText = errorTextEl ? errorTextEl.textContent : ''
+   let containerMode = 'prepared'  // tracks whether we replaced container html
+
+   function resetContent() {
+      if (successTextEl) {
+         successTextEl.textContent = initialSuccessText
+      }
+      if (errorTextEl) {
+         errorTextEl.textContent = initialErrorText
+      }
+      hideEl(successEl)
+      hideEl(errorEl)
+      if (containerMode === 'html' && containerEl) {
+         containerEl.innerHTML = initialContainerHtml
+      }
+      containerMode = 'prepared'
+   }
+
    function setBusy(isBusy) {
       rootEl.setAttribute('aria-busy', String(Boolean(isBusy)))
    }
@@ -115,6 +135,7 @@ function buildController(rootEl) {
       show(payload = {}) {
          const { title = '' } = payload
          openModal(rootEl)
+         resetContent()
          setBusy(false)
          setMenuHeaderTitle(rootEl, title)
       },
@@ -126,6 +147,7 @@ function buildController(rootEl) {
          setBusy(true)
          setMenuHeaderTitle(rootEl, title)
 
+         resetContent()
          showEl(preloaderEl)
          hideEl(containerEl)
       },
@@ -145,11 +167,14 @@ function buildController(rootEl) {
          hideEl(preloaderEl)
          showEl(containerEl)
 
+         containerMode = 'prepared'
          if (typeof html === 'string' && html.trim()) {
             setHtml(containerEl, html)
+            containerMode = 'html'
             return
          }
 
+         hideEl(errorEl)
          showPreparedSuccess(message)
       },
 
@@ -168,8 +193,10 @@ function buildController(rootEl) {
          hideEl(preloaderEl)
          showEl(containerEl)
 
+         containerMode = 'prepared'
          if (typeof html === 'string' && html.trim()) {
             setHtml(containerEl, html)
+            containerMode = 'html'
             return
          }
 
