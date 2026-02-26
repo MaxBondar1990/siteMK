@@ -67,7 +67,7 @@
    &__menu-navigation-items {
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: flex-start;
       align-items: flex-start;
 
