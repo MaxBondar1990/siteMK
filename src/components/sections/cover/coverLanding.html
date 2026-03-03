@@ -1,24 +1,42 @@
-<section data-fls-cover class="cover _t-shirts" style="--bg: linear-gradient(180deg, #F5F5F5 0%, #FBB03B 50%, #FD9800 100%)" data-component="cover" data-part="root" aria-label="Обкладинка сайту рекламної агенції МК">
+<section data-fls-cover class="cover" style="--bg: linear-gradient(180deg,rgba(245, 245, 245, 1) 40%, rgba(255, 255, 255, 1) 100%)" data-component="cover" data-part="root" aria-label="">
   <picture class="cover__pic">
-    <img class="cover__img" src="@img/coverLanding/coverT-shirts-1.webp" title="Обкладинка рекламної агенції МК" alt="Обкладинка рекламної агенції МК" />
+    <img class="cover__img" src="@img/cover/coverPrintTShirts.webp" title="Футболки з вашим дизайном" alt="Футболки з вашим дизайном">
   </picture>
-
   <div class="cover__content">
-    <h1 class="cover__title" style="--color: #6f6f6f; --titleWidth: 80%" id="cover-title">
-      [[title]]
-    </h1>
-    <p class="cover__txt" style="--txtColor: #f5f5f5" lang="uk-UA" id="cover-description">
-      Швидкий друк, якісний матеріал, доставка по Україні.
-    </p>
-    <button class="cover__button" style="--btnColor: #f7931e; --btnBg: #ffffff; --btnBorderColor: none" data-action="open-modal" data-target="contact-form-cover-landing" data-part="button" type="button" aria-label="Замовити послугу">
-      Замовити
-    </button>
+    <h1 class="cover__title" style="--color: #6f6f6f; --titleWidth: 80%" id="cover-title" data-part="title">Футболки з вашим дизайном</h1>
+    <p class="cover__txt" style="--txtColor: #4170b4" id="cover-description" data-part="description">Швидкий друк, якісний матеріал, доставка по Україні.</p>    
+    <button class="cover__button" style="--btnColor: #f5f5f5; --btnBg: #f7931e; --btnBorderColor: #f7931e" data-action="open-modal" data-target="contact-form" data-part="button" type="button" aria-label="Замовити послугу">Замовити</button>
   </div>
-     <include src="@components/custom/modal/modal.html" locals='{
-      "addClass": "",
-      "modalName": "contact-form-cover-landing",
-      "closeOrRemove": "close",
-      "dirName": "custom",
-      "fileName": "contactform"
-   }'></include>
+  <include src="@components/custom/modal/modal.html" locals='{
+    "addClass": "",
+    "modalName": "contact-form-cover-landing",
+    "closeOrRemove": "close",
+    "dirName": "custom",
+    "fileName": "contactform"
+  }'></include>
 </section>
+<nav class="page-nav-menu" aria-label="Навігація по сторінці">
+  <div class="page-nav-menu__btns_blck">
+    
+    <a class="page-nav-menu__btn" href="#popular-products">
+      <img class="page-nav-menu__btn-img" src="@img/page_nav_menu/catalog_ico.webp" alt="" aria-hidden="true">
+      <span class="page-nav-menu__btn-signature _glass">Популярні<br>товари</span>
+    </a>
+
+    <a class="page-nav-menu__btn" href="#article-print-tarif">
+      <img class="page-nav-menu__btn-img" src="@img/page_nav_menu/price_list_ico.webp" alt="" aria-hidden="true">
+      <span class="page-nav-menu__btn-signature _glass">Вартість<br>друку</span>
+    </a>
+
+    <a class="page-nav-menu__btn" href="#reviews-title">
+      <img class="page-nav-menu__btn-img" src="@img/page_nav_menu/reviews_ico.webp" alt="" aria-hidden="true">
+      <span class="page-nav-menu__btn-signature _glass">Відгуки<br>клієнтів</span>
+    </a>
+
+    <a class="page-nav-menu__btn" href="#header">
+      <img class="page-nav-menu__btn-img" src="@img/page_nav_menu/pageUp_ico.webp" alt="" aria-hidden="true">
+      <span class="page-nav-menu__btn-signature _glass">На<br>гору</span>
+    </a>
+
+  </div>
+</nav>
