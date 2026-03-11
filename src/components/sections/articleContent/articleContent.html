@@ -190,6 +190,38 @@
          <input class="add-link-to-supplier__form-submit" type="submit" value="Надіслати">
       </form>
    </div>
+
+
+      <!-- Кнопка виклику форми редагування ціни -->
+   <button class="call-edit-price" data-button="viewedit-price-modal" data-action="open-modal"
+      data-target="inks-to-edit-price-modal" aria-label="Редагувати ціну товару"
+      title="Редагувати ціну товару">
+      <svg class="call-edit-price__icon" aria-hidden="true" focusable="false">
+         <use xlink:href="__spritemap#sprite-money"></use>
+      </svg>
+   </button>
+   <!-- Модалка з формою для редагування ціни товару -->
+   <div class="add-to-price" data-name="price-modal">
+      <!-- Кнопка що зачиняє модалку -->
+      <button class="add-to-price__modal-close" data-action="close-modal" data-part="close" type="button"
+         aria-label="Закрити корзину"></button>
+      <form class="add-to-price__form" action="">
+         <legend class="add-to-price__form-title">
+            Вкажіть ціну товару
+         </legend>
+         <!-- <label class="add-to-price__form-label" for="price-name">
+            Вкажіть назву постачальника
+         </label>
+         <input class="add-to-price__form-input" type="text" id="price-name"> -->
+         <label class="add-to-price__form-label" for="price">
+            Ціна
+         </label>
+         <input class="add-to-price__form-input" type="url" id="price">
+
+         <input class="add-to-price__form-submit" type="submit" value="Надіслати">
+      </form>
+   </div>
+
    <!-- TODO додати якір на тарифи -->
    <!--<button class="order-btn article__order-button _get-print" data-fls-scrollto="#article-print-tarif"
       data-action="get-print-tarif" type="button">Обрати друк</button>
