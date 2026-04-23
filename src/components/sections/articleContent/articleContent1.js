@@ -22,11 +22,6 @@ const SELECTORS = {
    supplierModal: '[data-name="supplier-modal"]',
    suppliersOpenBtn: '[data-button="view-suppliers-modal"]',
    supplierOpenBtn: '[data-button="view-supplier-modal"]',
-
-   // модалка редагування ціни
-   priceModal: '[data-name="price-modal"]',
-   priceModalOpenBtn: '[data-button="viewedit-price-modal"]',
-
    closeBtn: '[data-action="close-modal"]',
 }
 
@@ -42,6 +37,7 @@ function getImgEl(rootEl) {
 function applyColorSelection(rootEl, node) {
    if (!rootEl || !node) return
 
+   // Перемикаємо клас _active між елементами кольорів
    const allColorNodes = rootEl.querySelectorAll(SELECTORS.colorItem)
    allColorNodes.forEach((el) => el.classList.remove('_active'))
    node.classList.add('_active')
@@ -49,20 +45,25 @@ function applyColorSelection(rootEl, node) {
    const imgSrc = node.dataset.imgSrc
    const cost = node.dataset.cost
 
+   // Колір беремо з data-color, якщо є, інакше з тексту елемента
    const rawColor =
       (typeof node.dataset.color === 'string' && node.dataset.color) ||
       (typeof node.textContent === 'string' && node.textContent) ||
       ''
    const colorText = rawColor.trim()
 
+   // Update main image (if present)
    const img = getImgEl(rootEl)
    if (img && imgSrc) img.src = imgSrc
 
+   // Update product cost text (if present)
    const costElement = getCostEl(rootEl)
    if (costElement && cost) costElement.textContent = cost
 
+   // Sync color into order form UI and classes
    setColor(colorText)
 
+   // Recalculate total (uses current price * qty inside order form)
    calcTotalCost()
 }
 
@@ -73,12 +74,14 @@ function handleSuppliersModal(rootEl, event) {
 
    const target = event.target
 
+   // ВІДКРИТТЯ — кнопка всередині компонента
    const openBtn = target.closest(SELECTORS.suppliersOpenBtn)
    if (openBtn && rootEl.contains(openBtn)) {
       modalSuppliers.classList.add('_show')
       return
    }
 
+   // ЗАКРИТТЯ — по кнопці закриття всередині самої модалки
    if (modalSuppliers.contains(target)) {
       const closeBtn = target.closest(SELECTORS.closeBtn)
       if (closeBtn && modalSuppliers.contains(closeBtn)) {
@@ -94,37 +97,18 @@ function handleSupplierModal(rootEl, event) {
 
    const target = event.target
 
+   // ВІДКРИТТЯ
    const openBtn = target.closest(SELECTORS.supplierOpenBtn)
    if (openBtn && rootEl.contains(openBtn)) {
       modalSupplier.classList.add('_show')
       return
    }
 
+   // ЗАКРИТТЯ
    if (modalSupplier.contains(target)) {
       const closeBtn = target.closest(SELECTORS.closeBtn)
       if (closeBtn && modalSupplier.contains(closeBtn)) {
          modalSupplier.classList.remove('_show')
-      }
-   }
-}
-
-// 🔹 модалка редагування ціни
-function handlePriceModal(rootEl, event) {
-   const modal = rootEl.querySelector(SELECTORS.priceModal)
-   if (!modal) return
-
-   const target = event.target
-
-   const openBtn = target.closest(SELECTORS.priceModalOpenBtn)
-   if (openBtn && rootEl.contains(openBtn)) {
-      modal.classList.add('_show')
-      return
-   }
-
-   if (modal.contains(target)) {
-      const closeBtn = target.closest(SELECTORS.closeBtn)
-      if (closeBtn) {
-         modal.classList.remove('_show')
       }
    }
 }
@@ -139,6 +123,7 @@ function handleAddToCart(rootEl, btn) {
 
    const type = btn.dataset.type || 'product'
 
+   // Колір завжди беремо з активного елемента (або з першого, якщо активного немає)
    let color = null
 
    let colorNode =
@@ -146,6 +131,7 @@ function handleAddToCart(rootEl, btn) {
       rootEl.querySelector(SELECTORS.colorItem)
 
    if (colorNode) {
+      // Синхронізуємо стан (картинка, ціна, класи) з вибраним кольором
       applyColorSelection(rootEl, colorNode)
 
       const rawColor =
@@ -155,6 +141,7 @@ function handleAddToCart(rootEl, btn) {
       color = rawColor.trim() || null
    }
 
+   // кількість беремо з інпута на сторінці артикла
    let qty = 1
    const qtyInput = rootEl.querySelector(SELECTORS.qtyInput)
    if (qtyInput) {
@@ -182,27 +169,30 @@ function mountArticleContent(rootEl) {
       (event) => {
          const t = event.target
 
+         // 1) Вибір кольору
          const colorNode = t.closest(SELECTORS.colorItem)
          if (colorNode && rootEl.contains(colorNode)) {
             applyColorSelection(rootEl, colorNode)
             return
          }
 
+         // 2) Кнопка відкриття модалки ордер-форми (стара логіка, якщо вона лишається)
          const btnOrder = t.closest(SELECTORS.orderBtn)
          if (btnOrder && rootEl.contains(btnOrder)) {
             view('order-form')
             return
          }
 
+         // 3) Модалка постачальників (усі)
          handleSuppliersModal(rootEl, event)
 
+         // 4) Модалка одного постачальника
          handleSupplierModal(rootEl, event)
 
-         // 🔹 модалка редагування ціни
-         handlePriceModal(rootEl, event)
-
+         // 5) Додавання товару в корзину з артикла
          const addBtn = t.closest(SELECTORS.addToCartBtn)
          if (addBtn && rootEl.contains(addBtn)) {
+            //console.log(rootEl, addBtn)
             handleAddToCart(rootEl, addBtn)
             return
          }
@@ -210,6 +200,9 @@ function mountArticleContent(rootEl) {
       { signal }
    )
 
+   // Ініціалізація дефолтного кольору при завантаженні:
+   // 1) спочатку шукаємо елемент із класом _active
+   // 2) якщо немає — беремо перший елемент зі списку кольорів
    const activeColorNode =
       rootEl.querySelector(`${SELECTORS.colorItem}._active`) ||
       rootEl.querySelector(SELECTORS.colorItem)
@@ -218,9 +211,13 @@ function mountArticleContent(rootEl) {
       applyColorSelection(rootEl, activeColorNode)
    }
 
+   // cleanup для HMR
    return () => ac.abort()
 }
 
+// Автозапуск компонента (локалізація root)
+// Основний варіант — data-component="article-content" data-part="root"
+// Залишаємо fallback на старий [data-name="article-component"], щоб нічого не зламати прямо зараз
 const rootArticle = document.querySelector('[data-component="article-content"][data-part="root"]');
 
 if (rootArticle) {
